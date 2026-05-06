@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Queen Style - Admin Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Queen Style | Royal Admin Dashboard - Manage Your Fashion Empire</title>
+    <meta name="description" content="Queen Style Admin Panel - Manage products, users, orders, and oversee your royal fashion empire with powerful analytics and control.">
+    <meta name="keywords" content="admin panel, queen style admin, fashion admin dashboard, product management, user management, ecommerce admin">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://queenstyle.com/admin">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231e3a8a'/%3E%3Ctext x='50' y='67' font-size='50' text-anchor='middle' fill='%23d4af37'%3EQ%3C/text%3E%3C/svg%3E">
     <style>
         * {
             margin: 0;
@@ -12,31 +17,41 @@
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, 'Inter', sans-serif;
-            background: #f0f2f5;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #f0f2f8 0%, #e8edf5 100%);
+            min-height: 100vh;
         }
 
+        /* Premium Admin Header */
         .admin-header {
-            background: #0b2b4f;
+            background: linear-gradient(135deg, #0b2b4f, #0f1f3a);
             color: white;
             padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .logo-area h2 {
-            font-weight: 600;
-            letter-spacing: -0.3px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            font-size: 1.6rem;
+            background: linear-gradient(135deg, #fff, #d4af37);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .logo-area span {
-            font-size: 0.85rem;
-            background: #ffa41c;
+            font-size: 0.7rem;
+            background: #d4af37;
             color: #1e3a8a;
-            padding: 2px 10px;
+            padding: 3px 12px;
             border-radius: 30px;
             margin-left: 10px;
             font-weight: bold;
@@ -45,12 +60,21 @@
         .admin-actions {
             display: flex;
             gap: 15px;
+            align-items: center;
+        }
+
+        .admin-badge {
+            background: rgba(212, 175, 55, 0.2);
+            padding: 6px 15px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(212, 175, 55, 0.4);
         }
 
         .btn-logout {
             background: #dc2626;
             border: none;
-            padding: 8px 20px;
+            padding: 8px 24px;
             border-radius: 40px;
             color: white;
             font-weight: 600;
@@ -60,90 +84,106 @@
 
         .btn-logout:hover {
             background: #b91c1c;
-            transform: scale(0.97);
+            transform: translateY(-1px);
         }
 
+        /* Dashboard Container */
         .dashboard-container {
             max-width: 1400px;
             margin: 30px auto;
             padding: 0 24px;
         }
 
+        /* Stats Cards */
         .stats-row {
             display: flex;
-            gap: 20px;
+            gap: 22px;
             flex-wrap: wrap;
-            margin-bottom: 32px;
+            margin-bottom: 35px;
         }
 
         .stat-card {
             background: white;
             flex: 1;
-            min-width: 180px;
-            padding: 20px;
-            border-radius: 24px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border: 1px solid #e9ecef;
+            min-width: 190px;
+            padding: 24px;
+            border-radius: 28px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         }
 
         .stat-card h4 {
             color: #6c757d;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .stat-number {
-            font-size: 2.4rem;
+            font-size: 2.6rem;
             font-weight: 800;
-            color: #1e3a8a;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
+        /* Tabs */
         .admin-tabs {
             display: flex;
-            gap: 8px;
+            gap: 10px;
             margin-bottom: 28px;
             border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 6px;
+            padding-bottom: 8px;
+            flex-wrap: wrap;
         }
 
         .tab-btn {
             background: transparent;
             border: none;
-            padding: 10px 24px;
-            font-size: 1rem;
+            padding: 10px 28px;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
             border-radius: 40px;
             color: #4a5568;
-            transition: all 0.2s;
+            transition: all 0.25s;
         }
 
         .tab-btn.active {
-            background: #1e3a8a;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
             color: white;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
         }
 
         .tab-pane {
             display: none;
-            animation: fade 0.25s ease;
+            animation: fadeIn 0.3s ease;
         }
 
         .tab-pane.active-pane {
             display: block;
         }
 
-        @keyframes fade {
-            from { opacity: 0; transform: translateY(6px);}
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px);}
             to { opacity: 1; transform: translateY(0);}
         }
 
+        /* Cards */
         .action-card {
             background: white;
             border-radius: 28px;
-            padding: 24px;
+            padding: 28px;
             margin-bottom: 32px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
             border: 1px solid #eef2f6;
         }
 
@@ -156,7 +196,7 @@
 
         .form-group {
             flex: 1;
-            min-width: 180px;
+            min-width: 200px;
         }
 
         .form-group label {
@@ -169,33 +209,44 @@
 
         input, textarea, select {
             width: 100%;
-            padding: 12px 14px;
+            padding: 12px 16px;
             border: 1.5px solid #e2e8f0;
-            border-radius: 16px;
+            border-radius: 20px;
             font-size: 0.9rem;
             transition: 0.2s;
+            font-family: inherit;
         }
 
         input:focus, textarea:focus, select:focus {
             outline: none;
-            border-color: #1e3a8a;
-            box-shadow: 0 0 0 3px rgba(30,58,138,0.1);
+            border-color: #d4af37;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
         }
 
         .btn-primary {
-            background: #1e3a8a;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
             color: white;
             border: none;
-            padding: 12px 28px;
+            padding: 12px 32px;
             border-radius: 40px;
-            font-weight: bold;
+            font-weight: 700;
             cursor: pointer;
             transition: 0.2s;
         }
 
         .btn-primary:hover {
-            background: #0f2b66;
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(30, 58, 138, 0.3);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #d4af37, #f59e0b);
+            color: #1e293b;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 700;
+            cursor: pointer;
         }
 
         .btn-secondary {
@@ -208,28 +259,18 @@
             cursor: pointer;
         }
 
-        .btn-warning {
-            background: #f59e0b;
-            color: white;
-            border: none;
-            padding: 12px 28px;
-            border-radius: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
+        /* Tables */
         .data-table {
             width: 100%;
             border-collapse: collapse;
             background: white;
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
         .data-table th {
             background: #f8fafc;
-            padding: 14px 12px;
+            padding: 16px 12px;
             text-align: left;
             font-weight: 700;
             color: #1e293b;
@@ -243,20 +284,19 @@
         }
 
         .product-img-preview {
-            width: 48px;
-            height: 48px;
-            object-fit: contain;
+            width: 55px;
+            height: 55px;
+            object-fit: cover;
+            border-radius: 14px;
             background: #f9f9fb;
-            border-radius: 12px;
         }
 
         .edit-btn, .delete-btn {
             border: none;
-            background: transparent;
             cursor: pointer;
-            font-size: 0.9rem;
-            margin: 0 4px;
-            padding: 6px 12px;
+            font-size: 0.8rem;
+            margin: 0 5px;
+            padding: 6px 14px;
             border-radius: 30px;
             transition: 0.1s;
             font-weight: 600;
@@ -264,8 +304,8 @@
 
         .edit-btn { background: #eef2ff; color: #2563eb; }
         .delete-btn { background: #fee2e2; color: #dc2626; }
-        .edit-btn:hover { background: #d9e6ff; }
-        .delete-btn:hover { background: #fecaca; }
+        .edit-btn:hover { background: #d9e6ff; transform: scale(0.96); }
+        .delete-btn:hover { background: #fecaca; transform: scale(0.96); }
 
         .toast-msg {
             position: fixed;
@@ -273,77 +313,87 @@
             right: 30px;
             background: #1f2937;
             color: white;
-            padding: 12px 24px;
-            border-radius: 40px;
+            padding: 14px 28px;
+            border-radius: 50px;
             font-weight: 500;
-            z-index: 999;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            z-index: 1000;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
 
         .loading {
             text-align: center;
-            padding: 40px;
-            color: #666;
+            padding: 50px;
+            color: #64748b;
         }
 
         .error-banner {
             background: #fee2e2;
             border-left: 4px solid #dc2626;
-            padding: 16px;
-            border-radius: 12px;
+            padding: 18px;
+            border-radius: 20px;
             margin-bottom: 20px;
             color: #991b1b;
         }
-
-        .success-banner {
-            background: #d1fae5;
-            border-left: 4px solid #10b981;
-            padding: 16px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            color: #065f46;
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                padding: 0 16px;
+            }
+            .stat-number {
+                font-size: 1.8rem;
+            }
+            .tab-btn {
+                padding: 6px 16px;
+                font-size: 0.85rem;
+            }
+            .action-card {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="admin-header">
         <div class="logo-area">
-            <h2>👑 Queen Style <span>Admin Panel</span></h2>
-            <p style="font-size: 12px; opacity: 0.8;">Manage products & view users</p>
+            <h2>👑 QUEEN STYLE <span>ADMIN</span></h2>
+            <p style="font-size: 11px; opacity: 0.8;">Royal Command Center</p>
         </div>
         <div class="admin-actions">
+            <div class="admin-badge" id="adminEmailDisplay">admin@queenstyle.com</div>
             <button class="btn-logout" id="adminLogoutBtn">🚪 Logout</button>
         </div>
     </div>
 
     <div class="dashboard-container">
-        <div id="setupAlert" style="display: none;" class="error-banner">
-            ⚠️ <strong>Firestore Database Not Configured Yet!</strong><br>
-            Please click the button below to create your Firestore database, or follow these steps:<br>
-            1. Go to <a href="https://console.firebase.google.com/project/lucky-triode-450317-g7/firestore" target="_blank">Firebase Console</a><br>
-            2. Click "Create database"<br>
-            3. Choose "Start in test mode"<br>
-            4. Click "Enable"<br>
-            <button id="retryBtn" style="margin-top: 10px; background: #1e3a8a; color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer;">✅ I've created the database, retry connection</button>
-        </div>
-
-        <div class="stats-row" id="statsPanel">
+        <!-- Stats Row -->
+        <div class="stats-row">
             <div class="stat-card"><h4>📦 Total Products</h4><div class="stat-number" id="totalProductsCount">0</div></div>
             <div class="stat-card"><h4>👥 Total Users</h4><div class="stat-number" id="totalUsersCount">0</div></div>
-            <div class="stat-card"><h4>⭐ Avg. Rating</h4><div class="stat-number" id="avgRating">0.0</div></div>
+            <div class="stat-card"><h4>⭐ Avg Rating</h4><div class="stat-number" id="avgRating">0.0</div></div>
+            <div class="stat-card"><h4>💰 Total Revenue</h4><div class="stat-number" id="totalRevenue">$0</div></div>
         </div>
 
+        <!-- Tabs -->
         <div class="admin-tabs">
             <button class="tab-btn active" data-tab="productsTab">🛍️ Products</button>
             <button class="tab-btn" data-tab="addProductTab">➕ Add Product</button>
             <button class="tab-btn" data-tab="usersTab">👤 Users</button>
+            <button class="tab-btn" data-tab="ordersTab">📦 Orders</button>
         </div>
 
+        <!-- Products Tab -->
         <div id="productsTab" class="tab-pane active-pane">
             <div class="action-card">
-                <h3 style="margin-bottom: 18px;">✨ Product List</h3>
-                <div id="addSampleBtnContainer" style="margin-bottom: 15px; display: none;">
-                    <button id="addSampleProductsBtn" class="btn-warning">📦 Add Sample Products</button>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;">
+                    <h3>✨ Royal Product Collection</h3>
+                    <button id="addSampleProductsBtn" class="btn-warning" style="display: none;">📦 Add Sample Products</button>
                 </div>
                 <div style="overflow-x: auto;">
                     <table class="data-table">
@@ -351,16 +401,17 @@
                             <tr><th>Image</th><th>Name</th><th>Price</th><th>MRP</th><th>Rating</th><th>Actions</th></tr>
                         </thead>
                         <tbody id="productsTableBody">
-                            <tr><td colspan="6" class="loading">⏳ Waiting for database connection...<br><small>Please create Firestore database first</small></td></tr>
+                            <tr><td colspan="6" class="loading">✨ Loading products...<br><small>Please wait</small></td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
 
+        <!-- Add Product Tab -->
         <div id="addProductTab" class="tab-pane">
             <div class="action-card">
-                <h3 id="formTitle">➕ Add New Product</h3>
+                <h3 id="formTitle">➕ Add New Royal Product</h3>
                 <form id="productForm">
                     <input type="hidden" id="editProductId" value="">
                     <div class="form-row">
@@ -393,7 +444,7 @@
                             <textarea id="prodDesc" rows="3" placeholder="Beautiful product description..."></textarea>
                         </div>
                         <div class="form-group">
-                            <label>Buy Link (Amazon/Store)</label>
+                            <label>Buy Link</label>
                             <input type="url" id="prodLink" placeholder="https://amazon.in/dp/...">
                         </div>
                     </div>
@@ -405,16 +456,34 @@
             </div>
         </div>
 
+        <!-- Users Tab -->
         <div id="usersTab" class="tab-pane">
             <div class="action-card">
-                <h3 style="margin-bottom: 18px;">👥 Registered Users</h3>
+                <h3 style="margin-bottom: 20px;">👑 Registered Royal Members</h3>
                 <div style="overflow-x: auto;">
                     <table class="data-table">
                         <thead>
                             <tr><th>Avatar</th><th>Name</th><th>Email</th><th>Area</th><th>Provider</th></tr>
                         </thead>
                         <tbody id="usersTableBody">
-                            <tr><td colspan="5" class="loading">Loading users...</td></tr>
+                            <tr><td colspan="5" class="loading">Loading members...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders Tab -->
+        <div id="ordersTab" class="tab-pane">
+            <div class="action-card">
+                <h3 style="margin-bottom: 20px;">📋 Recent Orders</h3>
+                <div style="overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Order ID</th><th>Customer</th><th>Product</th><th>Amount</th><th>Status</th><th>Date</th></tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                            <tr><td colspan="6" class="loading">Loading orders...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -451,44 +520,12 @@
             setTimeout(() => div.remove(), 3000);
         }
 
-        // Sample products data
+        // Sample products for initial demo
         const sampleProducts = [
-            {
-                name: "Elegant Silk Saree",
-                price: 1299,
-                mrp: 2499,
-                rating: 4.8,
-                image: "https://images.unsplash.com/photo-1610034650014-e0b2b3b6a6e9?w=300",
-                description: "Beautiful pure silk saree with traditional design",
-                link: "#"
-            },
-            {
-                name: "Designer Lehenga Choli",
-                price: 2499,
-                mrp: 4999,
-                rating: 4.9,
-                image: "https://images.unsplash.com/photo-1583391733956-6c7822032708?w=300",
-                description: "Stunning wedding collection lehenga",
-                link: "#"
-            },
-            {
-                name: "Cotton Kurta Set",
-                price: 899,
-                mrp: 1599,
-                rating: 4.5,
-                image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=300",
-                description: "Comfortable cotton kurta for daily wear",
-                link: "#"
-            },
-            {
-                name: "Embroidered Anarkali",
-                price: 1899,
-                mrp: 3599,
-                rating: 4.7,
-                image: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=300",
-                description: "Heavy embroidered anarkali suit",
-                link: "#"
-            }
+            { name: "Elegant Silk Saree", price: 1299, mrp: 2499, rating: 4.8, image: "https://images.unsplash.com/photo-1610034650014-e0b2b3b6a6e9?w=200", description: "Beautiful pure silk saree", link: "#" },
+            { name: "Designer Lehenga Choli", price: 2499, mrp: 4999, rating: 4.9, image: "https://images.unsplash.com/photo-1583391733956-6c7822032708?w=200", description: "Wedding collection", link: "#" },
+            { name: "Cotton Kurta Set", price: 899, mrp: 1599, rating: 4.5, image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=200", description: "Comfortable daily wear", link: "#" },
+            { name: "Embroidered Anarkali", price: 1899, mrp: 3599, rating: 4.7, image: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=200", description: "Heavy embroidered suit", link: "#" }
         ];
 
         async function addSampleProducts() {
@@ -496,43 +533,36 @@
                 for (const product of sampleProducts) {
                     await addDoc(collection(db, "products"), product);
                 }
-                showMessage("✅ 4 sample products added successfully!");
+                showMessage("✅ 4 royal products added!");
                 await loadProducts();
                 await updateStats();
             } catch (error) {
-                console.error("Error adding samples:", error);
-                showMessage("Failed to add sample products", true);
+                showMessage("Failed to add samples", true);
             }
         }
 
-        // Auth check and database initialization
+        // Initialize Firestore and Auth Listener
         onAuthStateChanged(auth, async (user) => {
             if (!user) {
-                window.location.href = "index.html";
+                window.location.href = "login.html";
                 return;
             }
-            
-            localStorage.setItem("currentUser", JSON.stringify({ uid: user.uid, email: user.email }));
-            
-            // Initialize Firestore
+            document.getElementById('adminEmailDisplay').innerText = user.email || "admin@queenstyle.com";
             try {
                 db = getFirestore(app);
                 // Test connection
                 await getDocs(collection(db, "products"));
-                document.getElementById('setupAlert').style.display = 'none';
                 await loadAllData();
             } catch (error) {
-                console.error("Firestore connection error:", error);
-                if (error.code === 'not-found') {
-                    document.getElementById('setupAlert').style.display = 'block';
-                    document.getElementById('productsTableBody').innerHTML = '<tr><td colspan="6" class="loading">⚠️ Firestore database not created. Please follow the instructions above.</td></tr>';
-                }
+                console.error("Firestore error:", error);
+                document.getElementById('productsTableBody').innerHTML = '<tr><td colspan="6" class="loading">⚠️ Please create Firestore database in Firebase Console</td></tr>';
             }
         });
 
         async function loadAllData() {
             await loadProducts();
             await loadUsers();
+            await loadOrders();
             await updateStats();
         }
 
@@ -541,55 +571,55 @@
             try {
                 const querySnapshot = await getDocs(collection(db, "products"));
                 const products = [];
-                querySnapshot.forEach((doc) => {
-                    products.push({ id: doc.id, ...doc.data() });
-                });
+                querySnapshot.forEach((doc) => products.push({ id: doc.id, ...doc.data() }));
                 
                 const tbody = document.getElementById("productsTableBody");
-                const addSampleBtn = document.getElementById('addSampleBtnContainer');
+                const sampleBtn = document.getElementById('addSampleProductsBtn');
                 
                 if (products.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="6" class="loading">📭 No products found. Click "Add Sample Products" or use "Add Product" tab.</td></tr>';
-                    addSampleBtn.style.display = 'block';
+                    tbody.innerHTML = '<tr><td colspan="6" class="loading">📭 No products. Click "Add Sample Products" or use Add Product tab.</td></tr>';
+                    if(sampleBtn) sampleBtn.style.display = 'block';
                     return;
                 }
-                
-                addSampleBtn.style.display = 'none';
+                if(sampleBtn) sampleBtn.style.display = 'none';
                 tbody.innerHTML = "";
                 products.forEach(product => {
                     const row = tbody.insertRow();
                     const imgCell = row.insertCell(0);
                     const img = document.createElement('img');
-                    img.src = product.image || 'https://via.placeholder.com/48';
+                    img.src = product.image || 'https://via.placeholder.com/55';
                     img.className = 'product-img-preview';
-                    img.onerror = () => { img.src = 'https://via.placeholder.com/48?text=No+Img'; };
+                    img.onerror = () => { img.src = 'https://via.placeholder.com/55?text=Img'; };
                     imgCell.appendChild(img);
-                    
-                    row.insertCell(1).innerHTML = `<strong>${product.name || 'Unnamed'}</strong>`;
+                    row.insertCell(1).innerHTML = `<strong>${escapeHtml(product.name || 'Unnamed')}</strong>`;
                     row.insertCell(2).innerHTML = `₹${product.price || 0}`;
                     row.insertCell(3).innerHTML = `₹${product.mrp || 0}`;
                     row.insertCell(4).innerHTML = `${product.rating || 4.5} ★`;
-                    
                     const actionCell = row.insertCell(5);
                     const editBtn = document.createElement('button');
                     editBtn.innerHTML = '✏️ Edit';
                     editBtn.className = 'edit-btn';
                     editBtn.onclick = () => editProduct(product);
-                    
                     const deleteBtn = document.createElement('button');
                     deleteBtn.innerHTML = '🗑️ Delete';
                     deleteBtn.className = 'delete-btn';
                     deleteBtn.onclick = () => deleteProduct(product.id);
-                    
                     actionCell.appendChild(editBtn);
                     actionCell.appendChild(deleteBtn);
                 });
             } catch (error) {
                 console.error("Error loading products:", error);
-                if (error.code !== 'not-found') {
-                    showMessage("Failed to load products", true);
-                }
             }
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
         }
 
         function editProduct(product) {
@@ -597,7 +627,6 @@
             document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active-pane'));
             document.querySelector('[data-tab="addProductTab"]').classList.add('active');
             document.getElementById('addProductTab').classList.add('active-pane');
-            
             document.getElementById('formTitle').innerHTML = '✏️ Edit Product';
             document.getElementById('editProductId').value = product.id;
             document.getElementById('prodName').value = product.name || '';
@@ -611,26 +640,20 @@
         }
 
         async function deleteProduct(productId) {
-            if (!confirm("⚠️ Delete this product permanently?")) return;
+            if (!confirm("Delete this product permanently?")) return;
             try {
                 await deleteDoc(doc(db, "products", productId));
-                showMessage("✅ Product deleted successfully!");
+                showMessage("✅ Product deleted!");
                 await loadProducts();
                 await updateStats();
             } catch (error) {
-                console.error("Error deleting:", error);
-                showMessage("Failed to delete product", true);
+                showMessage("Delete failed", true);
             }
         }
 
         async function saveProduct(event) {
             event.preventDefault();
-            
-            if (!db) {
-                showMessage("Please create Firestore database first", true);
-                return;
-            }
-            
+            if (!db) return showMessage("Database not ready", true);
             const editId = document.getElementById('editProductId').value;
             const name = document.getElementById('prodName').value.trim();
             const price = parseFloat(document.getElementById('prodPrice').value);
@@ -641,45 +664,26 @@
             const link = document.getElementById('prodLink').value.trim() || "#";
             
             if (!name || isNaN(price) || isNaN(mrp) || !image) {
-                showMessage("❌ Please fill all required fields (Name, Price, MRP, Image URL)", true);
-                return;
+                return showMessage("❌ Fill all required fields", true);
             }
-            
-            const productData = {
-                name: name,
-                price: price,
-                mrp: mrp,
-                rating: rating,
-                image: image,
-                description: description || "Premium quality product",
-                link: link
-            };
-            
+            const productData = { name, price, mrp, rating, image, description: description || "Premium product", link };
             try {
                 if (editId) {
                     await updateDoc(doc(db, "products", editId), productData);
-                    showMessage("✏️ Product updated successfully!");
+                    showMessage("✏️ Product updated!");
                 } else {
                     await addDoc(collection(db, "products"), productData);
-                    showMessage("🎉 New product added successfully!");
+                    showMessage("🎉 Product added!");
                 }
-                
                 document.getElementById('productForm').reset();
                 document.getElementById('editProductId').value = '';
                 document.getElementById('cancelEditBtn').style.display = 'none';
                 document.getElementById('formTitle').innerHTML = '➕ Add New Product';
-                
                 await loadProducts();
                 await updateStats();
-                
-                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-                document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active-pane'));
-                document.querySelector('[data-tab="productsTab"]').classList.add('active');
-                document.getElementById('productsTab').classList.add('active-pane');
-                
+                document.querySelector('[data-tab="productsTab"]').click();
             } catch (error) {
-                console.error("Error saving product:", error);
-                showMessage("Failed to save product. Make sure Firestore is created.", true);
+                showMessage("Save failed", true);
             }
         }
 
@@ -688,27 +692,23 @@
             try {
                 const querySnapshot = await getDocs(collection(db, "users"));
                 const tbody = document.getElementById("usersTableBody");
-                
                 if (querySnapshot.empty) {
-                    tbody.innerHTML = '<tr><td colspan="5" class="loading">No users registered yet</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="5" class="loading">No users yet</td></tr>';
                     return;
                 }
-                
                 tbody.innerHTML = "";
                 querySnapshot.forEach((doc) => {
                     const user = doc.data();
                     const row = tbody.insertRow();
-                    
                     const avatarCell = row.insertCell(0);
                     if (user.photoURL) {
                         avatarCell.innerHTML = `<img src="${user.photoURL}" style="width:40px; height:40px; border-radius:50%; object-fit:cover;">`;
                     } else {
-                        avatarCell.innerHTML = `<div style="width:40px; height:40px; background:linear-gradient(135deg,#667eea,#764ba2); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:20px;">${(user.name?.charAt(0) || 'U')}</div>`;
+                        avatarCell.innerHTML = `<div style="width:40px; height:40px; background:linear-gradient(135deg,#d4af37,#fbbf24); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#1e3a8a; font-size:20px;">${(user.name?.charAt(0) || 'Q')}</div>`;
                     }
-                    
-                    row.insertCell(1).innerHTML = `<strong>${user.name || 'N/A'}</strong>`;
-                    row.insertCell(2).innerHTML = user.email || 'No email';
-                    row.insertCell(3).innerHTML = user.area || 'Not specified';
+                    row.insertCell(1).innerHTML = `<strong>${escapeHtml(user.name || 'N/A')}</strong>`;
+                    row.insertCell(2).innerHTML = escapeHtml(user.email || 'No email');
+                    row.insertCell(3).innerHTML = escapeHtml(user.area || 'Not specified');
                     row.insertCell(4).innerHTML = user.authProvider === 'google' ? '🔵 Google' : '📧 Email';
                 });
             } catch (error) {
@@ -716,27 +716,43 @@
             }
         }
 
+        async function loadOrders() {
+            const orders = JSON.parse(localStorage.getItem("queen_orders") || "[]");
+            const tbody = document.getElementById("ordersTableBody");
+            if (orders.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="loading">📦 No orders yet</td></tr>';
+                return;
+            }
+            tbody.innerHTML = "";
+            orders.forEach(order => {
+                const row = tbody.insertRow();
+                row.insertCell(0).innerHTML = `#${order.id || 'ORD'}`;
+                row.insertCell(1).innerHTML = escapeHtml(order.customerName || 'Queen Customer');
+                row.insertCell(2).innerHTML = escapeHtml(order.productName || 'Royal Product');
+                row.insertCell(3).innerHTML = `₹${(order.amount || 0).toFixed(2)}`;
+                row.insertCell(4).innerHTML = `<span style="background:${order.status === 'delivered' ? '#10b981' : '#f59e0b'}; color:white; padding:4px 12px; border-radius:30px; font-size:0.7rem;">${order.status || 'pending'}</span>`;
+                row.insertCell(5).innerHTML = new Date(order.date || Date.now()).toLocaleDateString();
+            });
+        }
+
         async function updateStats() {
             if (!db) return;
             try {
                 const productsSnap = await getDocs(collection(db, "products"));
                 const totalProducts = productsSnap.size;
-                
                 let ratingSum = 0;
-                productsSnap.forEach(doc => {
-                    const rating = doc.data().rating || 0;
-                    ratingSum += rating;
-                });
+                productsSnap.forEach(doc => { ratingSum += doc.data().rating || 0; });
                 const avgRating = totalProducts > 0 ? (ratingSum / totalProducts).toFixed(1) : 0;
-                
                 const usersSnap = await getDocs(collection(db, "users"));
                 const totalUsers = usersSnap.size;
-                
+                const orders = JSON.parse(localStorage.getItem("queen_orders") || "[]");
+                const revenue = orders.filter(o => o.status === "delivered").reduce((sum, o) => sum + (o.amount || 0), 0);
                 document.getElementById('totalProductsCount').innerText = totalProducts;
                 document.getElementById('totalUsersCount').innerText = totalUsers;
                 document.getElementById('avgRating').innerText = avgRating;
+                document.getElementById('totalRevenue').innerText = `$${revenue.toFixed(2)}`;
             } catch (error) {
-                console.error("Error updating stats:", error);
+                console.error("Stats error:", error);
             }
         }
 
@@ -748,37 +764,26 @@
         }
 
         async function logout() {
-            try {
-                await signOut(auth);
-                localStorage.clear();
-                window.location.href = "index.html";
-            } catch (error) {
-                showMessage("Logout failed", true);
-            }
+            await signOut(auth);
+            localStorage.clear();
+            window.location.href = "login.html";
         }
 
         function setupTabs() {
-            const tabs = document.querySelectorAll('.tab-btn');
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    const tabId = tab.getAttribute('data-tab');
-                    tabs.forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tabId = btn.getAttribute('data-tab');
+                    document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+                    btn.classList.add('active');
                     document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active-pane'));
                     document.getElementById(tabId).classList.add('active-pane');
-                    
-                    if (tabId === 'addProductTab') {
-                        cancelEdit();
-                    }
+                    if (tabId === 'addProductTab') cancelEdit();
+                    if (tabId === 'ordersTab') loadOrders();
+                    if (tabId === 'usersTab') loadUsers();
                 });
             });
         }
 
-        // Retry connection
-        document.getElementById('retryBtn')?.addEventListener('click', () => {
-            window.location.reload();
-        });
-        
         document.getElementById('addSampleProductsBtn')?.addEventListener('click', addSampleProducts);
         document.getElementById('productForm')?.addEventListener('submit', saveProduct);
         document.getElementById('cancelEditBtn')?.addEventListener('click', cancelEdit);

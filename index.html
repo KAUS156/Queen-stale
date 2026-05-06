@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Register | Queen Style</title>
+    <title>Queen Style | Royal Registration - Full Display</title>
     <style>
         * {
             margin: 0;
@@ -12,103 +12,215 @@
         }
 
         body {
-            background: linear-gradient(145deg, #f5f7fc 0%, #eef2f6 100%);
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            min-height: 100vh;
+            background: #f0f2f8;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1.5rem;
         }
 
-        .register-card {
-            max-width: 460px;
-            width: 100%;
+        /* FULL DISPLAY CONTAINER - takes entire viewport */
+        .full-display-wrapper {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #e9eef5 0%, #dfe4ec 100%);
+            padding: 0;
+            margin: 0;
+        }
+
+        /* MAIN CARD - perfect full height with max ratio */
+        .register-master {
+            width: 100vw;
+            height: 100vh;
+            max-width: 100%;
+            max-height: 100%;
             background: #ffffff;
-            border-radius: 2rem;
-            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.02);
+            display: flex;
+            flex-direction: row;
             overflow: hidden;
-            transition: all 0.2s ease;
+            box-shadow: none;
+            border-radius: 0;
         }
 
-        .card-header {
-            background: #ffffff;
-            padding: 2rem 2rem 0.5rem 2rem;
-            text-align: center;
+        /* ========= LEFT SIDE: ROTATING IMAGE GALLERY (10 IMAGES) ========= */
+        .image-gallery-side {
+            flex: 1.2;
+            position: relative;
+            background: #0a0e1a;
+            overflow: hidden;
+            height: 100vh;
         }
 
-        .brand {
-            font-size: 1.8rem;
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        .slide-img.active {
+            opacity: 1;
+        }
+
+        /* Overlay content on image side */
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+            padding: 2rem 2rem;
+            z-index: 10;
+            color: white;
+        }
+
+        .image-overlay h2 {
+            font-size: 2rem;
             font-weight: 700;
             letter-spacing: -0.3px;
-            background: linear-gradient(135deg, #1f2b4e, #2c3e66);
+            background: linear-gradient(135deg, #f3e7c9, #e4c992, #d4af37);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             margin-bottom: 0.5rem;
         }
 
-        .brand span {
-            background: linear-gradient(135deg, #b8860b, #d4af37);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+        .image-overlay p {
+            font-size: 0.95rem;
+            opacity: 0.92;
+            color: #f0e6d2;
         }
 
-        .tagline {
-            font-size: 0.85rem;
-            color: #5b6e8c;
-            margin-top: 4px;
-            border-top: 1px solid #e9edf2;
-            display: inline-block;
-            padding-top: 6px;
+        .slide-dots {
+            position: absolute;
+            bottom: 1.2rem;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            z-index: 15;
         }
 
-        .form-title {
-            font-size: 1.7rem;
-            font-weight: 600;
-            margin-top: 0.75rem;
-            color: #1e2a3e;
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            transition: all 0.3s;
+            cursor: pointer;
         }
 
-        .form-sub {
-            color: #5e727d;
-            font-size: 0.9rem;
-            margin-top: 6px;
+        .dot.active-dot {
+            background: #d4af37;
+            width: 24px;
+            border-radius: 5px;
         }
 
-        .form-body {
-            padding: 1.5rem 2rem 2rem 2rem;
+        /* ========= RIGHT SIDE: REGISTRATION FORM ========= */
+        .form-side {
+            flex: 1;
+            background: #ffffff;
+            padding: 2rem 2.8rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow-y: auto;
+            height: 100vh;
+        }
+
+        /* Custom scrollbar */
+        .form-side::-webkit-scrollbar {
+            width: 4px;
+        }
+        .form-side::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .form-side::-webkit-scrollbar-thumb {
+            background: #c9a03d;
+            border-radius: 4px;
+        }
+
+        .form-header {
+            margin-bottom: 1.8rem;
+            margin-top: 10px;
+        }
+
+        .mini-brand {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+            color: #b8860b;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-top: 10px;
+            color: #1e293b;
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.3px;
+        }
+
+        .form-header p {
+            color: #5e6e8c;
+            font-size: 0.95rem;
+            font-weight: 450;
         }
 
         .input-field {
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.3rem;
         }
 
         .input-field label {
             display: block;
             font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 0.45rem;
+            margin-bottom: 0.5rem;
             color: #1f2d3d;
             letter-spacing: -0.2px;
         }
 
         .input-field input {
             width: 100%;
-            padding: 0.85rem 1rem;
-            font-size: 1rem;
+            padding: 0.9rem 1rem;
+            font-size: 0.95rem;
             border: 1.5px solid #e2e8f0;
             border-radius: 1.25rem;
             background: #fefefe;
             transition: 0.2s;
             font-family: inherit;
             outline: none;
+            color: #1e293b;
+            font-weight: 450;
         }
 
         .input-field input:focus {
-            border-color: #8b5cf6;
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+            border-color: #c9a03d;
+            box-shadow: 0 0 0 3px rgba(201, 160, 61, 0.2);
+        }
+
+        .input-field input::placeholder {
+            color: #a0afc0;
+            font-weight: 400;
         }
 
         .hint-text {
@@ -120,39 +232,39 @@
 
         .register-btn {
             width: 100%;
-            padding: 0.9rem;
-            margin-top: 1rem;
+            padding: 0.95rem;
+            margin-top: 0.8rem;
             border: none;
             border-radius: 2rem;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 1rem;
             color: white;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
             background: linear-gradient(100deg, #1e293b, #0f172a);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.08);
         }
 
-        .register-btn:hover {
-            background: linear-gradient(100deg, #2d3a4f, #1a2538);
-            transform: translateY(-1px);
-            box-shadow: 0 10px 18px -8px rgba(0, 0, 0, 0.2);
+        .register-btn:hover:not(:disabled) {
+            background: linear-gradient(100deg, #2d3a4f, #1f2a3e);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.2);
         }
 
         .register-btn:disabled {
-            opacity: 0.65;
+            opacity: 0.7;
             cursor: not-allowed;
-            transform: none;
         }
 
         .message-box {
-            margin: 1rem 0 0.5rem 0;
+            margin: 0.6rem 0 0.5rem 0;
             padding: 0.8rem;
             border-radius: 1rem;
             font-size: 0.85rem;
             text-align: center;
             font-weight: 500;
             display: none;
+            margin-bottom: 40px;
         }
 
         .error-msg {
@@ -169,121 +281,226 @@
 
         .footer-note {
             text-align: center;
-            margin-top: 1.6rem;
+            margin-top: 1.8rem;
             font-size: 0.85rem;
             color: #586f87;
         }
 
         .footer-note a {
-            color: #1f3b62;
+            color: #b8860b;
             text-decoration: none;
-            font-weight: 600;
-            border-bottom: 1px dotted #9aaec2;
+            font-weight: 700;
+            border-bottom: 1px solid #e9d7b4;
         }
 
         .footer-note a:hover {
-            color: #6c47d4;
+            color: #8b691b;
         }
 
         hr {
-            margin: 0.75rem 0;
+            margin: 0.7rem 0;
             border: 0;
             height: 1px;
-            background: #e9edf2;
+            background: #edf2f7;
         }
 
-        /* redirect overlay (optional subtle) */
         .redirect-toast {
             position: fixed;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             background: #1f2d3d;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            z-index: 1000;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            color: #f9eec1;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 2000;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
             opacity: 0;
             transition: opacity 0.2s;
             pointer-events: none;
+            backdrop-filter: blur(5px);
             white-space: nowrap;
+            font-family: monospace;
+            letter-spacing: 0.5px;
         }
 
-        @media (max-width: 520px) {
-            .form-body {
-                padding: 1rem 1.5rem 1.8rem;
+        /* Responsive full display fix */
+        @media (max-width: 900px) {
+            .register-master {
+                flex-direction: column;
             }
-            .card-header {
-                padding: 1.5rem 1.5rem 0rem;
+            .image-gallery-side {
+                height: 40vh;
+                min-height: 280px;
             }
-            .register-card {
-                border-radius: 1.5rem;
+            .form-side {
+                height: auto;
+                padding: 1.8rem;
+            }
+            .form-header h1 {
+                font-size: 1.8rem;
             }
             .redirect-toast {
                 white-space: normal;
-                width: 90%;
+                width: 85%;
                 text-align: center;
                 font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .form-side {
+                padding: 1.3rem;
+            }
+            .form-header h1 {
+                font-size: 1.5rem;
+            }
+            .image-overlay h2 {
+                font-size: 1.3rem;
+            }
+            .image-overlay p {
+                font-size: 0.75rem;
             }
         }
     </style>
 </head>
 <body>
-
-<div class="register-card">
-    <div class="card-header">
-        <div class="brand">QUEEN <span>STYLE</span></div>
-        <div class="tagline">join the royalty ✦ effortless elegance</div>
-        <div class="form-title">Create account</div>
-        <div class="form-sub">Start your journey with us</div>
-    </div>
-
-    <div class="form-body">
-        <div id="messageBox" class="message-box"></div>
-
-        <div class="input-field">
-            <label>Full name</label>
-            <input type="text" id="fullName" placeholder="e.g., Jessica Roy" autocomplete="name">
+<div class="full-display-wrapper">
+    <div class="register-master">
+        <!-- LEFT SIDE: ROTATING 10 IMAGES (HIGH QUALITY QUEEN STYLE) -->
+        <div class="image-gallery-side">
+            <div class="slideshow-container" id="slideshowContainer">
+                <!-- 10 elegant royalty/fashion themed images -->
+                <img class="slide-img" src="https://picsum.photos/id/20/1200/1600" alt="Queen Style Elegance">
+                <img class="slide-img" src="https://picsum.photos/id/30/1200/1600" alt="Royal Fashion">
+                <img class="slide-img" src="https://picsum.photos/id/26/1200/1600" alt="Luxury Style">
+                <img class="slide-img" src="https://picsum.photos/id/28/1200/1600" alt="Elegant Queen">
+                <img class="slide-img" src="https://picsum.photos/id/29/1200/1600" alt="Couture Look">
+                <img class="slide-img" src="https://picsum.photos/id/33/1200/1600" alt="Royal Attire">
+                <img class="slide-img" src="https://picsum.photos/id/36/1200/1600" alt="Modern Queen">
+                <img class="slide-img" src="https://picsum.photos/id/38/1200/1600" alt="Gold Elegance">
+                <img class="slide-img" src="https://picsum.photos/id/42/1200/1600" alt="Crown Jewel">
+                <img class="slide-img" src="https://picsum.photos/id/45/1200/1600" alt="Grace & Beauty">
+            </div>
+            <div class="image-overlay">
+                <h2>Queen Style Empire</h2>
+                <p>Where elegance meets royalty — curated luxury for the modern queen</p>
+            </div>
+            <div class="slide-dots" id="slideDots"></div>
         </div>
 
-        <div class="input-field">
-            <label>Email address</label>
-            <input type="email" id="emailAddr" placeholder="hello@example.com" autocomplete="email">
-        </div>
+        <!-- RIGHT SIDE: REGISTRATION FORM (perfect fonts & colors) -->
+        <div class="form-side">
+            <div class="form-header">
+                <div class="mini-brand">✦ BECOME A MEMBER ✦</div>
+                <h1>Create account</h1>
+                <p>Unlock early access, curated edits & royal perks</p>
+            </div>
 
-        <div class="input-field">
-            <label>Password</label>
-            <input type="password" id="userPassword" placeholder="•••••• (min 6 characters)">
-            <div class="hint-text">at least 6 characters</div>
-        </div>
+            <div id="messageBox" class="message-box"></div>
 
-        <div class="input-field">
-            <label>City / Area</label>
-            <input type="text" id="locationArea" placeholder="e.g., Manhattan, NY" autocomplete="address-level2">
-        </div>
+            <div class="input-field">
+                <label>Full name</label>
+                <input type="text" id="fullName" placeholder="e.g., Victoria Lancaster" autocomplete="name">
+            </div>
 
-        <button id="registerBtn" class="register-btn">Register →</button>
+            <div class="input-field">
+                <label>Email address</label>
+                <input type="email" id="emailAddr" placeholder="hello@queenstyle.com" autocomplete="email">
+            </div>
 
-        <div class="footer-note">
-            Already have an account? <a href="#" id="loginRedirectLink">Log in</a>
+            <div class="input-field">
+                <label>Password</label>
+                <input type="password" id="userPassword" placeholder="•••••• (minimum 6 characters)">
+                <div class="hint-text">at least 6 characters, secure & encrypted</div>
+            </div>
+
+            <div class="input-field">
+                <label>City / Area</label>
+                <input type="text" id="locationArea" placeholder="e.g., Paris, Milan, Dubai" autocomplete="address-level2">
+            </div>
+
+            <button id="registerBtn" class="register-btn">Register →</button>
+
+            <div class="footer-note">
+                Already have an account? <a href="#" id="loginRedirectLink">Sign in</a>
+            </div>
+            <hr>
+            <div class="footer-note" style="font-size:0.7rem; margin-top:6px;">By joining, you accept the Royal Standards. Secure registration.</div>
         </div>
-        <hr>
-        <div class="footer-note" style="font-size:0.7rem; margin-top:6px;">Secure registration • auto-redirect after signup</div>
     </div>
 </div>
 
-<div id="redirectToast" class="redirect-toast">✨ Registration successful! Redirecting to login...</div>
+<div id="redirectToast" class="redirect-toast">👑 Registration successful! Redirecting to login...</div>
 
 <script>
     // *****************************************************
-    // REGISTRATION PAGE - AUTO REDIRECT TO LOGIN PAGE
-    // All Firebase removed, pure frontend demo with automatic 
-    // redirection to login.html after successful registration
+    // QUEEN STYLE - FULL DISPLAY FIXED (NO RADIX ISSUES)
+    // 10 IMAGES ROTATING EVERY 4 SECONDS
+    // TEXT COLORS, FONTS, SPACING PERFECT
+    // FORM VALIDATION + AUTO REDIRECT TO login.html
     // *****************************************************
     
+    // ========= IMAGE SLIDESHOW (10 IMAGES) =========
+    const slides = document.querySelectorAll('.slide-img');
+    const dotsContainer = document.getElementById('slideDots');
+    let currentIndex = 0;
+    let slideInterval;
+    const totalSlides = slides.length; // 10 images
+
+    // Generate dot indicators
+    function createDots() {
+        if (!dotsContainer) return;
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active-dot');
+            dot.addEventListener('click', () => {
+                goToSlide(i);
+                resetInterval();
+            });
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    function goToSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            const dot = dotsContainer?.children[i];
+            if (dot) dot.classList.remove('active-dot');
+        });
+        slides[index].classList.add('active');
+        if (dotsContainer?.children[index]) {
+            dotsContainer.children[index].classList.add('active-dot');
+        }
+        currentIndex = index;
+    }
+
+    function nextSlide() {
+        let next = (currentIndex + 1) % totalSlides;
+        goToSlide(next);
+    }
+
+    function startSlideshow() {
+        slideInterval = setInterval(nextSlide, 4000);
+    }
+
+    function resetInterval() {
+        clearInterval(slideInterval);
+        startSlideshow();
+    }
+
+    // Initialize slides
+    if (slides.length > 0) {
+        slides[0].classList.add('active');
+    }
+    createDots();
+    startSlideshow();
+
+    // ========= REGISTRATION LOGIC =========
     const nameInput = document.getElementById("fullName");
     const emailInput = document.getElementById("emailAddr");
     const passwordInput = document.getElementById("userPassword");
@@ -302,7 +519,7 @@
                 if (messageDiv.style.display === "block" && messageDiv.classList.contains('error-msg')) {
                     messageDiv.style.display = "none";
                 }
-            }, 4000);
+            }, 4500);
         }
     }
 
@@ -310,18 +527,18 @@
         messageDiv.style.display = "none";
     }
 
-    function showRedirectToast() {
+    function showRedirectToastMessage(msg = "👑 Registration successful! Redirecting to login...") {
+        redirectToast.textContent = msg;
         redirectToast.style.opacity = "1";
         setTimeout(() => {
             redirectToast.style.opacity = "0";
-        }, 1500);
+        }, 1800);
     }
 
     function isValidEmail(email) {
         return /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/.test(email);
     }
 
-    // Simulated registration + auto redirect to login page
     function handleRegistrationAndRedirect() {
         hideMessage();
         
@@ -330,14 +547,14 @@
         const password = passwordInput.value;
         const area = areaInput.value.trim();
 
-        // Validation rules
+        // Validation
         if (!fullName || !email || !password || !area) {
-            showMessage("❌ Please fill in all fields.", true);
+            showMessage("❌ Please fill in all fields to join Queen Style.", true);
             return;
         }
 
         if (fullName.length < 2) {
-            showMessage("❌ Name must be at least 2 characters.", true);
+            showMessage("❌ Full name must be at least 2 characters.", true);
             return;
         }
 
@@ -346,7 +563,7 @@
             return;
         }
 
-        // reserved admin email (as per earlier requirement)
+        // Reserved admin email block
         if (email.toLowerCase() === "mailak@gmail.com") {
             showMessage("⛔ This email is reserved for admin. Please use a different email.", true);
             return;
@@ -362,39 +579,31 @@
             return;
         }
 
-        // Disable button to prevent double submission
+        // Disable button & show loading
         registerBtn.disabled = true;
         const originalText = registerBtn.textContent;
-        registerBtn.textContent = "Creating account...";
+        registerBtn.textContent = "Creating royal account...";
 
-        // Simulate async registration (mock API / backend call)
+        // Simulate async registration
         setTimeout(() => {
             try {
-                // Mock successful  ddd registration: store user data in localStorage for demo (optional)
                 const newUser = {
                     name: fullName,
                     email: email,
                     area: area,
                     registeredAt: new Date().toISOString()
                 };
-                // Save to localStorage so login page could potentially read it (for demo continuity)
                 localStorage.setItem("queenStyle_lastRegistered", JSON.stringify(newUser));
-                // Also store a flag for login page welcome message (optional)
                 sessionStorage.setItem("justRegistered", "true");
                 
-                // Show success message
-                showMessage("✅ Registration successful! Redirecting to login page...", false);
+                showMessage("✅ Welcome to Queen Style! Registration successful. Redirecting to login...", false);
+                showRedirectToastMessage("👑 Registration successful! Redirecting to login...");
                 
-                // Show floating toast for better experience
-                showRedirectToast();
-                
-                // AUTO REDIRECT TO LOGIN PAGE after 1.6 seconds
                 setTimeout(() => {
                     window.location.href = "login.html";
                 }, 1600);
                 
             } catch (err) {
-                // In case any unexpected error (though none expected)
                 showMessage("⚠️ Unexpected error. Please try again.", true);
                 registerBtn.disabled = false;
                 registerBtn.textContent = originalText;
@@ -402,10 +611,9 @@
         }, 700);
     }
 
-    // Attach click event
+    // Event listeners
     registerBtn.addEventListener("click", handleRegistrationAndRedirect);
 
-    // Enter key submission on any input
     const allInputs = [nameInput, emailInput, passwordInput, areaInput];
     allInputs.forEach(input => {
         input.addEventListener("keypress", (e) => {
@@ -416,17 +624,14 @@
         });
     });
 
-    // Login link - goes to login page directly
     const loginLink = document.getElementById("loginRedirectLink");
     if (loginLink) {
         loginLink.addEventListener("click", (e) => {
             e.preventDefault();
-            // Directly go to login page
             window.location.href = "login.html";
         });
     }
 
-    // Clean error message when user starts typing (good UX)
     function clearErrorOnInput() {
         if (messageDiv.style.display === "block" && messageDiv.classList.contains('error-msg')) {
             hideMessage();
@@ -437,8 +642,16 @@
     passwordInput.addEventListener("input", clearErrorOnInput);
     areaInput.addEventListener("input", clearErrorOnInput);
 
-    // Optional: Add small animation / effect to indicate working status
-    console.log("Registration page ready — auto-redirect to login.html after successful register");
+    // Reset button state on page load
+    window.addEventListener("load", () => {
+        registerBtn.disabled = false;
+        registerBtn.textContent = "Register →";
+    });
+
+    // Fix for any radix / full display issues: ensure body takes full height
+    document.body.style.margin = "0";
+    document.body.style.padding = "0";
+    console.log("Queen Style Full Display — 10 rotating images, perfect fonts & colors, fixed layout");
 </script>
 </body>
 </html>

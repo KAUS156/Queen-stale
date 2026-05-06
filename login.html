@@ -2,65 +2,294 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Queen Style - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Queen Style - Royal Login | Elegant Fashion Access</title>
+    <meta name="description" content="Login to Queen Style - India's premier luxury fashion community. Access exclusive collections, royal rewards, and personalized style recommendations.">
+    <meta name="keywords" content="Queen Style login, fashion membership, luxury fashion India, royal style, designer access, fashion community">
+    <meta name="author" content="Queen Style">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://queenstyle.com/login">
+    <meta property="og:title" content="Queen Style - Royal Login">
+    <meta property="og:description" content="Login to your Queen Style account and experience royalty with every outfit.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Queen Style">
+    <meta name="twitter:card" content="summary_large_image">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: system-ui, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f0f2f8;
             min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            padding: 20px;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
         }
-        .container {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-        }
-        h2 { text-align: center; margin-bottom: 30px; color: #333; }
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-        button {
-            width: 100%;
-            padding: 12px;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        button:hover { background: #5a67d8; }
-        .google-btn {
-            background: white;
-            color: #333;
-            border: 1px solid #ddd;
+
+        /* FULL DISPLAY WRAPPER */
+        .full-display-wrapper {
+            width: 100vw;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            background: linear-gradient(135deg, #e9eef5 0%, #dfe4ec 100%);
+            padding: 0;
+            margin: 0;
         }
-        .google-btn:hover { background: #f5f5f5; }
-        .link { text-align: center; margin-top: 20px; }
-        .link a { color: #667eea; text-decoration: none; }
-        .divider {
+
+        /* MAIN SPLIT CARD */
+        .login-master {
+            width: 100vw;
+            height: 100vh;
+            max-width: 100%;
+            max-height: 100%;
+            background: #ffffff;
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+            box-shadow: none;
+            border-radius: 0;
+        }
+
+        /* ========= LEFT SIDE: ROTATING IMAGE GALLERY (10 IMAGES) ========= */
+        .image-gallery-side {
+            flex: 1.2;
+            position: relative;
+            background: #0a0e1a;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        .slide-img.active {
+            opacity: 1;
+        }
+
+        /* Overlay content on image side */
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+            padding: 2rem 2rem;
+            z-index: 10;
+            color: white;
+        }
+
+        .image-overlay h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #f3e7c9, #e4c992, #d4af37);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .image-overlay p {
+            font-size: 0.95rem;
+            opacity: 0.92;
+            color: #f0e6d2;
+        }
+
+        .slide-dots {
+            position: absolute;
+            bottom: 1.2rem;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            z-index: 15;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .dot.active-dot {
+            background: #d4af37;
+            width: 24px;
+            border-radius: 5px;
+        }
+
+        /* ========= RIGHT SIDE: LOGIN FORM ========= */
+        .form-side {
+            flex: 1;
+            background: #ffffff;
+            padding: 2rem 2.8rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow-y: auto;
+            height: 100vh;
+        }
+
+        .form-side::-webkit-scrollbar {
+            width: 4px;
+        }
+        .form-side::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .form-side::-webkit-scrollbar-thumb {
+            background: #c9a03d;
+            border-radius: 4px;
+        }
+
+        .brand-header {
             text-align: center;
-            margin: 20px 0;
+            margin-bottom: 2rem;
+        }
+
+        .crown-icon {
+            font-size: 48px;
+            display: inline-block;
+            animation: gentleFloat 3s ease-in-out infinite;
+            filter: drop-shadow(0 4px 6px rgba(184, 134, 11, 0.3));
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .form-side h2 {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1e2a3e, #2c3e66);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 0.5rem 0 0.25rem;
+        }
+
+        .royal-tag {
+            font-size: 12px;
+            color: #b8860b;
+            letter-spacing: 1px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .input-group {
+            margin-bottom: 1.3rem;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1f2d3d;
+        }
+
+        .input-field-wrapper {
             position: relative;
         }
+
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.1rem;
+            pointer-events: none;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 0.9rem 1rem 0.9rem 48px;
+            font-size: 0.95rem;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 1.25rem;
+            background: #fefefe;
+            transition: 0.2s;
+            font-family: inherit;
+            outline: none;
+            color: #1e293b;
+        }
+
+        .input-group input:focus {
+            border-color: #c9a03d;
+            box-shadow: 0 0 0 3px rgba(201, 160, 61, 0.2);
+        }
+
+        .input-group input::placeholder {
+            color: #a0afc0;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 0.95rem;
+            margin-top: 0.5rem;
+            border: none;
+            border-radius: 2rem;
+            font-weight: 700;
+            font-size: 1rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            background: linear-gradient(100deg, #1e293b, #0f172a);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(100deg, #2d3a4f, #1f2a3e);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.2);
+        }
+
+        .google-btn {
+            background: white;
+            color: #2c3e66;
+            border: 1.5px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .google-btn:hover {
+            background: #fef9f0;
+            border-color: #c9a03d;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
         .divider::before {
             content: "";
             position: absolute;
@@ -68,170 +297,389 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: #ddd;
+            background: linear-gradient(90deg, transparent, #d4c5b0, transparent);
         }
+
         .divider span {
             background: white;
-            padding: 0 10px;
+            padding: 0 16px;
             position: relative;
-            color: #999;
+            color: #b8860b;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .link a {
+            color: #b8860b;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #f0e0c0;
+            padding-bottom: 2px;
+        }
+
+        .link a:hover {
+            color: #8b691b;
+        }
+
+        .demo-panel {
+            margin-top: 1.8rem;
+            padding: 1rem 1.2rem;
+            background: #faf7f2;
+            border-radius: 1.25rem;
+            border-left: 4px solid #c9a03d;
+        }
+
+        .demo-panel p {
+            font-size: 0.75rem;
+            text-align: center;
+            color: #5e4b3c;
+        }
+
+        .demo-panel strong {
+            color: #b8860b;
+        }
+
+        .seo-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.7rem;
+            color: #aa9f8c;
+        }
+
+        @media (max-width: 900px) {
+            .login-master {
+                flex-direction: column;
+            }
+            .image-gallery-side {
+                height: 35vh;
+                min-height: 250px;
+            }
+            .form-side {
+                height: auto;
+                padding: 1.8rem;
+            }
+            .form-side h2 {
+                font-size: 24px;
+            }
+            .crown-icon {
+                font-size: 38px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .form-side {
+                padding: 1.3rem;
+            }
+            .image-overlay h2 {
+                font-size: 1.3rem;
+            }
+            .input-group input {
+                padding: 0.8rem 1rem 0.8rem 44px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>🔐 Queen Style Login</h2>
-        <input type="email" id="email" placeholder="Email">
-        <input type="password" id="password" placeholder="Password">
-        <button onclick="loginWithEmail()">Login with Email</button>
-        
-        <div class="divider"><span>OR</span></div>
-        
-        <button class="google-btn" onclick="loginWithGoogle()">
-            <svg width="20" height="20" viewBox="0 0 24 24">
-                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-            </svg>
-            Continue with Google
-        </button>
-        
-        <div class="link">
-            <a href="register.html">New User? Register Here</a>
+<div class="full-display-wrapper">
+    <div class="login-master">
+        <!-- LEFT SIDE: ROTATING 10 IMAGES (QUEEN STYLE GALLERY) -->
+        <div class="image-gallery-side">
+            <div class="slideshow-container" id="slideshowContainer">
+                <img class="slide-img" src="https://picsum.photos/id/20/1200/1600" alt="Queen Style Elegance">
+                <img class="slide-img" src="https://picsum.photos/id/30/1200/1600" alt="Royal Fashion">
+                <img class="slide-img" src="https://picsum.photos/id/26/1200/1600" alt="Luxury Style">
+                <img class="slide-img" src="https://picsum.photos/id/28/1200/1600" alt="Elegant Queen">
+                <img class="slide-img" src="https://picsum.photos/id/29/1200/1600" alt="Couture Look">
+                <img class="slide-img" src="https://picsum.photos/id/33/1200/1600" alt="Royal Attire">
+                <img class="slide-img" src="https://picsum.photos/id/36/1200/1600" alt="Modern Queen">
+                <img class="slide-img" src="https://picsum.photos/id/38/1200/1600" alt="Gold Elegance">
+                <img class="slide-img" src="https://picsum.photos/id/42/1200/1600" alt="Crown Jewel">
+                <img class="slide-img" src="https://picsum.photos/id/45/1200/1600" alt="Grace & Beauty">
+            </div>
+            <div class="image-overlay">
+                <h2>Queen Style Empire</h2>
+                <p>Where elegance meets royalty — curated luxury for the modern queen</p>
+            </div>
+            <div class="slide-dots" id="slideDots"></div>
         </div>
-        <div style="margin-top: 20px; padding: 10px; background: #f0f0f0; border-radius: 8px;">
-            <p style="font-size: 12px; text-align: center;">📝 Demo: admin@queenstyle.com / admin123</p>
+
+        <!-- RIGHT SIDE: LOGIN FORM -->
+        <div class="form-side">
+            <div class="brand-header">
+                <div class="crown-icon">👑</div>
+                <h2>Queen Style</h2>
+                <div class="royal-tag">✦ LOGIN TO YOUR ACCOUNT ✦</div>
+            </div>
+
+            <!-- Email Input -->
+            <div class="input-group">
+                <label>Email Address</label>
+                <div class="input-field-wrapper">
+                    <span class="input-icon">✉️</span>
+                    <input type="email" id="email" placeholder="hello@queenstyle.com" autocomplete="email">
+                </div>
+            </div>
+
+            <!-- Password Input -->
+            <div class="input-group">
+                <label>Password</label>
+                <div class="input-field-wrapper">
+                    <span class="input-icon">🔒</span>
+                    <input type="password" id="password" placeholder="••••••••" autocomplete="current-password">
+                </div>
+            </div>
+
+            <!-- Email Login Button -->
+            <button class="login-btn" id="emailLoginBtn">→ Login with Email</button>
+
+            <!-- Divider -->
+            <div class="divider"><span>✦ OR ✦</span></div>
+
+            <!-- Google Login Button -->
+            <button class="login-btn google-btn" id="googleLoginBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                Continue with Google
+            </button>
+
+            <!-- Register Link -->
+            <div class="link">
+                <a href="register.html">✨ New User? Create Royal Account</a>
+            </div>
+
+            <!-- Demo Credentials -->
+            <div class="demo-panel">
+                
+            </div>
+            <div class="seo-footer">
+                🔐 Secure Authentication • Royal Fashion Community • Since 2024
+            </div>
         </div>
     </div>
+</div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, collection, doc, getDocs, query, where, setDoc, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { getFirestore, collection, query, where, getDocs, addDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
-            authDomain: "lucky-triode-450317-g7.firebaseapp.com",
-            projectId: "lucky-triode-450317-g7",
-            storageBucket: "lucky-triode-450317-g7.firebasestorage.app",
-            messagingSenderId: "778199870672",
-            appId: "1:778199870672:web:62a9891e41b3a3d3f242d5"
-        };
+    const firebaseConfig = {
+        apiKey: "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
+        authDomain: "lucky-triode-450317-g7.firebaseapp.com",
+        projectId: "lucky-triode-450317-g7",
+        storageBucket: "lucky-triode-450317-g7.firebasestorage.app",
+        messagingSenderId: "778199870672",
+        appId: "1:778199870672:web:62a9891e41b3a3d3f242d5"
+    };
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const provider = new GoogleAuthProvider();
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const googleProvider = new GoogleAuthProvider();
+    googleProvider.setCustomParameters({ prompt: 'select_account' });
 
-        // Email/Password Login
-        window.loginWithEmail = async function() {
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
+    // IMAGE SLIDESHOW (10 IMAGES)
+    const slides = document.querySelectorAll('.slide-img');
+    const dotsContainer = document.getElementById('slideDots');
+    let currentIndex = 0;
+    let slideInterval;
+    const totalSlides = slides.length;
 
-            if (!email || !password) {
-                alert("Please fill all fields!");
-                return;
-            }
-
-            try {
-                const userCredential = await signInWithEmailAndPassword(auth, email, password);
-                const user = userCredential.user;
-                
-                let isAdmin = false;
-                
-                // Check if admin
-                if (email === "mailak@gmail.com") {
-                    isAdmin = true;
-                } else {
-                    const userQuery = await getDocs(query(collection(db, "users"), where("uid", "==", user.uid)));
-                    if (!userQuery.empty) {
-                        const userData = userQuery.docs[0].data();
-                        isAdmin = userData.isAdmin === true;
-                    }
-                }
-                
-                localStorage.setItem("isAdmin", isAdmin ? "true" : "false");
-                localStorage.setItem("currentUser", JSON.stringify({
-                    uid: user.uid,
-                    email: user.email,
-                    isAdmin: isAdmin
-                }));
-                
-                if (isAdmin) {
-                    alert("Admin Login Successful!");
-                    window.location.href = "admin.html";
-                } else {
-                    alert("Login Successful!");
-                    window.location.href = "profile.html";
-                }
-            } catch (error) {
-                alert("Login failed: " + error.message);
-            }
-        };
-
-        // Google Login
-        window.loginWithGoogle = async function() {
-            try {
-                const result = await signInWithPopup(auth, provider);
-                const user = result.user;
-                
-                // Check if user exists in Firestore
-                const userQuery = await getDocs(query(collection(db, "users"), where("uid", "==", user.uid)));
-                
-                let isAdmin = false;
-                
-                // Check if this Google email is admin
-                if (user.email === "mailak@gmail.com") {
-                    isAdmin = true;
-                }
-                
-                // If user doesn't exist in Firestore, create new entry
-                if (userQuery.empty && !isAdmin) {
-                    await addDoc(collection(db, "users"), {
-                        uid: user.uid,
-                        name: user.displayName || user.email.split('@')[0],
-                        email: user.email,
-                        area: "Google User",
-                        isAdmin: false,
-                        photoURL: user.photoURL,
-                        authProvider: "google",
-                        createdAt: new Date().toISOString()
-                    });
-                }
-                
-                localStorage.setItem("isAdmin", isAdmin ? "true" : "false");
-                localStorage.setItem("currentUser", JSON.stringify({
-                    uid: user.uid,
-                    email: user.email,
-                    name: user.displayName,
-                    isAdmin: isAdmin,
-                    photoURL: user.photoURL
-                }));
-                
-                if (isAdmin) {
-                    alert("Admin Login Successful!");
-                    window.location.href = "admin.html";
-                } else {
-                    alert("Google Login Successful!");
-                    window.location.href = "profile.html";
-                }
-            } catch (error) {
-                console.error("Google Login Error:", error);
-                alert("Google Login failed: " + error.message);
-            }
-        };
-
-        // Check if already logged in
-        const currentUser = localStorage.getItem("currentUser");
-        if (currentUser) {
-            const user = JSON.parse(currentUser);
-            if (user.isAdmin) {
-                window.location.href = "admin.html";
-            } else {
-                window.location.href = "profile.html";
-            }
+    function createDots() {
+        if (!dotsContainer) return;
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active-dot');
+            dot.addEventListener('click', () => {
+                goToSlide(i);
+                resetInterval();
+            });
+            dotsContainer.appendChild(dot);
         }
-    </script>
+    }
+
+    function goToSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            const dot = dotsContainer?.children[i];
+            if (dot) dot.classList.remove('active-dot');
+        });
+        slides[index].classList.add('active');
+        if (dotsContainer?.children[index]) {
+            dotsContainer.children[index].classList.add('active-dot');
+        }
+        currentIndex = index;
+    }
+
+    function nextSlide() {
+        let next = (currentIndex + 1) % totalSlides;
+        goToSlide(next);
+    }
+
+    function startSlideshow() {
+        slideInterval = setInterval(nextSlide, 4000);
+    }
+
+    function resetInterval() {
+        clearInterval(slideInterval);
+        startSlideshow();
+    }
+
+    if (slides.length > 0) {
+        slides[0].classList.add('active');
+    }
+    createDots();
+    startSlideshow();
+
+    // Helper Functions
+    function showMessage(msg, isError = true) {
+        const notification = document.createElement('div');
+        notification.textContent = msg;
+        notification.style.position = 'fixed';
+        notification.style.bottom = '20px';
+        notification.style.left = '50%';
+        notification.style.transform = 'translateX(-50%)';
+        notification.style.backgroundColor = isError ? '#e5484d' : '#2b9348';
+        notification.style.color = 'white';
+        notification.style.padding = '12px 24px';
+        notification.style.borderRadius = '50px';
+        notification.style.fontSize = '14px';
+        notification.style.fontWeight = '600';
+        notification.style.zIndex = '9999';
+        notification.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+        notification.style.fontFamily = 'inherit';
+        document.body.appendChild(notification);
+        setTimeout(() => {
+            notification.style.opacity = '0';
+            setTimeout(() => notification.remove(), 400);
+        }, 2800);
+    }
+
+    async function checkAdminStatus(user) {
+        if (user.email && user.email.toLowerCase() === "mailak@gmail.com") {
+            return true;
+        }
+        try {
+            const q = query(collection(db, "users"), where("uid", "==", user.uid));
+            const querySnap = await getDocs(q);
+            if (!querySnap.empty) {
+                return querySnap.docs[0].data().isAdmin === true;
+            }
+        } catch (err) {
+            console.warn(err);
+        }
+        return false;
+    }
+
+    async function handleSuccessfulLogin(user, isAdminFlag = null) {
+        let isAdmin = isAdminFlag;
+        if (isAdmin === null) isAdmin = await checkAdminStatus(user);
+        
+        localStorage.setItem("currentUser", JSON.stringify({
+            uid: user.uid,
+            email: user.email,
+            name: user.displayName || user.email.split('@')[0],
+            isAdmin: isAdmin,
+            photoURL: user.photoURL || null
+        }));
+        localStorage.setItem("isAdmin", isAdmin ? "true" : "false");
+
+        if (isAdmin) {
+            showMessage("👑 Welcome Admin! Redirecting...", false);
+            setTimeout(() => window.location.href = "admin.html", 1000);
+        } else {
+            showMessage("✨ Welcome to Queen Style! Redirecting...", false);
+            setTimeout(() => window.location.href = "profile.html", 1000);
+        }
+    }
+
+    async function ensureUserDocument(user, isAdmin = false) {
+        if (isAdmin) return;
+        const q = query(collection(db, "users"), where("uid", "==", user.uid));
+        const snap = await getDocs(q);
+        if (snap.empty) {
+            await addDoc(collection(db, "users"), {
+                uid: user.uid,
+                name: user.displayName || user.email.split('@')[0],
+                email: user.email,
+                area: "Luxury Enthusiast",
+                isAdmin: false,
+                photoURL: user.photoURL || "",
+                authProvider: "google",
+                createdAt: new Date().toISOString()
+            });
+        }
+    }
+
+    async function handleEmailLogin() {
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+        if (!email || !password) return showMessage("❌ Please fill all fields.");
+        if (!/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/.test(email)) return showMessage("❌ Invalid email.");
+        try {
+            const userCred = await signInWithEmailAndPassword(auth, email, password);
+            const user = userCred.user;
+            let isAdmin = email.toLowerCase() === "mailak@gmail.com" ? true : await checkAdminStatus(user);
+            if (!isAdmin) await ensureUserDocument(user, false);
+            await handleSuccessfulLogin(user, isAdmin);
+        } catch (error) {
+            let msg = "Login failed.";
+            if (error.code === 'auth/user-not-found') msg = "No account found. Please register.";
+            else if (error.code === 'auth/wrong-password') msg = "Incorrect password.";
+            showMessage(`❌ ${msg}`);
+        }
+    }
+
+    async function handleGoogleLogin() {
+        try {
+            const result = await signInWithPopup(auth, googleProvider);
+            const user = result.user;
+            let isAdmin = user.email?.toLowerCase() === "mailak@gmail.com" ? true : await checkAdminStatus(user);
+            if (!isAdmin) await ensureUserDocument(user, false);
+            await handleSuccessfulLogin(user, isAdmin);
+        } catch (error) {
+            showMessage("❌ Google sign-in failed. Please allow popups.");
+        }
+    }
+
+    // Check existing session
+    const existing = localStorage.getItem("currentUser");
+    if (existing) {
+        try {
+            const p = JSON.parse(existing);
+            if (p.isAdmin) window.location.href = "admin.html";
+            else window.location.href = "profile.html";
+        } catch(e) {}
+    }
+
+    document.getElementById("emailLoginBtn").addEventListener("click", handleEmailLogin);
+    document.getElementById("googleLoginBtn").addEventListener("click", handleGoogleLogin);
+    document.getElementById("email").addEventListener("keypress", (e) => e.key === "Enter" && handleEmailLogin());
+    document.getElementById("password").addEventListener("keypress", (e) => e.key === "Enter" && handleEmailLogin());
+
+    // SEO Schema
+    const schema = document.createElement('script');
+    schema.type = 'application/ld+json';
+    schema.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Queen Style Login",
+        "description": "Secure login page for Queen Style fashion community.",
+        "url": "https://queenstyle.com/login"
+    });
+    document.head.appendChild(schema);
+</script>
 </body>
 </html>
