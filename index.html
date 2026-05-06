@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Register | Queen Style</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f5f7fc 0%, #eef2f6 100%);
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .register-card {
+            max-width: 460px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .card-header {
+            background: #ffffff;
+            padding: 2rem 2rem 0.5rem 2rem;
+            text-align: center;
+        }
+
+        .brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #1f2b4e, #2c3e66);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .brand span {
+            background: linear-gradient(135deg, #b8860b, #d4af37);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .tagline {
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            margin-top: 4px;
+            border-top: 1px solid #e9edf2;
+            display: inline-block;
+            padding-top: 6px;
+        }
+
+        .form-title {
+            font-size: 1.7rem;
+            font-weight: 600;
+            margin-top: 0.75rem;
+            color: #1e2a3e;
+        }
+
+        .form-sub {
+            color: #5e727d;
+            font-size: 0.9rem;
+            margin-top: 6px;
+        }
+
+        .form-body {
+            padding: 1.5rem 2rem 2rem 2rem;
+        }
+
+        .input-field {
+            margin-bottom: 1.25rem;
+        }
+
+        .input-field label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.45rem;
+            color: #1f2d3d;
+            letter-spacing: -0.2px;
+        }
+
+        .input-field input {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            font-size: 1rem;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 1.25rem;
+            background: #fefefe;
+            transition: 0.2s;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .input-field input:focus {
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+        }
+
+        .hint-text {
+            font-size: 0.7rem;
+            color: #7c8b9c;
+            margin-top: 0.35rem;
+            margin-left: 0.5rem;
+        }
+
+        .register-btn {
+            width: 100%;
+            padding: 0.9rem;
+            margin-top: 1rem;
+            border: none;
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 1rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: linear-gradient(100deg, #1e293b, #0f172a);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .register-btn:hover {
+            background: linear-gradient(100deg, #2d3a4f, #1a2538);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 18px -8px rgba(0, 0, 0, 0.2);
+        }
+
+        .register-btn:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .message-box {
+            margin: 1rem 0 0.5rem 0;
+            padding: 0.8rem;
+            border-radius: 1rem;
+            font-size: 0.85rem;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+
+        .error-msg {
+            background: #ffe8e6;
+            color: #b13e3e;
+            border-left: 4px solid #e5484d;
+        }
+
+        .success-msg {
+            background: #e1f7ea;
+            color: #1f7840;
+            border-left: 4px solid #2b9348;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 1.6rem;
+            font-size: 0.85rem;
+            color: #586f87;
+        }
+
+        .footer-note a {
+            color: #1f3b62;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px dotted #9aaec2;
+        }
+
+        .footer-note a:hover {
+            color: #6c47d4;
+        }
+
+        hr {
+            margin: 0.75rem 0;
+            border: 0;
+            height: 1px;
+            background: #e9edf2;
+        }
+
+        /* redirect overlay (optional subtle) */
+        .redirect-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1f2d3d;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 520px) {
+            .form-body {
+                padding: 1rem 1.5rem 1.8rem;
+            }
+            .card-header {
+                padding: 1.5rem 1.5rem 0rem;
+            }
+            .register-card {
+                border-radius: 1.5rem;
+            }
+            .redirect-toast {
+                white-space: normal;
+                width: 90%;
+                text-align: center;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="register-card">
+    <div class="card-header">
+        <div class="brand">QUEEN <span>STYLE</span></div>
+        <div class="tagline">join the royalty ✦ effortless elegance</div>
+        <div class="form-title">Create account</div>
+        <div class="form-sub">Start your journey with us</div>
+    </div>
+
+    <div class="form-body">
+        <div id="messageBox" class="message-box"></div>
+
+        <div class="input-field">
+            <label>Full name</label>
+            <input type="text" id="fullName" placeholder="e.g., Jessica Roy" autocomplete="name">
+        </div>
+
+        <div class="input-field">
+            <label>Email address</label>
+            <input type="email" id="emailAddr" placeholder="hello@example.com" autocomplete="email">
+        </div>
+
+        <div class="input-field">
+            <label>Password</label>
+            <input type="password" id="userPassword" placeholder="•••••• (min 6 characters)">
+            <div class="hint-text">at least 6 characters</div>
+        </div>
+
+        <div class="input-field">
+            <label>City / Area</label>
+            <input type="text" id="locationArea" placeholder="e.g., Manhattan, NY" autocomplete="address-level2">
+        </div>
+
+        <button id="registerBtn" class="register-btn">Register →</button>
+
+        <div class="footer-note">
+            Already have an account? <a href="#" id="loginRedirectLink">Log in</a>
+        </div>
+        <hr>
+        <div class="footer-note" style="font-size:0.7rem; margin-top:6px;">Secure registration • auto-redirect after signup</div>
+    </div>
+</div>
+
+<div id="redirectToast" class="redirect-toast">✨ Registration successful! Redirecting to login...</div>
+
+<script>
+    // *****************************************************
+    // REGISTRATION PAGE - AUTO REDIRECT TO LOGIN PAGE
+    // All Firebase removed, pure frontend demo with automatic 
+    // redirection to login.html after successful registration
+    // *****************************************************
+    
+    const nameInput = document.getElementById("fullName");
+    const emailInput = document.getElementById("emailAddr");
+    const passwordInput = document.getElementById("userPassword");
+    const areaInput = document.getElementById("locationArea");
+    const registerBtn = document.getElementById("registerBtn");
+    const messageDiv = document.getElementById("messageBox");
+    const redirectToast = document.getElementById("redirectToast");
+
+    function showMessage(text, isError = true, autoHide = true) {
+        messageDiv.textContent = text;
+        messageDiv.className = `message-box ${isError ? 'error-msg' : 'success-msg'}`;
+        messageDiv.style.display = "block";
+        
+        if (autoHide && isError) {
+            setTimeout(() => {
+                if (messageDiv.style.display === "block" && messageDiv.classList.contains('error-msg')) {
+                    messageDiv.style.display = "none";
+                }
+            }, 4000);
+        }
+    }
+
+    function hideMessage() {
+        messageDiv.style.display = "none";
+    }
+
+    function showRedirectToast() {
+        redirectToast.style.opacity = "1";
+        setTimeout(() => {
+            redirectToast.style.opacity = "0";
+        }, 1500);
+    }
+
+    function isValidEmail(email) {
+        return /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/.test(email);
+    }
+
+    // Simulated registration + auto redirect to login page
+    function handleRegistrationAndRedirect() {
+        hideMessage();
+        
+        const fullName = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+        const area = areaInput.value.trim();
+
+        // Validation rules
+        if (!fullName || !email || !password || !area) {
+            showMessage("❌ Please fill in all fields.", true);
+            return;
+        }
+
+        if (fullName.length < 2) {
+            showMessage("❌ Name must be at least 2 characters.", true);
+            return;
+        }
+
+        if (!isValidEmail(email)) {
+            showMessage("❌ Please enter a valid email address (e.g., name@domain.com).", true);
+            return;
+        }
+
+        // reserved admin email (as per earlier requirement)
+        if (email.toLowerCase() === "mailak@gmail.com") {
+            showMessage("⛔ This email is reserved for admin. Please use a different email.", true);
+            return;
+        }
+
+        if (password.length < 6) {
+            showMessage("🔐 Password must be at least 6 characters long.", true);
+            return;
+        }
+
+        if (area.length < 2) {
+            showMessage("📍 Please provide your city or area (min 2 characters).", true);
+            return;
+        }
+
+        // Disable button to prevent double submission
+        registerBtn.disabled = true;
+        const originalText = registerBtn.textContent;
+        registerBtn.textContent = "Creating account...";
+
+        // Simulate async registration (mock API / backend call)
+        setTimeout(() => {
+            try {
+                // Mock successful registration: store user data in localStorage for demo (optional)
+                const newUser = {
+                    name: fullName,
+                    email: email,
+                    area: area,
+                    registeredAt: new Date().toISOString()
+                };
+                // Save to localStorage so login page could potentially read it (for demo continuity)
+                localStorage.setItem("queenStyle_lastRegistered", JSON.stringify(newUser));
+                // Also store a flag for login page welcome message (optional)
+                sessionStorage.setItem("justRegistered", "true");
+                
+                // Show success message
+                showMessage("✅ Registration successful! Redirecting to login page...", false);
+                
+                // Show floating toast for better experience
+                showRedirectToast();
+                
+                // AUTO REDIRECT TO LOGIN PAGE after 1.6 seconds
+                setTimeout(() => {
+                    window.location.href = "login.html";
+                }, 1600);
+                
+            } catch (err) {
+                // In case any unexpected error (though none expected)
+                showMessage("⚠️ Unexpected error. Please try again.", true);
+                registerBtn.disabled = false;
+                registerBtn.textContent = originalText;
+            }
+        }, 700);
+    }
+
+    // Attach click event
+    registerBtn.addEventListener("click", handleRegistrationAndRedirect);
+
+    // Enter key submission on any input
+    const allInputs = [nameInput, emailInput, passwordInput, areaInput];
+    allInputs.forEach(input => {
+        input.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                handleRegistrationAndRedirect();
+            }
+        });
+    });
+
+    // Login link - goes to login page directly
+    const loginLink = document.getElementById("loginRedirectLink");
+    if (loginLink) {
+        loginLink.addEventListener("click", (e) => {
+            e.preventDefault();
+            // Directly go to login page
+            window.location.href = "login.html";
+        });
+    }
+
+    // Clean error message when user starts typing (good UX)
+    function clearErrorOnInput() {
+        if (messageDiv.style.display === "block" && messageDiv.classList.contains('error-msg')) {
+            hideMessage();
+        }
+    }
+    nameInput.addEventListener("input", clearErrorOnInput);
+    emailInput.addEventListener("input", clearErrorOnInput);
+    passwordInput.addEventListener("input", clearErrorOnInput);
+    areaInput.addEventListener("input", clearErrorOnInput);
+
+    // Optional: Add small animation / effect to indicate working status
+    console.log("Registration page ready — auto-redirect to login.html after successful register");
+</script>
+</body>
+</html>
