@@ -1,657 +1,602 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Queen Style | Royal Registration - Full Display</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            background: #f0f2f8;
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        /* FULL DISPLAY CONTAINER - takes entire viewport */
-        .full-display-wrapper {
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #e9eef5 0%, #dfe4ec 100%);
-            padding: 0;
-            margin: 0;
-        }
+<script defer src="https://cloud.umami.is/script.js" 
+data-website-id="e475468a-59c1-463c-b887-64507ed9bf61"></script>
+<!-----fff ------>
+<!-- SEO -->
+<title>Queen Style</title>
+<meta name="description"
+content="Join Queen Style and explore royal fashion collections, luxury outfits, exclusive member access, and premium styling trends.">
 
-        /* MAIN CARD - perfect full height with max ratio */
-        .register-master {
-            width: 100vw;
-            height: 100vh;
-            max-width: 100%;
-            max-height: 100%;
-            background: #ffffff;
-            display: flex;
-            flex-direction: row;
-            overflow: hidden;
-            box-shadow: none;
-            border-radius: 0;
-        }
+<meta name="keywords"
+content="Queen Style, luxury fashion, royal fashion, premium outfits, women fashion">
 
-        /* ========= LEFT SIDE: ROTATING IMAGE GALLERY (10 IMAGES) ========= */
-        .image-gallery-side {
-            flex: 1.2;
-            position: relative;
-            background: #0a0e1a;
-            overflow: hidden;
-            height: 100vh;
-        }
+<meta name="author" content="Queen Style">
 
-        .slideshow-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
+<meta name="theme-color" content="#d4af37">
 
-        .slide-img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 1.2s ease-in-out;
-        }
+<!-- Open Graph -->
+<meta property="og:title" content="Queen Style">
+<meta property="og:description" content="Luxury Fashion & Royal Style">
+<meta property="og:type" content="website">
 
-        .slide-img.active {
-            opacity: 1;
-        }
+<link rel="icon" href="favicon.png">
 
-        /* Overlay content on image side */
-        .image-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
-            padding: 2rem 2rem;
-            z-index: 10;
-            color: white;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        .image-overlay h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: -0.3px;
-            background: linear-gradient(135deg, #f3e7c9, #e4c992, #d4af37);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 0.5rem;
-        }
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-        .image-overlay p {
-            font-size: 0.95rem;
-            opacity: 0.92;
-            color: #f0e6d2;
-        }
+body{
+font-family:Inter,system-ui,sans-serif;
+background:#f5f7fb;
+overflow-x:hidden;
+overflow-y:auto;
+animation:fadeIn .6s ease;
+}
 
-        .slide-dots {
-            position: absolute;
-            bottom: 1.2rem;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            z-index: 15;
-        }
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(10px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
 
-        .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.5);
-            transition: all 0.3s;
-            cursor: pointer;
-        }
+.container{
+width:100%;
+min-height:100vh;
+display:flex;
+background:white;
+}
 
-        .dot.active-dot {
-            background: #d4af37;
-            width: 24px;
-            border-radius: 5px;
-        }
+/* LEFT SIDE */
 
-        /* ========= RIGHT SIDE: REGISTRATION FORM ========= */
-        .form-side {
-            flex: 1;
-            background: #ffffff;
-            padding: 2rem 2.8rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            overflow-y: auto;
-            height: 100vh;
-        }
+.left{
+flex:1.1;
+position:relative;
+overflow:hidden;
+background:#000;
+}
 
-        /* Custom scrollbar */
-        .form-side::-webkit-scrollbar {
-            width: 4px;
-        }
-        .form-side::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        .form-side::-webkit-scrollbar-thumb {
-            background: #c9a03d;
-            border-radius: 4px;
-        }
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+opacity:0;
+transition:1s;
+}
 
-        .form-header {
-            margin-bottom: 1.8rem;
-            margin-top: 10px;
-        }
+.slide.active{
+opacity:1;
+}
 
-        .mini-brand {
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            font-weight: 700;
-            color: #b8860b;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-        }
+.overlay{
+position:absolute;
+bottom:0;
+left:0;
+right:0;
+padding:50px 40px;
+background:linear-gradient(to top,rgba(0,0,0,.8),transparent);
+color:white;
+z-index:10;
+}
 
-        .form-header h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-top: 10px;
-            color: #1e293b;
-            margin-bottom: 0.4rem;
-            letter-spacing: -0.3px;
-        }
+.overlay h1{
+font-size:42px;
+font-weight:800;
+margin-bottom:10px;
+background:linear-gradient(45deg,#f5deb3,#d4af37);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
 
-        .form-header p {
-            color: #5e6e8c;
-            font-size: 0.95rem;
-            font-weight: 450;
-        }
+.overlay p{
+font-size:15px;
+line-height:1.6;
+color:#f1f1f1;
+}
 
-        .input-field {
-            margin-bottom: 1.3rem;
-        }
+.dots{
+position:absolute;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:10px;
+z-index:20;
+}
 
-        .input-field label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #1f2d3d;
-            letter-spacing: -0.2px;
-        }
+.dot{
+width:10px;
+height:10px;
+border-radius:50%;
+background:rgba(255,255,255,.5);
+cursor:pointer;
+transition:.3s;
+}
 
-        .input-field input {
-            width: 100%;
-            padding: 0.9rem 1rem;
-            font-size: 0.95rem;
-            border: 1.5px solid #e2e8f0;
-            border-radius: 1.25rem;
-            background: #fefefe;
-            transition: 0.2s;
-            font-family: inherit;
-            outline: none;
-            color: #1e293b;
-            font-weight: 450;
-        }
+.dot.active{
+width:28px;
+border-radius:20px;
+background:#d4af37;
+}
 
-        .input-field input:focus {
-            border-color: #c9a03d;
-            box-shadow: 0 0 0 3px rgba(201, 160, 61, 0.2);
-        }
+/* RIGHT SIDE */
 
-        .input-field input::placeholder {
-            color: #a0afc0;
-            font-weight: 400;
-        }
+.right{
+flex:1;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:40px;
+background:white;
+}
 
-        .hint-text {
-            font-size: 0.7rem;
-            color: #7c8b9c;
-            margin-top: 0.35rem;
-            margin-left: 0.5rem;
-        }
+.form-box{
+width:100%;
+max-width:450px;
+}
 
-        .register-btn {
-            width: 100%;
-            padding: 0.95rem;
-            margin-top: 0.8rem;
-            border: none;
-            border-radius: 2rem;
-            font-weight: 700;
-            font-size: 1rem;
-            color: white;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            background: linear-gradient(100deg, #1e293b, #0f172a);
-            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.08);
-        }
+.brand{
+font-size:13px;
+letter-spacing:2px;
+font-weight:700;
+color:#c49b29;
+margin-bottom:12px;
+}
 
-        .register-btn:hover:not(:disabled) {
-            background: linear-gradient(100deg, #2d3a4f, #1f2a3e);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.2);
-        }
+.form-box h2{
+font-size:42px;
+margin-bottom:10px;
+color:#1e293b;
+}
 
-        .register-btn:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
+.form-box p{
+font-size:15px;
+color:#64748b;
+margin-bottom:30px;
+}
 
-        .message-box {
-            margin: 0.6rem 0 0.5rem 0;
-            padding: 0.8rem;
-            border-radius: 1rem;
-            font-size: 0.85rem;
-            text-align: center;
-            font-weight: 500;
-            display: none;
-            margin-bottom: 40px;
-        }
+.input-group{
+margin-bottom:20px;
+}
 
-        .error-msg {
-            background: #ffe8e6;
-            color: #b13e3e;
-            border-left: 4px solid #e5484d;
-        }
+.input-group label{
+display:block;
+margin-bottom:8px;
+font-size:14px;
+font-weight:600;
+color:#1e293b;
+}
 
-        .success-msg {
-            background: #e1f7ea;
-            color: #1f7840;
-            border-left: 4px solid #2b9348;
-        }
+.input-group input{
+width:100%;
+padding:16px;
+border-radius:16px;
+border:1.5px solid #dbe3ef;
+outline:none;
+font-size:15px;
+transition:.3s;
+background:#fafafa;
+}
 
-        .footer-note {
-            text-align: center;
-            margin-top: 1.8rem;
-            font-size: 0.85rem;
-            color: #586f87;
-        }
+.input-group input:focus{
+border-color:#d4af37;
+box-shadow:0 0 0 4px rgba(212,175,55,.15);
+background:white;
+}
 
-        .footer-note a {
-            color: #b8860b;
-            text-decoration: none;
-            font-weight: 700;
-            border-bottom: 1px solid #e9d7b4;
-        }
+.hint{
+font-size:12px;
+margin-top:6px;
+color:#94a3b8;
+padding-left:6px;
+}
 
-        .footer-note a:hover {
-            color: #8b691b;
-        }
+button{
+width:100%;
+padding:16px;
+border:none;
+border-radius:40px;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
+background:linear-gradient(135deg,#111827,#1e293b);
+color:white;
+transition:.3s;
+margin-top:10px;
+}
 
-        hr {
-            margin: 0.7rem 0;
-            border: 0;
-            height: 1px;
-            background: #edf2f7;
-        }
+button:hover{
+transform:translateY(-2px);
+box-shadow:0 15px 30px rgba(0,0,0,.15);
+}
 
-        .redirect-toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #1f2d3d;
-            color: #f9eec1;
-            padding: 12px 28px;
-            border-radius: 60px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            z-index: 2000;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-            opacity: 0;
-            transition: opacity 0.2s;
-            pointer-events: none;
-            backdrop-filter: blur(5px);
-            white-space: nowrap;
-            font-family: monospace;
-            letter-spacing: 0.5px;
-        }
+.message{
+margin-top:15px;
+padding:14px;
+border-radius:14px;
+font-size:14px;
+display:none;
+}
 
-        /* Responsive full display fix */
-        @media (max-width: 900px) {
-            .register-master {
-                flex-direction: column;
-            }
-            .image-gallery-side {
-                height: 40vh;
-                min-height: 280px;
-            }
-            .form-side {
-                height: auto;
-                padding: 1.8rem;
-            }
-            .form-header h1 {
-                font-size: 1.8rem;
-            }
-            .redirect-toast {
-                white-space: normal;
-                width: 85%;
-                text-align: center;
-                font-size: 0.8rem;
-            }
-        }
+.success{
+background:#dcfce7;
+color:#166534;
+}
 
-        @media (max-width: 550px) {
-            .form-side {
-                padding: 1.3rem;
-            }
-            .form-header h1 {
-                font-size: 1.5rem;
-            }
-            .image-overlay h2 {
-                font-size: 1.3rem;
-            }
-            .image-overlay p {
-                font-size: 0.75rem;
-            }
-        }
-    </style>
+.error{
+background:#fee2e2;
+color:#991b1b;
+}
+
+.footer{
+margin-top:25px;
+text-align:center;
+font-size:14px;
+color:#64748b;
+}
+
+.footer a{
+color:#c49b29;
+font-weight:700;
+text-decoration:none;
+}
+
+.testimonial{
+margin-top:25px;
+padding:16px;
+border-radius:18px;
+background:#f8fafc;
+font-size:14px;
+color:#334155;
+text-align:center;
+font-weight:600;
+}
+
+.toast{
+position:fixed;
+bottom:30px;
+left:50%;
+transform:translateX(-50%);
+background:#111827;
+color:#fff;
+padding:14px 28px;
+border-radius:50px;
+font-size:14px;
+opacity:0;
+transition:.3s;
+z-index:999;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.container{
+flex-direction:column;
+}
+
+.left{
+height:40vh;
+}
+
+.right{
+padding:25px;
+}
+
+.form-box h2{
+font-size:32px;
+}
+
+.overlay h1{
+font-size:30px;
+}
+}
+
+@media(max-width:500px){
+
+.overlay{
+padding:30px 20px;
+}
+
+.overlay h1{
+font-size:24px;
+}
+
+.form-box h2{
+font-size:28px;
+}
+
+.input-group input{
+padding:14px;
+}
+}
+</style>
 </head>
+
 <body>
-<div class="full-display-wrapper">
-    <div class="register-master">
-        <!-- LEFT SIDE: ROTATING 10 IMAGES (HIGH QUALITY QUEEN STYLE) -->
-        <div class="image-gallery-side">
-            <div class="slideshow-container" id="slideshowContainer">
-                <!-- 10 elegant royalty/fashion themed images -->
-                <img class="slide-img" src="https://picsum.photos/id/20/1200/1600" alt="Queen Style Elegance">
-                <img class="slide-img" src="https://picsum.photos/id/30/1200/1600" alt="Royal Fashion">
-                <img class="slide-img" src="https://picsum.photos/id/26/1200/1600" alt="Luxury Style">
-                <img class="slide-img" src="https://picsum.photos/id/28/1200/1600" alt="Elegant Queen">
-                <img class="slide-img" src="https://picsum.photos/id/29/1200/1600" alt="Couture Look">
-                <img class="slide-img" src="https://picsum.photos/id/33/1200/1600" alt="Royal Attire">
-                <img class="slide-img" src="https://picsum.photos/id/36/1200/1600" alt="Modern Queen">
-                <img class="slide-img" src="https://picsum.photos/id/38/1200/1600" alt="Gold Elegance">
-                <img class="slide-img" src="https://picsum.photos/id/42/1200/1600" alt="Crown Jewel">
-                <img class="slide-img" src="https://picsum.photos/id/45/1200/1600" alt="Grace & Beauty">
-            </div>
-            <div class="image-overlay">
-                <h2>Queen Style Empire</h2>
-                <p>Where elegance meets royalty — curated luxury for the modern queen</p>
-            </div>
-            <div class="slide-dots" id="slideDots"></div>
-        </div>
 
-        <!-- RIGHT SIDE: REGISTRATION FORM (perfect fonts & colors) -->
-        <div class="form-side">
-            <div class="form-header">
-                <div class="mini-brand">✦ BECOME A MEMBER ✦</div>
-                <h1>Create account</h1>
-                <p>Unlock early access, curated edits & royal perks</p>
-            </div>
+<div class="container">
 
-            <div id="messageBox" class="message-box"></div>
+<!-- LEFT SIDE -->
 
-            <div class="input-field">
-                <label>Full name</label>
-                <input type="text" id="fullName" placeholder="e.g., Victoria Lancaster" autocomplete="name">
-            </div>
+<div class="left">
 
-            <div class="input-field">
-                <label>Email address</label>
-                <input type="email" id="emailAddr" placeholder="hello@queenstyle.com" autocomplete="email">
-            </div>
+<img class="slide active" loading="lazy"
+src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1200" />
 
-            <div class="input-field">
-                <label>Password</label>
-                <input type="password" id="userPassword" placeholder="•••••• (minimum 6 characters)">
-                <div class="hint-text">at least 6 characters, secure & encrypted</div>
-            </div>
+<img class="slide" loading="lazy"
+src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200" />
 
-            <div class="input-field">
-                <label>City / Area</label>
-                <input type="text" id="locationArea" placeholder="e.g., Paris, Milan, Dubai" autocomplete="address-level2">
-            </div>
+<img class="slide" loading="lazy"
+src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1200" />
 
-            <button id="registerBtn" class="register-btn">Register →</button>
+<img class="slide" loading="lazy"
+src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200" />
 
-            <div class="footer-note">
-                Already have an account? <a href="#" id="loginRedirectLink">Sign in</a>
-            </div>
-            <hr>
-            <div class="footer-note" style="font-size:0.7rem; margin-top:6px;">By joining, you accept the Royal Standards. Secure registration.</div>
-        </div>
-    </div>
+<img class="slide" loading="lazy"
+src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=1200" />
+
+<div class="overlay">
+<h1>Queen Style Empire</h1>
+<p>
+Luxury fashion for modern queens.  
+Discover elegant collections, premium outfits,
+and exclusive royal member benefits.
+</p>
 </div>
 
-<div id="redirectToast" class="redirect-toast">👑 Registration successful! Redirecting to login...</div>
+<div class="dots"></div>
+
+</div>
+
+<!-- RIGHT SIDE -->
+
+<div class="right">
+
+<div class="form-box">
+
+<div class="brand">
+✦ JOIN THE ROYAL CLUB ✦
+</div>
+
+<h2>Create Account</h2>
+
+<p>
+Unlock exclusive collections, luxury fashion updates,
+and royal shopping benefits.
+</p>
+
+<div id="message" class="message"></div>
+
+<div class="input-group">
+<label>Full Name</label>
+<input type="text" id="name" placeholder="Enter your name">
+</div>
+
+<div class="input-group">
+<label>Email Address</label>
+<input type="email" id="email" placeholder="hello@queenstyle.com">
+</div>
+
+<div class="input-group">
+<label>Password</label>
+<input type="password" id="password" placeholder="Minimum 6 characters">
+
+<div class="hint">
+Secure encrypted password
+</div>
+</div>
+
+<div class="input-group">
+<label>City / Area</label>
+<input type="text" id="city" placeholder="Paris, Dubai, Milan">
+</div>
+
+<button id="registerBtn">
+Join The Royal Club →
+</button>
+
+<div class="testimonial">
+⭐ Rated 4.9/5 by 12,000+ fashion lovers
+</div>
+
+<div class="footer">
+Already have an account?
+<a href="login.html">Sign In</a>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="toast" id="toast">
+👑 Registration Successful
+</div>
+
+<!-- SCHEMA -->
+
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"Organization",
+"name":"Queen Style",
+"url":"https://queenstyle.com"
+}
+</script>
 
 <script>
-    // *****************************************************
-    // QUEEN STYLE - FULL DISPLAY FIXED (NO RADIX ISSUES)
-    // 10 IMAGES ROTATING EVERY 4 SECONDS
-    // TEXT COLORS, FONTS, SPACING PERFECT
-    // FORM VALIDATION + AUTO REDIRECT TO login.html
-    // *****************************************************
-    
-    // ========= IMAGE SLIDESHOW (10 IMAGES) =========
-    const slides = document.querySelectorAll('.slide-img');
-    const dotsContainer = document.getElementById('slideDots');
-    let currentIndex = 0;
-    let slideInterval;
-    const totalSlides = slides.length; // 10 images
 
-    // Generate dot indicators
-    function createDots() {
-        if (!dotsContainer) return;
-        dotsContainer.innerHTML = '';
-        for (let i = 0; i < totalSlides; i++) {
-            const dot = document.createElement('div');
-            dot.classList.add('dot');
-            if (i === 0) dot.classList.add('active-dot');
-            dot.addEventListener('click', () => {
-                goToSlide(i);
-                resetInterval();
-            });
-            dotsContainer.appendChild(dot);
-        }
-    }
+/* SLIDER */
 
-    function goToSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.classList.remove('active');
-            const dot = dotsContainer?.children[i];
-            if (dot) dot.classList.remove('active-dot');
-        });
-        slides[index].classList.add('active');
-        if (dotsContainer?.children[index]) {
-            dotsContainer.children[index].classList.add('active-dot');
-        }
-        currentIndex = index;
-    }
+const slides=document.querySelectorAll(".slide");
+const dotsContainer=document.querySelector(".dots");
 
-    function nextSlide() {
-        let next = (currentIndex + 1) % totalSlides;
-        goToSlide(next);
-    }
+let current=0;
 
-    function startSlideshow() {
-        slideInterval = setInterval(nextSlide, 4000);
-    }
+slides.forEach((_,i)=>{
 
-    function resetInterval() {
-        clearInterval(slideInterval);
-        startSlideshow();
-    }
+const dot=document.createElement("div");
 
-    // Initialize slides
-    if (slides.length > 0) {
-        slides[0].classList.add('active');
-    }
-    createDots();
-    startSlideshow();
+dot.classList.add("dot");
 
-    // ========= REGISTRATION LOGIC =========
-    const nameInput = document.getElementById("fullName");
-    const emailInput = document.getElementById("emailAddr");
-    const passwordInput = document.getElementById("userPassword");
-    const areaInput = document.getElementById("locationArea");
-    const registerBtn = document.getElementById("registerBtn");
-    const messageDiv = document.getElementById("messageBox");
-    const redirectToast = document.getElementById("redirectToast");
+if(i===0){
+dot.classList.add("active");
+}
 
-    function showMessage(text, isError = true, autoHide = true) {
-        messageDiv.textContent = text;
-        messageDiv.className = `message-box ${isError ? 'error-msg' : 'success-msg'}`;
-        messageDiv.style.display = "block";
-        
-        if (autoHide && isError) {
-            setTimeout(() => {
-                if (messageDiv.style.display === "block" && messageDiv.classList.contains('error-msg')) {
-                    messageDiv.style.display = "none";
-                }
-            }, 4500);
-        }
-    }
+dot.addEventListener("click",()=>{
+showSlide(i);
+});
 
-    function hideMessage() {
-        messageDiv.style.display = "none";
-    }
+dotsContainer.appendChild(dot);
 
-    function showRedirectToastMessage(msg = "👑 Registration successful! Redirecting to login...") {
-        redirectToast.textContent = msg;
-        redirectToast.style.opacity = "1";
-        setTimeout(() => {
-            redirectToast.style.opacity = "0";
-        }, 1800);
-    }
+});
 
-    function isValidEmail(email) {
-        return /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/.test(email);
-    }
+const dots=document.querySelectorAll(".dot");
 
-    function handleRegistrationAndRedirect() {
-        hideMessage();
-        
-        const fullName = nameInput.value.trim();
-        const email = emailInput.value.trim();
-        const password = passwordInput.value;
-        const area = areaInput.value.trim();
+function showSlide(index){
 
-        // Validation
-        if (!fullName || !email || !password || !area) {
-            showMessage("❌ Please fill in all fields to join Queen Style.", true);
-            return;
-        }
+slides.forEach(slide=>{
+slide.classList.remove("active");
+});
 
-        if (fullName.length < 2) {
-            showMessage("❌ Full name must be at least 2 characters.", true);
-            return;
-        }
+dots.forEach(dot=>{
+dot.classList.remove("active");
+});
 
-        if (!isValidEmail(email)) {
-            showMessage("❌ Please enter a valid email address (e.g., name@domain.com).", true);
-            return;
-        }
+slides[index].classList.add("active");
+dots[index].classList.add("active");
 
-        // Reserved admin email block
-        if (email.toLowerCase() === "mailak@gmail.com") {
-            showMessage("⛔ This email is reserved for admin. Please use a different email.", true);
-            return;
-        }
+current=index;
+}
 
-        if (password.length < 6) {
-            showMessage("🔐 Password must be at least 6 characters long.", true);
-            return;
-        }
+function nextSlide(){
 
-        if (area.length < 2) {
-            showMessage("📍 Please provide your city or area (min 2 characters).", true);
-            return;
-        }
+current++;
 
-        // Disable button & show loading
-        registerBtn.disabled = true;
-        const originalText = registerBtn.textContent;
-        registerBtn.textContent = "Creating royal account...";
+if(current>=slides.length){
+current=0;
+}
 
-        // Simulate async registration
-        setTimeout(() => {
-            try {
-                const newUser = {
-                    name: fullName,
-                    email: email,
-                    area: area,
-                    registeredAt: new Date().toISOString()
-                };
-                localStorage.setItem("queenStyle_lastRegistered", JSON.stringify(newUser));
-                sessionStorage.setItem("justRegistered", "true");
-                
-                showMessage("✅ Welcome to Queen Style! Registration successful. Redirecting to login...", false);
-                showRedirectToastMessage("👑 Registration successful! Redirecting to login...");
-                
-                setTimeout(() => {
-                    window.location.href = "login.html";
-                }, 1600);
-                
-            } catch (err) {
-                showMessage("⚠️ Unexpected error. Please try again.", true);
-                registerBtn.disabled = false;
-                registerBtn.textContent = originalText;
-            }
-        }, 700);
-    }
+showSlide(current);
+}
 
-    // Event listeners
-    registerBtn.addEventListener("click", handleRegistrationAndRedirect);
+setInterval(nextSlide,4000);
 
-    const allInputs = [nameInput, emailInput, passwordInput, areaInput];
-    allInputs.forEach(input => {
-        input.addEventListener("keypress", (e) => {
-            if (e.key === "Enter") {
-                e.preventDefault();
-                handleRegistrationAndRedirect();
-            }
-        });
-    });
+/* FORM */
 
-    const loginLink = document.getElementById("loginRedirectLink");
-    if (loginLink) {
-        loginLink.addEventListener("click", (e) => {
-            e.preventDefault();
-            window.location.href = "login.html";
-        });
-    }
+const registerBtn=document.getElementById("registerBtn");
 
-    function clearErrorOnInput() {
-        if (messageDiv.style.display === "block" && messageDiv.classList.contains('error-msg')) {
-            hideMessage();
-        }
-    }
-    nameInput.addEventListener("input", clearErrorOnInput);
-    emailInput.addEventListener("input", clearErrorOnInput);
-    passwordInput.addEventListener("input", clearErrorOnInput);
-    areaInput.addEventListener("input", clearErrorOnInput);
+const message=document.getElementById("message");
 
-    // Reset button state on page load
-    window.addEventListener("load", () => {
-        registerBtn.disabled = false;
-        registerBtn.textContent = "Register →";
-    });
+const toast=document.getElementById("toast");
 
-    // Fix for any radix / full display issues: ensure body takes full height
-    document.body.style.margin = "0";
-    document.body.style.padding = "0";
-    console.log("Queen Style Full Display — 10 rotating images, perfect fonts & colors, fixed layout");
+function showMessage(text,type){
+
+message.style.display="block";
+
+message.className=`message ${type}`;
+
+message.innerHTML=text;
+}
+
+function validateEmail(email){
+
+return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+registerBtn.addEventListener("click",()=>{
+
+const name=document.getElementById("name").value.trim();
+
+const email=document.getElementById("email").value.trim();
+
+const password=document.getElementById("password").value.trim();
+
+const city=document.getElementById("city").value.trim();
+
+if(!name || !email || !password || !city){
+
+showMessage("❌ Please fill all fields","error");
+
+return;
+}
+
+if(name.length<2){
+
+showMessage("❌ Name must be at least 2 characters","error");
+
+return;
+}
+
+if(!validateEmail(email)){
+
+showMessage("❌ Invalid email address","error");
+
+return;
+}
+
+if(password.length<6){
+
+showMessage("❌ Password must be at least 6 characters","error");
+
+return;
+}
+
+registerBtn.disabled=true;
+
+registerBtn.innerHTML="Creating Account...";
+
+const userData={
+
+name,
+email,
+city,
+date:new Date().toISOString()
+
+};
+
+localStorage.setItem(
+"queenStyleUser",
+JSON.stringify(userData)
+);
+
+showMessage(
+"✅ Registration successful",
+"success"
+);
+
+toast.style.opacity="1";
+
+setTimeout(()=>{
+
+toast.style.opacity="0";
+
+window.location.href="login.html";
+
+},1800);
+
+});
+
 </script>
+
 </body>
 </html>
