@@ -372,15 +372,13 @@
     </div>
 
     <div class="dashboard-container">
-        <!-- Stats Row -->
         <div class="stats-row">
             <div class="stat-card"><h4>📦 Total Products</h4><div class="stat-number" id="totalProductsCount">0</div></div>
             <div class="stat-card"><h4>👥 Total Users</h4><div class="stat-number" id="totalUsersCount">0</div></div>
             <div class="stat-card"><h4>⭐ Avg Rating</h4><div class="stat-number" id="avgRating">0.0</div></div>
-            <div class="stat-card"><h4>💰 Total Revenue</h4><div class="stat-number" id="totalRevenue">$0</div></div>
+            <div class="stat-card"><h4>💰 Total Revenue</h4><div class="stat-number" id="totalRevenue">₹0</div></div>
         </div>
 
-        <!-- Tabs -->
         <div class="admin-tabs">
             <button class="tab-btn active" data-tab="productsTab">🛍️ Products</button>
             <button class="tab-btn" data-tab="addProductTab">➕ Add Product</button>
@@ -388,7 +386,6 @@
             <button class="tab-btn" data-tab="ordersTab">📦 Orders</button>
         </div>
 
-        <!-- Products Tab -->
         <div id="productsTab" class="tab-pane active-pane">
             <div class="action-card">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;">
@@ -408,7 +405,6 @@
             </div>
         </div>
 
-        <!-- Add Product Tab -->
         <div id="addProductTab" class="tab-pane">
             <div class="action-card">
                 <h3 id="formTitle">➕ Add New Royal Product</h3>
@@ -456,7 +452,6 @@
             </div>
         </div>
 
-        <!-- Users Tab -->
         <div id="usersTab" class="tab-pane">
             <div class="action-card">
                 <h3 style="margin-bottom: 20px;">👑 Registered Royal Members</h3>
@@ -473,7 +468,6 @@
             </div>
         </div>
 
-        <!-- Orders Tab -->
         <div id="ordersTab" class="tab-pane">
             <div class="action-card">
                 <h3 style="margin-bottom: 20px;">📋 Recent Orders</h3>
@@ -550,8 +544,8 @@
             document.getElementById('adminEmailDisplay').innerText = user.email || "admin@queenstyle.com";
             try {
                 db = getFirestore(app);
-                // Test connection
-                await getDocs(collection(db, "products"));
+                // Setup Event Listeners after Database ready
+                setupEventListeners();
                 await loadAllData();
             } catch (error) {
                 console.error("Firestore error:", error);
@@ -595,15 +589,18 @@
                     row.insertCell(2).innerHTML = `₹${product.price || 0}`;
                     row.insertCell(3).innerHTML = `₹${product.mrp || 0}`;
                     row.insertCell(4).innerHTML = `${product.rating || 4.5} ★`;
+                    
                     const actionCell = row.insertCell(5);
                     const editBtn = document.createElement('button');
                     editBtn.innerHTML = '✏️ Edit';
                     editBtn.className = 'edit-btn';
                     editBtn.onclick = () => editProduct(product);
+                    
                     const deleteBtn = document.createElement('button');
                     deleteBtn.innerHTML = '🗑️ Delete';
                     deleteBtn.className = 'delete-btn';
                     deleteBtn.onclick = () => deleteProduct(product.id);
+                    
                     actionCell.appendChild(editBtn);
                     actionCell.appendChild(deleteBtn);
                 });
@@ -627,6 +624,7 @@
             document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active-pane'));
             document.querySelector('[data-tab="addProductTab"]').classList.add('active');
             document.getElementById('addProductTab').classList.add('active-pane');
+            
             document.getElementById('formTitle').innerHTML = '✏️ Edit Product';
             document.getElementById('editProductId').value = product.id;
             document.getElementById('prodName').value = product.name || '';
@@ -675,10 +673,7 @@
                     await addDoc(collection(db, "products"), productData);
                     showMessage("🎉 Product added!");
                 }
-                document.getElementById('productForm').reset();
-                document.getElementById('editProductId').value = '';
-                document.getElementById('cancelEditBtn').style.display = 'none';
-                document.getElementById('formTitle').innerHTML = '➕ Add New Product';
+                cancelEdit();
                 await loadProducts();
                 await updateStats();
                 document.querySelector('[data-tab="productsTab"]').click();
@@ -743,14 +738,17 @@
                 let ratingSum = 0;
                 productsSnap.forEach(doc => { ratingSum += doc.data().rating || 0; });
                 const avgRating = totalProducts > 0 ? (ratingSum / totalProducts).toFixed(1) : 0;
+                
                 const usersSnap = await getDocs(collection(db, "users"));
                 const totalUsers = usersSnap.size;
+                
                 const orders = JSON.parse(localStorage.getItem("queen_orders") || "[]");
                 const revenue = orders.filter(o => o.status === "delivered").reduce((sum, o) => sum + (o.amount || 0), 0);
+                
                 document.getElementById('totalProductsCount').innerText = totalProducts;
                 document.getElementById('totalUsersCount').innerText = totalUsers;
                 document.getElementById('avgRating').innerText = avgRating;
-                document.getElementById('totalRevenue').innerText = `$${revenue.toFixed(2)}`;
+                document.getElementById('totalRevenue').innerText = `₹${revenue.toFixed(2)}`;
             } catch (error) {
                 console.error("Stats error:", error);
             }
@@ -760,36 +758,45 @@
             document.getElementById('productForm').reset();
             document.getElementById('editProductId').value = '';
             document.getElementById('cancelEditBtn').style.display = 'none';
-            document.getElementById('formTitle').innerHTML = '➕ Add New Product';
+            document.getElementById('formTitle').innerHTML = '➕ Add New Royal Product';
         }
 
         async function logout() {
-            await signOut(auth);
-            localStorage.clear();
-            window.location.href = "login.html";
+            if(confirm("Are you sure you want to log out?")) {
+                await signOut(auth);
+                localStorage.clear();
+                window.location.href = "login.html";
+            }
         }
-        //vbnjvcjbnk
 
-        function setupTabs() {
+        function setupEventListeners() {
+            // Tab Switching Logic
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const tabId = btn.getAttribute('data-tab');
                     document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active-pane'));
+                    
                     btn.classList.add('active');
-                    document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active-pane'));
                     document.getElementById(tabId).classList.add('active-pane');
-                    if (tabId === 'addProductTab') cancelEdit();
-                    if (tabId === 'ordersTab') loadOrders();
-                    if (tabId === 'usersTab') loadUsers();
                 });
             });
-        }
 
-        document.getElementById('addSampleProductsBtn')?.addEventListener('click', addSampleProducts);
-        document.getElementById('productForm')?.addEventListener('submit', saveProduct);
-        document.getElementById('cancelEditBtn')?.addEventListener('click', cancelEdit);
-        document.getElementById('adminLogoutBtn')?.addEventListener('click', logout);
-        setupTabs();
+            // Form Submit Listener
+            document.getElementById('productForm').addEventListener('submit', saveProduct);
+
+            // Cancel Edit Button Listener
+            document.getElementById('cancelEditBtn').addEventListener('click', cancelEdit);
+
+            // Logout Button Listener
+            document.getElementById('adminLogoutBtn').addEventListener('click', logout);
+
+            // Sample Products Button Listener
+            const sampleBtn = document.getElementById('addSampleProductsBtn');
+            if(sampleBtn) {
+                sampleBtn.addEventListener('click', addSampleProducts);
+            }
+        }
     </script>
 </body>
 </html>
