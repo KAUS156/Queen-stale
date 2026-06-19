@@ -9,17 +9,24 @@
     <meta name="author" content="Queen Style">
     <meta name="robots" content="index, follow">
     <meta name="p:domain_verify" content="9a44296808823bcaa287961da064c685"/>
-    <!-- FIXED CANONICAL URL FOR NETLIFY INDEXING -->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8Y4KXCKM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-BD8Y4KXCKM');
+    </script>
+
     <link rel="canonical" href="https://superlative-haupia-d1b3ec.netlify.app/login.html">
     
-    <!-- Open Graph / Facebook -->
     <meta property="og:title" content="Queen Style - Royal Login">
     <meta property="og:description" content="Login to your Queen Style account and experience royalty with every outfit.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Queen Style">
     <meta property="og:url" content="https://superlative-haupia-d1b3ec.netlify.app/login.html">
     
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Queen Style - Royal Login">
     <meta name="twitter:description" content="Login to your Queen Style account and experience royalty with every outfit.">
@@ -406,7 +413,6 @@
 
 <div class="full-display-wrapper">
     <div class="login-master">
-        <!-- LEFT SIDE: ROTATING GALLERY -->
         <div class="image-gallery-side">
             <div class="slideshow-container" id="slideshowContainer">
                 <img class="slide-img" src="https://picsum.photos/id/20/1200/1600" alt="Queen Style Elegance">
@@ -427,7 +433,6 @@
             <div class="slide-dots" id="slideDots"></div>
         </div>
 
-        <!-- RIGHT SIDE: LOGIN FORM -->
         <div class="form-side">
             <div class="brand-header">
                 <div class="crown-icon">👑</div>
@@ -435,7 +440,6 @@
                 <div class="royal-tag">✦ LOGIN TO YOUR ACCOUNT ✦</div>
             </div>
 
-            <!-- Email Input -->
             <div class="input-group">
                 <label for="email">Email Address</label>
                 <div class="input-field-wrapper">
@@ -444,7 +448,6 @@
                 </div>
             </div>
 
-            <!-- Password Input -->
             <div class="input-group">
                 <label for="password">Password</label>
                 <div class="input-field-wrapper">
@@ -453,13 +456,10 @@
                 </div>
             </div>
 
-            <!-- Email Login Button -->
             <button class="login-btn" id="emailLoginBtn">→ Login with Email</button>
 
-            <!-- Divider -->
             <div class="divider"><span>✦ OR ✦</span></div>
 
-            <!-- Google Login Button -->
             <button class="login-btn google-btn" id="googleLoginBtn">
                 <svg width="20" height="20" viewBox="0 0 24 24">
                     <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -470,7 +470,6 @@
                 Continue with Google
             </button>
 
-            <!-- Register Link -->
             <div class="link">
                 <a href="register.html">✨ New User? Create Royal Account</a>
             </div>
