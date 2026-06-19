@@ -8,14 +8,16 @@
     <meta name="keywords" content="Queen Style login, fashion membership, luxury fashion India, royal style, designer access, fashion community">
     <meta name="author" content="Queen Style">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://queenstyle.com/login">
+    
+    <!-- FIXED CANONICAL URL FOR NETLIFY INDEXING -->
+    <link rel="canonical" href="https://superlative-haupia-d1b3ec.netlify.app/login.html">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content="Queen Style - Royal Login">
     <meta property="og:description" content="Login to your Queen Style account and experience royalty with every outfit.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Queen Style">
-    <meta property="og:url" content="https://queenstyle.com/login">
+    <meta property="og:url" content="https://superlative-haupia-d1b3ec.netlify.app/login.html">
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
@@ -716,7 +718,7 @@
     document.getElementById("email").addEventListener("keypress", (e) => e.key === "Enter" && handleEmailLogin());
     document.getElementById("password").addEventListener("keypress", (e) => e.key === "Enter" && handleEmailLogin());
 
-    // SEO Structured JSON-LD Data
+    // FIXED SEO STRUCTURED JSON-LD DATA FOR NETLIFY
     const schema = document.createElement('script');
     schema.type = 'application/ld+json';
     schema.textContent = JSON.stringify({
@@ -724,7 +726,7 @@
         "@type": "WebPage",
         "name": "Queen Style Login System",
         "description": "Secure login access framework for the Queen Style premium membership space.",
-        "url": "https://queenstyle.com/login"
+        "url": "https://superlative-haupia-d1b3ec.netlify.app/login.html"
     });
     document.head.appendChild(schema);
 </script>
