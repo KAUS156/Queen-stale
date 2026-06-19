@@ -1,599 +1,749 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Queen Style · Royal Login</title>
+    <meta name="description" content="Login to Queen Style - India's premier luxury fashion community. Access exclusive collections, royal rewards, and personalized style recommendations.">
+    <meta name="keywords" content="Queen Style login, fashion membership, luxury fashion India, royal style, designer access, fashion community">
+    <meta name="author" content="Queen Style">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://queenstyle.com/login">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Queen Style - Royal Login">
+    <meta property="og:description" content="Login to your Queen Style account and experience royalty with every outfit.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Queen Style">
+    <meta property="og:url" content="https://queenstyle.com/login">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Queen Style - Royal Login">
+    <meta name="twitter:description" content="Login to your Queen Style account and experience royalty with every outfit.">
 
-<meta charset="UTF-8" />
-<meta name="google-site-verification" content="xxxxxxxxxxxx" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<title>Queen Style</title>
-<script defer src="https://cloud.umami.is/script.js" 
-data-website-id="e475468a-59c1-463c-b887-64507ed9bf61"></script>
-<!-----fff ------>
-<!-- SEO -->
-<meta name="keywords"
-content="Queen Style, luxury fashion, royal fashion, premium outfits, women fashion">
-<!------rrrr --->
-<meta name="author" content="Queen Style">
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: #f0f2f8;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-<meta name="theme-color" content="#d4af37">
+        /* FULL DISPLAY WRAPPER */
+        .full-display-wrapper {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #e9eef5 0%, #dfe4ec 100%);
+        }
 
-<!-- Open Graph -->
-<meta property="og:title" content="Queen Style">
-<meta property="og:description" content="Luxury Fashion & Royal Style">
-<meta property="og:type" content="website">
+        /* MAIN SPLIT CARD */
+        .login-master {
+            width: 100vw;
+            height: 100vh;
+            background: #ffffff;
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+        }
 
-<link rel="icon" href="favicon.png">
+        /* LEFT SIDE: ROTATING IMAGE GALLERY */
+        .image-gallery-side {
+            flex: 1.2;
+            position: relative;
+            background: #0a0e1a;
+            overflow: hidden;
+            height: 100vh;
+        }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+        .slide-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: opacity;
+        }
 
-body{
-font-family:Inter,system-ui,sans-serif;
-background:#f5f7fb;
-overflow-x:hidden;
-overflow-y:auto;
-animation:fadeIn .6s ease;
-}
+        .slide-img.active {
+            opacity: 1;
+            z-index: 1;
+        }
 
-@keyframes fadeIn{
-from{
-opacity:0;
-transform:translateY(10px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
+        /* Overlay content on image side */
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+            padding: 3rem 2.5rem;
+            z-index: 10;
+            color: white;
+        }
 
-.container{
-width:100%;
-min-height:100vh;
-display:flex;
-background:white;
-}
+        .image-overlay h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #f3e7c9, #e4c992, #d4af37);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
 
-/* LEFT SIDE */
+        .image-overlay p {
+            font-size: 1rem;
+            opacity: 0.92;
+            color: #f0e6d2;
+            max-width: 500px;
+            line-height: 1.4;
+        }
 
-.left{
-flex:1.1;
-position:relative;
-overflow:hidden;
-background:#000;
-}
+        .slide-dots {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 2.5rem;
+            display: flex;
+            gap: 8px;
+            z-index: 15;
+        }
 
-.slide{
-position:absolute;
-width:100%;
-height:100%;
-object-fit:cover;
-opacity:0;
-transition:1s;
-}
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
 
-.slide.active{
-opacity:1;
-}
+        .dot.active-dot {
+            background: #d4af37;
+            width: 24px;
+            border-radius: 4px;
+        }
 
-.overlay{
-position:absolute;
-bottom:0;
-left:0;
-right:0;
-padding:50px 40px;
-background:linear-gradient(to top,rgba(0,0,0,.8),transparent);
-color:white;
-z-index:10;
-}
+        /* RIGHT SIDE: LOGIN FORM */
+        .form-side {
+            flex: 1;
+            background: #ffffff;
+            padding: 2rem 3.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow-y: auto;
+            height: 100vh;
+        }
 
-.overlay h1{
-font-size:42px;
-font-weight:800;
-margin-bottom:10px;
-background:linear-gradient(45deg,#f5deb3,#d4af37);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
+        .form-side::-webkit-scrollbar {
+            width: 5px;
+        }
+        .form-side::-webkit-scrollbar-track {
+            background: #f8fafc;
+        }
+        .form-side::-webkit-scrollbar-thumb {
+            background: #c9a03d;
+            border-radius: 10px;
+        }
 
-.overlay p{
-font-size:15px;
-line-height:1.6;
-color:#f1f1f1;
-}
+        .brand-header {
+            text-align: center;
+            margin-bottom: 2.2rem;
+        }
 
-.dots{
-position:absolute;
-bottom:20px;
-left:50%;
-transform:translateX(-50%);
-display:flex;
-gap:10px;
-z-index:20;
-}
+        .crown-icon {
+            font-size: 52px;
+            display: inline-block;
+            animation: gentleFloat 3s ease-in-out infinite;
+            filter: drop-shadow(0 4px 6px rgba(184, 134, 11, 0.25));
+        }
 
-.dot{
-width:10px;
-height:10px;
-border-radius:50%;
-background:rgba(255,255,255,.5);
-cursor:pointer;
-transition:.3s;
-}
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
 
-.dot.active{
-width:28px;
-border-radius:20px;
-background:#d4af37;
-}
+        .form-side h2 {
+            font-size: 30px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1e2a3e, #2c3e66);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 0.5rem 0 0.25rem;
+        }
 
-/* RIGHT SIDE */
+        .royal-tag {
+            font-size: 11px;
+            color: #b8860b;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
 
-.right{
-flex:1;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:40px;
-background:white;
-}
+        .input-group {
+            margin-bottom: 1.4rem;
+        }
 
-.form-box{
-width:100%;
-max-width:450px;
-}
+        .input-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
 
-.brand{
-font-size:13px;
-letter-spacing:2px;
-font-weight:700;
-color:#c49b29;
-margin-bottom:12px;
-}
+        .input-field-wrapper {
+            position: relative;
+        }
 
-.form-box h2{
-font-size:42px;
-margin-bottom:10px;
-color:#1e293b;
-}
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.1rem;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+        }
 
-.form-box p{
-font-size:15px;
-color:#64748b;
-margin-bottom:30px;
-}
+        .input-group input {
+            width: 100%;
+            padding: 0.95rem 1rem 0.95rem 48px;
+            font-size: 0.95rem;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 1rem;
+            background: #ffffff;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            outline: none;
+            color: #0f172a;
+        }
 
-.input-group{
-margin-bottom:20px;
-}
+        .input-group input:focus {
+            border-color: #c9a03d;
+            box-shadow: 0 0 0 3px rgba(201, 160, 61, 0.15);
+        }
 
-.input-group label{
-display:block;
-margin-bottom:8px;
-font-size:14px;
-font-weight:600;
-color:#1e293b;
-}
+        .input-group input::placeholder {
+            color: #94a3b8;
+        }
 
-.input-group input{
-width:100%;
-padding:16px;
-border-radius:16px;
-border:1.5px solid #dbe3ef;
-outline:none;
-font-size:15px;
-transition:.3s;
-background:#fafafa;
-}
+        .login-btn {
+            width: 100%;
+            padding: 0.95rem;
+            margin-top: 0.5rem;
+            border: none;
+            border-radius: 1rem;
+            font-weight: 700;
+            font-size: 1rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            background: linear-gradient(100deg, #1e293b, #0f172a);
+            box-shadow: 0 4px 10px rgba(15, 23, 42, 0.15);
+        }
 
-.input-group input:focus{
-border-color:#d4af37;
-box-shadow:0 0 0 4px rgba(212,175,55,.15);
-background:white;
-}
+        .login-btn:hover {
+            background: linear-gradient(100deg, #2d3a4f, #1f2a3e);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 16px rgba(15, 23, 42, 0.2);
+        }
 
-.hint{
-font-size:12px;
-margin-top:6px;
-color:#94a3b8;
-padding-left:6px;
-}
+        .login-btn:disabled {
+            background: #94a3b8 !important;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
 
-button{
-width:100%;
-padding:16px;
-border:none;
-border-radius:40px;
-font-size:16px;
-font-weight:700;
-cursor:pointer;
-background:linear-gradient(135deg,#111827,#1e293b);
-color:white;
-transition:.3s;
-margin-top:10px;
-}
+        .google-btn {
+            background: white;
+            color: #334155;
+            border: 1.5px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
 
-button:hover{
-transform:translateY(-2px);
-box-shadow:0 15px 30px rgba(0,0,0,.15);
-}
+        .google-btn:hover {
+            background: #fafafa;
+            border-color: #cbd5e1;
+            color: #0f172a;
+        }
 
-.message{
-margin-top:15px;
-padding:14px;
-border-radius:14px;
-font-size:14px;
-display:none;
-}
+        .divider {
+            text-align: center;
+            margin: 1.6rem 0;
+            position: relative;
+        }
 
-.success{
-background:#dcfce7;
-color:#166534;
-}
+        .divider::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
+        }
 
-.error{
-background:#fee2e2;
-color:#991b1b;
-}
+        .divider span {
+            background: white;
+            padding: 0 16px;
+            position: relative;
+            color: #b8860b;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
 
-.footer{
-margin-top:25px;
-text-align:center;
-font-size:14px;
-color:#64748b;
-}
+        .link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
 
-.footer a{
-color:#c49b29;
-font-weight:700;
-text-decoration:none;
-}
+        .link a {
+            color: #b8860b;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
 
-.testimonial{
-margin-top:25px;
-padding:16px;
-border-radius:18px;
-background:#f8fafc;
-font-size:14px;
-color:#334155;
-text-align:center;
-font-weight:600;
-}
+        .link a:hover {
+            color: #8b691b;
+            text-decoration: underline;
+        }
 
-.toast{
-position:fixed;
-bottom:30px;
-left:50%;
-transform:translateX(-50%);
-background:#111827;
-color:#fff;
-padding:14px 28px;
-border-radius:50px;
-font-size:14px;
-opacity:0;
-transition:.3s;
-z-index:999;
-}
+        .seo-footer {
+            text-align: center;
+            margin-top: auto;
+            padding-top: 2rem;
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
 
-/* MOBILE */
+        /* RESPONSIVE STYLING */
+        @media (max-width: 992px) {
+            .form-side {
+                padding: 2rem 2.5rem;
+            }
+        }
 
-@media(max-width:900px){
+        @media (max-width: 850px) {
+            .login-master {
+                flex-direction: column;
+            }
+            .image-gallery-side {
+                height: 30vh;
+                min-height: 220px;
+                flex: none;
+            }
+            .form-side {
+                height: 70vh;
+                flex: none;
+                padding: 2.5rem 2rem;
+            }
+            .image-overlay {
+                padding: 1.5rem;
+            }
+            .image-overlay h2 {
+                font-size: 1.6rem;
+            }
+            .image-overlay p {
+                font-size: 0.9rem;
+            }
+            .slide-dots {
+                left: auto;
+                right: 1.5rem;
+                bottom: 1.5rem;
+            }
+            .seo-footer {
+                margin-top: 2rem;
+            }
+        }
 
-.container{
-flex-direction:column;
-}
-
-.left{
-height:40vh;
-}
-
-.right{
-padding:25px;
-}
-
-.form-box h2{
-font-size:32px;
-}
-
-.overlay h1{
-font-size:30px;
-}
-}
-
-@media(max-width:500px){
-
-.overlay{
-padding:30px 20px;
-}
-
-.overlay h1{
-font-size:24px;
-}
-
-.form-box h2{
-font-size:28px;
-}
-
-.input-group input{
-padding:14px;
-}
-}
-</style>
+        @media (max-width: 480px) {
+            .form-side {
+                padding: 2rem 1.25rem;
+            }
+            .form-side h2 {
+                font-size: 24px;
+            }
+            .crown-icon {
+                font-size: 42px;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="container">
+<div class="full-display-wrapper">
+    <div class="login-master">
+        <!-- LEFT SIDE: ROTATING GALLERY -->
+        <div class="image-gallery-side">
+            <div class="slideshow-container" id="slideshowContainer">
+                <img class="slide-img" src="https://picsum.photos/id/20/1200/1600" alt="Queen Style Elegance">
+                <img class="slide-img" src="https://picsum.photos/id/30/1200/1600" alt="Royal Fashion">
+                <img class="slide-img" src="https://picsum.photos/id/26/1200/1600" alt="Luxury Style">
+                <img class="slide-img" src="https://picsum.photos/id/28/1200/1600" alt="Elegant Queen">
+                <img class="slide-img" src="https://picsum.photos/id/29/1200/1600" alt="Couture Look">
+                <img class="slide-img" src="https://picsum.photos/id/33/1200/1600" alt="Royal Attire">
+                <img class="slide-img" src="https://picsum.photos/id/36/1200/1600" alt="Modern Queen">
+                <img class="slide-img" src="https://picsum.photos/id/38/1200/1600" alt="Gold Elegance">
+                <img class="slide-img" src="https://picsum.photos/id/42/1200/1600" alt="Crown Jewel">
+                <img class="slide-img" src="https://picsum.photos/id/45/1200/1600" alt="Grace & Beauty">
+            </div>
+            <div class="image-overlay">
+                <h2>Queen Style Empire</h2>
+                <p>Where elegance meets royalty — curated luxury for the modern queen</p>
+            </div>
+            <div class="slide-dots" id="slideDots"></div>
+        </div>
 
-<!-- LEFT SIDE -->
+        <!-- RIGHT SIDE: LOGIN FORM -->
+        <div class="form-side">
+            <div class="brand-header">
+                <div class="crown-icon">👑</div>
+                <h2>Queen Style</h2>
+                <div class="royal-tag">✦ LOGIN TO YOUR ACCOUNT ✦</div>
+            </div>
 
-<div class="left">
+            <!-- Email Input -->
+            <div class="input-group">
+                <label for="email">Email Address</label>
+                <div class="input-field-wrapper">
+                    <span class="input-icon">✉️</span>
+                    <input type="email" id="email" placeholder="hello@queenstyle.com" autocomplete="email" required>
+                </div>
+            </div>
 
-<img class="slide active" loading="lazy"
-src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1200" />
+            <!-- Password Input -->
+            <div class="input-group">
+                <label for="password">Password</label>
+                <div class="input-field-wrapper">
+                    <span class="input-icon">🔒</span>
+                    <input type="password" id="password" placeholder="••••••••" autocomplete="current-password" required>
+                </div>
+            </div>
 
-<img class="slide" loading="lazy"
-src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200" />
+            <!-- Email Login Button -->
+            <button class="login-btn" id="emailLoginBtn">→ Login with Email</button>
 
-<img class="slide" loading="lazy"
-src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1200" />
+            <!-- Divider -->
+            <div class="divider"><span>✦ OR ✦</span></div>
 
-<img class="slide" loading="lazy"
-src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200" />
+            <!-- Google Login Button -->
+            <button class="login-btn google-btn" id="googleLoginBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                Continue with Google
+            </button>
 
-<img class="slide" loading="lazy"
-src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=1200" />
+            <!-- Register Link -->
+            <div class="link">
+                <a href="register.html">✨ New User? Create Royal Account</a>
+            </div>
 
-<div class="overlay">
-<h1>Queen Style Empire</h1>
-<p>
-Luxury fashion for modern queens.  
-Discover elegant collections, premium outfits,
-and exclusive royal member benefits.
-</p>
+            <div class="seo-footer">
+                🔐 Secure Authentication • Royal Fashion Community • Since 2024
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="dots"></div>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { getFirestore, collection, query, where, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-</div>
+    const firebaseConfig = {
+        apiKey: "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
+        authDomain: "lucky-triode-450317-g7.firebaseapp.com",
+        projectId: "lucky-triode-450317-g7",
+        storageBucket: "lucky-triode-450317-g7.firebasestorage.app",
+        messagingSenderId: "778199870672",
+        appId: "1:778199870672:web:62a9891e41b3a3d3f242d5"
+    };
 
-<!-- RIGHT SIDE -->
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const googleProvider = new GoogleAuthProvider();
+    googleProvider.setCustomParameters({ prompt: 'select_account' });
 
-<div class="right">
+    // GALLERY LOGIC
+    const slides = document.querySelectorAll('.slide-img');
+    const dotsContainer = document.getElementById('slideDots');
+    let currentIndex = 0;
+    let slideInterval;
+    const totalSlides = slides.length;
 
-<div class="form-box">
+    function createDots() {
+        if (!dotsContainer) return;
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active-dot');
+            dot.addEventListener('click', () => {
+                goToSlide(i);
+                resetInterval();
+            });
+            dotsContainer.appendChild(dot);
+        }
+    }
 
-<div class="brand">
-✦ JOIN THE ROYAL CLUB ✦
-</div>
+    function goToSlide(index) {
+        if(index === currentIndex) return;
+        slides[currentIndex].classList.remove('active');
+        if (dotsContainer?.children[currentIndex]) {
+            dotsContainer.children[currentIndex].classList.remove('active-dot');
+        }
+        
+        slides[index].classList.add('active');
+        if (dotsContainer?.children[index]) {
+            dotsContainer.children[index].classList.add('active-dot');
+        }
+        currentIndex = index;
+    }
 
-<h2>Create Account</h2>
+    function nextSlide() {
+        let next = (currentIndex + 1) % totalSlides;
+        goToSlide(next);
+    }
 
-<p>
-Unlock exclusive collections, luxury fashion updates,
-and royal shopping benefits.
-</p>
+    function startSlideshow() {
+        slideInterval = setInterval(nextSlide, 4500);
+    }
 
-<div id="message" class="message"></div>
+    function resetInterval() {
+        clearInterval(slideInterval);
+        startSlideshow();
+    }
 
-<div class="input-group">
-<label>Full Name</label>
-<input type="text" id="name" placeholder="Enter your name">
-</div>
+    if (slides.length > 0) {
+        slides[0].classList.add('active');
+        createDots();
+        startSlideshow();
+    }
 
-<div class="input-group">
-<label>Email Address</label>
-<input type="email" id="email" placeholder="hello@queenstyle.com">
-</div>
+    // AUTH UX NOTIFICATIONS
+    function showMessage(msg, isError = true) {
+        const existingNode = document.getElementById('auth-toast');
+        if(existingNode) existingNode.remove();
 
-<div class="input-group">
-<label>Password</label>
-<input type="password" id="password" placeholder="Minimum 6 characters">
+        const notification = document.createElement('div');
+        notification.id = 'auth-toast';
+        notification.textContent = msg;
+        notification.style.cssText = `
+            position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+            background-color: ${isError ? '#e5484d' : '#2b9348'}; color: white;
+            padding: 14px 28px; border-radius: 12px; font-size: 14px; font-weight: 600;
+            z-index: 10000; box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transition: all 0.3s ease; font-family: inherit;
+        `;
+        document.body.appendChild(notification);
+        setTimeout(() => {
+            notification.style.opacity = '0';
+            setTimeout(() => notification.remove(), 300);
+        }, 3200);
+    }
 
-<div class="hint">
-Secure encrypted password
-</div>
-</div>
+    function setUIState(loading, btnId) {
+        const emailBtn = document.getElementById("emailLoginBtn");
+        const googleBtn = document.getElementById("googleLoginBtn");
+        const emailInput = document.getElementById("email");
+        const passInput = document.getElementById("password");
 
-<div class="input-group">
-<label>City / Area</label>
-<input type="text" id="city" placeholder="Paris, Dubai, Milan">
-</div>
+        if (loading) {
+            emailInput.disabled = true;
+            passInput.disabled = true;
+            emailBtn.disabled = true;
+            googleBtn.disabled = true;
+            if(btnId === 'email') emailBtn.textContent = "Verifying Credentials...";
+            if(btnId === 'google') googleBtn.innerHTML = "Opening Gateway...";
+        } else {
+            emailInput.disabled = false;
+            passInput.disabled = false;
+            emailBtn.disabled = false;
+            googleBtn.disabled = false;
+            emailBtn.textContent = "→ Login with Email";
+            googleBtn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Continue with Google`;
+        }
+    }
 
-<button id="registerBtn">
-Join The Royal Club →
-</button>
+    async function checkAdminStatus(user) {
+        if (user.email && user.email.toLowerCase() === "mailak@gmail.com") return true;
+        try {
+            const q = query(collection(db, "users"), where("uid", "==", user.uid));
+            const querySnap = await getDocs(q);
+            if (!querySnap.empty) {
+                return querySnap.docs[0].data().isAdmin === true;
+            }
+        } catch (err) {
+            console.error("Firestore status check error:", err);
+        }
+        return false;
+    }
 
-<div class="testimonial">
-⭐ Rated 4.9/5 by 12,000+ fashion lovers
-</div>
+    async function handleSuccessfulLogin(user, isAdminFlag = null) {
+        let isAdmin = isAdminFlag;
+        if (isAdmin === null) isAdmin = await checkAdminStatus(user);
+        
+        localStorage.setItem("currentUser", JSON.stringify({
+            uid: user.uid,
+            email: user.email,
+            name: user.displayName || user.email.split('@')[0],
+            isAdmin: isAdmin,
+            photoURL: user.photoURL || null
+        }));
+        localStorage.setItem("isAdmin", isAdmin ? "true" : "false");
 
-<div class="footer">
-Already have an account?
-<a href="login.html">Sign In</a>
-</div>
+        if (isAdmin) {
+            showMessage("👑 Welcome Admin! Access Granted...", false);
+            setTimeout(() => window.location.href = "admin.html", 900);
+        } else {
+            showMessage("✨ Welcome to Queen Style!", false);
+            setTimeout(() => window.location.href = "profile.html", 900);
+        }
+    }
 
-</div>
+    async function ensureUserDocument(user) {
+        try {
+            const q = query(collection(db, "users"), where("uid", "==", user.uid));
+            const snap = await getDocs(q);
+            if (snap.empty) {
+                await addDoc(collection(db, "users"), {
+                    uid: user.uid,
+                    name: user.displayName || user.email.split('@')[0],
+                    email: user.email,
+                    area: "Luxury Enthusiast",
+                    isAdmin: false,
+                    photoURL: user.photoURL || "",
+                    authProvider: user.providerData[0]?.providerId || "password",
+                    createdAt: new Date().toISOString()
+                });
+            }
+        } catch (e) {
+            console.error("User entry verification failed:", e);
+        }
+    }
 
-</div>
+    async function handleEmailLogin() {
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+        if (!email || !password) return showMessage("❌ Please populate all fields.");
+        if (!/^[^\s@]+@([^\s@., block]+\.)+[^\s@.,]{2,}$/.test(email)) return showMessage("❌ Structural email mismatch.");
+        
+        setUIState(true, 'email');
+        try {
+            const userCred = await signInWithEmailAndPassword(auth, email, password);
+            const user = userCred.user;
+            let isAdmin = email.toLowerCase() === "mailak@gmail.com" ? true : await checkAdminStatus(user);
+            if (!isAdmin) await ensureUserDocument(user);
+            await handleSuccessfulLogin(user, isAdmin);
+        } catch (error) {
+            setUIState(false, 'email');
+            let msg = "Authentication failed.";
+            if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+                msg = "Invalid email identity or credentials.";
+            } else if (error.code === 'auth/user-disabled') {
+                msg = "This account configuration is deactivated.";
+            }
+            showMessage(`❌ ${msg}`);
+        }
+    }
 
-</div>
+    async function handleGoogleLogin() {
+        setUIState(true, 'google');
+        try {
+            const result = await signInWithPopup(auth, googleProvider);
+            const user = result.user;
+            let isAdmin = user.email?.toLowerCase() === "mailak@gmail.com" ? true : await checkAdminStatus(user);
+            if (!isAdmin) await ensureUserDocument(user);
+            await handleSuccessfulLogin(user, isAdmin);
+        } catch (error) {
+            setUIState(false, 'google');
+            if(error.code !== 'auth/popup-closed-by-user') {
+                showMessage("❌ Google Sign-In interaction terminated or blocked.");
+            }
+        }
+    }
 
-<div class="toast" id="toast">
-👑 Registration Successful
-</div>
+    // Active session handling
+    const existing = localStorage.getItem("currentUser");
+    if (existing) {
+        try {
+            const p = JSON.parse(existing);
+            if (p.isAdmin) window.location.href = "admin.html";
+            else window.location.href = "profile.html";
+        } catch(e) {
+            localStorage.clear();
+        }
+    }
 
-<!-- SCHEMA -->
+    document.getElementById("emailLoginBtn").addEventListener("click", handleEmailLogin);
+    document.getElementById("googleLoginBtn").addEventListener("click", handleGoogleLogin);
+    document.getElementById("email").addEventListener("keypress", (e) => e.key === "Enter" && handleEmailLogin());
+    document.getElementById("password").addEventListener("keypress", (e) => e.key === "Enter" && handleEmailLogin());
 
-<script type="application/ld+json">
-{
-"@context":"https://schema.org",
-"@type":"Organization",
-"name":"Queen Style",
-"url":"https://queenstyle.com"
-}
+    // SEO Structured JSON-LD Data
+    const schema = document.createElement('script');
+    schema.type = 'application/ld+json';
+    schema.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Queen Style Login System",
+        "description": "Secure login access framework for the Queen Style premium membership space.",
+        "url": "https://queenstyle.com/login"
+    });
+    document.head.appendChild(schema);
 </script>
-
-<script>
-
-/* SLIDER */
-
-const slides=document.querySelectorAll(".slide");
-const dotsContainer=document.querySelector(".dots");
-
-let current=0;
-
-slides.forEach((_,i)=>{
-
-const dot=document.createElement("div");
-
-dot.classList.add("dot");
-
-if(i===0){
-dot.classList.add("active");
-}
-
-dot.addEventListener("click",()=>{
-showSlide(i);
-});
-
-dotsContainer.appendChild(dot);
-
-});
-
-const dots=document.querySelectorAll(".dot");
-
-function showSlide(index){
-
-slides.forEach(slide=>{
-slide.classList.remove("active");
-});
-
-dots.forEach(dot=>{
-dot.classList.remove("active");
-});
-
-slides[index].classList.add("active");
-dots[index].classList.add("active");
-
-current=index;
-}
-
-function nextSlide(){
-
-current++;
-
-if(current>=slides.length){
-current=0;
-}
-
-showSlide(current);
-}
-
-setInterval(nextSlide,4000);
-
-/* FORM */
-
-const registerBtn=document.getElementById("registerBtn");
-
-const message=document.getElementById("message");
-
-const toast=document.getElementById("toast");
-
-function showMessage(text,type){
-
-message.style.display="block";
-
-message.className=`message ${type}`;
-
-message.innerHTML=text;
-}
-
-function validateEmail(email){
-
-return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-registerBtn.addEventListener("click",()=>{
-
-const name=document.getElementById("name").value.trim();
-
-const email=document.getElementById("email").value.trim();
-
-const password=document.getElementById("password").value.trim();
-
-const city=document.getElementById("city").value.trim();
-
-if(!name || !email || !password || !city){
-
-showMessage("❌ Please fill all fields","error");
-
-return;
-}
-
-if(name.length<2){
-
-showMessage("❌ Name must be at least 2 characters","error");
-
-return;
-}
-
-if(!validateEmail(email)){
-
-showMessage("❌ Invalid email address","error");
-
-return;
-}
-
-if(password.length<6){
-
-showMessage("❌ Password must be at least 6 characters","error");
-
-return;
-}
-
-registerBtn.disabled=true;
-
-registerBtn.innerHTML="Creating Account...";
-
-const userData={
-
-name,
-email,
-city,
-date:new Date().toISOString()
-
-};
-
-localStorage.setItem(
-"queenStyleUser",
-JSON.stringify(userData)
-);
-
-showMessage(
-"✅ Registration successful",
-"success"
-);
-
-toast.style.opacity="1";
-
-setTimeout(()=>{
-
-toast.style.opacity="0";
-
-window.location.href="login.html";
-
-},1800);
-
-});
-
-</script>
-
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
