@@ -359,83 +359,98 @@
             color: #94a3b8;
         }
 
-        /* PREMIUM MOBILE VIEW RESPONSIVE STYLING */
+        /* RESPONSIVE STYLING */
         @media (max-width: 1024px) {
             .form-side {
                 padding: 2rem 3rem;
             }
         }
 
+        /* मोबाइल व्यू: आधा स्क्रीन इमेज और आधा स्क्रीन फॉर्म */
         @media (max-width: 850px) {
             body {
                 background: #ffffff;
             }
             .full-display-wrapper {
                 background: #ffffff;
-                height: auto;
-                min-height: 100vh;
-                align-items: flex-start;
+                height: 100vh;
+                width: 100vw;
+                overflow: hidden;
             }
             .login-master {
                 flex-direction: column;
-                height: auto;
-                min-height: 100vh;
+                height: 100vh;
+                width: 100vw;
             }
+            /* ऊपर का आधा हिस्सा इमेज (50%) */
             .image-gallery-side {
-                height: 35vh;
-                min-height: 260px;
+                height: 50vh;
+                min-height: auto;
                 flex: none;
                 width: 100%;
             }
+            /* नीचे का आधा हिस्सा लॉगिन फॉर्म (50%) */
             .form-side {
-                height: auto;
-                min-height: 65vh;
-                flex: 1;
-                padding: 2.5rem 2rem;
+                height: 50vh;
+                min-height: auto;
+                flex: none;
+                width: 100%;
+                padding: 1.5rem 2rem;
                 justify-content: flex-start;
+                overflow-y: auto;
+            }
+            .brand-header {
+                margin-bottom: 1rem;
+            }
+            .crown-icon {
+                font-size: 36px;
+            }
+            .form-side h2 {
+                font-size: 22px;
             }
             .image-overlay {
-                padding: 2rem 1.5rem;
+                padding: 1.5rem 1.25rem;
             }
             .image-overlay h2 {
-                font-size: 1.8rem;
-                margin-bottom: 0.4rem;
+                font-size: 1.6rem;
+                margin-bottom: 0.25rem;
             }
             .image-overlay p {
-                font-size: 0.95rem;
+                font-size: 0.85rem;
+                line-height: 1.3;
             }
             .slide-dots {
                 left: auto;
-                right: 1.5rem;
-                bottom: 1.5rem;
+                right: 1.25rem;
+                bottom: 1.25rem;
+            }
+            .divider {
+                margin: 1rem 0;
+            }
+            .link {
+                margin-top: 1rem;
             }
             .seo-footer {
-                margin-top: 3rem;
+                margin-top: 1.5rem;
+                padding-top: 1rem;
                 padding-bottom: 1rem;
             }
         }
 
         @media (max-width: 480px) {
-            .image-gallery-side {
-                height: 30vh;
-                min-height: 220px;
-            }
             .form-side {
-                padding: 2rem 1.25rem;
+                padding: 1.25rem 1.25rem;
             }
-            .form-side h2 {
-                font-size: 26px;
-            }
-            .crown-icon {
-                font-size: 44px;
+            .input-group {
+                margin-bottom: 1rem;
             }
             .input-group input {
-                padding: 0.85rem 1rem 0.85rem 44px;
-                font-size: 0.9rem;
+                padding: 0.8rem 1rem 0.8rem 40px;
+                font-size: 0.85rem;
             }
             .login-btn {
-                padding: 0.85rem;
-                font-size: 0.95rem;
+                padding: 0.8rem;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -660,7 +675,6 @@
         }));
         localStorage.setItem("isAdmin", isAdmin ? "true" : "false");
 
-        // [GA4 EVENT] - सफल लॉगिन को ट्रैक करने के लिए
         if (typeof gtag === 'function') {
             gtag('event', 'login_success', {
                 'user_role': isAdmin ? 'Admin' : 'Customer',
@@ -703,10 +717,8 @@
         const password = document.getElementById("password").value;
         if (!email || !password) return showMessage("❌ Please populate all fields.");
         
-        // फिक्स्ड सटीक ईमेल Regex वैलिडेशन (आखिरी अनचाहा डॉट हटाया गया)
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showMessage("❌ Structural email mismatch.");
         
-        // [GA4 EVENT] - ईमेल लॉगिन बटन का क्लिक ट्रैक करने के लिए
         if (typeof gtag === 'function') {
             gtag('event', 'login_attempt', { 'method': 'Email' });
         }
@@ -731,7 +743,6 @@
     }
 
     async function handleGoogleLogin() {
-        // [GA4 EVENT] - गूगल लॉगिन बटन का क्लिक ट्रैक करने के लिए
         if (typeof gtag === 'function') {
             gtag('event', 'login_attempt', { 'method': 'Google' });
         }
@@ -768,7 +779,6 @@
     document.getElementById("email").addEventListener("keypress", (e) => e.key === "Enter" && handleEmailLogin());
     document.getElementById("password").addEventListener("keypress", (e) => e.key === "Enter" && handleEmailLogin());
 
-    // FIXED SEO STRUCTURED JSON-LD DATA FOR NETLIFY
     const schema = document.createElement('script');
     schema.type = 'application/ld+json';
     schema.textContent = JSON.stringify({
