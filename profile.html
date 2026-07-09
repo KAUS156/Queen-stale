@@ -12,8 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-   <title>StyleEase | Trendy Girl Dresses, Suits & Wedding Wear</title>
-    
+    <title>StyleEase Premium - Sustainable Fashion & Online Boutique India</title>
     <meta name="description" content="Shop the latest premium sustainable fashion online at StyleEase. Buy trendy girl dresses, wedding wear, designer lehengas, cosmetics, shirts & pants at best prices with fast delivery across India.">
     <meta name="keywords" content="girl dress, wedding dress, designer dress, lehenga, lipstick online, lipsticks, cosmetics online, girl party wear, bridal dress, trendy fashion, queen style, online boutique, premium shirts, trendy pants, festive wear offers, sustainable fashion India">
     <meta name="robots" content="index, follow">
@@ -54,6 +53,7 @@
             max-width: 1400px;
             margin: 0 auto;
         }
+        /* Touch Device Friendly Dropdown */
         .profile-dropdown {
             display: none;
         }
@@ -156,45 +156,41 @@
             <h2 class="text-2xl font-bold text-slate-900 mb-8 tracking-tight">Shop by Category</h2>
             
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
-                <a href="menswear.html" class="category-pill group cursor-pointer text-left w-full block focus:outline-none">
-                    <div class="aspect-square rounded-2xl overflow-hidden bg-slate-100 mb-3 border border-slate-200/60 shadow-sm group-hover:shadow-md transition-all group-focus:ring-2 group-focus:ring-blue-500">
+                <div data-category="menswear" class="category-pill group cursor-pointer">
+                    <div class="aspect-square rounded-2xl overflow-hidden bg-slate-100 mb-3 border border-slate-200/60 shadow-sm group-hover:shadow-md transition-all">
                         <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=400&q=80" alt="Premium Menswear - Shirts & Jeans" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <h3 class="font-bold text-slate-900 text-sm sm:text-base group-hover:text-blue-600 group-focus:text-blue-600 transition-colors">Menswear</h3>
+                    <h3 class="font-bold text-slate-900 text-sm sm:text-base group-hover:text-blue-600 transition-colors">Menswear</h3>
                     <p class="text-xs text-slate-500">Shirts • Jeans • Blazers</p>
-                </a>
-
-                <a href="womenswear.html" class="category-pill group cursor-pointer text-left w-full block focus:outline-none">
-                    <div class="aspect-square rounded-2xl overflow-hidden bg-slate-100 mb-3 border border-slate-200/60 shadow-sm group-hover:shadow-md transition-all group-focus:ring-2 group-focus:ring-blue-500">
+                </div>
+                <div data-category="womenswear" class="category-pill group cursor-pointer">
+                    <div class="aspect-square rounded-2xl overflow-hidden bg-slate-100 mb-3 border border-slate-200/60 shadow-sm group-hover:shadow-md transition-all">
                         <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=400&q=80" alt="Trendy Womenswear - Dresses & Capris" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <h3 class="font-bold text-slate-900 text-sm sm:text-base group-hover:text-blue-600 group-focus:text-blue-600 transition-colors">Womenswear</h3>
+                    <h3 class="font-bold text-slate-900 text-sm sm:text-base group-hover:text-blue-600 transition-colors">Womenswear</h3>
                     <p class="text-xs text-slate-500">Dresses • Tops • Skirts</p>
-                </a>
-
-                <a href="accessories.html" class="category-pill group cursor-pointer text-left w-full block focus:outline-none">
-                    <div class="aspect-square rounded-2xl overflow-hidden bg-slate-100 mb-3 border border-slate-200/60 shadow-sm group-hover:shadow-md transition-all group-focus:ring-2 group-focus:ring-blue-500">
+                </div>
+                <div data-category="accessories" class="category-pill group cursor-pointer">
+                    <div class="aspect-square rounded-2xl overflow-hidden bg-slate-100 mb-3 border border-slate-200/60 shadow-sm group-hover:shadow-md transition-all">
                         <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=400&q=80" alt="Fashion Accessories & Cosmetics" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <h3 class="font-bold text-slate-900 text-sm sm:text-base group-hover:text-blue-600 group-focus:text-blue-600 transition-colors">Accessories</h3>
+                    <h3 class="font-bold text-slate-900 text-sm sm:text-base group-hover:text-blue-600 transition-colors">Accessories</h3>
                     <p class="text-xs text-slate-500">Bags • Cosmetics • Jewelry</p>
-                </a>
-
-                <a href="footwear.html" class="category-pill group cursor-pointer text-left w-full block focus:outline-none">
-                    <div class="aspect-square rounded-2xl overflow-hidden bg-slate-100 mb-3 border border-slate-200/60 shadow-sm group-hover:shadow-md transition-all group-focus:ring-2 group-focus:ring-blue-500">
+                </div>
+                <div data-category="footwear" class="category-pill group cursor-pointer">
+                    <div class="aspect-square rounded-2xl overflow-hidden bg-slate-100 mb-3 border border-slate-200/60 shadow-sm group-hover:shadow-md transition-all">
                         <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=80" alt="Trendy Premium Footwear" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <h3 class="font-bold text-slate-900 text-sm sm:text-base group-hover:text-blue-600 group-focus:text-blue-600 transition-colors">Footwear</h3>
+                    <h3 class="font-bold text-slate-900 text-sm sm:text-base group-hover:text-blue-600 transition-colors">Footwear</h3>
                     <p class="text-xs text-slate-500">Sneakers • Boots • Heels</p>
-                </a>
-
-                <a href="winterwear.html" class="category-pill group cursor-pointer col-span-2 sm:col-span-1 text-left w-full block focus:outline-none">
-                    <div class="aspect-square rounded-2xl overflow-hidden bg-slate-100 mb-3 border border-slate-200/60 shadow-sm group-hover:shadow-md transition-all group-focus:ring-2 group-focus:ring-blue-500">
+                </div>
+                <div data-category="winter wear" class="category-pill group cursor-pointer col-span-2 sm:col-span-1">
+                    <div class="aspect-square rounded-2xl overflow-hidden bg-slate-100 mb-3 border border-slate-200/60 shadow-sm group-hover:shadow-md transition-all">
                         <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=400&q=80" alt="Winter Premium Wear Collection" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                    <h3 class="font-bold text-slate-900 text-sm sm:text-base group-hover:text-blue-600 group-focus:text-blue-600 transition-colors">Winter Wear</h3>
+                    <h3 class="font-bold text-slate-900 text-sm sm:text-base group-hover:text-blue-600 transition-colors">Winter Wear</h3>
                     <p class="text-xs text-slate-500">Coats • Sweaters • Jackets</p>
-                </a>
+                </div>
             </div>
         </section>
 
@@ -210,7 +206,8 @@
                 </button>
             </div>
 
-            <div id="productList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+            <div id="productList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                </div>
         </section>
     </main>
 
@@ -276,204 +273,229 @@
             </div>
         </div>
     </footer>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    const firebaseConfig = {
+        apiKey: "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
+        authDomain: "lucky-triode-450317-g7.firebaseapp.com",
+        projectId: "lucky-triode-450317-g7",
+        storageBucket: "lucky-triode-450317-g7.firebasestorage.app",
+        messagingSenderId: "778199870672",
+        appId: "1:778199870672:web:62a9891e41b3a3d3f242d5"
+    };
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
-            authDomain: "lucky-triode-450317-g7.firebaseapp.com",
-            projectId: "lucky-triode-450317-g7",
-            storageBucket: "lucky-triode-450317-g7.firebasestorage.app",
-            messagingSenderId: "778199870672",
-            appId: "1:778199870672:web:62a9891e41b3a3d3f242d5"
-        };
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+    let localProductsArray = [];
+    let activeCategoryFilter = 'all';
 
-        let localProductsArray = [];
-        let activeCategoryFilter = 'all';
-
-        // Load User Profile Smoothly
-        async function loadProfile() {
-            const user = JSON.parse(localStorage.getItem("currentUser"));
-            if (!user) return;
-            
-            const profileContainer = document.getElementById("userProfileContainer");
-            try {
-                const userQuery = await getDocs(query(collection(db, "users"), where("uid", "==", user.uid)));
-                
-                if (!userQuery.empty) {
-                    const userData = userQuery.docs[0].data();
-                    const isGoogleUser = userData.authProvider === "google";
-                    
-                    profileContainer.innerHTML = `
-                        <div class="relative group">
-                            ${userData.photoURL ? 
-                                `<img src="${userData.photoURL}" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover border-2 border-white shadow-md" alt="User Profile Header Image">` : 
-                                `<div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-blue-600 to-indigo-700 border-2 border-white flex items-center justify-center text-sm text-white font-bold shadow-md">
-                                    ${userData.name ? userData.name.charAt(0).toUpperCase() : 'U'}
-                                </div>`
-                            }
-                            
-                            <div class="profile-dropdown absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-slate-100 text-slate-800 p-4 z-50 animate-fadeIn">
-                                <div class="border-b border-slate-100 pb-3 mb-3">
-                                    <p class="font-bold text-sm flex items-center gap-2">
-                                        ${userData.name || 'User'} 
-                                        ${isGoogleUser ? `<span class="text-[9px] bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full font-bold">Google</span>` : ''}
-                                    </p>
-                                    <p class="text-xs text-slate-400 truncate">${user.email}</p>
-                                    <p class="text-xs text-slate-500 mt-1"><i class="fa-solid fa-location-dot text-rose-400"></i> ${userData.area || "Not updated"}</p>
-                                </div>
-                                <button id="logoutBtnAction" class="w-full text-left text-xs text-rose-500 hover:bg-rose-50 px-3 py-2 rounded-xl font-semibold flex items-center gap-2 transition-colors">
-                                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout Account
-                                </button>
-                            </div>
-                        </div>
-                    `;
-
-                    document.getElementById('logoutBtnAction').addEventListener('click', logout);
+    // सही तरीके से Authentication चेक करने का सिस्टम
+    function checkAuth() {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // यूज़र लॉग इन है, डेटा लोड करें
+                localStorage.setItem("currentUser", JSON.stringify(user));
+                loadProfile(user);
+                loadProducts();
+            } else {
+                // अगर लोकल स्टोरेज में भी नहीं है और फ़ायरबेस में भी नहीं, तो रीडायरेक्ट करें
+                if (!localStorage.getItem("currentUser")) {
+                    console.log("No user found, redirecting...");
+                    window.location.href = "index.html";
+                } else {
+                    // बैकअप के लिए लोकलस्टोरेज यूज़र इस्तेमाल करें
+                    const localUser = JSON.parse(localStorage.getItem("currentUser"));
+                    loadProfile(localUser);
+                    loadProducts();
                 }
-            } catch (err) {
-                console.error("Profile rendering error", err);
             }
+        });
+    }
+
+    // Load User Profile
+    async function loadProfile(user) {
+        if (!user) return;
+        const profileContainer = document.getElementById("userProfileContainer");
+        try {
+            const userQuery = await getDocs(query(collection(db, "users"), where("uid", "==", user.uid)));
+            
+            if (!userQuery.empty) {
+                const userData = userQuery.docs[0].data();
+                const isGoogleUser = userData.authProvider === "google";
+                
+                profileContainer.innerHTML = `
+                    <div class="relative group">
+                        ${userData.photoURL ? 
+                            `<img src="${userData.photoURL}" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover border-2 border-white shadow-md" alt="User Profile Header Image">` : 
+                            `<div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-blue-600 to-indigo-700 border-2 border-white flex items-center justify-center text-sm text-white font-bold shadow-md">
+                                ${userData.name ? userData.name.charAt(0).toUpperCase() : 'U'}
+                            </div>`
+                        }
+                        
+                        <div class="profile-dropdown absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-slate-100 text-slate-800 p-4 z-50 animate-fadeIn">
+                            <div class="border-b border-slate-100 pb-3 mb-3">
+                                <p class="font-bold text-sm flex items-center gap-2">
+                                    ${userData.name || 'User'} 
+                                    ${isGoogleUser ? `<span class="text-[9px] bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full font-bold">Google</span>` : ''}
+                                </p>
+                                <p class="text-xs text-slate-400 truncate">${user.email || ''}</p>
+                                <p class="text-xs text-slate-500 mt-1"><i class="fa-solid fa-location-dot text-rose-400"></i> ${userData.area || "Not updated"}</p>
+                            </div>
+                            <button id="logoutBtnAction" class="w-full text-left text-xs text-rose-500 hover:bg-rose-50 px-3 py-2 rounded-xl font-semibold flex items-center gap-2 transition-colors">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout Account
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById('logoutBtnAction').addEventListener('click', logout);
+            }
+        } catch (err) {
+            console.error("Profile rendering error:", err);
+        }
+    }
+
+    // Fetch Products Data (Error Checking के साथ)
+    async function loadProducts() {
+        try {
+            console.log("Fetching products from Firestore...");
+            const querySnapshot = await getDocs(collection(db, "products"));
+            
+            localProductsArray = [];
+            querySnapshot.forEach((doc) => {
+                localProductsArray.push({ id: doc.id, ...doc.data() });
+            });
+            
+            console.log("Products Loaded successfully:", localProductsArray.length, "items found.");
+            renderProductGrid(localProductsArray);
+        } catch(err) {
+            console.error("Database Error while loading products:", err);
+            document.getElementById("productList").innerHTML = `
+                <div class="col-span-full text-center py-12">
+                    <p class="text-red-500 font-semibold">Error loading products from Database.</p>
+                    <p class="text-xs text-slate-400 mt-2">${err.message}</p>
+                </div>`;
+        }
+    }
+
+    // Render Cards
+    function renderProductGrid(items) {
+        const grid = document.getElementById("productList");
+        grid.innerHTML = "";
+
+        if (items.length === 0) {
+            grid.innerHTML = `<div class="col-span-full text-center py-16 text-slate-400 font-medium"><i class="fa-regular fa-face-frown text-3xl block mb-2 text-slate-300"></i> आपकी खोज के अनुसार कोई प्रोडक्ट नहीं मिला</div>`;
+            return;
         }
 
-        // Fetch Products Data
-        async function loadProducts() {
-            try {
-                const querySnapshot = await getDocs(collection(db, "products"));
-                localProductsArray = [];
-                querySnapshot.forEach((doc) => {
-                    localProductsArray.push({ id: doc.id, ...doc.data() });
-                });
-                renderProductGrid(localProductsArray);
-            } catch(err) {
-                document.getElementById("productList").innerHTML = `<div class="col-span-full text-center py-12"><p class="text-red-500 font-semibold">Error loading products from Database.</p></div>`;
-            }
-        }
+        items.forEach((product) => {
+            const discount = product.mrp && product.price ? 
+                Math.round(((product.mrp - product.price) / product.mrp) * 100) : 0;
 
-        function renderProductGrid(items) {
-            const grid = document.getElementById("productList");
-            grid.innerHTML = "";
-
-            if (items.length === 0) {
-                grid.innerHTML = `<div class="col-span-full text-center py-16 text-slate-400 font-medium"><i class="fa-regular fa-face-frown text-3xl block mb-2 text-slate-300"></i> आपकी खोज के अनुसार कोई प्रोडक्ट नहीं मिला</div>`;
-                return;
-            }
-
-            items.forEach((product) => {
-                const discount = product.mrp && product.price ? 
-                    Math.round(((product.mrp - product.price) / product.mrp) * 100) : 0;
-
-                grid.innerHTML += `
-                    <article class="product-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl relative flex flex-col justify-between">
-                        <div>
-                            ${discount > 0 ? 
-                                `<div class="absolute top-3 left-3 bg-gradient-to-r from-rose-500 to-pink-600 text-white text-[10px] font-extrabold px-3 py-1 rounded-full shadow-md z-10 flex items-center gap-1">
-                                    <i class="fa-solid fa-gift"></i> ${discount}% OFF
-                                 </div>` : ''}
-                            
-                            <div class="h-64 overflow-hidden bg-slate-50 relative">
-                                <img src="${product.image || 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=500&q=80'}" 
-                                     alt="${product.name} - Premium Fashion Product Buy Online" 
-                                     class="w-full h-full object-cover" loading="lazy">
-                            </div>
-                            
-                            <div class="p-4 pb-0">
-                                <h3 class="font-bold text-slate-800 text-sm line-clamp-2 mb-1 min-h-[40px]">${product.name}</h3>
-                                <div class="text-amber-400 text-xs mb-2" aria-label="5 Star Rating">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </div>
-                                
-                                <div class="flex items-baseline gap-2 mb-2">
-                                    <span class="text-xl font-extrabold text-[#1e40af]">₹${product.price}</span>
-                                    ${product.mrp ? `<span class="text-xs line-through text-slate-400">₹${product.mrp}</span>` : ''}
-                                </div>
-                                
-                                <p class="text-slate-500 text-xs line-clamp-2 mb-4">${product.description || 'Premium lifestyle boutique asset choice.'}</p>
-                            </div>
+            grid.innerHTML += `
+                <article class="product-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl relative flex flex-col justify-between">
+                    <div>
+                        ${discount > 0 ? 
+                            `<div class="absolute top-3 left-3 bg-gradient-to-r from-rose-500 to-pink-600 text-white text-[10px] font-extrabold px-3 py-1 rounded-full shadow-md z-10 flex items-center gap-1">
+                                <i class="fa-solid fa-gift"></i> ${discount}% OFF
+                             </div>` : ''}
+                        
+                        <div class="h-64 overflow-hidden bg-slate-50 relative">
+                            <img src="${product.image || 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=500&q=80'}" 
+                                 alt="${product.name} - Premium Fashion Product" 
+                                 class="w-full h-full object-cover" loading="lazy">
                         </div>
                         
-                        <div class="p-4 pt-0">
-                            <a href="${product.link || '#'}" target="_blank" rel="noopener" class="block w-full">
-                                <button class="w-full bg-gradient-to-r from-orange-400 to-amber-500 hover:from-orange-500 hover:to-amber-600 text-slate-900 font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-all text-xs shadow-sm shadow-orange-200">
-                                    <i class="fa-solid fa-cart-shopping"></i> Buy Now
-                                </button>
-                            </a>
+                        <div class="p-4 pb-0">
+                            <h3 class="font-bold text-slate-800 text-sm line-clamp-2 mb-1 min-h-[40px]">${product.name}</h3>
+                            <div class="text-amber-400 text-xs mb-2">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="flex items-baseline gap-2 mb-2">
+                                <span class="text-xl font-extrabold text-[#1e40af]">₹${product.price}</span>
+                                ${product.mrp ? `<span class="text-xs line-through text-slate-400">₹${product.mrp}</span>` : ''}
+                            </div>
+                            <p class="text-slate-500 text-xs line-clamp-2 mb-4">${product.description || 'Premium lifestyle boutique asset choice.'}</p>
                         </div>
-                    </article>
-                `;
-            });
-        }
+                    </div>
+                    <div class="p-4 pt-0">
+                        <a href="${product.link || '#'}" target="_blank" rel="noopener" class="block w-full">
+                            <button class="w-full bg-gradient-to-r from-orange-400 to-amber-500 hover:from-orange-500 hover:to-amber-600 text-slate-900 font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-all text-xs shadow-sm shadow-orange-200">
+                                <i class="fa-solid fa-cart-shopping"></i> Buy Now
+                            </button>
+                        </a>
+                    </div>
+                </article>
+            `;
+        });
+    }
 
-        function filterProducts() {
-            const searchDesktop = document.getElementById("itemSearch").value.toLowerCase().trim();
-            const searchMobile = document.getElementById("itemSearchMobile").value.toLowerCase().trim();
-            const searchValue = searchDesktop || searchMobile;
+    // Logic search filter
+    function filterProducts() {
+        const searchDesktop = document.getElementById("itemSearch").value.toLowerCase().trim();
+        const searchMobile = document.getElementById("itemSearchMobile").value.toLowerCase().trim();
+        const searchValue = searchDesktop || searchMobile;
+        
+        const filtered = localProductsArray.filter(product => {
+            const pName = product.name ? product.name.toLowerCase() : '';
+            const pDesc = product.description ? product.description.toLowerCase() : '';
+            const pCat = product.category ? product.category.toLowerCase() : '';
+
+            const matchesSearch = pName.includes(searchValue) || pDesc.includes(searchValue) || pCat.includes(searchValue);
             
-            const filtered = localProductsArray.filter(product => {
-                const matchesSearch = product.name.toLowerCase().includes(searchValue) || 
-                                      (product.description && product.description.toLowerCase().includes(searchValue)) ||
-                                      (product.category && product.category.toLowerCase().includes(searchValue));
-                
-                if (activeCategoryFilter === 'all') return matchesSearch;
-                if (activeCategoryFilter === 'offer') {
-                    const discount = product.mrp && product.price ? ((product.mrp - product.price) / product.mrp) * 100 : 0;
-                    return matchesSearch && discount > 10;
-                }
-                return matchesSearch && product.category && product.category.toLowerCase() === activeCategoryFilter;
-            });
-
-            renderProductGrid(filtered);
-        }
-
-        function filterCategory(categoryName) {
-            activeCategoryFilter = categoryName;
-            document.getElementById('specialOffersSection').scrollIntoView({behavior: 'smooth'});
-            filterProducts();
-        }
-
-        async function logout() {
-            await signOut(auth);
-            localStorage.clear();
-            window.location.href = "index.html";
-        }
-
-        function checkAuth() {
-            if (!localStorage.getItem("currentUser")) {
-                window.location.href = "index.html";
-            }
-        }
-
-        // Event Listeners Binding
-        document.getElementById('itemSearch').addEventListener('input', () => {
-            document.getElementById('itemSearchMobile').value = document.getElementById('itemSearch').value;
-            filterProducts();
-        });
-        
-        document.getElementById('itemSearchMobile').addEventListener('input', () => {
-            document.getElementById('itemSearch').value = document.getElementById('itemSearchMobile').value;
-            filterProducts();
+            if (activeCategoryFilter === 'all') return matchesSearch;
+            return matchesSearch && pCat === activeCategoryFilter;
         });
 
-        document.getElementById('clearFilterBtn').addEventListener('click', () => filterCategory('all'));
-        
-        document.getElementById('shopSaleBtn').addEventListener('click', () => {
-            document.getElementById('specialOffersSection').scrollIntoView({behavior: 'smooth'});
-        });
-        document.getElementById('viewDealsBtn').addEventListener('click', () => {
-            document.getElementById('specialOffersSection').scrollIntoView({behavior: 'smooth'});
-        });
+        renderProductGrid(filtered);
+    }
 
-        // Initialize App Operations
-        checkAuth();
-        loadProfile();
-        loadProducts();
-    </script>
+    function filterCategory(categoryName) {
+        activeCategoryFilter = categoryName.toLowerCase();
+        document.getElementById('specialOffersSection').scrollIntoView({behavior: 'smooth'});
+        filterProducts();
+    }
+
+    async function logout() {
+        await signOut(auth);
+        localStorage.clear();
+        window.location.href = "index.html";
+    }
+
+    // Event Listeners
+    document.getElementById('itemSearch').addEventListener('input', () => {
+        document.getElementById('itemSearchMobile').value = document.getElementById('itemSearch').value;
+        filterProducts();
+    });
+    
+    document.getElementById('itemSearchMobile').addEventListener('input', () => {
+        document.getElementById('itemSearch').value = document.getElementById('itemSearchMobile').value;
+        filterProducts();
+    });
+
+    document.getElementById('clearFilterBtn').addEventListener('click', () => filterCategory('all'));
+    
+    document.getElementById('shopSaleBtn').addEventListener('click', () => {
+        document.getElementById('specialOffersSection').scrollIntoView({behavior: 'smooth'});
+    });
+    document.getElementById('viewDealsBtn').addEventListener('click', () => {
+        document.getElementById('specialOffersSection').scrollIntoView({behavior: 'smooth'});
+    });
+
+    document.querySelectorAll('.category-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+            const cat = pill.getAttribute('data-category');
+            filterCategory(cat);
+        });
+    });
+
+    // Initialize Operation
+    checkAuth();
+</script>
 </body>
 </html>
