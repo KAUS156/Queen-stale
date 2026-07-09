@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's Wear - StyleEasy</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #111111;
+            --accent-color: #c5a880; /* Elegant gold/beige tone */
+            --text-color: #333333;
+            --light-bg: #f9f9f9;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- HEADER STYLE --- */
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 15px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #cccccc;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-color);
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 18px;
+        }
+
+        .nav-icons i {
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .nav-icons i:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- HERO SECTION --- */
+        .page-title-bar {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?auto=format&fit=crop&w=1200&q=80') no-repeat center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .page-title-bar h1 {
+            font-size: 36px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        /* --- MAIN CONTENT & PRODUCTS GRID --- */
+        main {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        /* Product Card Styling */
+        .product-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .product-img-container {
+            width: 100%;
+            height: 320px;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+        }
+
+        .product-desc {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .product-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .add-to-cart-btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Loading & Empty States */
+        .loading, .empty-state {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 50px;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .loading i {
+            animation: spin 1s linear infinite;
+            margin-bottom: 10px;
+            display: block;
+            font-size: 30px;
+            color: var(--accent-color);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* --- FOOTER STYLE --- */
+        footer {
+            background-color: var(--primary-color);
+            color: #bbbbbb;
+            padding: 40px 5% 20px 5%;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-box h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 18px;
+            position: relative;
+        }
+
+        .footer-box h3::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background-color: var(--accent-color);
+            bottom: -5px;
+            left: 0;
+        }
+
+        .footer-box ul {
+            list-style: none;
+        }
+
+        .footer-box ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-box ul li a {
+            color: #bbbbbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-box ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-icons a {
+            color: var(--white);
+            font-size: 20px;
+            margin-right: 15px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #222222;
+            margin-top: 40px;
+            padding-top: 20px;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .products-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER / NAVBAR -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">QUEEN<span>STYLE</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+               
+            </ul>
+            <div class="nav-icons">
+                <i class="fas fa-search"></i>
+                <i class="fas fa-shopping-bag"></i>
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO / TITLE BAR -->
+    <div class="page-title-bar">
+        <h1>Men's Collection</h1>
+        <p>Discover the latest trends in men's fashion</p>
+    </div>
+
+    <!-- MAIN PRODUCTS SECTION -->
+    <main>
+        <div class="products-grid" id="productsContainer">
+            <!-- Dynamic products Admin Panel se fetch hokar yahan aayenge -->
+            <div class="loading">
+                <i class="fas fa-spinner"></i>
+                <p>Loading premium collection...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-box">
+                <h3>About Queen Style</h3>
+                <p style="font-size: 14px; line-height: 1.6;">Your one-stop destination for premium and trendy clothing. Define your style with our exclusive collection.</p>
+            </div>
+            <div class="footer-box">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menswear.html">Men's Wear</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-box">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Queen Style. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Firebase SDK Modules (v10+) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // Aapki Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
+            authDomain: "lucky-triode-450317-g7.firebaseapp.com",
+            projectId: "lucky-triode-450317-g7",
+            storageBucket: "lucky-triode-450317-g7.appspot.com",
+            messagingSenderId: "1095311904707",
+            appId: "1:1095311904707:web:95da0daae41a9cb6ecaa3c"
+        };
+
+        // Firebase Initialize
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Products Fetch karne ka Function
+        async function fetchMensProducts() {
+            const container = document.getElementById('productsContainer');
+            
+            try {
+                // Maan lete hain aapke Firestore me 'products' naam ka collection hai 
+                // aur har product me ek 'category' field hai jiski value 'men' ya 'menswear' hai.
+                const productsRef = collection(db, "products");
+                const q = query(productsRef, where("category", "==", "men")); 
+                
+                const querySnapshot = await getDocs(q);
+                
+                // Loading spinner ko clear karein
+                container.innerHTML = '';
+
+                if (querySnapshot.empty) {
+                    container.innerHTML = `<div class="empty-state"><p>No products found in Men's category.</p></div>`;
+                    return;
+                }
+
+                querySnapshot.forEach((doc) => {
+                    const product = doc.data();
+                    
+                    // Default values agar admin data fill karna bhool jaye
+                    const imgUrl = product.imageUrl || 'https://via.placeholder.com/300x400?text=No+Image';
+                    const title = product.title || 'Trendy Mens Wear';
+                    const desc = product.description || 'Premium quality fabric crafted for comfort and elegant look.';
+                    const price = product.price ? `₹${product.price}` : 'Price on request';
+
+                    // Card structure build karein
+                    const cardHTML = `
+                        <div class="product-card">
+                            <div class="product-img-container">
+                                <img src="${imgUrl}" alt="${title}" class="product-img">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">${title}</h3>
+                                <p class="product-desc">${desc}</p>
+                                <div class="product-price-row">
+                                    <span class="product-price">${price}</span>
+                                    <button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i> Buy Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML += cardHTML;
+                });
+
+            } catch (error) {
+                console.error("Error fetching products: ", error);
+                container.innerHTML = `<div class="empty-state" style="color: red;"><p>Something went wrong. Please try again later.</p></div>`;
+            }
+        }
+
+        // Page load hone par function run karein
+        window.addEventListener('DOMContentLoaded', fetchMensProducts);
+    </script>
+</body>
+</html>

@@ -1,416 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    
+    <!-- SEO -->
+   <title>StyleEase | Trendy Girl Dresses, Suits & Wedding Wear</title>
+    <meta name="description" content=" StyleEasy में रॉयल क्लब जॉइन करें। लक्ज़री फैशन, प्रीमियम आउटफिट्स और महिलाओं के लिए एक्सक्लूसिव बेनिफिट्स।">
+    <meta name="keywords" content="StyleEasy register, luxury fashion women, royal club, premium outfits, designer dresses for women">
+    <meta name="author" content="StyleEasy">
+    <meta name="theme-color" content="#d4af37">
 
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <!-- Open Graph -->
+    <meta property="og:title" content="StyleEasy• Create Account">
+    <meta property="og:description" content="Luxury Fashion for Modern Queens - Join the Royal Club">
+    <meta property="og:type" content="website">
 
-<!-- Google Site Verification & Analytics -->
-<meta name="google-site-verification" content="azqMhF49VonSZJTQ6Spt_Nv2NwTx3Q5KpvgO_kmaqeo" />
+    <link rel="icon" href="favicon.png">
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8Y4KXCKM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            content: [],
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
 
-  gtag('config', 'G-BD8Y4KXCKM');
-</script>
-<title>Queen Style · Join The Royal Club</title>
-<script defer src="https://cloud.umami.is/script.js" data-website-id="e475468a-59c1-463c-b887-64507ed9bf61"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        .slide { transition: opacity 1.2s ease-in-out; }
+        .gold-gradient {
+            background: linear-gradient(45deg, #f5deb3, #d4af37, #b8860b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
 
-<!-- SEO Meta Tags -->
-<meta name="description" content="Create your Queen Style account to unlock exclusive luxury fashion collections, premium outfits, and royal member benefits.">
-<meta name="keywords" content="Queen Style register, create account, luxury fashion, royal fashion, premium outfits, women fashion">
-<meta name="author" content="Queen Style">
-<meta name="theme-color" content="#d4af37">
-
-<!-- Open Graph / Facebook -->
-<meta property="og:title" content="Queen Style · Create Account">
-<meta property="og:description" content="Luxury Fashion & Royal Style - Join the Royal Club today.">
-<meta property="og:type" content="website">
-
-<link rel="icon" href="favicon.png">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-body{
-font-family:Inter,system-ui,sans-serif;
-background:#f5f7fb;
-overflow-x:hidden;
-overflow-y:auto;
-animation:fadeIn .6s ease;
-}
-
-@keyframes fadeIn{
-from{
-opacity:0;
-transform:translateY(10px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-.container{
-width:100%;
-min-height:100vh;
-display:flex;
-background:white;
-}
-
-/* LEFT SIDE */
-.left{
-flex:1.1;
-position:relative;
-overflow:hidden;
-background:#000;
-}
-
-.slide{
-position:absolute;
-width:100%;
-height:100%;
-object-fit:cover;
-opacity:0;
-transition:1s;
-}
-
-.slide.active{
-opacity:1;
-}
-
-.overlay{
-position:absolute;
-bottom:0;
-left:0;
-right:0;
-padding:50px 40px;
-background:linear-gradient(to top,rgba(0,0,0,.8),transparent);
-color:white;
-z-index:10;
-}
-
-.overlay h1{
-font-size:42px;
-font-weight:800;
-margin-bottom:10px;
-background:linear-gradient(45deg,#f5deb3,#d4af37);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-
-.overlay p{
-font-size:15px;
-line-height:1.6;
-color:#f1f1f1;
-}
-
-.dots{
-position:absolute;
-bottom:20px;
-left:50%;
-transform:translateX(-50%);
-display:flex;
-gap:10px;
-z-index:20;
-}
-
-.dot{
-width:10px;
-height:10px;
-border-radius:50%;
-background:rgba(255,255,255,.5);
-cursor:pointer;
-transition:.3s;
-}
-
-.dot.active{
-width:28px;
-border-radius:20px;
-background:#d4af37;
-}
-
-/* RIGHT SIDE */
-.right{
-flex:1;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:40px;
-background:white;
-}
-
-.form-box{
-width:100%;
-max-width:450px;
-}
-
-.brand{
-font-size:13px;
-letter-spacing:2px;
-font-weight:700;
-color:#c49b29;
-margin-bottom:12px;
-}
-
-.form-box h2{
-font-size:42px;
-margin-bottom:10px;
-color:#1e293b;
-}
-
-.form-box p{
-font-size:15px;
-color:#64748b;
-margin-bottom:30px;
-}
-
-.input-group{
-margin-bottom:20px;
-}
-
-.input-group label{
-display:block;
-margin-bottom:8px;
-font-size:14px;
-font-weight:600;
-color:#1e293b;
-}
-
-.input-group input{
-width:100%;
-padding:16px;
-border-radius:16px;
-border:1.5px solid #dbe3ef;
-outline:none;
-font-size:15px;
-transition:.3s;
-background:#fafafa;
-}
-
-.input-group input:focus{
-border-color:#d4af37;
-box-shadow:0 0 0 4px rgba(212,175,55,.15);
-background:white;
-}
-
-.hint{
-font-size:12px;
-margin-top:6px;
-color:#94a3b8;
-padding-left:6px;
-}
-
-button{
-width:100%;
-padding:16px;
-border:none;
-border-radius:40px;
-font-size:16px;
-font-weight:700;
-cursor:pointer;
-background:linear-gradient(135deg,#111827,#1e293b);
-color:white;
-transition:.3s;
-margin-top:10px;
-}
-
-button:hover{
-transform:translateY(-2px);
-box-shadow:0 15px 30px rgba(0,0,0,.15);
-}
-
-button:disabled {
-background: #94a3b8 !important;
-cursor: not-allowed;
-transform: none !important;
-box-shadow: none !important;
-}
-
-.message{
-margin-top:15px;
-padding:14px;
-border-radius:14px;
-font-size:14px;
-display:none;
-}
-
-.success{
-background:#dcfce7;
-color:#166534;
-}
-
-.error{
-background:#fee2e2;
-color:#991b1b;
-}
-
-.footer{
-margin-top:25px;
-text-align:center;
-font-size:14px;
-color:#64748b;
-}
-
-.footer a{
-color:#c49b29;
-font-weight:700;
-text-decoration:none;
-}
-
-.testimonial{
-margin-top:25px;
-padding:16px;
-border-radius:18px;
-background:#f8fafc;
-font-size:14px;
-color:#334155;
-text-align:center;
-font-weight:600;
-}
-
-.toast{
-position:fixed;
-bottom:30px;
-left:50%;
-transform:translateX(-50%);
-background:#111827;
-color:#fff;
-padding:14px 28px;
-border-radius:50px;
-font-size:14px;
-opacity:0;
-transition:.3s;
-z-index:999;
-pointer-events: none;
-}
-
-/* RESPONSIVE DESIGN */
-@media(max-width:900px){
-.container{
-flex-direction:column;
-}
-.left{
-height:40vh;
-}
-.right{
-padding:25px;
-}
-.form-box h2{
-font-size:32px;
-}
-.overlay h1{
-font-size:30px;
-}
-}
-
-@media(max-width:500px){
-.overlay{
-padding:30px 20px;
-}
-.overlay h1{
-font-size:24px;
-}
-.form-box h2{
-font-size:28px;
-}
-.input-group input{
-padding:14px;
-}
-}
-</style>
+    <!-- Google Analytics & Umami -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8Y4KXCKM"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-BD8Y4KXCKM');</script>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e475468a-59c1-463c-b887-64507ed9bf61"></script>
 </head>
+<body class="bg-zinc-50">
 
-<body>
+<div class="min-h-screen flex flex-col lg:flex-row">
 
-<div class="container">
+    <!-- LEFT SLIDER -->
+    <div class="lg:w-1/2 relative h-screen bg-black overflow-hidden">
+        <img class="slide absolute inset-0 w-full h-full object-cover" id="slide1" src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1200" alt="Luxury Fashion 1" />
+        <img class="slide absolute inset-0 w-full h-full object-cover opacity-0" id="slide2" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200" alt="Luxury Fashion 2" />
+        <img class="slide absolute inset-0 w-full h-full object-cover opacity-0" id="slide3" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1200" alt="Luxury Fashion 3" />
+        <img class="slide absolute inset-0 w-full h-full object-cover opacity-0" id="slide4" src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200" alt="Luxury Fashion 4" />
+        <img class="slide absolute inset-0 w-full h-full object-cover opacity-0" id="slide5" src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=1200" alt="Luxury Fashion 5" />
 
-<!-- LEFT SIDE: SLIDER -->
-<div class="left">
-    <img class="slide active" loading="lazy" src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1200" alt="Fashion 1" />
-    <img class="slide" loading="lazy" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200" alt="Fashion 2" />
-    <img class="slide" loading="lazy" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1200" alt="Fashion 3" />
-    <img class="slide" loading="lazy" src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200" alt="Fashion 4" />
-    <img class="slide" loading="lazy" src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=1200" alt="Fashion 5" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+        
+        <div class="absolute bottom-0 left-0 right-0 p-8 lg:p-16 text-white">
+            <h1 class="text-5xl lg:text-6xl font-bold gold-gradient mb-4">Queen Style Empire</h1>
+            <p class="text-lg max-w-md">Luxury fashion for modern queens. Discover elegant collections & royal benefits.</p>
+        </div>
 
-    <div class="overlay">
-        <h1>Queen Style Empire</h1>
-        <p>Luxury fashion for modern queens. Discover elegant collections, premium outfits, and exclusive royal member benefits.</p>
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3" id="dots"></div>
     </div>
 
-    <div class="dots"></div>
-</div>
+    <!-- RIGHT FORM -->
+    <div class="lg:w-1/2 flex items-center justify-center p-6 lg:p-12">
+        <div class="w-full max-w-md">
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center gap-2 text-amber-500 font-bold tracking-[3px] text-sm mb-3">✦ JOIN THE ROYAL CLUB ✦</div>
+                <h2 class="text-4xl font-bold text-zinc-900">Create Account</h2>
+                <p class="text-zinc-600 mt-3">Unlock exclusive luxury collections & royal shopping benefits</p>
+            </div>
 
-<!-- RIGHT SIDE: REGISTER FORM -->
-<div class="right">
-    <div class="form-box">
-        <div class="brand">✦ JOIN THE ROYAL CLUB ✦</div>
-        <h2>Create Account</h2>
-        <p>Unlock exclusive collections, luxury fashion updates, and royal shopping benefits.</p>
+            <div id="message" class="hidden p-4 rounded-2xl mb-6 text-sm"></div>
 
-        <div id="message" class="message"></div>
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-sm font-semibold text-zinc-700 mb-2">Full Name</label>
+                    <input type="text" id="name" class="w-full px-6 py-4 rounded-3xl border border-zinc-200 focus:border-amber-400 focus:ring-4 focus:ring-amber-400/20 outline-none transition-all" placeholder="Enter your name">
+                </div>
 
-        <div class="input-group">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" placeholder="Enter your name">
+                <div>
+                    <label class="block text-sm font-semibold text-zinc-700 mb-2">Email Address</label>
+                    <input type="email" id="email" class="w-full px-6 py-4 rounded-3xl border border-zinc-200 focus:border-amber-400 focus:ring-4 focus:ring-amber-400/20 outline-none transition-all" placeholder="hello@queenstyle.com">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-zinc-700 mb-2">Password</label>
+                    <input type="password" id="password" class="w-full px-6 py-4 rounded-3xl border border-zinc-200 focus:border-amber-400 focus:ring-4 focus:ring-amber-400/20 outline-none transition-all" placeholder="Minimum 6 characters">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-zinc-700 mb-2">City / Area</label>
+                    <input type="text" id="city" class="w-full px-6 py-4 rounded-3xl border border-zinc-200 focus:border-amber-400 focus:ring-4 focus:ring-amber-400/20 outline-none transition-all" placeholder="Paris, Dubai, Mumbai">
+                </div>
+
+                <button id="registerBtn" 
+                        class="w-full py-4 bg-gradient-to-r from-zinc-900 to-black text-white font-bold rounded-full text-lg hover:scale-[1.03] transition-all shadow-xl shadow-amber-500/30">
+                    Join The Royal Club →
+                </button>
+            </div>
+
+            <div class="text-center mt-8 text-sm text-zinc-500">
+                Already have an account? 
+                <a href="login.html" class="text-amber-500 hover:underline font-semibold">Sign In</a>
+            </div>
+
+            <div class="text-center mt-10 text-xs text-zinc-400">⭐ Rated 4.9/5 by 12,000+ fashion lovers</div>
         </div>
-
-        <div class="input-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" placeholder="hello@queenstyle.com">
-        </div>
-
-        <div class="input-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" placeholder="Minimum 6 characters">
-            <div class="hint">Secure encrypted password</div>
-        </div>
-
-        <div class="input-group">
-            <label for="city">City / Area</label>
-            <input type="text" id="city" placeholder="Paris, Dubai, Milan">
-        </div>
-
-        <button type="button" id="registerBtn">Join The Royal Club →</button>
-
-        <div class="testimonial">⭐ Rated 4.9/5 by 12,000+ fashion lovers</div>
-
-        <div class="footer">Already have an account? <a href="login.html">Sign In</a></div>
     </div>
 </div>
 
+<div id="toast" class="hidden fixed bottom-8 left-1/2 -translate-x-1/2 bg-zinc-900 text-white px-8 py-4 rounded-full shadow-2xl flex items-center gap-3">
+    👑 Registration Successful
 </div>
 
-<div class="toast" id="toast">👑 Registration Successful</div>
-
-<!-- SEO SCHEMA -->
-<script type="application/ld+json">
-{
-"@context":"https://schema.org",
-"@type":"Organization",
-"name":"Queen Style",
-"url":"https://queenstyle.com"
-}
-</script>
-
-<!-- SYSTEM BACKEND SCRIPT -->
+<!-- Firebase SDK -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
     import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-    // Firebase Configuration
     const firebaseConfig = {
         apiKey: "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
         authDomain: "lucky-triode-450317-g7.firebaseapp.com",
@@ -424,45 +139,43 @@ padding:14px;
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    /* --- SLIDER LOGIC --- */
-    const slides = document.querySelectorAll(".slide");
-    const dotsContainer = document.querySelector(".dots");
+    // Tailwind Script already loaded
+
+    /* ==================== SLIDER ==================== */
     let current = 0;
+    const slides = document.querySelectorAll(".slide");
+    const dotsContainer = document.getElementById("dots");
 
     slides.forEach((_, i) => {
         const dot = document.createElement("div");
-        dot.classList.add("dot");
-        if (i === 0) dot.classList.add("active");
-        dot.addEventListener("click", () => showSlide(i));
+        dot.className = `w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ${i===0 ? 'bg-amber-400 w-8' : 'bg-white/60'}`;
+        dot.onclick = () => showSlide(i);
         dotsContainer.appendChild(dot);
     });
 
-    const dots = document.querySelectorAll(".dot");
-
     function showSlide(index) {
-        slides.forEach(slide => slide.classList.remove("active"));
-        dots.forEach(dot => dot.classList.remove("active"));
-        slides[index].classList.add("active");
-        dots[index].classList.add("active");
+        slides.forEach((slide, i) => slide.style.opacity = i === index ? "1" : "0");
+        Array.from(dotsContainer.children).forEach((dot, i) => {
+            dot.classList.toggle('bg-amber-400', i === index);
+            dot.classList.toggle('w-8', i === index);
+        });
         current = index;
     }
 
-    function nextSlide() {
+    setInterval(() => {
         current = (current + 1) % slides.length;
         showSlide(current);
-    }
-    setInterval(nextSlide, 4000);
+    }, 4500);
 
-
-    /* --- AUTHENTICATION & FORM LOGIC --- */
+    /* ==================== FORM LOGIC ==================== */
     const registerBtn = document.getElementById("registerBtn");
     const message = document.getElementById("message");
     const toast = document.getElementById("toast");
 
     function showMessage(text, type) {
-        message.style.display = "block";
-        message.className = `message ${type}`;
-        message.innerHTML = text;
+        message.className = `p-4 rounded-2xl text-sm font-medium ${type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`;
+        message.textContent = text;
+        message.classList.remove('hidden');
     }
 
     function validateEmail(email) {
@@ -475,7 +188,6 @@ padding:14px;
         const password = document.getElementById("password").value.trim();
         const city = document.getElementById("city").value.trim();
 
-        // Basic Validations
         if (!name || !email || !password || !city) {
             showMessage("❌ Please fill all fields", "error");
             return;
@@ -493,24 +205,17 @@ padding:14px;
             return;
         }
 
-        // [GA4 EVENT] - रजिस्ट्रेशन सबमिट करने की कोशिश ट्रैक करने के लिए
-        if (typeof gtag === 'function') {
-            gtag('event', 'sign_up_attempt', { 'city': city });
-        }
+        if (typeof gtag === 'function') gtag('event', 'sign_up_attempt', { 'city': city });
 
-        // UI Loading State
         registerBtn.disabled = true;
         registerBtn.innerHTML = "Creating Royal Account...";
 
         try {
-            // 1. Firebase Auth में यूजर बनाना
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
-            // 2. यूजर की प्रोफाइल में उसका नाम अपडेट करना
             await updateProfile(user, { displayName: name });
 
-            // 3. Firestore Database में यूजर का डेटा सेव करना
             await setDoc(doc(db, "users", user.uid), {
                 uid: user.uid,
                 name: name,
@@ -522,21 +227,15 @@ padding:14px;
                 createdAt: new Date().toISOString()
             });
 
-            // LocalStorage Backup (If needed for frontend sync)
-            const userData = { name, email, city, date: new Date().toISOString() };
-            localStorage.setItem("queenStyleUser", JSON.stringify(userData));
+            localStorage.setItem("queenStyleUser", JSON.stringify({ name, email, city, date: new Date().toISOString() }));
 
-            // [GA4 EVENT] - सफल रजिस्ट्रेशन को ट्रैक करने के लिए
-            if (typeof gtag === 'function') {
-                gtag('event', 'sign_up_success', { 'city': city });
-            }
+            if (typeof gtag === 'function') gtag('event', 'sign_up_success', { 'city': city });
 
-            // Success Response
             showMessage("✅ Registration successful", "success");
+            toast.classList.remove('hidden');
             toast.style.opacity = "1";
 
             setTimeout(() => {
-                toast.style.opacity = "0";
                 window.location.href = "login.html";
             }, 1800);
 
@@ -545,13 +244,10 @@ padding:14px;
             registerBtn.innerHTML = "Join The Royal Club →";
             
             let errorMsg = "Registration failed. Please try again.";
-            if (error.code === 'auth/email-already-in-use') {
-                errorMsg = "❌ This email address is already registered.";
-            } else if (error.code === 'auth/invalid-email') {
-                errorMsg = "❌ The email address format is invalid.";
-            } else if (error.code === 'auth/weak-password') {
-                errorMsg = "❌ The password provided is too weak.";
-            }
+            if (error.code === 'auth/email-already-in-use') errorMsg = "❌ This email is already registered.";
+            else if (error.code === 'auth/invalid-email') errorMsg = "❌ Invalid email format.";
+            else if (error.code === 'auth/weak-password') errorMsg = "❌ Password is too weak.";
+
             showMessage(errorMsg, "error");
         }
     });

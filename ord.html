@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleEasy - Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a42b8; /* Elegant Royal Blue Button */
+            --dark-color: #111111;
+            --accent-color: #c5a880;
+            --danger-color: #c0392b;
+            --light-bg: #f3f5f9;
+            --white: #ffffff;
+            --text-muted: #6b7280;
+            --border-color: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: #333;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            width: 260px;
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .sidebar h2 {
+            font-size: 22px;
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .sidebar h2 span { color: var(--accent-color); }
+        .sidebar-menu { list-style: none; }
+        .sidebar-menu li { margin-bottom: 15px; }
+
+        .sidebar-menu a {
+            color: #bbb;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--accent-color);
+        }
+
+        /* --- MAIN DASHBOARD CONTENT --- */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        /* Form Card Design */
+        .royal-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            margin-bottom: 40px;
+        }
+
+        .form-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-title i {
+            color: #7c3aed; /* Purple Plus Sign style */
+        }
+
+        /* 3-Column and 2-Column Responsive Form Layout */
+        .royal-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 24px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.col-2 { grid-column: span 2; }
+        .form-group.col-1 { grid-column: span 1; }
+
+        label {
+            font-weight: 600;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        /* Input Styling as per image */
+        input, select, textarea {
+            width: 100%;
+            padding: 13px 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px; /* Clean rounded inputs */
+            font-size: 14px;
+            color: #1f2937;
+            background-color: #fff;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #9ca3af;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: #b5c2eb;
+            box-shadow: 0 0 0 4px rgba(26, 66, 184, 0.08);
+        }
+
+        /* Save Product Button Layout */
+        .btn-container {
+            margin-top: 15px;
+        }
+
+        .btn-save {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 14px 28px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 24px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(26, 66, 184, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-save:hover {
+            background-color: #143596;
+            transform: translateY(-1px);
+        }
+
+        /* --- TABLE --- */
+        .table-container {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        .table-container h3 { margin-bottom: 20px; }
+
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th, td { padding: 14px 18px; border-bottom: 1px solid var(--border-color); }
+        th { background-color: #f9fafb; font-weight: 600; color: #4b5563; }
+
+        .prod-img-preview { width: 50px; height: 50px; object-fit: cover; border-radius: 8px; }
+
+        .btn-delete {
+            background-color: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: background 0.3s;
+        }
+
+        .btn-delete:hover { background-color: #962d22; }
+
+        .status-msg {
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            border-radius: 25px;
+            display: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .status-success { background-color: #def7ec; color: #03543f; }
+        .status-error { background-color: #fde8e8; color: #9b1c1c; }
+
+        @media (max-width: 900px) {
+            .royal-grid { grid-template-columns: 1fr; }
+            .form-group.col-2 { grid-column: span 1; }
+            body { flex-direction: column; }
+            .sidebar { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>QUEEN<span>STYLE</span></h2>
+        <ul class="sidebar-menu">
+            <li><a href="#" class="active"><i class="fas fa-box"></i> Products Management</a></li>
+            <li><a href="menswear.html" target="_blank"><i class="fas fa-eye"></i> View Website</a></li>
+        </ul>
+    </div>
+
+    <!-- MAIN DASHBOARD CONTENT -->
+    <div class="main-content">
+
+        <div id="statusBox" class="status-msg"></div>
+
+        <!-- IMAGE REPLICATED CARD -->
+        <div class="royal-card">
+            <div class="form-title">
+                <i class="fa-solid fa-plus"></i> Add New Royal Product
+            </div>
+            
+            <form id="productForm">
+                <div class="royal-grid">
+                    <!-- Row 1 -->
+                    <div class="form-group">
+                        <label>Product Name *</label>
+                        <input type="text" id="prodTitle" placeholder="e.g., Designer Silk Saree" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Price (₹) *</label>
+                        <input type="number" id="prodPrice" placeholder="799" required>
+                    </div>
+                    <div class="form-group">
+                        <label>MRP (₹) *</label>
+                        <input type="number" id="prodMrp" placeholder="1499" required>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="form-group col-1">
+                        <label>Rating (1-5)</label>
+                        <input type="number" id="prodRating" step="0.1" min="1" max="5" placeholder="4.5">
+                    </div>
+                    <div class="form-group col-2">
+                        <label>Image URL *</label>
+                        <input type="url" id="prodImage" placeholder="https://example.com/product.jpg" required>
+                    </div>
+
+                    <!-- Row 3 -->
+                    <div class="form-group col-1">
+                        <label>Category *</label>
+                        <select id="prodCategory" style="border-radius: 20px;" required>
+                            <option value="men">Men's Wear</option>
+                            <option value="women">Women's Wear</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-2">
+                        <label>Buy Link</label>
+                        <input type="url" id="prodShopLink" placeholder="https://amazon.in/dp/...">
+                    </div>
+
+                    <!-- Row 4 -->
+                    <div class="form-group col-3" style="grid-column: span 3;">
+                        <label>Description</label>
+                        <textarea id="prodDesc" rows="4" style="border-radius: 15px;" placeholder="Beautiful product description..."></textarea>
+                    </div>
+                </div>
+
+                <div class="btn-container">
+                    <button type="submit" class="btn-save">
+                        <i class="fa-solid fa-floppy-disk"></i> Save Product
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- LIVE INVENTORY TABLE -->
+        <div class="table-container">
+            <h3><i class="fas fa-list"></i> Live Store Inventory</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Price / MRP</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="inventoryTableBody">
+                    <tr>
+                        <td colspan="5" style="text-align: center; padding: 20px; color: #777;">Loading live items...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Firebase Script Setup -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
+            authDomain: "lucky-triode-450317-g7.firebaseapp.com",
+            projectId: "lucky-triode-450317-g7",
+            storageBucket: "lucky-triode-450317-g7.appspot.com",
+            messagingSenderId: "1095311904707",
+            appId: "1:1095311904707:web:95da0daae41a9cb6ecaa3c"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const productsCollection = collection(db, "products");
+
+        function showStatus(message, isSuccess) {
+            const statusBox = document.getElementById('statusBox');
+            statusBox.innerText = message;
+            statusBox.style.display = 'block';
+            statusBox.className = `status-msg ${isSuccess ? 'status-success' : 'status-error'}`;
+            setTimeout(() => { statusBox.style.display = 'none'; }, 4000);
+        }
+
+        document.getElementById('productForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            try {
+                await addDoc(productsCollection, {
+                    title: document.getElementById('prodTitle').value,
+                    price: parseFloat(document.getElementById('prodPrice').value),
+                    mrp: parseFloat(document.getElementById('prodMrp').value),
+                    rating: parseFloat(document.getElementById('prodRating').value) || 4.5,
+                    imageUrl: document.getElementById('prodImage').value,
+                    category: document.getElementById('prodCategory').value,
+                    shopNowUrl: document.getElementById('prodShopLink').value || '#',
+                    description: document.getElementById('prodDesc').value,
+                    createdAt: new Date().toISOString()
+                });
+
+                showStatus("Success! Product added to Firestore catalog.", true);
+                document.getElementById('productForm').reset();
+            } catch (error) {
+                showStatus("Error uploading data to server.", false);
+            }
+        });
+
+        function listenToInventory() {
+            const tableBody = document.getElementById('inventoryTableBody');
+            onSnapshot(productsCollection, (snapshot) => {
+                tableBody.innerHTML = '';
+                if(snapshot.empty) {
+                    tableBody.innerHTML = `<tr><td colspan="5" style="text-align: center;">No items found.</td></tr>`;
+                    return;
+                }
+                snapshot.forEach((documentObj) => {
+                    const product = documentObj.data();
+                    tableBody.innerHTML += `
+                        <tr>
+                            <td><img src="${product.imageUrl}" class="prod-img-preview"></td>
+                            <td><strong>${product.title}</strong></td>
+                            <td style="text-transform: uppercase;">${product.category}</td>
+                            <td>₹${product.price} / <del style="color:#aaa;">₹${product.mrp || ''}</del></td>
+                            <td><button class="btn-delete" data-id="${documentObj.id}"><i class="fas fa-trash"></i></button></td>
+                        </tr>
+                    `;
+                });
+                attachDeleteListeners();
+            });
+        }
+
+        function attachDeleteListeners() {
+            document.querySelectorAll('.btn-delete').forEach(button => {
+                button.onclick = async () => {
+                    if(confirm("Delete item permanently?")) {
+                        await deleteDoc(doc(db, "products", button.getAttribute('data-id')));
+                        showStatus("Item removed.", true);
+                    }
+                };
+            });
+        }
+
+        window.onload = listenToInventory;
+    </script>
+</body>
+</html>
