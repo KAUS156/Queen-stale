@@ -3,46 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Womenswear Admin Console | StyleEasy</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="data:,">
     
-    <title>Secure Inventory Admin Dashboard | StyleEasy</title>
-    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-    <meta name="googlebot" content="noindex, nofollow">
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8Y4KXCKM"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-BD8Y4KXCKM');
-    </script>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
     <style>
-       :root {
-    --primary-color: #0d0d0d;   /* गहरा ब्लैक */
-    --accent-color: #ba996c;    /* म्यूटेड शैम्पेन गोल्ड */
-    --light-bg: #fdfdfd;        /* अल्ट्रा लाइट क्रीम */
-    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.02); /* बहुत हल्की परछाई */
-}
+        :root {
+            --primary-color: #2c1a1d;    /* Deep Wine/Burgundy for Women's section */
+            --accent-color: #e8b4b8;     /* Rose Gold / Soft Pink */
+            --text-color: #333333;
+            --light-bg: #fdfbfb;
+            --white: #ffffff;
+            --danger-color: #e74c3c;
+            --border-color: #dddddd;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: var(--light-bg); color: var(--text-color); display: flex; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+        body { background-color: var(--light-bg); color: var(--text-color); display: flex; min-height: 100vh; }
         
-        aside { width: 260px; background-color: var(--primary-color); color: var(--white); padding: 30px 20px; position: fixed; height: 100vh; z-index: 100; transition: all 0.3s ease; }
-        aside .logo { font-size: 22px; font-weight: 700; letter-spacing: 1px; margin-bottom: 40px; text-align: center; }
+        aside { width: 260px; background-color: var(--primary-color); color: var(--white); padding: 30px 20px; position: fixed; height: 100vh; z-index: 100; border-right: 2px solid var(--accent-color); }
+        aside .logo { font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 40px; }
         aside .logo span { color: var(--accent-color); }
         aside ul { list-style: none; }
-        aside ul li { margin-bottom: 8px; }
-        aside ul li a { color: #cccccc; text-decoration: none; padding: 12px 15px; display: flex; align-items: center; gap: 12px; border-radius: 6px; transition: 0.3s; font-size: 14px; font-weight: 500; }
-        aside ul li a:hover, aside ul li a.active { background-color: rgba(197, 168, 128, 0.15); color: var(--accent-color); }
+        aside ul li a { color: #cccccc; text-decoration: none; padding: 12px 15px; display: flex; align-items: center; gap: 12px; border-radius: 6px; font-size: 14px; }
+        aside ul li a.active { background-color: rgba(232, 180, 184, 0.15); color: var(--accent-color); }
         
-        main { margin-left: 260px; flex: 1; padding: 40px; width: calc(100% - 260px); transition: all 0.3s ease; }
+        main { margin-left: 260px; flex: 1; padding: 40px; width: calc(100% - 260px); }
         header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 1px solid #ddd; padding-bottom: 15px; }
         header h1 { font-size: 26px; font-weight: 700; color: var(--primary-color); }
-        .db-status { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: #666; }
+        .db-status { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #666; }
         .db-status i { color: #2ecc71; }
 
         .dashboard-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px; }
@@ -50,33 +44,23 @@
         .card h2 { font-size: 18px; font-weight: 600; margin-bottom: 20px; border-bottom: 2px solid var(--accent-color); padding-bottom: 8px; display: inline-block; color: var(--primary-color); }
         
         .form-group { margin-bottom: 18px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 13.5px; color: #444; }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px; color: var(--text-color); outline: none; transition: all 0.3s; background-color: #fafafa; }
-        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--accent-color); background-color: var(--white); box-shadow: 0 0 8px rgba(197, 168, 128, 0.2); }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 13.5px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px; outline: none; background-color: #fafafa; }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--accent-color); background-color: var(--white); }
         
-        .btn { background-color: var(--primary-color); color: var(--white); border: none; padding: 14px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; width: 100%; transition: 0.3s; font-size: 14px; letter-spacing: 0.5px; }
+        .btn { background-color: var(--primary-color); color: var(--white); border: none; padding: 14px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; width: 100%; transition: 0.3s; font-size: 14px; }
         .btn:hover { background-color: var(--accent-color); color: var(--primary-color); }
         
         .table-responsive { overflow-x: auto; border-radius: 8px; border: 1px solid #eee; }
         table { width: 100%; border-collapse: collapse; background: var(--white); }
-        table th, table td { text-align: left; padding: 14px; border-bottom: 1px solid #eeeeee; font-size: 13.5px; vertical-align: middle; }
+        table th, table td { text-align: left; padding: 14px; border-bottom: 1px solid #eeeeee; font-size: 13.5px; }
         table th { background-color: #f8f9fa; font-weight: 600; color: #555; }
-        .img-preview { width: 45px; height: 45px; object-fit: cover; border-radius: 6px; border: 1px solid #eee; background-color: #f0f0f0; }
-        .badge-cat { padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; text-transform: uppercase; background: #e1f5fe; color: #0288d1; }
-        .badge-cat.women { background: #fce4ec; color: #c2185b; }
+        .img-preview { width: 45px; height: 45px; object-fit: cover; border-radius: 6px; }
         
-        .delete-btn { background: none; border: none; color: var(--danger-color); cursor: pointer; font-size: 16px; padding: 5px; transition: transform 0.2s; }
-        .delete-btn:hover { transform: scale(1.15); }
+        .badge-cat-fixed { padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; background: #fce4ec; color: #c2185b; border: 1px solid #f8bbd0; }
+        .delete-btn { background: none; border: none; color: var(--danger-color); cursor: pointer; font-size: 16px; }
         
         @media (max-width: 1100px) { .dashboard-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) { 
-            aside { width: 70px; padding: 30px 10px; } 
-            aside .logo, aside ul li a span { display: none; } 
-            aside ul li a { justify-content: center; padding: 12px 0; font-size: 18px; }
-            main { margin-left: 70px; width: calc(100% - 70px); padding: 20px; } 
-            header h1 { font-size: 20px; }
-            .card { padding: 20px; }
-        }
     </style>
 </head>
 <body>
@@ -85,68 +69,59 @@
         <div class="logo">Style<span>Easy</span></div>
         <nav>
             <ul>
-                <li><a href="#" class="active"><i class="fas fa-box"></i> <span>Local Products</span></a></li>
-                <li><a href="menswear.html" target="_blank" rel="noopener"><i class="fas fa-mars"></i> <span>Men's Store</span></a></li>
-                <li><a href="womenswear.html" target="_blank" rel="noopener"><i class="fas fa-venus"></i> <span>Women's Store</span></a></li>
+                <li><a href="#" class="active"><i class="fas fa-female"></i> <span>Womenswear Admin</span></a></li>
             </ul>
         </nav>
     </aside>
 
     <main>
         <header>
-            <h1>Local Admin Panel</h1>
-            <div class="db-status"><i class="fas fa-circle"></i> LocalStorage Connected</div>
+            <h1>Womenswear Isolated Cloud Hub</h1>
+            <div class="db-status"><i class="fas fa-circle"></i> Womenswear Node Connected</div>
         </header>
 
         <div class="dashboard-grid">
             <section class="card">
-                <h2>Add New Product</h2>
-                <form id="productForm">
+                <h2>Publish Women's Apparel</h2>
+                <form id="womenswearForm">
                     <div class="form-group">
-                        <label for="title">Product Title</label>
-                        <input type="text" id="title" placeholder="e.g., Designer Summer Dress" required>
+                        <label>Product Title</label>
+                        <input type="text" id="title" required>
                     </div>
                     <div class="form-group">
-                        <label for="price">Price (INR - ₹)</label>
-                        <input type="number" id="price" min="0" placeholder="e.g., 1899" required>
+                        <label>Price (₹)</label>
+                        <input type="number" id="price" min="0" required>
                     </div>
                     <div class="form-group">
-                        <label for="category">Store Category</label>
-                        <select id="category" required>
-                            <option value="men">Men's Wear</option>
-                            <option value="women">Women's Wear</option>
-                        </select>
+                        <label>Image URL</label>
+                        <input type="url" id="imageUrl" required>
                     </div>
                     <div class="form-group">
-                        <label for="imageUrl">Product Image URL</label>
-                        <input type="url" id="imageUrl" placeholder="https://images.unsplash.com/..." required>
+                        <label>WhatsApp Checkout Link</label>
+                        <input type="url" id="buyLink" required>
                     </div>
                     <div class="form-group">
-                        <label for="buyLink">Secure Buy / WhatsApp Checkout Link</label>
-                        <input type="url" id="buyLink" placeholder="https://wa.me/..." required>
+                        <label>Product Description & Fabric Details</label>
+                        <textarea id="description" rows="4" required></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="description">Detailed Description (Fabric & Fit)</label>
-                        <textarea id="description" rows="3" placeholder="Describe quality, size parameters..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn">Commit to Local Storage</button>
+                    <button type="submit" class="btn">Push to Womenswear Database</button>
                 </form>
             </section>
 
             <section class="card">
-                <h2>Live Inventory Monitor</h2>
+                <h2>Live Womenswear Catalog</h2>
                 <div class="table-responsive">
                     <table>
                         <thead>
                             <tr>
-                                <th>View</th>
-                                <th>Item Title</th>
+                                <th>Item</th>
+                                <th>Product Title</th>
                                 <th>Price</th>
-                                <th>Category</th>
-                                <th>Manage</th>
+                                <th>Node</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody id="adminProductsTable"></tbody>
+                        <tbody id="womenswearInventoryTable"></tbody>
                     </table>
                 </div>
             </section>
@@ -154,47 +129,50 @@
     </main>
 
     <script>
-        const form = document.getElementById('productForm');
-        const tableBody = document.getElementById('adminProductsTable');
-        const storageKey = 'styleEasyIsolatedProducts';
+       const firebaseConfig = {
+    apiKey: "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
+    authDomain: "lucky-triode-450317-g7.firebaseapp.com",
+    // 👇 यह अब 100% सही यूआरएल है जो आपके खुले हुए कंसोल से मैच करती है
+    databaseURL: "https://lucky-triode-450317-g7-default-rtdb.firebaseio.com/", 
+    projectId: "lucky-triode-450317-g7",
+    storageBucket: "lucky-triode-450317-g7.firebasestorage.app",
+    messagingSenderId: "778199870672",
+    appId: "1:778199870672:web:62a9891e41b3a3d3f242d5"
+};
+        
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
 
-        function getLocalProducts() {
-            try {
-                return JSON.parse(localStorage.getItem(storageKey)) || [];
-            } catch (e) {
-                console.error("Database failure:", e);
-                return [];
-            }
-        }
+        const form = document.getElementById('womenswearForm');
+        const tableBody = document.getElementById('womenswearInventoryTable');
 
-        function renderTable() {
-            const products = getLocalProducts();
+        // 👇 ALAG NODE: data sirf 'products/womenswear' path se read hoga
+        database.ref('products/womenswear').on('value', (snapshot) => {
             tableBody.innerHTML = '';
-
-            if(products.length === 0) {
-                tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#888; padding:30px;">Inventory is totally empty.</td></tr>`;
+            const data = snapshot.val();
+            
+            if(!data) {
+                tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#999; padding:40px;">No apparel found in Womenswear node.</td></tr>`;
                 return;
             }
 
-            products.forEach((product, index) => {
+            Object.keys(data).forEach((key) => {
+                const product = data[key];
                 const tr = document.createElement('tr');
-                const catClass = product.category === 'women' ? 'badge-cat women' : 'badge-cat';
-                const safeImg = product.imageUrl || 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=100&q=80';
-                
                 tr.innerHTML = `
-                    <td><img src="${safeImg}" class="img-preview" alt="Preview"></td>
+                    <td><img src="${product.imageUrl || ''}" class="img-preview" alt="Preview"></td>
                     <td><strong>${escapeHTML(product.title)}</strong></td>
                     <td>₹${escapeHTML(product.price)}</td>
-                    <td><span class="${catClass}">${escapeHTML(product.category)}</span></td>
+                    <td><span class="badge-cat-fixed">Womenswear</span></td>
                     <td>
-                        <button class="delete-btn" onclick="deleteProduct(${index})" aria-label="Delete">
+                        <button class="delete-btn" onclick="removeItem('${key}')">
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     </td>
                 `;
                 tableBody.appendChild(tr);
             });
-        }
+        });
 
         function escapeHTML(str) {
             return String(str).replace(/[&<>"']/g, function(m) {
@@ -202,37 +180,29 @@
             });
         }
 
+        // 👇 ALAG NODE: data 'products/womenswear' node ke andar push hoga
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            const products = getLocalProducts();
-
-            const newProduct = {
+            
+            const newApparel = {
                 title: document.getElementById('title').value.trim(),
                 price: document.getElementById('price').value.trim(),
-                category: document.getElementById('category').value,
                 imageUrl: document.getElementById('imageUrl').value.trim(),
                 buyLink: document.getElementById('buyLink').value.trim(), 
                 description: document.getElementById('description').value.trim()
             };
 
-            products.push(newProduct);
-            localStorage.setItem(storageKey, JSON.stringify(products));
-            
-            alert('Inventory updated successfully!');
-            form.reset();
-            renderTable();
+            database.ref('products/womenswear').push(newApparel).then(() => {
+                alert('Apparel added to Womenswear database successfully!');
+                form.reset();
+            }).catch(err => alert('Error: ' + err.message));
         });
 
-        window.deleteProduct = function(index) {
-            if(confirm("Delete this item?")) {
-                const products = getLocalProducts();
-                products.splice(index, 1);
-                localStorage.setItem(storageKey, JSON.stringify(products));
-                renderTable();
+        window.removeItem = function(firebaseKey) {
+            if(confirm("Delete this item permanently from Womenswear node?")) {
+                database.ref('products/womenswear').child(firebaseKey).remove();
             }
         }
-
-        window.addEventListener('DOMContentLoaded', renderTable);
     </script>
 </body>
 </html>

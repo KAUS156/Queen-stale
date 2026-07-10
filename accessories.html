@@ -4,57 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- === ADVANCED E-COMMERCE SEO META TAGS === -->
     <title>Premium Luxury Accessories & Jewelry Collection | StyleEasy</title>
     <meta name="description" content="Discover StyleEasy's timeless luxury accessories collection. Shop artisanal jewelry, premium handbags, statement watches, and curated timeless pieces crafted to perfection.">
     <meta name="keywords" content="luxury jewelry, premium accessories, women statement necklace, premium handbags online, luxury styling assets, styleeasy jewelry">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.styleeasy.com/accessories.html">
+    <link rel="icon" href="data:,">
 
-    <!-- Open Graph / Facebook Social SEO -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.styleeasy.com/accessories.html">
     <meta property="og:title" content="Premium Luxury Accessories & Jewelry Collection | StyleEasy">
-    <meta property="og:description" content="Elevate your elegance with StyleEasy's luxury statement jewelry and bespoke accessories. High premium quality.">
+    <meta property="og:description" content="Elevate your elegance with StyleEasy's luxury statement jewelry and bespoke accessories.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80">
 
-    <!-- Twitter Cards -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://www.styleeasy.com/accessories.html">
-    <meta name="twitter:title" content="Luxury Accessories & Jewelry | StyleEasy">
-    <meta name="twitter:description" content="Shop statement luxury accessories curated to elevate your everyday aesthetics.">
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80">
-
-    <!-- Premium Google Typography & FontAwesome Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Cinzel (रॉयल हेडिंग के लिए) और Inter (क्लीन रीडेबिलिटी के लिए) -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- === STRUCTURED SCHEMA MARKUP FOR GOOGLE RICH SNIPPETS === -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      "name": "Luxury Jewelry & Accessories Boutique - StyleEasy",
-      "description": "Explore curated artisan statement jewelry, luxurious bags, and heritage accessories at StyleEasy.",
-      "url": "https://www.styleeasy.com/accessories.html",
-      "publisher": {
-        "@type": "Organization",
-        "name": "StyleEasy",
-        "logo": "https://www.styleeasy.com/logo.png"
-      }
-    }
-    </script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
     <style>
-        /* === ROYAL LUXURY ACCESSORIES VARIABLES === */
         :root {
-            --primary-metallic: #111518;    /* डीप चारकोल ब्लैक */
-            --royal-gold: #dfba73;          /* क्लासिक ज्वेलरी गोल्ड */
-            --emerald-accent: #0f3425;      /* रीच एम्परर एमराल्ड ग्रीन */
-            --bg-canvas: #fbfbf9;           /* साफ़ ऑफ-व्हाइट मैट टेक्सचर */
+            --primary-metallic: #111518;
+            --royal-gold: #dfba73;
+            --emerald-accent: #0f3425;
+            --bg-canvas: #fbfbf9;
             --text-dark: #1f2421;
             --text-muted: #737b75;
             --white: #ffffff;
@@ -66,154 +42,132 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: var(--bg-canvas); color: var(--text-dark); font-family: var(--font-sans); display: flex; flex-direction: column; min-height: 100vh; -webkit-font-smoothing: antialiased; }
         
-        /* COUTURE BLUR HEADER NAVIGATION */
         header { background-color: rgba(17, 21, 24, 0.93); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); color: var(--white); padding: 20px 5%; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(223, 186, 115, 0.15); }
         .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; width: 100%; }
         .logo { font-family: var(--font-display); font-size: 25px; font-weight: 500; letter-spacing: 2px; color: var(--white); text-decoration: none; }
         .logo span { color: var(--royal-gold); font-weight: 700; }
         
-        /* MINIMAL LUXE SEARCH EMBED */
-        .search-container { position: relative; display: flex; align-items: center; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(223, 186, 115, 0.2); border-radius: 0px; padding: 8px 16px; width: 260px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        .search-container:focus-within { border-color: var(--royal-gold); background: rgba(255, 255, 255, 0.09); width: 310px; box-shadow: 0 0 15px rgba(223, 186, 115, 0.1); }
-        .search-input { background: transparent; border: none; color: var(--white); outline: none; font-size: 13px; width: 100%; font-family: var(--font-sans); letter-spacing: 0.5px; }
+        .search-container { position: relative; display: flex; align-items: center; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(223, 186, 115, 0.2); padding: 8px 16px; width: 260px; transition: all 0.4s ease; }
+        .search-container:focus-within { border-color: var(--royal-gold); background: rgba(255, 255, 255, 0.09); width: 310px; }
+        .search-input { background: transparent; border: none; color: var(--white); outline: none; font-size: 13px; width: 100%; }
         .search-input::placeholder { color: #6e757c; }
         .search-container i { color: var(--royal-gold); font-size: 13px; margin-left: 8px; }
 
-        /* HERO ARTWORK FRAME */
         .page-title-bar { background: linear-gradient(rgba(15, 52, 37, 0.55), rgba(17, 21, 24, 0.75)), url('https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=1400&q=80') no-repeat center 40%/cover; color: var(--white); text-align: center; padding: 130px 20px; border-bottom: 2px solid var(--royal-gold); }
-        .page-title-bar h1 { font-family: var(--font-display); font-size: 44px; font-weight: 400; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 12px; color: #fbfbf9; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .page-title-bar h1 { font-family: var(--font-display); font-size: 44px; font-weight: 400; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 12px; }
         .page-title-bar p { font-size: 13px; color: var(--royal-gold); letter-spacing: 3px; font-weight: 400; text-transform: uppercase; }
 
-        /* DYNAMIC LAYOUT & GRID SPACE */
         main { flex: 1; max-width: 1400px; width: 100%; margin: 70px auto; padding: 0 40px; }
         .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 50px 35px; }
         
-        /* PREMIUM APPARATUS CARD HOVER ARCHITECTURE */
-        .product-card { background-color: var(--white); border-radius: 0px; overflow: hidden; box-shadow: var(--luxury-shadow); border: 1px solid rgba(15, 52, 37, 0.03); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; position: relative; }
-        .product-card:hover { transform: translateY(-8px); border-color: rgba(223, 186, 115, 0.4); box-shadow: 0 25px 50px rgba(15, 52, 37, 0.07); }
+        .product-card { background-color: var(--white); overflow: hidden; box-shadow: var(--luxury-shadow); border: 1px solid rgba(15, 52, 37, 0.03); transition: all 0.5s ease; display: flex; flex-direction: column; position: relative; }
+        .product-card:hover { transform: translateY(-8px); border-color: rgba(223, 186, 115, 0.4); }
         
         .product-img-container { width: 100%; height: 360px; overflow: hidden; background-color: #fcfcfb; position: relative; }
-        .product-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+        .product-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s ease; }
         
-        /* LUXURY BUTTON REVEAL ON DESKTOP HOVER */
         @media (min-width: 769px) {
-            .product-card .add-to-cart-btn {
-                position: absolute;
-                bottom: -65px;
-                left: 25px;
-                right: 25px;
-                opacity: 0;
-                z-index: 5;
-                transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            }
-            .product-card:hover .add-to-cart-btn {
-                bottom: 25px;
-                opacity: 1;
-            }
-            .product-card:hover .product-img {
-                transform: scale(1.07);
-                filter: brightness(0.85);
-            }
+            .product-card .add-to-cart-btn { position: absolute; bottom: -65px; left: 25px; right: 25px; opacity: 0; z-index: 5; transition: all 0.4s ease; }
+            .product-card:hover .add-to-cart-btn { bottom: 25px; opacity: 1; }
+            .product-card:hover .product-img { transform: scale(1.07); filter: brightness(0.85); }
         }
         
-        /* CONTENT MATRICES INSIDE CARD */
         .product-info { padding: 22px 5px 15px 5px; display: flex; flex-direction: column; flex-grow: 1; background: var(--white); }
-        .product-title { font-family: var(--font-display); font-size: 18px; font-weight: 500; margin-bottom: 8px; color: var(--primary-metallic); line-height: 1.4; letter-spacing: 0.5px; }
-        .product-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 18px; line-height: 1.6; font-weight: 300; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .product-title { font-family: var(--font-display); font-size: 18px; font-weight: 500; margin-bottom: 8px; color: var(--primary-metallic); }
+        .product-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 18px; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .product-price-row { display: flex; justify-content: space-between; align-items: center; margin-top: auto; border-top: 1px solid #f5f5f3; padding-top: 15px; }
-        .product-price { font-size: 18px; font-weight: 600; color: var(--emerald-accent); letter-spacing: 0.5px; }
+        .product-price { font-size: 18px; font-weight: 600; color: var(--emerald-accent); }
         
-        /* TIFFANY & CO STYLE ROYAL ACTION LINK BUTTON */
-        .add-to-cart-btn { background-color: var(--primary-metallic); color: var(--white); border: 1px solid var(--primary-metallic); text-decoration: none; padding: 13px 22px; border-radius: 0px; font-size: 11px; font-weight: 500; text-align: center; letter-spacing: 2px; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.3s ease; }
-        .add-to-cart-btn:hover { background-color: var(--royal-gold); color: var(--primary-metallic); border-color: var(--royal-gold); font-weight: 600; }
+        .add-to-cart-btn { background-color: var(--primary-metallic); color: var(--white); border: 1px solid var(--primary-metallic); text-decoration: none; padding: 13px 22px; font-size: 11px; font-weight: 500; text-align: center; letter-spacing: 2px; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.3s ease; }
+        .add-to-cart-btn:hover { background-color: var(--royal-gold); color: var(--primary-metallic); border-color: var(--royal-gold); }
         
         .empty-state { text-align: center; grid-column: 1 / -1; padding: 90px 20px; }
-        .empty-state p { font-family: var(--font-display); font-size: 20px; color: var(--text-muted); letter-spacing: 1px; }
+        .empty-state p { font-family: var(--font-display); font-size: 20px; color: var(--text-muted); }
         
-        /* MATTE EMERALD CHARCOAL FOOTER GRID */
         footer { background-color: var(--primary-metallic); color: #8e959a; padding: 70px 5% 45px 5%; margin-top: auto; border-top: 3px solid var(--royal-gold); }
         .footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1400px; margin: 0 auto; }
-        .footer-box h3 { font-family: var(--font-display); color: var(--royal-gold); font-size: 19px; margin-bottom: 22px; font-weight: 400; letter-spacing: 1.5px; }
-        .footer-box p { font-size: 13px; line-height: 1.8; font-weight: 300; color: #a1a8ae; }
+        .footer-box h3 { font-family: var(--font-display); color: var(--royal-gold); font-size: 19px; margin-bottom: 22px; }
+        .footer-box p { font-size: 13px; line-height: 1.8; color: #a1a8ae; }
         .copyright { text-align: center; margin-top: 60px; padding-top: 25px; border-top: 1px solid rgba(223, 186, 115, 0.08); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #6e757c; }
 
-        /* === STYLISH MOBILE COMPATIBILITY BREAKPOINTS === */
         @media (max-width: 768px) {
             header { padding: 15px 4%; }
-            .search-container { width: 140px; padding: 6px 10px; }
+            .search-container { width: 140px; }
             .search-container:focus-within { width: 160px; }
-            .logo { font-size: 20px; letter-spacing: 1px; }
-            
+            .logo { font-size: 20px; }
             .page-title-bar { padding: 80px 15px; }
-            .page-title-bar h1 { font-size: 28px; letter-spacing: 2px; }
-            .page-title-bar p { font-size: 11px; }
-
+            .page-title-bar h1 { font-size: 28px; }
             main { margin: 35px auto; padding: 0 15px; }
-            /* 2-Column Grid Setup for Mobile Devices */
             .products-grid { grid-template-columns: repeat(2, 1fr); gap: 25px 15px; }
-            
             .product-img-container { height: 230px; } 
-            .product-info { padding: 12px 0px 5px 0px; }
-            .product-title { font-size: 14px; letter-spacing: 0px; }
-            .product-desc { font-size: 12px; margin-bottom: 8px; -webkit-line-clamp: 1; }
-            .product-price-row { flex-direction: column; align-items: flex-start; gap: 10px; padding-top: 10px; }
-            .product-price { font-size: 15px; }
-            .add-to-cart-btn { width: 100%; padding: 11px; font-size: 10px; letter-spacing: 1px; }
-        }
-
-        @media (max-width: 360px) {
-            .products-grid { grid-template-columns: 1fr; gap: 30px; }
+            .product-title { font-size: 14px; }
+            .product-price-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .add-to-cart-btn { width: 100%; padding: 11px; font-size: 10px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- LUXURY COUTURE NAVIGATOR GLASS -->
     <header>
         <div class="nav-container">
-            <a href="index.html" class="logo" aria-label="StyleEasy Fine Living Hub">Style<span>Easy</span></a>
+            <a href="index.html" class="logo">Style<span>Easy</span></a>
             <div class="search-container">
-                <input type="text" id="searchInput" class="search-input" placeholder="Search accessories..." aria-label="Search items">
-                <i class="fas fa-search" aria-hidden="true"></i>
+                <input type="text" id="searchInput" class="search-input" placeholder="Search accessories...">
+                <i class="fas fa-search"></i>
             </div>
         </div>
     </header>
 
-    <!-- BANNER CANVAS FRAME -->
     <section class="page-title-bar">
         <h1>Atelier Accessories</h1>
         <p>The Final Touch of High Luxury</p>
     </section>
 
-    <!-- DYNAMIC MAIN PROCESSOR PORTAL -->
     <main>
-        <div class="products-grid" id="productsContainer" aria-live="polite"></div>
+        <div class="products-grid" id="productsContainer"></div>
     </main>
 
-    <!-- PREMIUM COUTURE FOOTER MATRIX -->
     <footer>
         <div class="footer-container">
             <div class="footer-box">
                 <h3>The Atelier</h3>
-                <p>StyleEasy Accessories are crafted using select alloys, precision gemstones, and hand-stitched leather. Each item defines bespoke sophistication and personal inheritance.</p>
+                <p>StyleEasy Accessories are crafted using select alloys, precision gemstones, and hand-stitched leather.</p>
             </div>
         </div>
         <div class="copyright">&copy; 2026 StyleEasy Atelier. Handcrafted Splendor.</div>
     </footer>
 
-    <!-- INTERACTIVE LOCAL DATA CONVERTER PIPELINE -->
     <script>
+      const firebaseConfig = {
+    apiKey: "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
+    authDomain: "lucky-triode-450317-g7.firebaseapp.com",
+    // 👇 यह अब 100% सही यूआरएल है जो आपके खुले हुए कंसोल से मैच करती है
+    databaseURL: "https://lucky-triode-450317-g7-default-rtdb.firebaseio.com/", 
+    projectId: "lucky-triode-450317-g7",
+    storageBucket: "lucky-triode-450317-g7.firebasestorage.app",
+    messagingSenderId: "778199870672",
+    appId: "1:778199870672:web:62a9891e41b3a3d3f242d5"
+};
+        
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
         let accessoriesProducts = [];
 
-        function loadAccessoriesStore() {
-            try {
-                const allProducts = JSON.parse(localStorage.getItem('styleEasyIsolatedProducts')) || [];
-                // Only load products filtered under 'accessories' category flag
-                accessoriesProducts = allProducts.filter(item => item.category === 'accessories');
+        function syncCloudStore() {
+            database.ref('products').on('value', (snapshot) => {
+                accessoriesProducts = [];
+                const cloudData = snapshot.val();
+                
+                if (cloudData) {
+                    Object.keys(cloudData).forEach(key => {
+                        const item = cloudData[key];
+                        if(item.category === 'accessories') {
+                            accessoriesProducts.push(item);
+                        }
+                    });
+                }
                 renderProducts(accessoriesProducts);
-            } catch (error) {
-                console.error("Critical core runtime data synchronization failure:", error);
-            }
+            });
         }
 
         function renderProducts(productsList) {
@@ -224,34 +178,26 @@
                 container.innerHTML = `
                     <div class="empty-state">
                         <i class="fas fa-gem" style="font-size:26px; color:#dfba73; display:block; margin-bottom:15px; opacity: 0.7;"></i>
-                        <p>The vault is being updated. Exquisite pieces arriving soon.</p>
+                        <p>The vault is being updated. Pieces arriving soon.</p>
                     </div>`;
                 return;
             }
 
             productsList.forEach((product) => {
-                const targetLink = product.buyLink || '#';
-                const title = product.title || 'Artisan Accessory';
-                const desc = product.description || 'Curated luxury asset built with fine handworked elements.';
-                const price = product.price || '0';
-                const img = product.imageUrl || 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=400&q=80';
-
                 const cardHTML = `
                     <article class="product-card">
                         <div class="product-img-container">
-                            <img src="${img}" alt="Purchase Fine Asset ${title}" class="product-img" loading="lazy">
-                            <!-- Desktop view layout inline anchor point -->
-                            <a href="${targetLink}" target="_blank" rel="noopener" class="add-to-cart-btn d-hide-mobile">
+                            <img src="${product.imageUrl || ''}" alt="${product.title || ''}" class="product-img" loading="lazy">
+                            <a href="${product.buyLink || '#'}" target="_blank" rel="noopener" class="add-to-cart-btn d-hide-mobile">
                                 <i class="fas fa-shopping-bag"></i> Acquire Asset
                             </a>
                         </div>
                         <div class="product-info">
-                            <h2 class="product-title">${title}</h2>
-                            <p class="product-desc">${desc}</p>
+                            <h2 class="product-title">${product.title || ''}</h2>
+                            <p class="product-desc">${product.description || ''}</p>
                             <div class="product-price-row">
-                                <span class="product-price">₹${price}</span>
-                                <!-- Mobile native active link injection port -->
-                                <a href="${targetLink}" target="_blank" rel="noopener" class="add-to-cart-btn d-show-mobile" style="display: none;">
+                                <span class="product-price">₹${product.price}</span>
+                                <a href="${product.buyLink || '#'}" target="_blank" rel="noopener" class="add-to-cart-btn d-show-mobile" style="display: none;">
                                     Acquire
                                 </a>
                             </div>
@@ -264,7 +210,6 @@
             syncLayoutBreakpoints();
         }
 
-        // Viewport structural safety dynamic configuration
         function syncLayoutBreakpoints() {
             const mobileStatus = window.innerWidth <= 768;
             document.querySelectorAll('.d-show-mobile').forEach(btn => {
@@ -272,21 +217,18 @@
             });
         }
 
-        // Real-Time Search Query Pipeline
         document.getElementById('searchInput').addEventListener('input', function(e) {
             const queryToken = e.target.value.toLowerCase().trim();
-            
             const filteredArray = accessoriesProducts.filter(product => {
-                const matchTitle = product.title ? product.title.toLowerCase().includes(queryToken) : false;
-                const matchDesc = product.description ? product.description.toLowerCase().includes(queryToken) : false;
-                return matchTitle || matchDesc;
+                const title = product.title || '';
+                const desc = product.description || '';
+                return title.toLowerCase().includes(queryToken) || desc.toLowerCase().includes(queryToken);
             });
-
             renderProducts(filteredArray);
         });
 
         window.addEventListener('resize', syncLayoutBreakpoints);
-        window.addEventListener('DOMContentLoaded', loadAccessoriesStore);
+        window.addEventListener('DOMContentLoaded', syncCloudStore);
     </script>
 </body>
 </html>

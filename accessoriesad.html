@@ -3,31 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Accessories Vault Management Dashboard | StyleEasy</title>
-    <!-- === SECURITY INDEXING PROTECTION === -->
+    <title>Accessories Shared Admin Console | StyleEasy</title>
     <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-    <meta name="googlebot" content="noindex, nofollow">
-
-    <!-- Google Analytics (Gtag) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8Y4KXCKM"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-BD8Y4KXCKM');
-    </script>
+    <link rel="icon" href="data:,">
     
-    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
     <style>
         :root {
-            --primary-color: #111518;    /* Deep Charcoal Black */
-            --accent-color: #dfba73;     /* Royal Gold */
+            --primary-color: #111518;
+            --accent-color: #dfba73;
             --text-color: #333333;
             --light-bg: #f5f6f8;
             --white: #ffffff;
@@ -37,109 +28,93 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: var(--light-bg); color: var(--text-color); display: flex; min-height: 100vh; -webkit-font-smoothing: antialiased; }
         
-        /* SIDE PANEL */
-        aside { width: 260px; background-color: var(--primary-color); color: var(--white); padding: 30px 20px; position: fixed; height: 100vh; z-index: 100; transition: all 0.3s ease; border-right: 2px solid var(--accent-color); }
+        aside { width: 260px; background-color: var(--primary-color); color: var(--white); padding: 30px 20px; position: fixed; height: 100vh; z-index: 100; border-right: 2px solid var(--accent-color); }
         aside .logo { font-size: 22px; font-weight: 700; letter-spacing: 1px; margin-bottom: 40px; text-align: center; }
         aside .logo span { color: var(--accent-color); }
         aside ul { list-style: none; }
-        aside ul li { margin-bottom: 8px; }
-        aside ul li a { color: #cccccc; text-decoration: none; padding: 12px 15px; display: flex; align-items: center; gap: 12px; border-radius: 6px; transition: 0.3s; font-size: 14px; font-weight: 500; }
-        aside ul li a:hover, aside ul li a.active { background-color: rgba(223, 186, 115, 0.15); color: var(--accent-color); }
+        aside ul li a { color: #cccccc; text-decoration: none; padding: 12px 15px; display: flex; align-items: center; gap: 12px; border-radius: 6px; transition: 0.3s; font-size: 14px; }
+        aside ul li a.active { background-color: rgba(223, 186, 115, 0.15); color: var(--accent-color); }
         
-        /* MAIN CONTAINMENT */
-        main { margin-left: 260px; flex: 1; padding: 40px; width: calc(100% - 260px); transition: all 0.3s ease; }
+        main { margin-left: 260px; flex: 1; padding: 40px; width: calc(100% - 260px); }
         header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 1px solid #ddd; padding-bottom: 15px; }
         header h1 { font-size: 26px; font-weight: 700; color: var(--primary-color); }
         .db-status { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: #666; }
-        .db-status i { color: var(--accent-color); } /* Gold indicator for accessories vault */
+        .db-status i { color: #2ecc71; }
 
-        /* LAYOUT HIERARCHY */
         .dashboard-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px; }
         .card { background: var(--white); padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); border: 1px solid #eef2f5; }
         .card h2 { font-size: 18px; font-weight: 600; margin-bottom: 20px; border-bottom: 2px solid var(--accent-color); padding-bottom: 8px; display: inline-block; color: var(--primary-color); }
         
-        /* CONTROL LAYERS */
         .form-group { margin-bottom: 18px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 13.5px; color: #444; }
-        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px; color: var(--text-color); outline: none; transition: all 0.3s; background-color: #fafafa; }
-        .form-group input:focus, .form-group textarea:focus { border-color: var(--accent-color); background-color: var(--white); box-shadow: 0 0 8px rgba(223, 186, 115, 0.2); }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 13.5px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px; outline: none; background-color: #fafafa; }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--accent-color); background-color: var(--white); }
         
-        .btn { background-color: var(--primary-color); color: var(--white); border: 1px solid var(--primary-color); padding: 14px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; width: 100%; transition: 0.3s; font-size: 14px; letter-spacing: 0.5px; }
+        .btn { background-color: var(--primary-color); color: var(--white); border: 1px solid var(--primary-color); padding: 14px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; width: 100%; transition: 0.3s; font-size: 14px; }
         .btn:hover { background-color: var(--accent-color); color: var(--primary-color); border-color: var(--accent-color); }
         
-        /* RESPONSIVE TABLE CONFIG */
         .table-responsive { overflow-x: auto; border-radius: 8px; border: 1px solid #eee; }
         table { width: 100%; border-collapse: collapse; background: var(--white); }
-        table th, table td { text-align: left; padding: 14px; border-bottom: 1px solid #eeeeee; font-size: 13.5px; vertical-align: middle; }
+        table th, table td { text-align: left; padding: 14px; border-bottom: 1px solid #eeeeee; font-size: 13.5px; }
         table th { background-color: #f8f9fa; font-weight: 600; color: #555; }
-        .img-preview { width: 45px; height: 45px; object-fit: cover; border-radius: 6px; border: 1px solid #eee; background-color: #f0f0f0; }
+        .img-preview { width: 45px; height: 45px; object-fit: cover; border-radius: 6px; }
         
         .badge-cat-fixed { padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; text-transform: uppercase; background: #fff8e1; color: #f57f17; border: 1px solid #ffe082; }
-        .delete-btn { background: none; border: none; color: var(--danger-color); cursor: pointer; font-size: 16px; padding: 5px; transition: transform 0.2s; }
-        .delete-btn:hover { transform: scale(1.15); }
+        .delete-btn { background: none; border: none; color: var(--danger-color); cursor: pointer; font-size: 16px; }
         
-        /* VIEW INTERACTION BREAKPOINTS */
         @media (max-width: 1100px) { .dashboard-grid { grid-template-columns: 1fr; } }
         @media (max-width: 768px) { 
             aside { width: 70px; padding: 30px 10px; } 
             aside .logo, aside ul li a span { display: none; } 
-            aside ul li a { justify-content: center; padding: 12px 0; font-size: 18px; }
             main { margin-left: 70px; width: calc(100% - 70px); padding: 20px; } 
-            header h1 { font-size: 20px; }
-            .card { padding: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGATION CONSOLE -->
     <aside>
         <div class="logo">Style<span>Easy</span></div>
         <nav>
             <ul>
                 <li><a href="#" class="active"><i class="fas fa-gem"></i> <span>Accessories Admin</span></a></li>
-                <li><a href="accessories.html" target="_blank" rel="noopener"><i class="fas fa-eye"></i> <span>Live Accessories Vault</span></a></li>
             </ul>
         </nav>
     </aside>
 
-    <!-- CONTAINER DESK -->
     <main>
         <header>
-            <h1>Accessories Vault Hub</h1>
-            <div class="db-status"><i class="fas fa-circle"></i> Accessories-Only Port</div>
+            <h1>Accessories Shared Cloud Hub</h1>
+            <div class="db-status"><i class="fas fa-circle"></i> Live Connected</div>
         </header>
 
         <div class="dashboard-grid">
-            <!-- HARD ENCRYPTED INPUT BLOCK -->
             <section class="card">
                 <h2>Publish Luxury Accessory</h2>
                 <form id="accessoriesForm">
                     <div class="form-group">
-                        <label for="title">Asset Title</label>
-                        <input type="text" id="title" placeholder="e.g., Royal Emerald Choker Set" required>
+                        <label>Product Title</label>
+                        <input type="text" id="title" required>
                     </div>
                     <div class="form-group">
-                        <label for="price">Price (INR - ₹)</label>
-                        <input type="number" id="price" min="0" placeholder="e.g., 4999" required>
+                        <label>Price (₹)</label>
+                        <input type="number" id="price" min="0" required>
                     </div>
                     <div class="form-group">
-                        <label for="imageUrl">Image URL</label>
-                        <input type="url" id="imageUrl" placeholder="https://images.unsplash.com/..." required>
+                        <label>Image URL</label>
+                        <input type="url" id="imageUrl" required>
                     </div>
                     <div class="form-group">
-                        <label for="buyLink">Secure WhatsApp / Checkout Link</label>
-                        <input type="url" id="buyLink" placeholder="https://wa.me/91..." required>
+                        <label>WhatsApp Checkout Link</label>
+                        <input type="url" id="buyLink" required>
                     </div>
                     <div class="form-group">
-                        <label for="description">Material & Craftsmanship Details</label>
-                        <textarea id="description" rows="4" placeholder="Mention gold plating grade, stone settings, weight, or care tips..." required></textarea>
+                        <label>Material & Craftsmanship Details</label>
+                        <textarea id="description" rows="4" required></textarea>
                     </div>
-                    <button type="submit" class="btn">Inject to Accessories Store</button>
+                    <button type="submit" class="btn">Inject to Shared Firebase</button>
                 </form>
             </section>
 
-            <!-- ONLY ACCESSORIES INVENTORY VIEWPORT -->
             <section class="card">
                 <h2>Live Accessories Catalog</h2>
                 <div class="table-responsive">
@@ -160,100 +135,91 @@
         </div>
     </main>
 
-    <!-- CONTROL AUTOMATION LOGIC -->
     <script>
+        // === UPDATED CONFIG WITH databaseURL FOR 2026 INSTANCE ===
+        const firebaseConfig = {
+    apiKey: "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
+    authDomain: "lucky-triode-450317-g7.firebaseapp.com",
+    // 👇 यह अब 100% सही यूआरएल है जो आपके खुले हुए कंसोल से मैच करती है
+    databaseURL: "https://lucky-triode-450317-g7-default-rtdb.firebaseio.com/", 
+    projectId: "lucky-triode-450317-g7",
+    storageBucket: "lucky-triode-450317-g7.firebasestorage.app",
+    messagingSenderId: "778199870672",
+    appId: "1:778199870672:web:62a9891e41b3a3d3f242d5"
+};
+        
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
         const form = document.getElementById('accessoriesForm');
         const tableBody = document.getElementById('accessoriesInventoryTable');
-        const storageKey = 'styleEasyIsolatedProducts';
 
-        // Local Storage Sync Engine
-        function getAllProducts() {
-            try {
-                return JSON.parse(localStorage.getItem(storageKey)) || [];
-            } catch (e) {
-                console.error("Database connection lost:", e);
-                return [];
-            }
-        }
-
-        // Live Table Component Renderer
-        function renderAccessoriesInventory() {
-            const allProducts = getAllProducts();
-            // Filter process - shows only items mapped under 'accessories'
-            const accessoriesProducts = allProducts.filter(item => item.category === 'accessories');
-            
+        // Dynamic Main Node Syncer
+        database.ref('products').on('value', (snapshot) => {
             tableBody.innerHTML = '';
-
-            if(accessoriesProducts.length === 0) {
-                tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#999; padding:40px; font-style:italic;">No active assets in the accessories vault. Add products.</td></tr>`;
+            const data = snapshot.val();
+            
+            if(!data) {
+                tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#999; padding:40px;">No products found in cloud.</td></tr>`;
                 return;
             }
 
-            // Render matching structural items
-            accessoriesProducts.forEach((product) => {
-                const tr = document.createElement('tr');
-                const safeImg = product.imageUrl || 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=100&q=80';
+            let hasItems = false;
+            Object.keys(data).forEach((key) => {
+                const product = data[key];
                 
-                // Location map setup for precise global database slicing
-                const uniqueId = allProducts.indexOf(product);
-
-                tr.innerHTML = `
-                    <td><img src="${safeImg}" class="img-preview" alt="Preview Image"></td>
-                    <td><strong>${escapeHTML(product.title)}</strong></td>
-                    <td>₹${escapeHTML(product.price)}</td>
-                    <td><span class="badge-cat-fixed">Accessories</span></td>
-                    <td>
-                        <button class="delete-btn" onclick="removeItem(${uniqueId})" aria-label="Drop item">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                    </td>
-                `;
-                tableBody.appendChild(tr);
+                if(product.category === 'accessories') {
+                    hasItems = true;
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td><img src="${product.imageUrl || ''}" class="img-preview" alt="Preview"></td>
+                        <td><strong>${escapeHTML(product.title)}</strong></td>
+                        <td>₹${escapeHTML(product.price)}</td>
+                        <td><span class="badge-cat-fixed">Accessories</span></td>
+                        <td>
+                            <button class="delete-btn" onclick="removeItem('${key}')">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    `;
+                    tableBody.appendChild(tr);
+                }
             });
-        }
 
-        // Input Sanitizer Protection (Anti-XSS Engine)
+            if(!hasItems) {
+                tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#999; padding:40px;">No accessories found in cloud database.</td></tr>`;
+            }
+        });
+
         function escapeHTML(str) {
             return String(str).replace(/[&<>"']/g, function(m) {
                 return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
             });
         }
 
-        // Processing Pipeline Interceptor
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            const allProducts = getAllProducts();
-
-            // Constructing item with hardcoded 'accessories' category designation
+            
             const newAccessory = {
                 title: document.getElementById('title').value.trim(),
                 price: document.getElementById('price').value.trim(),
-                category: 'accessories', // <--- HARDCODED SECURE KEY
+                category: 'accessories',
                 imageUrl: document.getElementById('imageUrl').value.trim(),
                 buyLink: document.getElementById('buyLink').value.trim(), 
                 description: document.getElementById('description').value.trim()
             };
 
-            allProducts.push(newAccessory);
-            localStorage.setItem(storageKey, JSON.stringify(allProducts));
-            
-            alert('Exquisite piece has been securely added to the Accessories Vault!');
-            form.reset();
-            renderAccessoriesInventory();
+            database.ref('products').push(newAccessory).then(() => {
+                alert('Saved to shared database successfully!');
+                form.reset();
+            }).catch(err => alert('Error: ' + err.message));
         });
 
-        // Safe database element purging
-        window.removeItem = function(absoluteIndex) {
-            if(confirm("Are you sure you want to remove this asset from the live database?")) {
-                const allProducts = getAllProducts();
-                allProducts.splice(absoluteIndex, 1);
-                localStorage.setItem(storageKey, JSON.stringify(allProducts));
-                renderAccessoriesInventory();
+        window.removeItem = function(firebaseKey) {
+            if(confirm("Delete this accessory permanently from main cloud?")) {
+                database.ref('products').child(firebaseKey).remove();
             }
         }
-
-        // Fire Execution Engine
-        window.addEventListener('DOMContentLoaded', renderAccessoriesInventory);
     </script>
 </body>
 </html>
