@@ -2,12 +2,12 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <!-- Advanced On-Page SEO -->
-    <title> StyleEasy | Girl Dress Online | Trendy Fashion Clothes & Party Wear</title>
-    <meta name="description" content="Shop the latest girl dresses online at Queen Style. Explore premium girls fashion clothes, exclusive party wear dresses, cute outfits, and trendy western clothing at the best prices in India.">
-    <meta name="keywords" content="girl dress online, girls fashion clothes, party wear dress girls, cute outfits for girls, trendy dresses online, women clothing store, Queen Style fashion, buy frocks online, designer girls clothing">
+    <title>StyleEasy | Girl Dress Online | Trendy Fashion Clothes & Party Wear</title>
+    <meta name="description" content="Shop the latest girl dresses online at StyleEasy. Explore premium girls fashion clothes, exclusive party wear dresses, cute outfits, and trendy western clothing at the best prices in India.">
+    <meta name="keywords" content="girl dress online, girls fashion clothes, party wear dress girls, cute outfits for girls, trendy dresses online, women clothing store, StyleEasy fashion, buy frocks online, designer girls clothing">
     <meta name="robots" content="index, follow">
 
     <link rel="canonical" href="https://superlative-haupia-d1b3ec.netlify.app/login.html">
@@ -19,12 +19,13 @@
     <meta property="og:site_name" content="StyleEasy">
     <meta property="og:url" content="https://superlative-haupia-d1b3ec.netlify.app/login.html">
     <meta property="og:image" content="https://superlative-haupia-d1b3ec.netlify.app/images.jpg">
+    <meta property="og:image:alt" content="StyleEasy Premium Girls Fashion Collection">
     <meta name="p:domain_verify" content="9a44296808823bcaa287961da064c685"/>
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="StyleEasy - Royal Login & Girls Fashion">
-    <meta name="twitter:description" content="Login to your Queen Style account and experience royalty with every outfit.">
+    <meta name="twitter:description" content="Login to your StyleEasy account and experience royalty with every outfit.">
     <meta name="twitter:image" content="https://superlative-haupia-d1b3ec.netlify.app/images.jpg">
     
     <!-- Google tag (gtag.js) -->
@@ -42,19 +43,19 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
             background: #f8fafc;
             min-height: 100vh;
-            overflow-x: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow-x: hidden;
         }
 
-        /* FULL DISPLAY WRAPPER */
         .full-display-wrapper {
             width: 100vw;
             height: 100vh;
@@ -64,7 +65,6 @@
             background: #ffffff;
         }
 
-        /* MAIN SPLIT CARD */
         .login-master {
             width: 100%;
             height: 100%;
@@ -102,14 +102,12 @@
             will-change: opacity, transform;
         }
 
-        /* Smooth subtle zoom effect on active slide */
         .slide-img.active {
-            opacity: 0.55; /* Slightly darkened for premium contrast with typography */
+            opacity: 0.55; 
             z-index: 1;
             transform: scale(1.05);
         }
 
-        /* Overlay text styling - Semantic Optimization */
         .image-overlay {
             position: absolute;
             bottom: 0;
@@ -126,7 +124,6 @@
             font-weight: 800;
             margin-bottom: 0.5rem;
             letter-spacing: -0.5px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         .image-overlay .seo-subheadings h2 {
@@ -186,6 +183,7 @@
             max-width: 560px;
             margin: 0 auto;
             height: 100vh;
+            z-index: 20;
         }
 
         .brand-header {
@@ -271,10 +269,6 @@
             box-shadow: 0 0 0 4px rgba(15, 23, 42, 0.06);
         }
 
-        .input-group input::placeholder {
-            color: #94a3b8;
-        }
-
         /* PREMIUM BUTTONS */
         .login-btn {
             width: 100%;
@@ -294,14 +288,11 @@
         .login-btn:hover {
             background: #1e293b;
             transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(15, 23, 42, 0.2);
         }
 
         .login-btn:disabled {
             background: #94a3b8 !important;
             cursor: not-allowed;
-            transform: none !important;
-            box-shadow: none !important;
         }
 
         .google-btn {
@@ -312,13 +303,11 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
 
         .google-btn:hover {
             background: #f8fafc;
             border-color: #cbd5e1;
-            color: #0f172a;
         }
 
         .divider {
@@ -357,13 +346,10 @@
             text-decoration: none;
             font-weight: 700;
             font-size: 0.92rem;
-            transition: color 0.2s ease;
         }
 
         .link a:hover {
-            color: #334155;
             text-decoration: underline;
-            text-underline-offset: 4px;
         }
 
         .seo-footer {
@@ -375,52 +361,104 @@
             font-weight: 500;
         }
 
-        /* MAX RESPONSIVENESS SPECIFICATIONS */
-        @media (max-width: 1024px) {
-            .form-side { padding: 2.5rem; }
-            .image-overlay { padding: 3rem 2.5rem; }
-            .slide-dots { left: 2.5rem; }
-            .image-overlay h1 { font-size: 2.2rem; }
-        }
-
-        /* Mobile Layout: Split Screen Fix (50% Top Image / 50% Bottom Form) */
+        /* PREMIUM ULTRA-RESPONSIVE MOBILE ARCHITECTURE */
         @media (max-width: 850px) {
-            body { background: #ffffff; }
-            .full-display-wrapper { overflow: hidden; }
-            .login-master { flex-direction: column; }
-            
-            .image-gallery-side {
-                height: 42vh;
-                width: 100%;
-                flex: none;
-            }
-            
-            .form-side {
-                height: 58vh;
-                width: 100%;
-                flex: none;
-                padding: 2rem 1.5rem;
-                justify-content: flex-start;
-                overflow-y: auto;
+            .login-master {
+                position: relative;
+                flex-direction: column;
+                height: 100vh;
             }
 
-            .brand-header { margin-bottom: 1.5rem; }
-            .crown-icon { font-size: 42px; }
-            .brand-header h2 { font-size: 24px; }
-            
-            .image-overlay { padding: 2rem 1.5rem; }
-            .image-overlay h1 { font-size: 1.8rem; }
-            .image-overlay .seo-subheadings h2 { font-size: 0.95rem; margin-bottom: 0.5rem; }
-            .image-overlay p { font-size: 0.88rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-            
-            .slide-dots { left: 1.5rem; bottom: 1.5rem; }
-            .divider { margin: 1.2rem 0; }
-            .link { margin-top: 1.2rem; }
-            .seo-footer { padding-top: 1.5rem; }
+            /* Gallery goes fullscreen background for immersive mobile branding */
+            .image-gallery-side {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                z-index: 1;
+            }
+
+            .slide-img.active {
+                opacity: 0.35; /* Darkened further to maximize form legibility on mobile */
+            }
+
+            /* Hiding text overlay on mobile layout to focus completely on UX/UI Conversion */
+            .image-overlay {
+                display: none;
+            }
+
+            .slide-dots {
+                bottom: auto;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            /* Glassmorphism Floating Form Matrix */
+            .form-side {
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 92%;
+                max-width: 440px;
+                height: auto;
+                max-height: 85vh;
+                margin-bottom: 24px;
+                border-radius: 1.5rem;
+                padding: 2.2rem 1.8rem;
+                background: rgba(255, 255, 255, 0.94);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+                border: 1px solid rgba(255, 255, 255, 0.4);
+                overflow-y: auto;
+                scrollbar-width: none; /* Hide scrollbars */
+            }
+
+            .form-side::-webkit-scrollbar {
+                display: none;
+            }
+
+            .brand-header {
+                margin-bottom: 1.8rem;
+            }
+
+            .crown-icon {
+                font-size: 44px;
+            }
+
+            .brand-header h2 {
+                font-size: 26px;
+            }
+
+            .divider {
+                margin: 1.3rem 0;
+            }
+
+            .divider span {
+                background: transparent;
+                color: #64748b;
+            }
+
+            .link {
+                margin-top: 1.3rem;
+            }
+
+            .seo-footer {
+                padding-top: 1.8rem;
+                color: #64748b;
+            }
         }
 
-        @media (max-width: 480px) {
-            .form-side { padding: 1.5rem 1.25rem; }
+        @media (max-width: 400px) {
+            .form-side {
+                width: 95%;
+                padding: 1.8rem 1.25rem;
+                margin-bottom: 12px;
+            }
+            .brand-header h2 { font-size: 23px; }
             .input-group input { padding: 0.85rem 0.85rem 0.85rem 44px; font-size: 0.92rem; }
             .login-btn { padding: 0.85rem; font-size: 0.95rem; }
         }
@@ -431,11 +469,11 @@
 <div class="full-display-wrapper">
     <div class="login-master">
         
-        <!-- LEFT SIDE: SEMANTIC SEO SLIDESHOW FRAMEWORK -->
+        <!-- LEFT SIDE: SLIDESHOW FRAMEWORK -->
         <div class="image-gallery-side">
             <div class="slideshow-container" id="slideshowContainer">
-                <img class="slide-img" src="/images.jpg" alt="Beautiful Girl Premium Trendy Party Wear Dress - Queen Style">
-                <img class="slide-img" src="/image/images (3).jpeg" alt="Cute Frocks and Designer Clothes for Girls Online">
+                <img class="slide-img" src="/images.jpg" alt="Beautiful Girl Premium Trendy Party Wear Dress - StyleEasy">
+                <img class="slide-img" src="/image/images (3).jpeg" alt="Cute Frocks and Designer Clothes for Girls Online - StyleEasy">
                 <img class="slide-img" src="/image/images (4).jpeg" alt="Latest Trendy Outfits & Modern Girls Fashion Apparel">
                 <img class="slide-img" src="/image/images (2).jpeg" alt="Elegant Traditional and Western Dresses for Girls">
                 <img class="slide-img" src="/image/images (6).jpeg" alt="Luxury Birthday Party Wear Frocks Boutique Collection">
@@ -452,7 +490,6 @@
                         <h2>Girls Fashion Clothes</h2>
                         <h2>Party Wear Dress For Girls</h2>
                         <h2>Latest Trendy Dresses Online</h2>
-                        <h2>Women Clothing Store</h2>
                     </div>
                     <p>
                         Discover India's most loved royal collection. Shop boutique quality girl dresses, cute outfits, luxury birthday gowns, and daily style statement clothing at affordable online prices.
@@ -466,7 +503,7 @@
         <div class="form-side">
             <header class="brand-header">
                 <div class="crown-icon" aria-hidden="true">👑</div>
-                <h2>Queen Style</h2>
+                <h2>StyleEasy</h2>
                 <div class="royal-tag">✦ LOGIN TO YOUR ACCOUNT ✦</div>
             </header>
 
@@ -475,7 +512,7 @@
                     <label for="email">Email Address</label>
                     <div class="input-field-wrapper">
                         <span class="input-icon">✉️</span>
-                        <input type="email" id="email" placeholder="hello@queenstyle.com" autocomplete="email" required>
+                        <input type="email" id="email" placeholder="hello@styleeasy.com" autocomplete="email" required>
                     </div>
                 </div>
 
@@ -491,7 +528,6 @@
 
                 <div class="divider"><span>✦ OR ✦</span></div>
 
-                <!-- Native High-Res Brand SVG Google Logo Integrated -->
                 <button type="button" class="login-btn google-btn" id="googleLoginBtn">
                     <svg width="18" height="18" viewBox="0 0 24 24">
                         <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -508,7 +544,7 @@
             </main>
 
             <footer class="seo-footer">
-                🔐 Secure Authentication • Royal Fashion Community • Since 2024
+                🔐 Secure Authentication • Royal Fashion Community
             </footer>
         </div>
     </div>
@@ -533,7 +569,6 @@
     const db = getFirestore(app);
     
     const googleProvider = new GoogleAuthProvider();
-    // Re-authenticate parameter fixes popup freeze issues across non-whitelisted cross-origins
     googleProvider.setCustomParameters({ 
         'prompt': 'select_account',
         'auth_type': 'reauthenticate'
@@ -581,7 +616,7 @@
     }
 
     function startSlideshow() {
-        slideInterval = setInterval(nextSlide, 5000); // Perfect 5 Sec Hold Time
+        slideInterval = setInterval(nextSlide, 5000);
     }
 
     function resetInterval() {
@@ -604,11 +639,11 @@
         notification.id = 'auth-toast';
         notification.textContent = msg;
         notification.style.cssText = `
-            position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+            position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
             background-color: ${isError ? '#e5484d' : '#2b9348'}; color: white;
             padding: 14px 28px; border-radius: 12px; font-size: 14px; font-weight: 600;
             z-index: 10000; box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            transition: all 0.3s ease; font-family: inherit;
+            transition: all 0.3s ease; font-family: inherit; text-align: center; width: 85%; max-width: 320px;
         `;
         document.body.appendChild(notification);
         setTimeout(() => {
@@ -678,7 +713,7 @@
             showMessage("👑 Welcome Admin! Access Granted...", false);
             setTimeout(() => window.location.href = "admin.html", 900);
         } else {
-            showMessage("✨ Welcome to Queen Style!", false);
+            showMessage("✨ Welcome to StyleEasy!", false);
             setTimeout(() => window.location.href = "profile.html", 900);
         }
     }
@@ -760,7 +795,6 @@
         }
     }
 
-    // Active session validation redirection
     const existing = localStorage.getItem("currentUser");
     if (existing) {
         try {
@@ -777,14 +811,14 @@
     document.getElementById("email").addEventListener("keypress", (e) => e.key === "Enter" && handleEmailLogin());
     document.getElementById("password").addEventListener("keypress", (e) => e.key === "Enter" && handleEmailLogin());
 
-    // SEMANTIC STRUCTURED JSON-LD SCHEMA FOR LOCAL ENGINE DOMINANCE
+    // SEMANTIC STRUCTURED JSON-LD SCHEMA
     const schema = document.createElement('script');
     schema.type = 'application/ld+json';
     schema.textContent = JSON.stringify({
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "Queen Style Login Gateway",
-        "description": "Secure login access framework for the Queen Style premium royalty clothes and membership space.",
+        "name": "StyleEasy Login Gateway",
+        "description": "Secure login access framework for the StyleEasy premium royalty clothes and membership space.",
         "url": "https://superlative-haupia-d1b3ec.netlify.app/login.html"
     });
     document.head.appendChild(schema);
