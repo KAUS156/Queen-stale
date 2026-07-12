@@ -168,7 +168,7 @@
             border-radius: 4px;
         }
 
-        /* RIGHT SIDE: MODERN FORM ARCHITECTURE */
+        /* RIGHT SIDE: MODERN LOGIN FORM */
         .form-side {
             flex: 1;
             background: #ffffff;
@@ -493,7 +493,7 @@
 
         <div class="form-side">
             <header class="brand-header">
-                <span class="crown-icon" role="img" aria-label="Royal Crown">👑</span>
+                <div class="crown-icon" aria-hidden="true">👑</div>
                 <h2>StyleEasy</h2>
                 <div class="royal-tag">✦ LOGIN TO YOUR ACCOUNT ✦</div>
             </header>
@@ -543,8 +543,8 @@
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    // SECURE PURE DIRECT STRATEGY: Popup fully removed to bypass third-party browser partition blocks
-    import { getAuth, signInWithEmailAndPassword, signInWithRedirect, getRedirectResult, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    // RECTIFIED: Added signInWithPopup alongside Redirect & Redirect Result
+    import { getAuth, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect, getRedirectResult, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
     import { getFirestore, collection, query, where, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
     const firebaseConfig = {
@@ -562,7 +562,8 @@
     
     const googleProvider = new GoogleAuthProvider();
     googleProvider.setCustomParameters({ 
-        'prompt': 'select_account'
+        'prompt': 'select_account',
+        'auth_type': 'reauthenticate'
     });
 
     // GALLERY DYNAMIC SYSTEM
@@ -702,10 +703,10 @@
 
         if (isAdmin) {
             showMessage("👑 Welcome Admin! Access Granted...", false);
-            setTimeout(() => window.location.replace("admin.html"), 900);
+            setTimeout(() => window.location.href = "admin.html", 900);
         } else {
             showMessage("✨ Welcome to StyleEasy!", false);
-            setTimeout(() => window.location.replace("profile.html"), 900);
+            setTimeout(() => window.location.href = "profile.html", 900);
         }
     }
 
@@ -721,7 +722,7 @@
                     area: "Luxury Enthusiast",
                     isAdmin: false,
                     photoURL: user.photoURL || "",
-                    authProvider: user.providerData[0]?.providerId || "google.com",
+                    authProvider: user.providerData[0]?.providerId || "password",
                     createdAt: new Date().toISOString()
                 });
             }
@@ -759,7 +760,7 @@
         }
     }
 
-    // PURE REDIRECT CONTROLLER
+    // UPDATED: Modern implementation with Popup priority + Redirect fallback architectural strategy
     async function handleGoogleLogin() {
         if (typeof gtag === 'function') {
             gtag('event', 'login_attempt', { 'method': 'Google' });
@@ -767,29 +768,34 @@
 
         setUIState(true, 'google');
         try {
-            await signInWithRedirect(auth, googleProvider);
+            // Priority 1: Popup system execution (Excellent for partitioned storages)
+            const result = await signInWithPopup(auth, googleProvider);
+            if (result && result.user) {
+                const user = result.user;
+                let isAdmin = user.email?.toLowerCase() === "mailak@gmail.com" ? true : await checkAdminStatus(user);
+                if (!isAdmin) await ensureUserDocument(user);
+                await handleSuccessfulLogin(user, isAdmin);
+            }
         } catch (error) {
-            setUIState(false, 'google');
-            console.error("Google Redirect Error:", error);
-            showMessage(`❌ Redirect Failed: ${error.message}`);
+            console.warn("Popup blocked or storage error context, shifting to Redirect matrix:", error);
+            
+            // Priority 2: Fail-safe fallback logic execution
+            if (error.code === 'auth/popup-blocked' || error.code === 'auth/operation-not-allowed' || error.message.includes('sessionStorage')) {
+                try {
+                    await signInWithRedirect(auth, googleProvider);
+                } catch (redirectError) {
+                    setUIState(false, 'google');
+                    showMessage(`❌ Secure Gate Blocked: ${redirectError.message}`);
+                }
+            } else {
+                setUIState(false, 'google');
+                showMessage(`❌ Authentication Interface Error: ${error.message}`);
+            }
         }
     }
 
-    // ASYNC LOAD HANDSHAKE RECOVERY MATRIX
+    // Fallback load checker matrix for redirection tracking data architecture
     window.addEventListener('load', async () => {
-        // Double redirection prevention
-        const existing = localStorage.getItem("currentUser");
-        if (existing) {
-            try {
-                const p = JSON.parse(existing);
-                if (p.isAdmin) window.location.replace("admin.html");
-                else window.location.replace("profile.html");
-                return;
-            } catch(e) {
-                localStorage.clear();
-            }
-        }
-
         try {
             const result = await getRedirectResult(auth);
             if (result && result.user) {
@@ -799,17 +805,27 @@
                 await handleSuccessfulLogin(user, isAdmin);
             }
         } catch (error) {
-            setUIState(false, 'google');
-            console.error("Redirect Resolution Error Handled:", error);
+            console.error("Redirect parsing state info:", error);
         }
     });
+
+    const existing = localStorage.getItem("currentUser");
+    if (existing) {
+        try {
+            const p = JSON.parse(existing);
+            if (p.isAdmin) window.location.href = "admin.html";
+            else window.location.href = "profile.html";
+        } catch(e) {
+            localStorage.clear();
+        }
+    }
 
     document.getElementById("emailLoginBtn").addEventListener("click", handleEmailLogin);
     document.getElementById("googleLoginBtn").addEventListener("click", handleGoogleLogin);
     document.getElementById("email").addEventListener("keypress", (e) => e.key === "Enter" && handleEmailLogin());
     document.getElementById("password").addEventListener("keypress", (e) => e.key === "Enter" && handleEmailLogin());
 
-    // SEMANTIC STRUCTURED JSON-LD SCHEMA FOR BETTER SEO
+    // SEMANTIC STRUCTURED JSON-LD SCHEMA
     const schema = document.createElement('script');
     schema.type = 'application/ld+json';
     schema.textContent = JSON.stringify({
