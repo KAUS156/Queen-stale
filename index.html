@@ -543,8 +543,8 @@
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    // RECTIFIED: Added signInWithPopup alongside Redirect & Redirect Result
-    import { getAuth, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect, getRedirectResult, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    // SECURE PURE DIRECT STRATEGY: Explicitly removed signInWithPopup to kill user-cancel / partition blockages
+    import { getAuth, signInWithEmailAndPassword, signInWithRedirect, getRedirectResult, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
     import { getFirestore, collection, query, where, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
     const firebaseConfig = {
@@ -562,8 +562,7 @@
     
     const googleProvider = new GoogleAuthProvider();
     googleProvider.setCustomParameters({ 
-        'prompt': 'select_account',
-        'auth_type': 'reauthenticate'
+        'prompt': 'select_account'
     });
 
     // GALLERY DYNAMIC SYSTEM
@@ -722,7 +721,7 @@
                     area: "Luxury Enthusiast",
                     isAdmin: false,
                     photoURL: user.photoURL || "",
-                    authProvider: user.providerData[0]?.providerId || "password",
+                    authProvider: user.providerData[0]?.providerId || "google.com",
                     createdAt: new Date().toISOString()
                 });
             }
@@ -760,7 +759,7 @@
         }
     }
 
-    // UPDATED: Modern implementation with Popup priority + Redirect fallback architectural strategy
+    // PURE REDIRECT IMPLEMENTATION
     async function handleGoogleLogin() {
         if (typeof gtag === 'function') {
             gtag('event', 'login_attempt', { 'method': 'Google' });
@@ -768,33 +767,15 @@
 
         setUIState(true, 'google');
         try {
-            // Priority 1: Popup system execution (Excellent for partitioned storages)
-            const result = await signInWithPopup(auth, googleProvider);
-            if (result && result.user) {
-                const user = result.user;
-                let isAdmin = user.email?.toLowerCase() === "mailak@gmail.com" ? true : await checkAdminStatus(user);
-                if (!isAdmin) await ensureUserDocument(user);
-                await handleSuccessfulLogin(user, isAdmin);
-            }
+            await signInWithRedirect(auth, googleProvider);
         } catch (error) {
-            console.warn("Popup blocked or storage error context, shifting to Redirect matrix:", error);
-            
-            // Priority 2: Fail-safe fallback logic execution
-            if (error.code === 'auth/popup-blocked' || error.code === 'auth/operation-not-allowed' || error.message.includes('sessionStorage')) {
-                try {
-                    await signInWithRedirect(auth, googleProvider);
-                } catch (redirectError) {
-                    setUIState(false, 'google');
-                    showMessage(`❌ Secure Gate Blocked: ${redirectError.message}`);
-                }
-            } else {
-                setUIState(false, 'google');
-                showMessage(`❌ Authentication Interface Error: ${error.message}`);
-            }
+            setUIState(false, 'google');
+            console.error("Google Redirect Error:", error);
+            showMessage(`❌ Redirect Failed: ${error.message}`);
         }
     }
 
-    // Fallback load checker matrix for redirection tracking data architecture
+    // ASYNC LISTENER FOR CAPTURING ON-LOAD RE-ENTRY REDIRECT DATA
     window.addEventListener('load', async () => {
         try {
             const result = await getRedirectResult(auth);
@@ -805,7 +786,9 @@
                 await handleSuccessfulLogin(user, isAdmin);
             }
         } catch (error) {
-            console.error("Redirect parsing state info:", error);
+            setUIState(false, 'google');
+            console.error("Redirect Resolution Parser Error:", error);
+            // Storage blocks ya missing initial state runtime exceptions explicitly suppressed to maintain clean UI state
         }
     });
 
