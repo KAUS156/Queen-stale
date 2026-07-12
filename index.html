@@ -168,7 +168,7 @@
             border-radius: 4px;
         }
 
-        /* RIGHT SIDE: MODERN LOGIN FORM */
+        /* RIGHT SIDE: MODERN FORM ARCHITECTURE */
         .form-side {
             flex: 1;
             background: #ffffff;
@@ -493,7 +493,7 @@
 
         <div class="form-side">
             <header class="brand-header">
-                <div class="crown-icon" aria-hidden="true">👑</div>
+                <span class="crown-icon" role="img" aria-label="Royal Crown">👑</span>
                 <h2>StyleEasy</h2>
                 <div class="royal-tag">✦ LOGIN TO YOUR ACCOUNT ✦</div>
             </header>
@@ -543,7 +543,7 @@
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    // SECURE PURE DIRECT STRATEGY: Explicitly removed signInWithPopup to kill user-cancel / partition blockages
+    // SECURE PURE DIRECT STRATEGY: Popup fully removed to bypass third-party browser partition blocks
     import { getAuth, signInWithEmailAndPassword, signInWithRedirect, getRedirectResult, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
     import { getFirestore, collection, query, where, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
@@ -702,10 +702,10 @@
 
         if (isAdmin) {
             showMessage("👑 Welcome Admin! Access Granted...", false);
-            setTimeout(() => window.location.href = "admin.html", 900);
+            setTimeout(() => window.location.replace("admin.html"), 900);
         } else {
             showMessage("✨ Welcome to StyleEasy!", false);
-            setTimeout(() => window.location.href = "profile.html", 900);
+            setTimeout(() => window.location.replace("profile.html"), 900);
         }
     }
 
@@ -759,7 +759,7 @@
         }
     }
 
-    // PURE REDIRECT IMPLEMENTATION
+    // PURE REDIRECT CONTROLLER
     async function handleGoogleLogin() {
         if (typeof gtag === 'function') {
             gtag('event', 'login_attempt', { 'method': 'Google' });
@@ -775,8 +775,21 @@
         }
     }
 
-    // ASYNC LISTENER FOR CAPTURING ON-LOAD RE-ENTRY REDIRECT DATA
+    // ASYNC LOAD HANDSHAKE RECOVERY MATRIX
     window.addEventListener('load', async () => {
+        // Double redirection prevention
+        const existing = localStorage.getItem("currentUser");
+        if (existing) {
+            try {
+                const p = JSON.parse(existing);
+                if (p.isAdmin) window.location.replace("admin.html");
+                else window.location.replace("profile.html");
+                return;
+            } catch(e) {
+                localStorage.clear();
+            }
+        }
+
         try {
             const result = await getRedirectResult(auth);
             if (result && result.user) {
@@ -787,28 +800,16 @@
             }
         } catch (error) {
             setUIState(false, 'google');
-            console.error("Redirect Resolution Parser Error:", error);
-            // Storage blocks ya missing initial state runtime exceptions explicitly suppressed to maintain clean UI state
+            console.error("Redirect Resolution Error Handled:", error);
         }
     });
-
-    const existing = localStorage.getItem("currentUser");
-    if (existing) {
-        try {
-            const p = JSON.parse(existing);
-            if (p.isAdmin) window.location.href = "admin.html";
-            else window.location.href = "profile.html";
-        } catch(e) {
-            localStorage.clear();
-        }
-    }
 
     document.getElementById("emailLoginBtn").addEventListener("click", handleEmailLogin);
     document.getElementById("googleLoginBtn").addEventListener("click", handleGoogleLogin);
     document.getElementById("email").addEventListener("keypress", (e) => e.key === "Enter" && handleEmailLogin());
     document.getElementById("password").addEventListener("keypress", (e) => e.key === "Enter" && handleEmailLogin());
 
-    // SEMANTIC STRUCTURED JSON-LD SCHEMA
+    // SEMANTIC STRUCTURED JSON-LD SCHEMA FOR BETTER SEO
     const schema = document.createElement('script');
     schema.type = 'application/ld+json';
     schema.textContent = JSON.stringify({
