@@ -74,12 +74,21 @@
     <nav class="bg-[#1e40af] text-white sticky top-0 z-50 shadow-md">
         <div class="custom-container px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex justify-between items-center gap-4">
             
-            <div onclick="window.location.reload()" class="flex items-center gap-2 cursor-pointer flex-shrink-0">
-                <div class="bg-[#10b981] p-2 rounded-lg text-white font-bold flex items-center justify-center">
-                    <i class="fa-solid fa-bag-shopping text-lg sm:text-xl"></i>
-                </div>
-                <span class="text-xl sm:text-2xl font-bold tracking-tight">StyleEase</span>
-            </div>
+            <div onclick="window.location.reload()" class="flex items-center gap-3 cursor-pointer flex-shrink-0">
+
+    <!-- Circular Logo -->
+    <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-emerald-500 shadow-lg bg-white flex items-center justify-center">
+        <img src="image/logo.png.png"
+             alt="StyleEase Logo"
+             class="w-full h-full object-cover">
+    </div>
+
+    <!-- Brand Name -->
+    <span class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
+        StyleEase
+    </span>
+
+</div>
 
             <div class="flex-1 max-w-xl relative hidden md:block">
                 <label for="itemSearch" class="sr-only">Search products</label>
