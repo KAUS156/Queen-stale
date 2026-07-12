@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <!-- Advanced On-Page SEO -->
     <title>StyleEasy | Girl Dress Online | Trendy Fashion Clothes & Party Wear</title>
     <meta name="description" content="Shop the latest girl dresses online at StyleEasy. Explore premium girls fashion clothes, exclusive party wear dresses, cute outfits, and trendy western clothing at the best prices in India.">
     <meta name="keywords" content="girl dress online, girls fashion clothes, party wear dress girls, cute outfits for girls, trendy dresses online, women clothing store, StyleEasy fashion, buy frocks online, designer girls clothing">
@@ -12,7 +11,6 @@
 
     <link rel="canonical" href="https://superlative-haupia-d1b3ec.netlify.app/login.html">
 
-    <!-- Open Graph (Facebook / WhatsApp / LinkedIn) -->
     <meta property="og:title" content="StyleEasy | Girl Dress Online & Trendy Party Wear">
     <meta property="og:description" content="Explore premium collection of trendy dresses, cute outfits, and latest royal fashion for girls. Secure login and fast checkout.">
     <meta property="og:type" content="website">
@@ -22,13 +20,11 @@
     <meta property="og:image:alt" content="StyleEasy Premium Girls Fashion Collection">
     <meta name="p:domain_verify" content="9a44296808823bcaa287961da064c685"/>
     
-    <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="StyleEasy - Royal Login & Girls Fashion">
     <meta name="twitter:description" content="Login to your StyleEasy account and experience royalty with every outfit.">
     <meta name="twitter:image" content="https://superlative-haupia-d1b3ec.netlify.app/images.jpg">
     
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8Y4KXCKM"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -369,7 +365,6 @@
                 height: 100vh;
             }
 
-            /* Gallery goes fullscreen background for immersive mobile branding */
             .image-gallery-side {
                 position: absolute;
                 top: 0;
@@ -380,10 +375,9 @@
             }
 
             .slide-img.active {
-                opacity: 0.35; /* Darkened further to maximize form legibility on mobile */
+                opacity: 0.35;
             }
 
-            /* Hiding text overlay on mobile layout to focus completely on UX/UI Conversion */
             .image-overlay {
                 display: none;
             }
@@ -395,7 +389,6 @@
                 transform: translateX(-50%);
             }
 
-            /* Glassmorphism Floating Form Matrix */
             .form-side {
                 position: absolute;
                 bottom: 0;
@@ -414,7 +407,7 @@
                 box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
                 border: 1px solid rgba(255, 255, 255, 0.4);
                 overflow-y: auto;
-                scrollbar-width: none; /* Hide scrollbars */
+                scrollbar-width: none;
             }
 
             .form-side::-webkit-scrollbar {
@@ -469,7 +462,6 @@
 <div class="full-display-wrapper">
     <div class="login-master">
         
-        <!-- LEFT SIDE: SLIDESHOW FRAMEWORK -->
         <div class="image-gallery-side">
             <div class="slideshow-container" id="slideshowContainer">
                 <img class="slide-img" src="/images.jpg" alt="Beautiful Girl Premium Trendy Party Wear Dress - StyleEasy">
@@ -499,7 +491,6 @@
             <div class="slide-dots" id="slideDots"></div>
         </div>
 
-        <!-- RIGHT SIDE: PREMIUM SECURE LOGON MATRIX -->
         <div class="form-side">
             <header class="brand-header">
                 <div class="crown-icon" aria-hidden="true">👑</div>
@@ -552,7 +543,8 @@
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-   import { getAuth, signInWithEmailAndPassword, signInWithRedirect, getRedirectResult, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    // RECTIFIED: Added signInWithPopup alongside Redirect & Redirect Result
+    import { getAuth, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect, getRedirectResult, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
     import { getFirestore, collection, query, where, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
     const firebaseConfig = {
@@ -768,6 +760,7 @@
         }
     }
 
+    // UPDATED: Modern implementation with Popup priority + Redirect fallback architectural strategy
     async function handleGoogleLogin() {
         if (typeof gtag === 'function') {
             gtag('event', 'login_attempt', { 'method': 'Google' });
@@ -775,25 +768,46 @@
 
         setUIState(true, 'google');
         try {
+            // Priority 1: Popup system execution (Excellent for partitioned storages)
             const result = await signInWithPopup(auth, googleProvider);
-            const user = result.user;
-            let isAdmin = user.email?.toLowerCase() === "mailak@gmail.com" ? true : await checkAdminStatus(user);
-            if (!isAdmin) await ensureUserDocument(user);
-            await handleSuccessfulLogin(user, isAdmin);
+            if (result && result.user) {
+                const user = result.user;
+                let isAdmin = user.email?.toLowerCase() === "mailak@gmail.com" ? true : await checkAdminStatus(user);
+                if (!isAdmin) await ensureUserDocument(user);
+                await handleSuccessfulLogin(user, isAdmin);
+            }
         } catch (error) {
-            setUIState(false, 'google');
-            console.error("Google Login Error Context:", error);
-            if (error.code === 'auth/popup-blocked') {
-                showMessage("❌ Browser blocked the Auth popup. Please enable popups.");
-            } else if (error.code === 'auth/operation-not-allowed') {
-                showMessage("❌ Google Provider is not enabled in Firebase Auth Console.");
-            } else if (error.code === 'auth/unauthorized-domain') {
-                showMessage("❌ This current Domain URL is not whitelisted in Firebase Console.");
-            } else if(error.code !== 'auth/popup-closed-by-user') {
-                showMessage(`❌ Login Interface Error: ${error.message}`);
+            console.warn("Popup blocked or storage error context, shifting to Redirect matrix:", error);
+            
+            // Priority 2: Fail-safe fallback logic execution
+            if (error.code === 'auth/popup-blocked' || error.code === 'auth/operation-not-allowed' || error.message.includes('sessionStorage')) {
+                try {
+                    await signInWithRedirect(auth, googleProvider);
+                } catch (redirectError) {
+                    setUIState(false, 'google');
+                    showMessage(`❌ Secure Gate Blocked: ${redirectError.message}`);
+                }
+            } else {
+                setUIState(false, 'google');
+                showMessage(`❌ Authentication Interface Error: ${error.message}`);
             }
         }
     }
+
+    // Fallback load checker matrix for redirection tracking data architecture
+    window.addEventListener('load', async () => {
+        try {
+            const result = await getRedirectResult(auth);
+            if (result && result.user) {
+                const user = result.user;
+                let isAdmin = user.email?.toLowerCase() === "mailak@gmail.com" ? true : await checkAdminStatus(user);
+                if (!isAdmin) await ensureUserDocument(user);
+                await handleSuccessfulLogin(user, isAdmin);
+            }
+        } catch (error) {
+            console.error("Redirect parsing state info:", error);
+        }
+    });
 
     const existing = localStorage.getItem("currentUser");
     if (existing) {
