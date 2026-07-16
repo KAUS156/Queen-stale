@@ -4,16 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <!-- Main SEO Tags -->
     <title>StyleEasy | Girl Dress Online | Trendy Fashion Clothes & Party Wear</title>
     <meta name="description" content="Shop the latest girl dresses online at StyleEasy. Explore premium girls fashion clothes, exclusive party wear dresses, cute outfits, and trendy western clothing at the best prices in India.">
     <meta name="keywords" content="girl dress online, girls fashion clothes, party wear dress girls, cute outfits for girls, trendy dresses online, women clothing store, StyleEasy fashion, buy frocks online, designer girls clothing">
     <meta name="robots" content="index, follow">
 
-    <!-- RIGHT CANONICAL FOR HOMEPAGE -->
     <link rel="canonical" href="https://superlative-haupia-d1b3ec.netlify.app/">
 
-    <!-- Social Media Previews (Open Graph) -->
     <meta property="og:title" content="StyleEasy | Girl Dress Online & Trendy Party Wear">
     <meta property="og:description" content="Explore premium collection of trendy dresses, cute outfits, and latest royal fashion for girls. Fast shipping and easy returns.">
     <meta property="og:type" content="website">
@@ -23,7 +20,6 @@
     <meta property="og:image:alt" content="StyleEasy Premium Girls Fashion Collection">
     <meta name="p:domain_verify" content="9a44296808823bcaa287961da064c685"/>
 
-    <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="StyleEasy | Girl Dress Online & Trendy Fashion">
     <meta name="twitter:description" content="Shop premium girls fashion clothes, exclusive party wear dresses, and trendy western clothing.">
@@ -500,16 +496,14 @@
             </header>
 
             <main>
-                <!-- MOBILE NUMBER INPUT -->
                 <div class="input-group" id="phoneGroup">
                     <label for="phone">Mobile Number</label>
                     <div class="input-field-wrapper">
                         <span class="input-icon">📞</span>
-                        <input type="tel" id="phone" placeholder="+91 98765 43210" autocomplete="tel" required>
+                        <input type="tel" id="phone" placeholder="98765 43210" autocomplete="tel" required>
                     </div>
                 </div>
 
-                <!-- OTP INPUT (HIDDEN BY DEFAULT) -->
                 <div class="input-group" id="otpGroup" style="display: none;">
                     <label for="otp">Enter 6-Digit OTP</label>
                     <div class="input-field-wrapper">
@@ -518,14 +512,12 @@
                     </div>
                 </div>
 
-                <!-- REQUIRED FOR FIREBASE PHONE AUTH -->
                 <div id="recaptcha-container"></div>
 
                 <button type="button" class="login-btn" id="actionBtn">Send OTP</button>
 
                 <div class="divider"><span>✦ OR ✦</span></div>
 
-                <!-- GOOGLE BUTTON BACK IN SYSTEM -->
                 <button type="button" class="login-btn google-btn" id="googleLoginBtn">
                     <svg width="18" height="18" viewBox="0 0 24 24">
                         <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -673,12 +665,20 @@
         }
     }
 
-    // INVISIBLE reCAPTCHA INITIALIZATION
+    // INVISIBLE reCAPTCHA INITIALIZATION (सुधारा गया तरीका)
     function setupRecaptcha() {
         if (!window.recaptchaVerifier) {
             window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
                 'size': 'invisible',
-                'callback': (response) => {}
+                'callback': (response) => {
+                    // reCAPTCHA solved
+                },
+                'expired-callback': () => {
+                    if (window.recaptchaVerifier) {
+                        window.recaptchaVerifier.clear();
+                        window.recaptchaVerifier = null;
+                    }
+                }
             });
         }
     }
@@ -747,24 +747,32 @@
         }
     }
 
-    // PHONE OTP ARCHITECTURE LOGIC
+    // PHONE OTP ARCHITECTURE LOGIC (सुधारा गया देश कोड और OTP सत्यापन लॉजिक)
     async function handleAuthAction() {
         const actionBtn = document.getElementById("actionBtn");
         
         if (!confirmationResult) {
-            let phone = document.getElementById("phone").value.trim();
-            if (!phone) return showMessage("❌ Please enter mobile number.");
+            let phoneInputVal = document.getElementById("phone").value.trim();
+            if (!phoneInputVal) return showMessage("❌ Please enter mobile number.");
             
-            if (!phone.startsWith("+")) {
-                phone = "+91" + phone;
+            // फ़ॉर्मेटिंग हटाकर केवल नंबर रखें
+            let cleanedPhone = phoneInputVal.replace(/\s+/g, '').replace(/-/g, '');
+
+            // अगर यूजर ने + नहीं लगाया है तो कंट्री कोड (+91) जोड़े
+            if (!cleanedPhone.startsWith("+")) {
+                if (cleanedPhone.startsWith("91") && cleanedPhone.length > 10) {
+                    cleanedPhone = "+" + cleanedPhone;
+                } else {
+                    cleanedPhone = "+91" + cleanedPhone;
+                }
             }
 
             setUIState(true, 'phone');
             actionBtn.textContent = "Sending OTP...";
-            setupRecaptcha();
-
+            
             try {
-                confirmationResult = await signInWithPhoneNumber(auth, phone, window.recaptchaVerifier);
+                setupRecaptcha();
+                confirmationResult = await signInWithPhoneNumber(auth, cleanedPhone, window.recaptchaVerifier);
                 showMessage("📩 OTP sent successfully!", false);
                 
                 document.getElementById("otpGroup").style.display = "block";
@@ -776,6 +784,10 @@
                 console.error(error);
                 setUIState(false, 'phone');
                 actionBtn.textContent = "Send OTP";
+                if (window.recaptchaVerifier) {
+                    window.recaptchaVerifier.clear();
+                    window.recaptchaVerifier = null;
+                }
                 showMessage(`❌ Failed to send OTP: ${error.message}`);
             }
         } else {
@@ -790,6 +802,7 @@
                 await ensureUserDocument(result.user);
                 await handleSuccessfulLogin(result.user);
             } catch (error) {
+                console.error(error);
                 setUIState(false, 'phone');
                 actionBtn.textContent = "Verify & Login";
                 showMessage("❌ Invalid OTP code entered.");
