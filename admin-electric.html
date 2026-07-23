@@ -1,90 +1,1590 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Electronics Inventory Control Server | StyleEasy</title>
-    <meta name="robots" content="noindex, nofollow">
-    <link rel="icon" href="data:,">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <title>Beauty Admin Panel | StyleEase</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
     <style>
-        :root { --primary-color: #0f172a; --accent-color: #0ea5e9; --text-color: #334155; --light-bg: #f1f5f9; --white: #ffffff; --danger-color: #ef4444; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: var(--light-bg); color: var(--text-color); display: flex; min-height: 100vh; }
-        aside { width: 260px; background: var(--primary-color); color: var(--white); padding: 30px 20px; position: fixed; height: 100vh; border-right: 2px solid var(--accent-color); }
-        aside .logo { font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 40px; }
-        aside ul li a { color: #94a3b8; text-decoration: none; padding: 12px; display: flex; align-items: center; gap: 12px; border-radius: 6px; font-size: 14px; }
-        aside ul li a.active { background: rgba(14,165,233,0.15); color: var(--accent-color); }
-        main { margin-left: 260px; flex: 1; padding: 40px; width: calc(100% - 260px); }
-        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 1px solid #e2e8f0; padding-bottom: 15px; }
-        .dashboard-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px; }
-        .card { background: var(--white); padding: 30px; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 500; }
-        .form-group input, .form-group textarea { width: 100%; padding: 11px; border: 1px solid #cbd5e1; border-radius: 6px; outline: none; }
-        .btn { background: var(--primary-color); color: var(--white); border: none; padding: 12px; border-radius: 6px; width: 100%; cursor: pointer; font-weight: 600; transition: 0.3s; }
-        .btn:hover { background: var(--accent-color); }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { padding: 12px; border-bottom: 1px solid #e2e8f0; font-size: 13px; text-align: left; }
-        th { background: #f8fafc; }
-        .img-preview { width: 45px; height: 45px; object-fit: cover; border-radius: 6px; }
-        .delete-btn { background: none; border: none; color: var(--danger-color); cursor: pointer; font-size: 16px; }
-        @media (max-width: 1000px) { .dashboard-grid { grid-template-columns: 1fr; } }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family: Poppins, sans-serif;
+
+            background: #f7f7f7;
+
+            color: #222;
+
+        }
+
+
+        header {
+
+            background: #222;
+
+            color: white;
+
+            padding: 20px 7%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+
+        header h1 {
+
+            font-size: 25px;
+
+        }
+
+
+        header h1 span {
+
+            color: #e91e63;
+
+        }
+
+
+        header p {
+
+            font-size: 14px;
+
+            color: #ddd;
+
+        }
+
+
+        .container {
+
+            width: 90%;
+
+            max-width: 1200px;
+
+            margin: 35px auto;
+
+        }
+
+
+        .form-card {
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+
+            margin-bottom: 40px;
+
+        }
+
+
+        .form-card h2 {
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .form-group {
+
+            margin-bottom: 18px;
+
+        }
+
+
+        label {
+
+            display: block;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        input,
+
+        textarea,
+
+        select {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 8px;
+
+            outline: none;
+
+            font-family: Poppins, sans-serif;
+
+            font-size: 14px;
+
+        }
+
+
+        input:focus,
+
+        textarea:focus,
+
+        select:focus {
+
+            border-color: #e91e63;
+
+        }
+
+
+        textarea {
+
+            height: 100px;
+
+            resize: vertical;
+
+        }
+
+
+        .add-btn {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #e91e63;
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+        }
+
+
+        .add-btn:hover {
+
+            background: #c2185b;
+
+        }
+
+
+        .add-btn:disabled {
+
+            opacity: 0.6;
+
+            cursor: not-allowed;
+
+        }
+
+
+        .message {
+
+            display: none;
+
+            margin-top: 15px;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+        }
+
+
+        .success {
+
+            display: block;
+
+            background: #e8f5e9;
+
+            color: #2e7d32;
+
+        }
+
+
+        .error {
+
+            display: block;
+
+            background: #ffebee;
+
+            color: #c62828;
+
+        }
+
+
+        .products-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .products-header h2 {
+
+            font-size: 25px;
+
+        }
+
+
+        .product-count {
+
+            background: #fce4ec;
+
+            color: #c2185b;
+
+            padding: 7px 14px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+        }
+
+
+        .products-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 20px;
+
+        }
+
+
+        .product-card {
+
+            background: white;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+
+        }
+
+
+        .product-card img {
+
+            width: 100%;
+
+            height: 230px;
+
+            object-fit: cover;
+
+            background: #eee;
+
+        }
+
+
+        .product-info {
+
+            padding: 15px;
+
+        }
+
+
+        .product-info h3 {
+
+            font-size: 16px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .product-info p {
+
+            color: #666;
+
+            font-size: 13px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .price {
+
+            color: #e91e63;
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .beauty-label {
+
+            display: inline-block;
+
+            background: #fce4ec;
+
+            color: #c2185b;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .delete-btn {
+
+            width: 100%;
+
+            padding: 9px;
+
+            border: none;
+
+            border-radius: 6px;
+
+            background: #d32f2f;
+
+            color: white;
+
+            cursor: pointer;
+
+            font-weight: 600;
+
+        }
+
+
+        .delete-btn:hover {
+
+            background: #b71c1c;
+
+        }
+
+
+        .loading,
+
+        .empty {
+
+            grid-column: 1 / -1;
+
+            text-align: center;
+
+            padding: 50px;
+
+            color: #777;
+
+        }
+
+
+        @media (max-width: 1000px) {
+
+            .products-grid {
+
+                grid-template-columns: repeat(3, 1fr);
+
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .products-grid {
+
+                grid-template-columns: repeat(2, 1fr);
+
+            }
+
+            header {
+
+                padding: 18px 5%;
+
+            }
+
+            .container {
+
+                width: 92%;
+
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            .products-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            header {
+
+                display: block;
+
+            }
+
+            header p {
+
+                margin-top: 5px;
+
+            }
+
+        }
+
     </style>
+
 </head>
+
+
 <body>
-    <aside><div class="logo">StyleEasy</div><ul><li><a href="#" class="active"><i class="fas fa-laptop"></i> <span>Gadgets Control</span></a></li></ul></aside>
-    <main>
-        <header><h2>Electronics Core Deployment</h2><div><i class="fas fa-circle" style="color: #2ecc71"></i> Synced: /electronics</div></header>
-        <div class="dashboard-grid">
-            <div class="card">
-                <h3>Deploy New Device</h3><br>
-                <form id="electricForm">
-                    <div class="form-group"><label>Device Name</label><input type="text" id="title" required></div>
-                    <div class="form-group"><label>Price (₹)</label><input type="number" id="price" required></div>
-                    <div class="form-group"><label>Image URL</label><input type="url" id="imageUrl" required></div>
-                    <div class="form-group"><label>WhatsApp Direct Link</label><input type="url" id="buyLink" required></div>
-                    <div class="form-group"><label>Technical Specifications / Details</label><textarea id="description" rows="3" required></textarea></div>
-                    <button type="submit" class="btn">Push to Live Server</button>
-                </form>
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <h1>
+
+            Style<span>Ease</span> Beauty Admin
+
+        </h1>
+
+
+        <p>
+
+            Beauty Products Management
+
+        </p>
+
+    </header>
+
+
+    <main class="container">
+
+
+        <!-- ADD BEAUTY PRODUCT -->
+
+        <section class="form-card">
+
+
+            <h2>
+
+                Add Beauty Product
+
+            </h2>
+
+
+            <form id="beautyForm">
+
+
+                <div class="form-group">
+
+                    <label>
+
+                        Product Name
+
+                    </label>
+
+
+                    <input
+
+                        type="text"
+
+                        id="productTitle"
+
+                        placeholder="Example: Matte Lipstick"
+
+                        required
+
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+
+                        Beauty Category
+
+                    </label>
+
+
+                    <select
+
+                        id="beautyCategory"
+
+                        required
+
+                    >
+
+                        <option value="">
+
+                            Select Category
+
+                        </option>
+
+
+                        <option value="makeup">
+
+                            Makeup
+
+                        </option>
+
+
+                        <option value="skincare">
+
+                            Skincare
+
+                        </option>
+
+
+                        <option value="hair-care">
+
+                            Hair Care
+
+                        </option>
+
+
+                        <option value="beauty-products">
+
+                            Beauty Products
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+
+                        Price
+
+                    </label>
+
+
+                    <input
+
+                        type="number"
+
+                        id="productPrice"
+
+                        placeholder="Example: 499"
+
+                        required
+
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+
+                        Product Image URL
+
+                    </label>
+
+
+                    <input
+
+                        type="url"
+
+                        id="productImage"
+
+                        placeholder="https://example.com/image.jpg"
+
+                        required
+
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+
+                        Product Buy Link
+
+                    </label>
+
+
+                    <input
+
+                        type="url"
+
+                        id="productLink"
+
+                        placeholder="Amazon / Affiliate Product Link"
+
+                        required
+
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+
+                        Product Description
+
+                    </label>
+
+
+                    <textarea
+
+                        id="productDescription"
+
+                        placeholder="Write beauty product description..."
+
+                        required
+
+                    ></textarea>
+
+                </div>
+
+
+                <button
+
+                    type="submit"
+
+                    class="add-btn"
+
+                    id="addBtn"
+
+                >
+
+                    Add Beauty Product
+
+                </button>
+
+
+                <div
+
+                    id="message"
+
+                    class="message"
+
+                ></div>
+
+
+            </form>
+
+        </section>
+
+
+        <!-- PRODUCT LIST -->
+
+        <section>
+
+
+            <div class="products-header">
+
+
+                <h2>
+
+                    All Beauty Products
+
+                </h2>
+
+
+                <span
+
+                    class="product-count"
+
+                    id="productCount"
+
+                >
+
+                    0 Products
+
+                </span>
+
+
             </div>
-            <div class="card">
-                <h3>System Catalog Database</h3><br>
-                <table>
-                    <thead><tr><th>Device</th><th>Title</th><th>Price</th><th>Action</th></tr></thead>
-                    <tbody id="inventoryTable"></tbody>
-                </table>
+
+
+            <div
+
+                class="products-grid"
+
+                id="productsGrid"
+
+            >
+
+                <div class="loading">
+
+                    Loading beauty products...
+
+                </div>
+
             </div>
-        </div>
+
+        </section>
+
+
     </main>
 
+
+    <!-- FIREBASE -->
+
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+
     <script>
-        const firebaseConfig = { apiKey: "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk", authDomain: "lucky-triode-450317-g7.firebaseapp.com", databaseURL: "https://lucky-triode-450317-g7-default-rtdb.firebaseio.com/", projectId: "lucky-triode-450317-g7", storageBucket: "lucky-triode-450317-g7.firebasestorage.app", messagingSenderId: "778199870672", appId: "1:778199870672:web:62a9891e41b3a3d3f242d5" };
-        firebase.initializeApp(firebaseConfig); const database = firebase.database();
-        const form = document.getElementById('electricForm'); const tableBody = document.getElementById('inventoryTable');
 
-        database.ref('products/electronics').on('value', (snapshot) => {
-            tableBody.innerHTML = ''; const data = snapshot.val();
-            if(!data) { tableBody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:#999">No devices online.</td></tr>'; return; }
-            Object.keys(data).forEach((key) => {
-                const p = data[key];
-                tableBody.innerHTML += `<tr>
-                    <td><img src="${p.imageUrl}" class="img-preview"></td>
-                    <td><b>${p.title}</b></td><td>₹${p.price}</td>
-                    <td><button class="delete-btn" onclick="deleteItem('${key}')"><i class="fas fa-trash-alt"></i></button></td>
-                </tr>`;
-            });
-        });
 
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const item = { title: document.getElementById('title').value.trim(), price: document.getElementById('price').value.trim(), imageUrl: document.getElementById('imageUrl').value.trim(), buyLink: document.getElementById('buyLink').value.trim(), description: document.getElementById('description').value.trim() };
-            database.ref('products/electronics').push(item).then(() => { alert('Gadget Deployed!'); form.reset(); });
-        });
-        window.deleteItem = function(key) { if(confirm("Remove device completely from system?")) database.ref('products/electronics').child(key).remove(); }
+        /* ================= FIREBASE CONFIG ================= */
+
+
+        const firebaseConfig = {
+
+            apiKey:
+
+                "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
+
+            authDomain:
+
+                "lucky-triode-450317-g7.firebaseapp.com",
+
+            databaseURL:
+
+                "https://lucky-triode-450317-g7-default-rtdb.firebaseio.com/",
+
+            projectId:
+
+                "lucky-triode-450317-g7",
+
+            storageBucket:
+
+                "lucky-triode-450317-g7.firebasestorage.app",
+
+            messagingSenderId:
+
+                "778199870672",
+
+            appId:
+
+                "1:778199870672:web:62a9891e41b3a3d3f242d5"
+
+        };
+
+
+        firebase.initializeApp(firebaseConfig);
+
+
+        const database =
+
+            firebase.database();
+
+
+        /* ================= ELEMENTS ================= */
+
+
+        const beautyForm =
+
+            document.getElementById(
+
+                "beautyForm"
+
+            );
+
+
+        const productTitle =
+
+            document.getElementById(
+
+                "productTitle"
+
+            );
+
+
+        const beautyCategory =
+
+            document.getElementById(
+
+                "beautyCategory"
+
+            );
+
+
+        const productPrice =
+
+            document.getElementById(
+
+                "productPrice"
+
+            );
+
+
+        const productImage =
+
+            document.getElementById(
+
+                "productImage"
+
+            );
+
+
+        const productLink =
+
+            document.getElementById(
+
+                "productLink"
+
+            );
+
+
+        const productDescription =
+
+            document.getElementById(
+
+                "productDescription"
+
+            );
+
+
+        const addBtn =
+
+            document.getElementById(
+
+                "addBtn"
+
+            );
+
+
+        const message =
+
+            document.getElementById(
+
+                "message"
+
+            );
+
+
+        const productsGrid =
+
+            document.getElementById(
+
+                "productsGrid"
+
+            );
+
+
+        const productCount =
+
+            document.getElementById(
+
+                "productCount"
+
+            );
+
+
+        /* ================= ADD PRODUCT ================= */
+
+
+        beautyForm.addEventListener(
+
+            "submit",
+
+            function(event) {
+
+
+                event.preventDefault();
+
+
+                const productData = {
+
+
+                    title:
+
+                        productTitle.value.trim(),
+
+
+                    beautyCategory:
+
+                        beautyCategory.value,
+
+
+                    price:
+
+                        productPrice.value.trim(),
+
+
+                    imageUrl:
+
+                        productImage.value.trim(),
+
+
+                    buyLink:
+
+                        productLink.value.trim(),
+
+
+                    description:
+
+                        productDescription.value.trim(),
+
+
+                    category:
+
+                        "beauty",
+
+
+                    createdAt:
+
+                        Date.now()
+
+                };
+
+
+                if (
+
+                    !productData.title ||
+
+                    !productData.beautyCategory ||
+
+                    !productData.price ||
+
+                    !productData.imageUrl ||
+
+                    !productData.buyLink ||
+
+                    !productData.description
+
+                ) {
+
+
+                    showMessage(
+
+                        "Please fill all fields.",
+
+                        "error"
+
+                    );
+
+
+                    return;
+
+                }
+
+
+                addBtn.disabled = true;
+
+
+                addBtn.textContent =
+
+                    "Adding Product...";
+
+
+                /*
+
+                    ONLY BEAUTY PATH
+
+                    products/beauty
+
+                */
+
+
+                database
+
+                    .ref(
+
+                        "products/beauty"
+
+                    )
+
+                    .push(productData)
+
+                    .then(
+
+                        function() {
+
+
+                            showMessage(
+
+                                "Beauty product added successfully!",
+
+                                "success"
+
+                            );
+
+
+                            beautyForm.reset();
+
+
+                            addBtn.disabled = false;
+
+
+                            addBtn.textContent =
+
+                                "Add Beauty Product";
+
+
+                            loadBeautyProducts();
+
+                        }
+
+                    )
+
+                    .catch(
+
+                        function(error) {
+
+
+                            console.error(error);
+
+
+                            showMessage(
+
+                                error.message,
+
+                                "error"
+
+                            );
+
+
+                            addBtn.disabled = false;
+
+
+                            addBtn.textContent =
+
+                                "Add Beauty Product";
+
+                        }
+
+                    );
+
+            }
+
+        );
+
+
+        /* ================= LOAD PRODUCTS ================= */
+
+
+        function loadBeautyProducts() {
+
+
+            productsGrid.innerHTML = `
+
+                <div class="loading">
+
+                    Loading beauty products...
+
+                </div>
+
+            `;
+
+
+            database
+
+                .ref(
+
+                    "products/beauty"
+
+                )
+
+                .once(
+
+                    "value"
+
+                )
+
+                .then(
+
+                    function(snapshot) {
+
+
+                        const products =
+
+                            snapshot.val();
+
+
+                        productsGrid.innerHTML = "";
+
+
+                        if (!products) {
+
+
+                            productCount.textContent =
+
+                                "0 Products";
+
+
+                            productsGrid.innerHTML = `
+
+                                <div class="empty">
+
+                                    No beauty products added yet.
+
+                                </div>
+
+                            `;
+
+
+                            return;
+
+                        }
+
+
+                        const productKeys =
+
+                            Object.keys(products);
+
+
+                        productCount.textContent =
+
+                            productKeys.length +
+
+                            " Products";
+
+
+                        productKeys
+
+                            .reverse()
+
+                            .forEach(
+
+                                function(productId) {
+
+
+                                    createProductCard(
+
+                                        products[productId],
+
+                                        productId
+
+                                    );
+
+                                }
+
+                            );
+
+                    }
+
+                )
+
+                .catch(
+
+                    function(error) {
+
+
+                        console.error(error);
+
+
+                        productsGrid.innerHTML = `
+
+                            <div class="empty">
+
+                                Unable to load products.
+
+                            </div>
+
+                        `;
+
+                    }
+
+                );
+
+        }
+
+
+        /* ================= CREATE CARD ================= */
+
+
+        function createProductCard(
+
+            product,
+
+            productId
+
+        ) {
+
+
+            const card =
+
+                document.createElement(
+
+                    "div"
+
+                );
+
+
+            card.className =
+
+                "product-card";
+
+
+            card.innerHTML = `
+
+                <img
+
+                    src="${safeURL(product.imageUrl)}"
+
+                    alt="${escapeHTML(product.title)}"
+
+                    loading="lazy"
+
+                >
+
+
+                <div class="product-info">
+
+
+                    <span class="beauty-label">
+
+                        💄 ${escapeHTML(
+
+                            product.beautyCategory
+
+                        )}
+
+                    </span>
+
+
+                    <h3>
+
+                        ${escapeHTML(
+
+                            product.title
+
+                        )}
+
+                    </h3>
+
+
+                    <p>
+
+                        ${escapeHTML(
+
+                            product.description
+
+                        )}
+
+                    </p>
+
+
+                    <div class="price">
+
+                        ₹${escapeHTML(
+
+                            product.price
+
+                        )}
+
+                    </div>
+
+
+                    <button
+
+                        class="delete-btn"
+
+                        onclick="deleteBeautyProduct(
+
+                            '${productId}'
+
+                        )"
+
+                    >
+
+                        Delete Product
+
+                    </button>
+
+
+                </div>
+
+            `;
+
+
+            productsGrid.appendChild(
+
+                card
+
+            );
+
+        }
+
+
+        /* ================= DELETE ================= */
+
+
+        function deleteBeautyProduct(
+
+            productId
+
+        ) {
+
+
+            const confirmDelete =
+
+                confirm(
+
+                    "Delete this beauty product?"
+
+                );
+
+
+            if (!confirmDelete) {
+
+                return;
+
+            }
+
+
+            database
+
+                .ref(
+
+                    "products/beauty/" +
+
+                    productId
+
+                )
+
+                .remove()
+
+                .then(
+
+                    function() {
+
+
+                        showMessage(
+
+                            "Beauty product deleted successfully.",
+
+                            "success"
+
+                        );
+
+
+                        loadBeautyProducts();
+
+                    }
+
+                )
+
+                .catch(
+
+                    function(error) {
+
+
+                        showMessage(
+
+                            error.message,
+
+                            "error"
+
+                        );
+
+                    }
+
+                );
+
+        }
+
+
+        /* ================= MESSAGE ================= */
+
+
+        function showMessage(
+
+            text,
+
+            type
+
+        ) {
+
+
+            message.textContent =
+
+                text;
+
+
+            message.className =
+
+                "message " +
+
+                type;
+
+
+            setTimeout(
+
+                function() {
+
+
+                    message.className =
+
+                        "message";
+
+                },
+
+                4000
+
+            );
+
+        }
+
+
+        /* ================= ESCAPE HTML ================= */
+
+
+        function escapeHTML(
+
+            value
+
+        ) {
+
+
+            return String(
+
+                value || ""
+
+            ).replace(
+
+                /[&<>"']/g,
+
+                function(match) {
+
+
+                    return {
+
+
+                        "&": "&amp;",
+
+                        "<": "&lt;",
+
+                        ">": "&gt;",
+
+                        '"': "&quot;",
+
+                        "'": "&#039;"
+
+                    }[match];
+
+                }
+
+            );
+
+        }
+
+
+        /* ================= SAFE URL ================= */
+
+
+        function safeURL(
+
+            value
+
+        ) {
+
+
+            const url =
+
+                String(
+
+                    value || ""
+
+                ).trim();
+
+
+            if (
+
+                url.startsWith(
+
+                    "https://"
+
+                ) ||
+
+                url.startsWith(
+
+                    "http://"
+
+                )
+
+            ) {
+
+
+                return url;
+
+            }
+
+
+            return "";
+
+        }
+
+
+        /* ================= INITIAL LOAD ================= */
+
+
+        loadBeautyProducts();
+
+
     </script>
+
 </body>
+
 </html>

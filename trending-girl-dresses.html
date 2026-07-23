@@ -2,47 +2,49 @@
 <html lang="en">
 
 <head>
+       <script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8Y4KXCKM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-BD8Y4KXCKM');
+    </script>
 
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- ================= SEO ================= -->
-
-    <title>
-        Cosmetics & Electronics Online | Beauty, Gadgets & More | StyleEase
-    </title>
-
+    <!-- SEO -->
+<title>Trending Girl Dresses Online | Stylish & Affordable Dresses | StyleEasy</title>
     <meta name="description"
-        content="Shop cosmetics and electronics online at StyleEase. Discover beauty products, makeup, skincare, smart gadgets, electronics and useful products at affordable prices.">
+        content="Discover the latest trending girl dresses online at StyleEasy. Explore stylish, cute, party wear and casual dresses for girls at affordable prices.">
 
     <meta name="keywords"
-        content="cosmetics online, makeup products online, skincare products, electronics online, gadgets online, beauty products, affordable electronics">
+        content="trending girl dresses, girl dresses online, stylish girl dresses, cute dresses for girls, party wear dresses for girls, summer girl dresses">
 
     <meta name="robots" content="index, follow">
 
-    <!-- CHANGE THIS TO YOUR REAL WEBSITE URL -->
-
+    <!-- IMPORTANT: Replace with your actual website URL -->
     <link rel="canonical"
-        href="https://yourwebsite.com/shopping.html">
+        href="https://yourwebsite.com/trending-girl-dresses.html">
 
 
-    <!-- ================= OPEN GRAPH ================= -->
+    <!-- Open Graph SEO -->
 
     <meta property="og:title"
-        content="Cosmetics & Electronics Online | StyleEase">
+        content="Trending Girl Dresses Online | StyleEasy">
 
     <meta property="og:description"
-        content="Discover cosmetics, beauty products, electronics and gadgets online at StyleEase.">
+        content="Discover stylish and trending girl dresses online at StyleEasy.">
 
     <meta property="og:type"
         content="website">
 
     <meta property="og:url"
-        content="https://yourwebsite.com/shopping.html">
+        content="https://yourwebsite.com/trending-girl-dresses.html">
 
 
-    <!-- ================= GOOGLE FONT ================= -->
+    <!-- Google Font -->
 
     <link rel="preconnect"
         href="https://fonts.googleapis.com">
@@ -55,25 +57,19 @@
         rel="stylesheet">
 
 
-    <!-- ================= FIREBASE ================= -->
+    <!-- Firebase -->
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
 
-    <!-- ================= STYLE ================= -->
-
     <style>
 
         * {
-
             margin: 0;
-
             padding: 0;
-
             box-sizing: border-box;
-
         }
 
 
@@ -81,9 +77,9 @@
 
             font-family: 'Poppins', sans-serif;
 
-            background: #ffffff;
+            background: #fff;
 
-            color: #222222;
+            color: #222;
 
             line-height: 1.6;
 
@@ -91,7 +87,6 @@
 
 
         /* ================= NAVBAR ================= */
-
 
         .navbar {
 
@@ -105,9 +100,9 @@
 
             justify-content: space-between;
 
-            background: #ffffff;
+            background: #fff;
 
-            border-bottom: 1px solid #eeeeee;
+            border-bottom: 1px solid #eee;
 
             position: sticky;
 
@@ -124,9 +119,9 @@
 
             font-weight: 700;
 
-            color: #222222;
-
             text-decoration: none;
+
+            color: #222;
 
         }
 
@@ -142,7 +137,7 @@
 
             display: flex;
 
-            gap: 24px;
+            gap: 25px;
 
             list-style: none;
 
@@ -151,7 +146,7 @@
 
         .nav-links a {
 
-            color: #333333;
+            color: #333;
 
             text-decoration: none;
 
@@ -173,10 +168,9 @@
 
         /* ================= HERO ================= */
 
-
         .hero {
 
-            padding: 80px 7%;
+            padding: 75px 7%;
 
             text-align: center;
 
@@ -186,9 +180,9 @@
 
                     135deg,
 
-                    #fff1f6,
+                    #fff0f5,
 
-                    #ffffff
+                    #fff
 
                 );
 
@@ -197,34 +191,33 @@
 
         .hero h1 {
 
-            font-size: 43px;
+            font-size: 44px;
 
-            margin-bottom: 16px;
+            margin-bottom: 15px;
 
-            color: #222222;
+            color: #222;
 
         }
 
 
         .hero p {
 
-            max-width: 800px;
+            max-width: 760px;
 
             margin: auto;
 
-            font-size: 16px;
+            color: #666;
 
-            color: #666666;
+            font-size: 16px;
 
         }
 
 
-        /* ================= CATEGORY ================= */
-
+        /* ================= CATEGORIES ================= */
 
         .categories {
 
-            padding: 42px 7%;
+            padding: 40px 7%;
 
             text-align: center;
 
@@ -235,7 +228,7 @@
 
             font-size: 28px;
 
-            margin-bottom: 24px;
+            margin-bottom: 22px;
 
         }
 
@@ -246,9 +239,7 @@
 
             justify-content: center;
 
-            align-items: center;
-
-            gap: 15px;
+            gap: 14px;
 
             flex-wrap: wrap;
 
@@ -257,17 +248,15 @@
 
         .category-list a {
 
-            display: inline-block;
-
-            padding: 10px 20px;
-
-            border: 1px solid #e91e63;
-
-            border-radius: 30px;
+            text-decoration: none;
 
             color: #e91e63;
 
-            text-decoration: none;
+            border: 1px solid #e91e63;
+
+            padding: 10px 18px;
+
+            border-radius: 25px;
 
             font-size: 14px;
 
@@ -280,22 +269,21 @@
 
             background: #e91e63;
 
-            color: #ffffff;
+            color: #fff;
 
         }
 
 
         /* ================= PRODUCT SECTION ================= */
 
-
         .products-section {
 
-            padding: 55px 7%;
+            padding: 45px 7%;
 
         }
 
 
-        .section-title {
+        .products-section h2 {
 
             text-align: center;
 
@@ -321,12 +309,11 @@
 
         /* ================= PRODUCT CARD ================= */
 
-
         .product-card {
 
-            background: #ffffff;
+            background: #fff;
 
-            border: 1px solid #eeeeee;
+            border: 1px solid #eee;
 
             border-radius: 14px;
 
@@ -345,35 +332,25 @@
 
                 0 10px 30px
 
-                rgba(
-
-                    0,
-
-                    0,
-
-                    0,
-
-                    0.10
-
-                );
+                rgba(0, 0, 0, 0.10);
 
         }
 
 
-        .product-image {
+        .product-image-wrapper {
 
             width: 100%;
 
-            height: 290px;
+            height: 310px;
 
             overflow: hidden;
 
-            background: #f7f7f7;
+            background: #f8f8f8;
 
         }
 
 
-        .product-image img {
+        .product-image-wrapper img {
 
             width: 100%;
 
@@ -390,7 +367,7 @@
 
         .product-card:hover
 
-        .product-image img {
+        .product-image-wrapper img {
 
             transform: scale(1.05);
 
@@ -399,7 +376,7 @@
 
         .product-info {
 
-            padding: 16px;
+            padding: 17px;
 
         }
 
@@ -410,14 +387,14 @@
 
             margin-bottom: 8px;
 
-            color: #222222;
+            color: #222;
 
         }
 
 
         .product-description {
 
-            color: #777777;
+            color: #777;
 
             font-size: 13px;
 
@@ -451,19 +428,19 @@
 
         .shop-btn {
 
-            width: 100%;
+            display: inline-block;
 
-            display: block;
+            width: 100%;
 
             text-align: center;
 
-            padding: 11px;
+            text-decoration: none;
 
             background: #e91e63;
 
-            color: #ffffff;
+            color: #fff;
 
-            text-decoration: none;
+            padding: 11px;
 
             border-radius: 7px;
 
@@ -485,31 +462,34 @@
 
         /* ================= LOADING ================= */
 
-
         .loading {
 
             width: 100%;
 
-            padding: 50px;
-
             text-align: center;
 
-            color: #777777;
+            padding: 50px;
 
-            grid-column: 1 / -1;
+            color: #777;
+
+            font-size: 16px;
 
         }
 
 
-        .loading-spinner {
+        .loading::after {
 
-            width: 32px;
+            content: "";
 
-            height: 32px;
+            display: block;
+
+            width: 28px;
+
+            height: 28px;
 
             margin: 15px auto;
 
-            border: 3px solid #eeeeee;
+            border: 3px solid #eee;
 
             border-top-color: #e91e63;
 
@@ -531,20 +511,17 @@
         }
 
 
-        /* ================= EMPTY ================= */
-
+        /* ================= EMPTY STATE ================= */
 
         .empty-state {
 
             width: 100%;
 
-            padding: 50px 20px;
-
             text-align: center;
 
-            color: #777777;
+            padding: 50px 20px;
 
-            grid-column: 1 / -1;
+            color: #777;
 
         }
 
@@ -553,17 +530,16 @@
 
             margin-bottom: 8px;
 
-            color: #333333;
+            color: #333;
 
         }
 
 
         /* ================= SEO CONTENT ================= */
 
-
         .seo-content {
 
-            padding: 65px 7%;
+            padding: 60px 7%;
 
             background: #fafafa;
 
@@ -572,7 +548,7 @@
 
         .seo-content h2 {
 
-            font-size: 30px;
+            font-size: 29px;
 
             margin-bottom: 18px;
 
@@ -581,7 +557,7 @@
 
         .seo-content h3 {
 
-            margin-top: 28px;
+            margin-top: 25px;
 
             margin-bottom: 10px;
 
@@ -592,23 +568,22 @@
 
             max-width: 1050px;
 
-            color: #555555;
+            color: #555;
 
-            margin-bottom: 16px;
+            margin-bottom: 15px;
 
         }
 
 
         /* ================= FOOTER ================= */
 
-
         footer {
 
-            background: #222222;
+            background: #222;
 
-            color: #ffffff;
+            color: #fff;
 
-            padding: 38px 7%;
+            padding: 35px 7%;
 
             text-align: center;
 
@@ -617,7 +592,7 @@
 
         footer a {
 
-            color: #ffffff;
+            color: #fff;
 
             text-decoration: none;
 
@@ -630,9 +605,9 @@
 
         footer p {
 
-            margin-top: 16px;
+            margin-top: 15px;
 
-            color: #bbbbbb;
+            color: #bbb;
 
             font-size: 13px;
 
@@ -640,7 +615,6 @@
 
 
         /* ================= TABLET ================= */
-
 
         @media (max-width: 1100px) {
 
@@ -657,9 +631,7 @@
 
         /* ================= MOBILE ================= */
 
-
         @media (max-width: 768px) {
-
 
             .navbar {
 
@@ -670,28 +642,28 @@
 
             .nav-links {
 
-                gap: 9px;
+                gap: 10px;
 
             }
 
 
             .nav-links a {
 
-                font-size: 10px;
+                font-size: 11px;
 
             }
 
 
             .hero {
 
-                padding: 58px 5%;
+                padding: 55px 5%;
 
             }
 
 
             .hero h1 {
 
-                font-size: 29px;
+                font-size: 30px;
 
             }
 
@@ -703,9 +675,9 @@
             }
 
 
-            .categories,
-
             .products-section,
+
+            .categories,
 
             .seo-content {
 
@@ -727,9 +699,9 @@
             }
 
 
-            .product-image {
+            .product-image-wrapper {
 
-                height: 220px;
+                height: 230px;
 
             }
 
@@ -764,9 +736,9 @@
 
             .shop-btn {
 
-                padding: 9px;
-
                 font-size: 12px;
+
+                padding: 9px;
 
             }
 
@@ -775,9 +747,7 @@
 
         /* ================= SMALL MOBILE ================= */
 
-
         @media (max-width: 420px) {
-
 
             .logo {
 
@@ -788,7 +758,7 @@
 
             .nav-links {
 
-                gap: 6px;
+                gap: 7px;
 
             }
 
@@ -800,7 +770,7 @@
             }
 
 
-            .product-image {
+            .product-image-wrapper {
 
                 height: 200px;
 
@@ -818,24 +788,19 @@
 
     <!-- ================= NAVBAR ================= -->
 
-
     <header class="navbar">
 
 
-        <a href="index.html"
+        <a href="index.html" class="logo">
 
-            class="logo">
-
-            Style<span>Ease</span>
+            Style<span>Easy</span>
 
         </a>
 
 
         <nav>
 
-
             <ul class="nav-links">
-
 
                 <li>
 
@@ -850,20 +815,9 @@
 
                 <li>
 
-                    <a href="mens-fashion.html">
-
-                        Men's Fashion
-
-                    </a>
-
-                </li>
-
-
-                <li>
-
                     <a href="trending-girl-dresses.html">
 
-                        Women's Fashion
+                        Trending
 
                     </a>
 
@@ -872,14 +826,24 @@
 
                 <li>
 
-                    <a href="shopping.html">
+                    <a href="summer-girl-dresses.html">
 
-                        Beauty & Tech
+                        Summer
 
                     </a>
 
                 </li>
 
+
+                <li>
+
+                    <a href="party-wear-dresses.html">
+
+                        Party Wear
+
+                    </a>
+
+                </li>
 
             </ul>
 
@@ -891,24 +855,21 @@
 
     <!-- ================= HERO ================= -->
 
-
     <section class="hero">
 
 
         <h1>
 
-            Cosmetics & Electronics Online
+            Trending Girl Dresses Online
 
         </h1>
 
 
         <p>
 
-            Discover the latest cosmetics, beauty products,
+            Discover the latest trending girl dresses online at StyleEasy.
 
-            skincare essentials, electronics, gadgets and useful
-
-            products online at StyleEase.
+            Explore stylish, cute and fashionable dresses for every occasion.
 
         </p>
 
@@ -918,13 +879,12 @@
 
     <!-- ================= CATEGORIES ================= -->
 
-
     <section class="categories">
 
 
         <h2>
 
-            Explore Our Categories
+            Explore Fashion Categories
 
         </h2>
 
@@ -932,16 +892,30 @@
         <div class="category-list">
 
 
-            <a href="#cosmetics">
+            <a href="summer-girl-dresses.html">
 
-                Cosmetics & Beauty
+                Summer Girl Dresses
 
             </a>
 
 
-            <a href="#electronics">
+            <a href="party-wear-dresses.html">
 
-                Electronics & Gadgets
+                Party Wear Dresses
+
+            </a>
+
+
+            <a href="casual-girl-dresses.html">
+
+                Casual Dresses
+
+            </a>
+
+
+            <a href="cute-tops-for-girls.html">
+
+                Cute Tops
 
             </a>
 
@@ -952,19 +926,14 @@
     </section>
 
 
-    <!-- ================= COSMETICS ================= -->
+    <!-- ================= PRODUCTS ================= -->
+
+    <section class="products-section">
 
 
-    <section
+        <h2>
 
-        class="products-section"
-
-        id="cosmetics">
-
-
-        <h2 class="section-title">
-
-            Latest Cosmetics & Beauty Products
+            Latest Trending Girl Dresses
 
         </h2>
 
@@ -973,58 +942,17 @@
 
             class="product-grid"
 
-            id="cosmeticsGrid">
+            id="productGrid">
 
 
-            <div class="loading">
+            <div
+
+                class="loading"
+
+                id="loadingMessage">
 
 
-                Loading cosmetics products...
-
-
-                <div class="loading-spinner"></div>
-
-
-            </div>
-
-
-        </div>
-
-
-    </section>
-
-
-    <!-- ================= ELECTRONICS ================= -->
-
-
-    <section
-
-        class="products-section"
-
-        id="electronics">
-
-
-        <h2 class="section-title">
-
-            Latest Electronics & Gadgets
-
-        </h2>
-
-
-        <div
-
-            class="product-grid"
-
-            id="electronicsGrid">
-
-
-            <div class="loading">
-
-
-                Loading electronics products...
-
-
-                <div class="loading-spinner"></div>
+                Loading latest dresses...
 
 
             </div>
@@ -1038,64 +966,56 @@
 
     <!-- ================= SEO CONTENT ================= -->
 
-
     <section class="seo-content">
 
 
         <h2>
 
-            Cosmetics and Electronics Online
+            Trending Girl Dresses Online
 
         </h2>
 
 
         <p>
 
-            Discover cosmetics, beauty products, skincare essentials,
+            Looking for the latest trending girl dresses online?
 
-            electronics and useful gadgets online at StyleEase.
+            StyleEasy brings you a collection of stylish and fashionable
 
-            Explore trending products and discover useful items
+            dresses for girls. From casual everyday outfits to party wear
 
-            for your everyday needs.
+            styles, discover trendy fashion for every occasion.
+
+        </p>
+
+
+        <p>
+
+            Our collection includes cute, stylish and modern dresses in
+
+            different designs and patterns. Whether you are searching for
+
+            summer dresses, western outfits, party wear dresses or casual
+
+            fashion, explore the latest girl dress trends in one place.
 
         </p>
 
 
         <h3>
 
-            Beauty and Cosmetics Products
+            Find Your Perfect Girl Dress
 
         </h3>
 
 
         <p>
 
-            Explore popular cosmetics and beauty products including
+            Explore our collection of trending girl dresses and discover
 
-            makeup essentials, skincare products and other trending
+            stylish fashion ideas at affordable prices. Update your wardrobe
 
-            beauty items. Find stylish beauty products for your
-
-            everyday routine.
-
-        </p>
-
-
-        <h3>
-
-            Electronics and Gadgets
-
-        </h3>
-
-
-        <p>
-
-            Find useful electronics and gadgets for everyday life.
-
-            Discover trending tech products, smart accessories and
-
-            useful electronic products at affordable prices.
+            with the latest fashion trends and find your perfect outfit today.
 
         </p>
 
@@ -1104,7 +1024,6 @@
 
 
     <!-- ================= FOOTER ================= -->
-
 
     <footer>
 
@@ -1119,16 +1038,9 @@
             </a>
 
 
-            <a href="mens-fashion.html">
-
-                Men's Fashion
-
-            </a>
-
-
             <a href="trending-girl-dresses.html">
 
-                Women's Fashion
+                Trending Dresses
 
             </a>
 
@@ -1145,7 +1057,7 @@
 
         <p>
 
-            © 2026 StyleEase. All Rights Reserved.
+            © 2026 StyleEasy. All Rights Reserved.
 
         </p>
 
@@ -1154,7 +1066,6 @@
 
 
     <!-- ================= FIREBASE SCRIPT ================= -->
-
 
     <script>
 
@@ -1212,23 +1123,20 @@
         const database = firebase.database();
 
 
-        /* ================= GET ELEMENTS ================= */
-
-
-        const cosmeticsGrid =
+        const productGrid =
 
             document.getElementById(
 
-                "cosmeticsGrid"
+                "productGrid"
 
             );
 
 
-        const electronicsGrid =
+        const loadingMessage =
 
             document.getElementById(
 
-                "electronicsGrid"
+                "loadingMessage"
 
             );
 
@@ -1236,201 +1144,32 @@
         /* ================= LOAD PRODUCTS ================= */
 
 
-        function loadProducts(
+        database
 
-            databasePath,
+            .ref("products/womenswear")
 
-            gridElement,
+            .on(
 
-            emptyMessage
+                "value",
 
-        ) {
+                function(snapshot) {
 
 
-            database
+                    productGrid.innerHTML = "";
 
-                .ref(databasePath)
 
-                .on(
+                    const products =
 
-                    "value",
+                        snapshot.val();
 
-                    function(snapshot) {
 
+                    /* NO PRODUCT */
 
-                        gridElement.innerHTML = "";
 
+                    if (!products) {
 
-                        const products =
 
-                            snapshot.val();
-
-
-                        /* NO PRODUCTS */
-
-
-                        if (!products) {
-
-
-                            gridElement.innerHTML = `
-
-
-                                <div class="empty-state">
-
-
-                                    <h3>
-
-                                        No Products Available
-
-                                    </h3>
-
-
-                                    <p>
-
-                                        ${emptyMessage}
-
-                                    </p>
-
-
-                                </div>
-
-
-                            `;
-
-
-                            return;
-
-
-                        }
-
-
-                        /* PRODUCT LOOP */
-
-
-                        Object.keys(products)
-
-                            .reverse()
-
-                            .forEach(
-
-                                function(key) {
-
-
-                                    const product =
-
-                                        products[key];
-
-
-                                    const card =
-
-                                        document.createElement(
-
-                                            "article"
-
-                                        );
-
-
-                                    card.className =
-
-                                        "product-card";
-
-
-                                    card.innerHTML = `
-
-
-                                        <div class="product-image">
-
-
-                                            <img
-
-                                                src="${safeURL(product.imageUrl)}"
-
-                                                alt="${escapeHTML(product.title)}"
-
-                                                loading="lazy"
-
-                                            >
-
-                                        </div>
-
-
-                                        <div class="product-info">
-
-
-                                            <h3>
-
-                                                ${escapeHTML(product.title)}
-
-                                            </h3>
-
-
-                                            <p class="product-description">
-
-
-                                                ${escapeHTML(product.description)}
-
-                                            </p>
-
-
-                                            <span class="product-price">
-
-
-                                                ₹${escapeHTML(product.price)}
-
-                                            </span>
-
-
-                                            <a
-
-                                                href="${safeURL(product.buyLink)}"
-
-                                                target="_blank"
-
-                                                rel="noopener noreferrer"
-
-                                                class="shop-btn"
-
-                                            >
-
-                                                View Product
-
-                                            </a>
-
-
-                                        </div>
-
-
-                                    `;
-
-
-                                    gridElement.appendChild(
-
-                                        card
-
-                                    );
-
-
-                                }
-
-                            );
-
-
-                    },
-
-
-                    function(error) {
-
-
-                        console.error(
-
-                            "Firebase Error:",
-
-                            error
-
-                        );
-
-
-                        gridElement.innerHTML = `
+                        productGrid.innerHTML = `
 
 
                             <div class="empty-state">
@@ -1438,14 +1177,14 @@
 
                                 <h3>
 
-                                    Unable to Load Products
+                                    No Dresses Available
 
                                 </h3>
 
 
                                 <p>
 
-                                    Please try again later.
+                                    New trending dresses will appear here soon.
 
                                 </p>
 
@@ -1456,42 +1195,175 @@
                         `;
 
 
+                        return;
+
+
                     }
 
-                );
 
-        }
-
-
-        /* ================= COSMETICS PRODUCTS ================= */
+                    /* PRODUCT LOOP */
 
 
-        loadProducts(
+                    Object.keys(products)
 
-            "products/cosmetics",
+                        .reverse()
 
-            cosmeticsGrid,
+                        .forEach(
 
-            "New cosmetics products will appear here soon."
-
-        );
+                            function(key) {
 
 
-        /* ================= ELECTRONICS PRODUCTS ================= */
+                                const product =
+
+                                    products[key];
 
 
-        loadProducts(
+                                const productCard =
 
-            "products/electronics",
+                                    document.createElement(
 
-            electronicsGrid,
+                                        "article"
 
-            "New electronics products will appear here soon."
-
-        );
+                                    );
 
 
-        /* ================= ESCAPE HTML ================= */
+                                productCard
+
+                                    .className =
+
+                                    "product-card";
+
+
+                                productCard.innerHTML = `
+
+
+                                    <div class="product-image-wrapper">
+
+
+                                        <img
+
+                                            src="${safeURL(product.imageUrl)}"
+
+                                            alt="${escapeHTML(product.title)}"
+
+                                            loading="lazy"
+
+                                        >
+
+                                    </div>
+
+
+                                    <div class="product-info">
+
+
+                                        <h3>
+
+                                            ${escapeHTML(product.title)}
+
+                                        </h3>
+
+
+                                        <p class="product-description">
+
+
+                                            ${escapeHTML(product.description)}
+
+                                        </p>
+
+
+                                        <span class="product-price">
+
+
+                                            ₹${escapeHTML(product.price)}
+
+                                        </span>
+
+
+                                        <a
+
+                                            href="${safeURL(product.buyLink)}"
+
+                                            target="_blank"
+
+                                            rel="noopener noreferrer"
+
+                                            class="shop-btn"
+
+
+                                        >
+
+                                            View Product
+
+                                        </a>
+
+
+                                    </div>
+
+
+                                `;
+
+
+                                productGrid
+
+                                    .appendChild(
+
+                                        productCard
+
+                                    );
+
+
+                            }
+
+                        );
+
+
+                },
+
+
+                function(error) {
+
+
+                    console.error(
+
+                        "Firebase Error:",
+
+                        error
+
+                    );
+
+
+                    productGrid.innerHTML = `
+
+
+                        <div class="empty-state">
+
+
+                            <h3>
+
+                                Unable to Load Products
+
+                            </h3>
+
+
+                            <p>
+
+                                Please try again later.
+
+                            </p>
+
+
+                        </div>
+
+
+                    `;
+
+
+                }
+
+            );
+
+
+        /* ================= SECURITY ================= */
 
 
         function escapeHTML(value) {
@@ -1504,6 +1376,7 @@
             ).replace(
 
                 /[&<>"']/g,
+
 
                 function(match) {
 
@@ -1528,10 +1401,8 @@
 
             );
 
+
         }
-
-
-        /* ================= SAFE URL ================= */
 
 
         function safeURL(value) {
@@ -1560,6 +1431,7 @@
 
                 )
 
+
             ) {
 
 
@@ -1570,6 +1442,7 @@
 
 
             return "";
+
 
         }
 

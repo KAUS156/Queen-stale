@@ -1,283 +1,1489 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- === ADVANCED SEO META TAGS === -->
-    <title>Premium Men's Wear Collection | Shop Men's Fashion Online - StyleEasy</title>
-<meta name="description" content="Discover StyleEasy's exclusive Men's wear premium collection. Shop custom-tailored shirts, trousers, luxury jackets, and stylish casuals crafted for ultimate comfort.">
-<meta name="keywords" content="men fashion, premium mens wear, stylish shirts, mens luxury clothing, local mens fashion, styleeasy men, buy mens clothes online">
-<meta name="robots" content="index, follow">
 
-<!-- CORRECTED CANONICAL FOR NETLIFY -->
-<link rel="canonical" href="https://superlative-haupia-d1b3ec.netlify.app/menswear.html">
+    <!-- ================= SEO ================= -->
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8Y4KXCKM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-BD8Y4KXCKM');
-</script>
+    <title>
+        Men's Fashion Online | Trendy Clothes & Stylish Outfits | StyleEasy
+    </title>
 
-<!-- Open Graph / Facebook (Social SEO) -->
-<meta property="og:type" content="website">
-<!-- CORRECTED URL -->
-<meta property="og:url" content="https://superlative-haupia-d1b3ec.netlify.app/menswear.html">
-<meta property="og:title" content="Premium Men's Wear Collection | StyleEasy">
-<meta property="og:description" content="Shop the latest trends in men's fashion. High-quality fabric and perfect fit guaranteed at StyleEasy.">
-<meta property="og:image" content="https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?auto=format&fit=crop&w=600&q=80">
+    <meta name="description"
+        content="Shop the latest men's fashion online at StyleEasy. Discover trendy men's clothing, stylish outfits, casual wear, party wear and affordable fashion for men.">
 
-<!-- Twitter Cards -->
-<meta name="twitter:card" content="summary_large_image">
-<!-- CORRECTED URL -->
-<meta name="twitter:url" content="https://superlative-haupia-d1b3ec.netlify.app/menswear.html">
-<meta name="twitter:title" content="Premium Men's Wear Collection | StyleEasy">
-<meta name="twitter:description" content="Shop premium quality men's apparel. Redefine your style today.">
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?auto=format&fit=crop&w=600&q=80">
+    <meta name="keywords"
+        content="mens fashion online, men's clothing online, trendy clothes for men, stylish outfits for men, casual wear for men, party wear for men">
 
-<!-- Google Fonts & FontAwesome -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- === FIREBASE SYSTEM MODULES === -->
+    <meta name="robots"
+        content="index, follow">
+
+    <!-- Replace with your real URL -->
+
+    <link rel="canonical"
+        href="https://yourwebsite.com/mens-fashion.html">
+
+
+    <!-- Open Graph -->
+
+    <meta property="og:title"
+        content="Men's Fashion Online | StyleEasy">
+
+    <meta property="og:description"
+        content="Discover trendy men's clothes and stylish outfits online at StyleEasy.">
+
+    <meta property="og:type"
+        content="website">
+
+    <meta property="og:url"
+        content="https://yourwebsite.com/mens-fashion.html">
+
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <!-- Firebase -->
+
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
-    <!-- === SCHEMA MARKUP === -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      "name": "Men's Premium Collection - StyleEasy",
-      "description": "Explore premium Men's wear collection including casuals, formals and luxury tailoring.",
-      "url": "https://www.styleeasy.com/mens-collection.html",
-      "publisher": {
-        "@type": "Organization",
-        "name": "StyleEasy",
-        "logo": "https://www.styleeasy.com/logo.png"
-      }
-    }
-    </script>
 
     <style>
-        :root {
-            --primary-color: #070588;
-            --accent-color: #c5a880;
-            --text-color: #333333;
-            --light-bg: #f9f9f9;
-            --white: #ffffff;
-            --gray-border: #e0e0e0;
-        }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: var(--light-bg); color: var(--text-color); display: flex; flex-direction: column; min-height: 100vh; -webkit-font-smoothing: antialiased; }
-        
-        /* HEADER & NAV */
-        header { background-color: var(--primary-color); color: var(--white); padding: 15px 5%; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; width: 100%; }
-        .logo { font-size: 24px; font-weight: 700; letter-spacing: 1px; color: var(--white); text-decoration: none; }
-        .logo span { color: var(--accent-color); }
-        
-        /* DESKTOP SEARCH BAR */
-        .search-container { position: relative; display: flex; align-items: center; background: #222; border: 1px solid #444; border-radius: 25px; padding: 6px 18px; width: 300px; transition: all 0.3s ease; }
-        .search-container:focus-within { border-color: var(--accent-color); box-shadow: 0 0 8px rgba(197, 168, 128, 0.3); }
-        .search-input { background: transparent; border: none; color: var(--white); outline: none; font-size: 14px; width: 100%; }
-        .search-container i { color: #888; font-size: 15px; cursor: pointer; }
 
-        /* HERO BANNER */
-        .page-title-bar { background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?auto=format&fit=crop&w=1200&q=80') no-repeat center/cover; color: var(--white); text-align: center; padding: 80px 20px; }
-        .page-title-bar h1 { font-size: 40px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
-        .page-title-bar p { font-size: 16px; color: #dddddd; letter-spacing: 0.5px; }
+        * {
 
-        /* MAIN CONTENT & GRID */
-        main { flex: 1; max-width: 1200px; width: 100%; margin: 40px auto; padding: 0 20px; }
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 30px; }
-        
-        /* PRODUCT CARD */
-        .product-card { background-color: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.04); transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s; display: flex; flex-direction: column; border: 1px solid #eee; }
-        .product-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.1); }
-        .product-img-container { width: 100%; height: 340px; overflow: hidden; background-color: #f5f5f5; position: relative; }
-        .product-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-        .product-card:hover .product-img { transform: scale(1.06); }
-        
-        .product-info { padding: 22px; display: flex; flex-direction: column; flex-grow: 1; }
-        .product-title { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--primary-color); line-height: 1.3; }
-        .product-desc { font-size: 13.5px; color: #666; margin-bottom: 20px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .product-price-row { display: flex; justify-content: space-between; align-items: center; margin-top: auto; gap: 10px; }
-        .product-price { font-size: 20px; font-weight: 700; color: var(--primary-color); }
-        
-        .add-to-cart-btn { background-color: var(--primary-color); color: var(--white); text-decoration: none; padding: 11px 18px; border-radius: 6px; font-size: 13.5px; font-weight: 500; text-align: center; transition: all 0.3s; white-space: nowrap; display: flex; align-items: center; gap: 8px; }
-        .add-to-cart-btn:hover { background-color: var(--accent-color); color: var(--primary-color); font-weight: 600; }
-        
-        .empty-state { text-align: center; grid-column: 1 / -1; padding: 60px 20px; font-size: 18px; color: #777; }
-        
-        /* FOOTER */
-        footer { background-color: var(--primary-color); color: #bbbbbb; padding: 50px 5% 30px 5%; margin-top: auto; border-top: 4px solid var(--accent-color); }
-        .footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
-        .footer-box h3 { color: var(--white); font-size: 18px; margin-bottom: 20px; font-weight: 600; }
-        .copyright { text-align: center; margin-top: 40px; padding-top: 25px; border-top: 1px solid #222; font-size: 13px; color: #777; }
+            margin: 0;
 
-        /* MOBILE VIEW OPTIMIZATIONS */
-        @media (max-width: 768px) {
-            header { padding: 12px 4%; }
-            .search-container { width: 100%; max-width: 220px; padding: 5px 14px; }
-            .logo { font-size: 20px; }
-            .page-title-bar { padding: 50px 15px; }
-            .page-title-bar h1 { font-size: 28px; }
-            main { margin: 20px auto; padding: 0 15px; }
-            .products-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-            .product-img-container { height: 210px; } 
-            .product-info { padding: 12px; }
-            .product-title { font-size: 14.5px; margin-bottom: 5px; }
-            .product-desc { font-size: 12px; margin-bottom: 12px; -webkit-line-clamp: 1; } 
-            .product-price-row { flex-direction: column; align-items: flex-start; gap: 8px; }
-            .product-price { font-size: 16px; }
-            .add-to-cart-btn { width: 100%; padding: 8px 10px; font-size: 12px; justify-content: center; }
+            padding: 0;
+
+            box-sizing: border-box;
+
         }
 
-        @media (max-width: 400px) {
-            .products-grid { grid-template-columns: 1fr; gap: 20px; }
-            .search-container { max-width: 160px; }
-        }
-    </style>
-</head>
-<body>
 
-    <!-- STICKY HEADER -->
-    <header>
-        <div class="nav-container">
-            <a href="index.html" class="logo" aria-label="StyleEasy Home">Style<span>Easy</span></a>
-            <div class="search-container">
-                <input type="text" id="searchInput" class="search-input" placeholder="Search clothes..." aria-label="Search Collection">
-                <i class="fas fa-search" aria-hidden="true"></i>
-            </div>
-        </div>
-    </header>
+        body {
 
-    <!-- HERO BAR -->
-    <section class="page-title-bar">
-        <h1>Men's Collection</h1>
-        <p>Premium local collection crafted for perfection</p>
-    </section>
+            font-family: 'Poppins', sans-serif;
 
-    <!-- PRODUCT DISPLAY CANVAS -->
-    <main>
-        <div class="products-grid" id="productsContainer" aria-live="polite"></div>
-    </main>
+            background: #ffffff;
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-box">
-                <h3>About StyleEasy</h3>
-                <p style="font-size: 13.5px; line-height: 1.6; color: #999;">StyleEasy delivers highly durable, custom-fit luxury men's wear. Redefining fashion standard at local values.</p>
-            </div>
-        </div>
-        <div class="copyright">&copy; 2026 StyleEasy. All Rights Reserved.</div>
-    </footer>
+            color: #222;
 
-    <!-- HIGH-PERFORMANCE CLOUD DATA ENGINE -->
-    <script>
-        // 1. Live Database Link Configured Correctly
-        const firebaseConfig = {
-            apiKey: "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
-            authDomain: "lucky-triode-450317-g7.firebaseapp.com",
-            databaseURL: "https://lucky-triode-450317-g7-default-rtdb.firebaseio.com/", 
-            projectId: "lucky-triode-450317-g7",
-            storageBucket: "lucky-triode-450317-g7.firebasestorage.app",
-            messagingSenderId: "778199870672",
-            appId: "1:778199870672:web:62a9891e41b3a3d3f242d5"
-        };
-        
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
-        let mensProducts = [];
+            line-height: 1.6;
 
-        // 2. Fetch Isolated Men's Wear Data Stream
-        function syncMensCloudStore() {
-            // 👇 Targeted Node Path prevents data cross-matching
-            database.ref('products/menswear').on('value', (snapshot) => {
-                mensProducts = [];
-                const cloudData = snapshot.val();
-                
-                if (cloudData) {
-                    Object.keys(cloudData).forEach(key => {
-                        mensProducts.push(cloudData[key]);
-                    });
-                }
-                renderProducts(mensProducts);
-            }, (error) => {
-                console.error("Firebase Sync Failure:", error);
-            });
         }
 
-        // 3. Render HTML UI Cards safely
-        function renderProducts(productsList) {
-            const container = document.getElementById('productsContainer');
-            container.innerHTML = '';
 
-            if (productsList.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-search" style="font-size:35px; color:#bbb; display:block; margin-bottom:12px;"></i>
-                        <p>No products match your search. New designs arriving soon.</p>
-                    </div>`;
-                return;
+        /* ================= NAVBAR ================= */
+
+
+        .navbar {
+
+            width: 100%;
+
+            padding: 18px 7%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            background: #ffffff;
+
+            border-bottom: 1px solid #eeeeee;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+        }
+
+
+        .logo {
+
+            font-size: 27px;
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+            color: #222222;
+
+        }
+
+
+        .logo span {
+
+            color: #e91e63;
+
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 25px;
+
+            list-style: none;
+
+        }
+
+
+        .nav-links a {
+
+            color: #333333;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 500;
+
+            transition: 0.3s;
+
+        }
+
+
+        .nav-links a:hover {
+
+            color: #e91e63;
+
+        }
+
+
+        /* ================= HERO ================= */
+
+
+        .hero {
+
+            padding: 75px 7%;
+
+            text-align: center;
+
+            background:
+
+                linear-gradient(
+
+                    135deg,
+
+                    #f3f3f3,
+
+                    #ffffff
+
+                );
+
+        }
+
+
+        .hero h1 {
+
+            font-size: 44px;
+
+            margin-bottom: 15px;
+
+            color: #222222;
+
+        }
+
+
+        .hero p {
+
+            max-width: 780px;
+
+            margin: auto;
+
+            color: #666666;
+
+            font-size: 16px;
+
+        }
+
+
+        /* ================= CATEGORIES ================= */
+
+
+        .categories {
+
+            padding: 40px 7%;
+
+            text-align: center;
+
+        }
+
+
+        .categories h2 {
+
+            font-size: 28px;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .category-list {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 14px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .category-list a {
+
+            text-decoration: none;
+
+            color: #333333;
+
+            border: 1px solid #333333;
+
+            padding: 10px 18px;
+
+            border-radius: 25px;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+
+        }
+
+
+        .category-list a:hover {
+
+            background: #222222;
+
+            color: #ffffff;
+
+        }
+
+
+        /* ================= PRODUCTS ================= */
+
+
+        .products-section {
+
+            padding: 45px 7%;
+
+        }
+
+
+        .products-section h2 {
+
+            text-align: center;
+
+            font-size: 30px;
+
+            margin-bottom: 35px;
+
+        }
+
+
+        .product-grid {
+
+            display: grid;
+
+            grid-template-columns:
+
+                repeat(4, 1fr);
+
+            gap: 24px;
+
+        }
+
+
+        /* ================= PRODUCT CARD ================= */
+
+
+        .product-card {
+
+            background: #ffffff;
+
+            border: 1px solid #eeeeee;
+
+            border-radius: 14px;
+
+            overflow: hidden;
+
+            transition: 0.3s;
+
+        }
+
+
+        .product-card:hover {
+
+            transform: translateY(-6px);
+
+            box-shadow:
+
+                0 10px 30px
+
+                rgba(0, 0, 0, 0.10);
+
+        }
+
+
+        .product-image-wrapper {
+
+            width: 100%;
+
+            height: 310px;
+
+            overflow: hidden;
+
+            background: #f5f5f5;
+
+        }
+
+
+        .product-image-wrapper img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: 0.4s;
+
+        }
+
+
+        .product-card:hover
+
+        .product-image-wrapper img {
+
+            transform: scale(1.05);
+
+        }
+
+
+        .product-info {
+
+            padding: 17px;
+
+        }
+
+
+        .product-info h3 {
+
+            font-size: 17px;
+
+            margin-bottom: 8px;
+
+            color: #222222;
+
+        }
+
+
+        .product-description {
+
+            color: #777777;
+
+            font-size: 13px;
+
+            margin-bottom: 10px;
+
+            display: -webkit-box;
+
+            -webkit-line-clamp: 2;
+
+            -webkit-box-orient: vertical;
+
+            overflow: hidden;
+
+        }
+
+
+        .product-price {
+
+            display: block;
+
+            font-size: 19px;
+
+            font-weight: 700;
+
+            color: #222222;
+
+            margin-bottom: 14px;
+
+        }
+
+
+        .shop-btn {
+
+            display: inline-block;
+
+            width: 100%;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            background: #222222;
+
+            color: #ffffff;
+
+            padding: 11px;
+
+            border-radius: 7px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+
+        }
+
+
+        .shop-btn:hover {
+
+            background: #555555;
+
+        }
+
+
+        /* ================= LOADING ================= */
+
+
+        .loading {
+
+            width: 100%;
+
+            text-align: center;
+
+            padding: 50px;
+
+            color: #777777;
+
+            font-size: 16px;
+
+        }
+
+
+        .loading::after {
+
+            content: "";
+
+            display: block;
+
+            width: 28px;
+
+            height: 28px;
+
+            margin: 15px auto;
+
+            border: 3px solid #eeeeee;
+
+            border-top-color: #222222;
+
+            border-radius: 50%;
+
+            animation: spin 0.8s linear infinite;
+
+        }
+
+
+        @keyframes spin {
+
+            to {
+
+                transform: rotate(360deg);
+
             }
 
-            productsList.forEach((product) => {
-                const targetLink = product.buyLink || '#';
-                const title = escapeHTML(product.title || 'Premium Men Apparel');
-                const desc = escapeHTML(product.description || 'Exclusive local design crafted with high-grade fabric.');
-                const price = escapeHTML(product.price || '0');
-                const img = product.imageUrl || 'https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?auto=format&fit=crop&w=400&q=80';
+        }
 
-                const cardHTML = `
-                    <article class="product-card">
-                        <div class="product-img-container">
-                            <img src="${img}" alt="Buy ${title} online" class="product-img" loading="lazy">
-                        </div>
-                        <div class="product-info">
-                            <h2 class="product-title">${title}</h2>
-                            <p class="product-desc">${desc}</p>
-                            <div class="product-price-row">
-                                <span class="product-price">₹${price}</span>
-                                <a href="${targetLink}" target="_blank" rel="noopener" class="add-to-cart-btn">
-                                    <i class="fas fa-shopping-bag"></i> Buy Now
-                                </a>
+
+        /* ================= EMPTY ================= */
+
+
+        .empty-state {
+
+            width: 100%;
+
+            text-align: center;
+
+            padding: 50px 20px;
+
+            color: #777777;
+
+        }
+
+
+        .empty-state h3 {
+
+            margin-bottom: 8px;
+
+            color: #333333;
+
+        }
+
+
+        /* ================= SEO CONTENT ================= */
+
+
+        .seo-content {
+
+            padding: 60px 7%;
+
+            background: #fafafa;
+
+        }
+
+
+        .seo-content h2 {
+
+            font-size: 29px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .seo-content h3 {
+
+            margin-top: 25px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .seo-content p {
+
+            max-width: 1050px;
+
+            color: #555555;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        /* ================= FOOTER ================= */
+
+
+        footer {
+
+            background: #222222;
+
+            color: #ffffff;
+
+            padding: 35px 7%;
+
+            text-align: center;
+
+        }
+
+
+        footer a {
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            margin: 0 10px;
+
+            font-size: 14px;
+
+        }
+
+
+        footer p {
+
+            margin-top: 15px;
+
+            color: #bbbbbb;
+
+            font-size: 13px;
+
+        }
+
+
+        /* ================= TABLET ================= */
+
+
+        @media (max-width: 1100px) {
+
+            .product-grid {
+
+                grid-template-columns:
+
+                    repeat(3, 1fr);
+
+            }
+
+        }
+
+
+        /* ================= MOBILE ================= */
+
+
+        @media (max-width: 768px) {
+
+
+            .navbar {
+
+                padding: 15px 5%;
+
+            }
+
+
+            .nav-links {
+
+                gap: 10px;
+
+            }
+
+
+            .nav-links a {
+
+                font-size: 11px;
+
+            }
+
+
+            .hero {
+
+                padding: 55px 5%;
+
+            }
+
+
+            .hero h1 {
+
+                font-size: 30px;
+
+            }
+
+
+            .hero p {
+
+                font-size: 14px;
+
+            }
+
+
+            .products-section,
+
+            .categories,
+
+            .seo-content {
+
+                padding-left: 5%;
+
+                padding-right: 5%;
+
+            }
+
+
+            .product-grid {
+
+                grid-template-columns:
+
+                    repeat(2, 1fr);
+
+                gap: 13px;
+
+            }
+
+
+            .product-image-wrapper {
+
+                height: 230px;
+
+            }
+
+
+            .product-info {
+
+                padding: 11px;
+
+            }
+
+
+            .product-info h3 {
+
+                font-size: 14px;
+
+            }
+
+
+            .product-description {
+
+                font-size: 12px;
+
+            }
+
+
+            .product-price {
+
+                font-size: 16px;
+
+            }
+
+
+            .shop-btn {
+
+                font-size: 12px;
+
+                padding: 9px;
+
+            }
+
+        }
+
+
+        /* ================= SMALL MOBILE ================= */
+
+
+        @media (max-width: 420px) {
+
+
+            .logo {
+
+                font-size: 21px;
+
+            }
+
+
+            .nav-links {
+
+                gap: 7px;
+
+            }
+
+
+            .nav-links a {
+
+                font-size: 9px;
+
+            }
+
+
+            .product-image-wrapper {
+
+                height: 200px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+
+    <header class="navbar">
+
+
+        <a href="index.html" class="logo">
+
+            Style<span>Easy</span>
+
+        </a>
+
+
+        <nav>
+
+            <ul class="nav-links">
+
+
+                <li>
+
+                    <a href="index.html">
+
+                        Home
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="mens-fashion.html">
+
+                        Men's Fashion
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="mens-shirts.html">
+
+                        Shirts
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="mens-t-shirts.html">
+
+                        T-Shirts
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="mens-jeans.html">
+
+                        Jeans
+
+                    </a>
+
+                </li>
+
+
+            </ul>
+
+        </nav>
+
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+
+    <section class="hero">
+
+
+        <h1>
+
+            Men's Fashion Online
+
+        </h1>
+
+
+        <p>
+
+            Discover the latest men's fashion online at StyleEasy.
+
+            Explore trendy clothes, stylish outfits, casual wear,
+
+            party wear and affordable fashion for men.
+
+        </p>
+
+
+    </section>
+
+
+    <!-- ================= CATEGORIES ================= -->
+
+
+    <section class="categories">
+
+
+        <h2>
+
+            Explore Men's Fashion Categories
+
+        </h2>
+
+
+        <div class="category-list">
+
+
+            <a href="mens-shirts.html">
+
+                Men's Shirts
+
+            </a>
+
+
+            <a href="mens-t-shirts.html">
+
+                Men's T-Shirts
+
+            </a>
+
+
+            <a href="mens-jeans.html">
+
+                Men's Jeans
+
+            </a>
+
+
+            <a href="mens-casual-wear.html">
+
+                Casual Wear
+
+            </a>
+
+
+            <a href="mens-party-wear.html">
+
+                Party Wear
+
+            </a>
+
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ================= PRODUCTS ================= -->
+
+
+    <section class="products-section">
+
+
+        <h2>
+
+            Latest Men's Fashion
+
+        </h2>
+
+
+        <div
+
+            class="product-grid"
+
+            id="productGrid">
+
+
+            <div
+
+                class="loading"
+
+                id="loadingMessage">
+
+
+                Loading latest men's fashion...
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ================= SEO CONTENT ================= -->
+
+
+    <section class="seo-content">
+
+
+        <h2>
+
+            Men's Fashion Online
+
+        </h2>
+
+
+        <p>
+
+            Looking for the latest men's fashion online?
+
+            StyleEasy brings you a collection of trendy men's clothing
+
+            and stylish outfits for every occasion. Explore modern
+
+            fashion styles and discover clothing that matches your
+
+            personal style.
+
+        </p>
+
+
+        <p>
+
+            From stylish men's shirts and trendy t-shirts to jeans,
+
+            casual wear and party outfits, explore the latest men's
+
+            fashion trends in one place. Find fashionable and affordable
+
+            clothing for everyday wear and special occasions.
+
+        </p>
+
+
+        <h3>
+
+            Find Your Perfect Men's Outfit
+
+        </h3>
+
+
+        <p>
+
+            Discover the latest fashion trends for men and explore
+
+            stylish clothing at affordable prices. Browse our collection
+
+            and find your perfect outfit today.
+
+        </p>
+
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+
+    <footer>
+
+
+        <div>
+
+
+            <a href="index.html">
+
+                Home
+
+            </a>
+
+
+            <a href="mens-fashion.html">
+
+                Men's Fashion
+
+            </a>
+
+
+            <a href="contact.html">
+
+                Contact
+
+            </a>
+
+
+        </div>
+
+
+        <p>
+
+            © 2026 StyleEasy. All Rights Reserved.
+
+        </p>
+
+
+    </footer>
+
+
+    <!-- ================= FIREBASE ================= -->
+
+
+    <script>
+
+
+        /* ================= FIREBASE CONFIG ================= */
+
+
+        const firebaseConfig = {
+
+
+            apiKey:
+
+                "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
+
+
+            authDomain:
+
+                "lucky-triode-450317-g7.firebaseapp.com",
+
+
+            databaseURL:
+
+                "https://lucky-triode-450317-g7-default-rtdb.firebaseio.com/",
+
+
+            projectId:
+
+                "lucky-triode-450317-g7",
+
+
+            storageBucket:
+
+                "lucky-triode-450317-g7.firebasestorage.app",
+
+
+            messagingSenderId:
+
+                "778199870672",
+
+
+            appId:
+
+                "1:778199870672:web:62a9891e41b3a3d3f242d5"
+
+
+        };
+
+
+        /* ================= INITIALIZE ================= */
+
+
+        firebase.initializeApp(firebaseConfig);
+
+
+        const database =
+
+            firebase.database();
+
+
+        const productGrid =
+
+            document.getElementById(
+
+                "productGrid"
+
+            );
+
+
+        /* ================= LOAD MEN'S PRODUCTS ================= */
+
+
+        database
+
+            .ref("products/menswear")
+
+            .on(
+
+                "value",
+
+                function(snapshot) {
+
+
+                    productGrid.innerHTML = "";
+
+
+                    const products =
+
+                        snapshot.val();
+
+
+                    /* NO PRODUCTS */
+
+
+                    if (!products) {
+
+
+                        productGrid.innerHTML = `
+
+
+                            <div class="empty-state">
+
+
+                                <h3>
+
+                                    No Men's Products Available
+
+                                </h3>
+
+
+                                <p>
+
+                                    New men's fashion products will appear here soon.
+
+                                </p>
+
+
                             </div>
+
+
+                        `;
+
+
+                        return;
+
+
+                    }
+
+
+                    /* PRODUCT LOOP */
+
+
+                    Object.keys(products)
+
+                        .reverse()
+
+                        .forEach(
+
+                            function(key) {
+
+
+                                const product =
+
+                                    products[key];
+
+
+                                const productCard =
+
+                                    document.createElement(
+
+                                        "article"
+
+                                    );
+
+
+                                productCard.className =
+
+                                    "product-card";
+
+
+                                productCard.innerHTML = `
+
+
+                                    <div class="product-image-wrapper">
+
+
+                                        <img
+
+                                            src="${safeURL(product.imageUrl)}"
+
+                                            alt="${escapeHTML(product.title)}"
+
+                                            loading="lazy"
+
+                                        >
+
+                                    </div>
+
+
+                                    <div class="product-info">
+
+
+                                        <h3>
+
+                                            ${escapeHTML(product.title)}
+
+                                        </h3>
+
+
+                                        <p class="product-description">
+
+
+                                            ${escapeHTML(product.description)}
+
+                                        </p>
+
+
+                                        <span class="product-price">
+
+
+                                            ₹${escapeHTML(product.price)}
+
+                                        </span>
+
+
+                                        <a
+
+                                            href="${safeURL(product.buyLink)}"
+
+                                            target="_blank"
+
+                                            rel="noopener noreferrer"
+
+                                            class="shop-btn"
+
+
+                                        >
+
+                                            View Product
+
+                                        </a>
+
+
+                                    </div>
+
+
+                                `;
+
+
+                                productGrid.appendChild(
+
+                                    productCard
+
+                                );
+
+
+                            }
+
+                        );
+
+
+                },
+
+
+                function(error) {
+
+
+                    console.error(
+
+                        "Firebase Error:",
+
+                        error
+
+                    );
+
+
+                    productGrid.innerHTML = `
+
+
+                        <div class="empty-state">
+
+
+                            <h3>
+
+                                Unable to Load Products
+
+                            </h3>
+
+
+                            <p>
+
+                                Please try again later.
+
+                            </p>
+
+
                         </div>
-                    </article>
-                `;
-                container.innerHTML += cardHTML;
-            });
+
+
+                    `;
+
+
+                }
+
+            );
+
+
+        /* ================= SECURITY ================= */
+
+
+        function escapeHTML(value) {
+
+
+            return String(
+
+                value || ""
+
+            ).replace(
+
+                /[&<>"']/g,
+
+                function(match) {
+
+
+                    return {
+
+
+                        "&": "&amp;",
+
+                        "<": "&lt;",
+
+                        ">": "&gt;",
+
+                        '"': "&quot;",
+
+                        "'": "&#039;"
+
+                    }[match];
+
+
+                }
+
+            );
+
         }
 
-        // XSS Script Safety Engine
-        function escapeHTML(str) {
-            return String(str).replace(/[&<>"']/g, function(m) {
-                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
-            });
+
+        function safeURL(value) {
+
+
+            const url =
+
+                String(
+
+                    value || ""
+
+                ).trim();
+
+
+            if (
+
+                url.startsWith(
+
+                    "https://"
+
+                ) ||
+
+                url.startsWith(
+
+                    "http://"
+
+                )
+
+            ) {
+
+
+                return url;
+
+
+            }
+
+
+            return "";
+
+
         }
 
-        // 4. Keyboard Real-time Search Controller
-        document.getElementById('searchInput').addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase().trim();
-            
-            const filteredProducts = mensProducts.filter(product => {
-                const titleMatch = product.title ? product.title.toLowerCase().includes(searchTerm) : false;
-                const descMatch = product.description ? product.description.toLowerCase().includes(searchTerm) : false;
-                return titleMatch || descMatch;
-            });
 
-            renderProducts(filteredProducts);
-        });
-
-        // Safe Initialization
-        window.addEventListener('DOMContentLoaded', syncMensCloudStore);
     </script>
+
+
 </body>
+
 </html>
