@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    
+    <!-- SEO -->
+   <title>StyleEase | Trendy Girl Dresses, Suits & Wedding Wear</title>
+    <meta name="description" content=" StyleEasy में रॉयल क्लब जॉइन करें। लक्ज़री फैशन, प्रीमियम आउटफिट्स और महिलाओं के लिए एक्सक्लूसिव बेनिफिट्स।">
+    <meta name="keywords" content="StyleEasy register, luxury fashion women, royal club, premium outfits, designer dresses for women">
+    <meta name="author" content="StyleEasy">
+    <meta name="theme-color" content="#d4af37">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="StyleEasy• Create Account">
+    <meta property="og:description" content="Luxury Fashion for Modern Queens - Join the Royal Club">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" href="favicon.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            content: [],
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        .slide { transition: opacity 1.2s ease-in-out; }
+        .gold-gradient {
+            background: linear-gradient(45deg, #f5deb3, #d4af37, #b8860b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+
+    <!-- Google Analytics & Umami -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8Y4KXCKM"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-BD8Y4KXCKM');</script>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e475468a-59c1-463c-b887-64507ed9bf61"></script>
+</head>
+<body class="bg-zinc-50">
+
+<div class="min-h-screen flex flex-col lg:flex-row">
+
+    <!-- LEFT SLIDER -->
+    <div class="lg:w-1/2 relative h-screen bg-black overflow-hidden">
+        <img class="slide absolute inset-0 w-full h-full object-cover" id="slide1" src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1200" alt="Luxury Fashion 1" />
+        <img class="slide absolute inset-0 w-full h-full object-cover opacity-0" id="slide2" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200" alt="Luxury Fashion 2" />
+        <img class="slide absolute inset-0 w-full h-full object-cover opacity-0" id="slide3" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1200" alt="Luxury Fashion 3" />
+        <img class="slide absolute inset-0 w-full h-full object-cover opacity-0" id="slide4" src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200" alt="Luxury Fashion 4" />
+        <img class="slide absolute inset-0 w-full h-full object-cover opacity-0" id="slide5" src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=1200" alt="Luxury Fashion 5" />
+
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+        
+        <div class="absolute bottom-0 left-0 right-0 p-8 lg:p-16 text-white">
+            <h1 class="text-5xl lg:text-6xl font-bold gold-gradient mb-4"> StyleEasy Empire</h1>
+            <p class="text-lg max-w-md">Luxury fashion for modern queens. Discover elegant collections & royal benefits.</p>
+        </div>
+
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3" id="dots"></div>
+    </div>
+
+    <!-- RIGHT FORM -->
+    <div class="lg:w-1/2 flex items-center justify-center p-6 lg:p-12">
+        <div class="w-full max-w-md">
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center gap-2 text-amber-500 font-bold tracking-[3px] text-sm mb-3">✦ JOIN THE ROYAL CLUB ✦</div>
+                <h2 class="text-4xl font-bold text-zinc-900">Create Account</h2>
+                <p class="text-zinc-600 mt-3">Unlock exclusive luxury collections & royal shopping benefits</p>
+            </div>
+
+            <div id="message" class="hidden p-4 rounded-2xl mb-6 text-sm"></div>
+
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-sm font-semibold text-zinc-700 mb-2">Full Name</label>
+                    <input type="text" id="name" class="w-full px-6 py-4 rounded-3xl border border-zinc-200 focus:border-amber-400 focus:ring-4 focus:ring-amber-400/20 outline-none transition-all" placeholder="Enter your name">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-zinc-700 mb-2">Email Address</label>
+                    <input type="email" id="email" class="w-full px-6 py-4 rounded-3xl border border-zinc-200 focus:border-amber-400 focus:ring-4 focus:ring-amber-400/20 outline-none transition-all" placeholder="hello@queenstyle.com">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-zinc-700 mb-2">Password</label>
+                    <input type="password" id="password" class="w-full px-6 py-4 rounded-3xl border border-zinc-200 focus:border-amber-400 focus:ring-4 focus:ring-amber-400/20 outline-none transition-all" placeholder="Minimum 6 characters">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-zinc-700 mb-2">City / Area</label>
+                    <input type="text" id="city" class="w-full px-6 py-4 rounded-3xl border border-zinc-200 focus:border-amber-400 focus:ring-4 focus:ring-amber-400/20 outline-none transition-all" placeholder="Paris, Dubai, Mumbai">
+                </div>
+
+                <button id="registerBtn" 
+                        class="w-full py-4 bg-gradient-to-r from-zinc-900 to-black text-white font-bold rounded-full text-lg hover:scale-[1.03] transition-all shadow-xl shadow-amber-500/30">
+                    Join The Royal Club →
+                </button>
+            </div>
+
+            <div class="text-center mt-8 text-sm text-zinc-500">
+                Already have an account? 
+                <a href="login.html" class="text-amber-500 hover:underline font-semibold">Sign In</a>
+            </div>
+
+            <div class="text-center mt-10 text-xs text-zinc-400">⭐ Rated 4.9/5 by 12,000+ fashion lovers</div>
+        </div>
+    </div>
+</div>
+
+<div id="toast" class="hidden fixed bottom-8 left-1/2 -translate-x-1/2 bg-zinc-900 text-white px-8 py-4 rounded-full shadow-2xl flex items-center gap-3">
+    👑 Registration Successful
+</div>
+
+<!-- Firebase SDK -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
+        authDomain: "lucky-triode-450317-g7.firebaseapp.com",
+        projectId: "lucky-triode-450317-g7",
+        storageBucket: "lucky-triode-450317-g7.firebasestorage.app",
+        messagingSenderId: "778199870672",
+        appId: "1:778199870672:web:62a9891e41b3a3d3f242d5"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // Tailwind Script already loaded
+
+    /* ==================== SLIDER ==================== */
+    let current = 0;
+    const slides = document.querySelectorAll(".slide");
+    const dotsContainer = document.getElementById("dots");
+
+    slides.forEach((_, i) => {
+        const dot = document.createElement("div");
+        dot.className = `w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ${i===0 ? 'bg-amber-400 w-8' : 'bg-white/60'}`;
+        dot.onclick = () => showSlide(i);
+        dotsContainer.appendChild(dot);
+    });
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => slide.style.opacity = i === index ? "1" : "0");
+        Array.from(dotsContainer.children).forEach((dot, i) => {
+            dot.classList.toggle('bg-amber-400', i === index);
+            dot.classList.toggle('w-8', i === index);
+        });
+        current = index;
+    }
+
+    setInterval(() => {
+        current = (current + 1) % slides.length;
+        showSlide(current);
+    }, 4500);
+
+    /* ==================== FORM LOGIC ==================== */
+    const registerBtn = document.getElementById("registerBtn");
+    const message = document.getElementById("message");
+    const toast = document.getElementById("toast");
+
+    function showMessage(text, type) {
+        message.className = `p-4 rounded-2xl text-sm font-medium ${type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`;
+        message.textContent = text;
+        message.classList.remove('hidden');
+    }
+
+    function validateEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    registerBtn.addEventListener("click", async () => {
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const city = document.getElementById("city").value.trim();
+
+        if (!name || !email || !password || !city) {
+            showMessage("❌ Please fill all fields", "error");
+            return;
+        }
+        if (name.length < 2) {
+            showMessage("❌ Name must be at least 2 characters", "error");
+            return;
+        }
+        if (!validateEmail(email)) {
+            showMessage("❌ Invalid email address", "error");
+            return;
+        }
+        if (password.length < 6) {
+            showMessage("❌ Password must be at least 6 characters", "error");
+            return;
+        }
+
+        if (typeof gtag === 'function') gtag('event', 'sign_up_attempt', { 'city': city });
+
+        registerBtn.disabled = true;
+        registerBtn.innerHTML = "Creating Royal Account...";
+
+        try {
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+
+            await updateProfile(user, { displayName: name });
+
+            await setDoc(doc(db, "users", user.uid), {
+                uid: user.uid,
+                name: name,
+                email: email,
+                area: city,
+                isAdmin: false,
+                photoURL: "",
+                authProvider: "password",
+                createdAt: new Date().toISOString()
+            });
+
+            localStorage.setItem("queenStyleUser", JSON.stringify({ name, email, city, date: new Date().toISOString() }));
+
+            if (typeof gtag === 'function') gtag('event', 'sign_up_success', { 'city': city });
+
+            showMessage("✅ Registration successful", "success");
+            toast.classList.remove('hidden');
+            toast.style.opacity = "1";
+
+            setTimeout(() => {
+                window.location.href = "login.html";
+            }, 1800);
+
+        } catch (error) {
+            registerBtn.disabled = false;
+            registerBtn.innerHTML = "Join The Royal Club →";
+            
+            let errorMsg = "Registration failed. Please try again.";
+            if (error.code === 'auth/email-already-in-use') errorMsg = "❌ This email is already registered.";
+            else if (error.code === 'auth/invalid-email') errorMsg = "❌ Invalid email format.";
+            else if (error.code === 'auth/weak-password') errorMsg = "❌ Password is too weak.";
+
+            showMessage(errorMsg, "error");
+        }
+    });
+</script>
+
+</body>
+</html>
