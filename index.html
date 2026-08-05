@@ -10,7 +10,7 @@
     <meta name="keywords" content="girl dress online, girls fashion clothes, party wear dress girls, cute outfits for girls, trendy dresses online, women clothing store, StyleEasy fashion, buy frocks online, designer girls clothing">
     <meta name="robots" content="index, follow">
 
-    <!-- RIGHT CANONICAL FOR HOMEPAGE -->
+    <!-- CANONICAL LINK -->
     <link rel="canonical" href="https://superlative-haupia-d1b3ec.netlify.app/">
 
     <!-- Social Media Previews (Open Graph) -->
@@ -171,11 +171,11 @@
             border-radius: 4px;
         }
 
-        /* RIGHT SIDE: MODERN LOGIN FORM */
+        /* RIGHT SIDE: FORM */
         .form-side {
             flex: 1;
             background: #ffffff;
-            padding: 4rem;
+            padding: 2.5rem 4rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -187,11 +187,11 @@
 
         .brand-header {
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .crown-icon {
-            font-size: 56px;
+            font-size: 44px;
             display: inline-block;
             animation: gentleFloat 3s ease-in-out infinite;
             filter: drop-shadow(0 6px 12px rgba(212, 175, 55, 0.3));
@@ -203,34 +203,102 @@
         }
 
         .brand-header h2 {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 800;
             background: linear-gradient(135deg, #0f172a, #334155);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin: 0.4rem 0 0.2rem;
+            margin: 0.2rem 0 0.1rem;
             letter-spacing: -0.5px;
         }
 
         .royal-tag {
-            font-size: 11px;
+            font-size: 10px;
             color: #b45309;
             letter-spacing: 2px;
             font-weight: 700;
             text-transform: uppercase;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
 
-        /* PREMIUM BUTTONS */
+        /* INPUT FIELDS */
+        .input-group {
+            margin-bottom: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .input-group label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .phone-input-wrapper {
+            display: flex;
+            align-items: center;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background: #f8fafc;
+            transition: border-color 0.2s;
+        }
+
+        .phone-input-wrapper:focus-within {
+            border-color: #0f172a;
+            background: #fff;
+        }
+
+        .country-code {
+            padding: 0.8rem 0.9rem;
+            font-weight: 600;
+            color: #475569;
+            background: #f1f5f9;
+            border-right: 1px solid #e2e8f0;
+            font-size: 0.95rem;
+        }
+
+        .custom-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: none;
+            outline: none;
+            font-size: 0.98rem;
+            background: transparent;
+            color: #0f172a;
+            font-weight: 500;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 1rem 0;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .divider span {
+            padding: 0 10px;
+        }
+
+        /* BUTTONS */
         .login-btn {
             width: 100%;
-            padding: 1.1rem;
-            margin-top: 0.5rem;
+            padding: 0.9rem;
             border: none;
             border-radius: 0.75rem;
             font-weight: 700;
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             color: white;
             cursor: pointer;
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -268,13 +336,13 @@
         .seo-footer {
             text-align: center;
             margin-top: auto;
-            padding-top: 2.5rem;
+            padding-top: 1.5rem;
             font-size: 0.8rem;
             color: #94a3b8;
             font-weight: 500;
         }
 
-        /* PREMIUM ULTRA-RESPONSIVE MOBILE ARCHITECTURE */
+        /* RESPONSIVE ARCHITECTURE */
         @media (max-width: 850px) {
             .login-master {
                 position: relative;
@@ -314,11 +382,11 @@
                 width: 92%;
                 max-width: 440px;
                 height: auto;
-                max-height: 80vh;
-                margin-bottom: 30px;
+                max-height: 88vh;
+                margin-bottom: 15px;
                 border-radius: 1.5rem;
-                padding: 3rem 2rem;
-                background: rgba(255, 255, 255, 0.94);
+                padding: 2rem 1.6rem;
+                background: rgba(255, 255, 255, 0.95);
                 backdrop-filter: blur(16px);
                 -webkit-backdrop-filter: blur(16px);
                 box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
@@ -332,19 +400,19 @@
             }
 
             .brand-header {
-                margin-bottom: 1.5rem;
+                margin-bottom: 1rem;
             }
 
             .crown-icon {
-                font-size: 44px;
+                font-size: 38px;
             }
 
             .brand-header h2 {
-                font-size: 26px;
+                font-size: 22px;
             }
 
             .seo-footer {
-                padding-top: 1.8rem;
+                padding-top: 1rem;
                 color: #64748b;
             }
         }
@@ -352,11 +420,11 @@
         @media (max-width: 400px) {
             .form-side {
                 width: 95%;
-                padding: 2.2rem 1.5rem;
-                margin-bottom: 15px;
+                padding: 1.5rem 1.2rem;
+                margin-bottom: 10px;
             }
-            .brand-header h2 { font-size: 23px; }
-            .login-btn { padding: 1rem; font-size: 0.98rem; }
+            .brand-header h2 { font-size: 20px; }
+            .login-btn { padding: 0.8rem; font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -396,8 +464,45 @@
                 <div class="royal-tag">✦ SIGN IN TO YOUR ACCOUNT ✦</div>
             </header>
 
-            <main style="display: flex; flex-direction: column; justify-content: center; flex-grow: 0.5;">
-                <!-- ONLY GOOGLE LOGIN BUTTON -->
+            <main style="display: flex; flex-direction: column; justify-content: center;">
+                <!-- MOBILE NUMBER OTP FORM -->
+                <div id="phoneStep">
+                    <div class="input-group">
+                        <label for="phoneNumber">Mobile Number</label>
+                        <div class="phone-input-wrapper">
+                            <span class="country-code">+91</span>
+                            <input type="tel" id="phoneNumber" class="custom-input" placeholder="Enter 10 digit number" maxlength="10">
+                        </div>
+                    </div>
+                    
+                    <button type="button" class="login-btn" id="sendOtpBtn" style="margin-top: 0.3rem;">
+                        Send OTP
+                    </button>
+                </div>
+
+                <!-- OTP INPUT FORM (HIDDEN INITIALLY) -->
+                <div id="otpStep" style="display: none;">
+                    <div class="input-group">
+                        <label for="otpCode">Enter 6-Digit OTP</label>
+                        <input type="text" id="otpCode" class="custom-input" placeholder="------" maxlength="6" style="border: 1.5px solid #e2e8f0; border-radius: 0.75rem; text-align: center; letter-spacing: 6px; font-weight: 700;">
+                    </div>
+                    
+                    <button type="button" class="login-btn" id="verifyOtpBtn" style="margin-top: 0.3rem;">
+                        Verify & Sign In
+                    </button>
+                    
+                    <button type="button" id="resendBtn" style="background: none; border: none; color: #0f172a; font-weight: 600; font-size: 0.82rem; margin-top: 0.7rem; cursor: pointer; text-decoration: underline;">
+                        Change Number / Resend
+                    </button>
+                </div>
+
+                <div id="recaptcha-container"></div>
+
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+
+                <!-- GOOGLE LOGIN BUTTON -->
                 <button type="button" class="login-btn google-btn" id="googleLoginBtn">
                     <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 4px;">
                         <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -418,7 +523,7 @@
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getAuth, signInWithPopup, signInWithRedirect, getRedirectResult, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { getAuth, signInWithPopup, signInWithRedirect, getRedirectResult, GoogleAuthProvider, RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
     import { getFirestore, collection, query, where, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
     const firebaseConfig = {
@@ -439,6 +544,8 @@
         'prompt': 'select_account',
         'auth_type': 'reauthenticate'
     });
+
+    let confirmationResultGlobal = null;
 
     // GALLERY DYNAMIC SYSTEM
     const slides = document.querySelectorAll('.slide-img');
@@ -518,14 +625,15 @@
         }, 3200);
     }
 
-    function setUIState(loading) {
-        const googleBtn = document.getElementById("googleLoginBtn");
+    function setUIState(loading, btnId = "googleLoginBtn", loadingText = "Processing...") {
+        const btn = document.getElementById(btnId);
         if (loading) {
-            googleBtn.disabled = true;
-            googleBtn.innerHTML = "Opening Secure Gateway...";
+            btn.disabled = true;
+            btn.dataset.originalText = btn.innerHTML;
+            btn.innerHTML = loadingText;
         } else {
-            googleBtn.disabled = false;
-            googleBtn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 4px;"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Continue with Google`;
+            btn.disabled = false;
+            btn.innerHTML = btn.dataset.originalText || "Submit";
         }
     }
 
@@ -550,7 +658,7 @@
             uid: user.uid,
             phone: user.phoneNumber || null,
             email: user.email || null,
-            name: user.displayName || user.email?.split('@')[0] || "Luxury Guest",
+            name: user.displayName || (user.phoneNumber ? `User ${user.phoneNumber.slice(-4)}` : "Luxury Guest"),
             isAdmin: isAdmin
         }));
         localStorage.setItem("isAdmin", isAdmin ? "true" : "false");
@@ -558,7 +666,7 @@
         if (typeof gtag === 'function') {
             gtag('event', 'login_success', {
                 'user_role': isAdmin ? 'Admin' : 'Customer',
-                'method': 'Google'
+                'method': user.phoneNumber ? 'Phone' : 'Google'
             });
         }
 
@@ -580,10 +688,10 @@
                     uid: user.uid,
                     phone: user.phoneNumber || "",
                     email: user.email || "",
-                    name: user.displayName || user.email?.split('@')[0] || "Luxury Guest",
+                    name: user.displayName || (user.phoneNumber ? `User ${user.phoneNumber.slice(-4)}` : "Luxury Guest"),
                     area: "Luxury Enthusiast",
                     isAdmin: false,
-                    authProvider: "google",
+                    authProvider: user.phoneNumber ? "phone" : "google",
                     createdAt: new Date().toISOString()
                 });
             }
@@ -592,13 +700,79 @@
         }
     }
 
-    // GOOGLE SIGN IN OAUTH MATRIX
+    // --- RECAPTCHA SETUP ---
+    function setupRecaptcha() {
+        if (!window.recaptchaVerifier) {
+            window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+                'size': 'invisible'
+            });
+        }
+    }
+
+    // --- PHONE OTP LOGIN LOGIC ---
+    async function handleSendOtp() {
+        const phoneNum = document.getElementById("phoneNumber").value.trim();
+        if (phoneNum.length !== 10 || isNaN(phoneNum)) {
+            showMessage("❌ Please enter a valid 10-digit mobile number");
+            return;
+        }
+
+        const fullPhone = `+91${phoneNum}`;
+        setUIState(true, "sendOtpBtn", "Sending OTP...");
+
+        try {
+            setupRecaptcha();
+            const appVerifier = window.recaptchaVerifier;
+            const confirmationResult = await signInWithPhoneNumber(auth, fullPhone, appVerifier);
+            confirmationResultGlobal = confirmationResult;
+            
+            document.getElementById("phoneStep").style.display = "none";
+            document.getElementById("otpStep").style.display = "block";
+            showMessage("📱 OTP Sent Successfully!", false);
+        } catch (error) {
+            console.error("SMS Error:", error);
+            showMessage(`❌ OTP Failed: ${error.message}`);
+            if (window.recaptchaVerifier) window.recaptchaVerifier.render().then(widgetId => grecaptcha.reset(widgetId));
+        } finally {
+            setUIState(false, "sendOtpBtn");
+        }
+    }
+
+    async function handleVerifyOtp() {
+        const otp = document.getElementById("otpCode").value.trim();
+        if (otp.length !== 6 || isNaN(otp)) {
+            showMessage("❌ Enter valid 6-digit OTP");
+            return;
+        }
+
+        if (!confirmationResultGlobal) {
+            showMessage("❌ Session expired. Request OTP again.");
+            return;
+        }
+
+        setUIState(true, "verifyOtpBtn", "Verifying...");
+
+        try {
+            const result = await confirmationResultGlobal.confirm(otp);
+            if (result && result.user) {
+                await ensureUserDocument(result.user);
+                await handleSuccessfulLogin(result.user);
+            }
+        } catch (error) {
+            console.error("OTP Verify Error:", error);
+            showMessage("❌ Invalid OTP. Please try again.");
+        } finally {
+            setUIState(false, "verifyOtpBtn");
+        }
+    }
+
+    // --- GOOGLE LOGIN LOGIC ---
     async function handleGoogleLogin() {
         if (typeof gtag === 'function') {
             gtag('event', 'login_attempt', { 'method': 'Google' });
         }
 
-        setUIState(true);
+        setUIState(true, "googleLoginBtn", "Opening Secure Gateway...");
         try {
             const result = await signInWithPopup(auth, googleProvider);
             if (result && result.user) {
@@ -611,11 +785,11 @@
                 try {
                     await signInWithRedirect(auth, googleProvider);
                 } catch (redirectError) {
-                    setUIState(false);
+                    setUIState(false, "googleLoginBtn");
                     showMessage(`❌ Secure Gate Blocked: ${redirectError.message}`);
                 }
             } else {
-                setUIState(false);
+                setUIState(false, "googleLoginBtn");
                 showMessage(`❌ Authentication Interface Error: ${error.message}`);
             }
         }
@@ -646,7 +820,14 @@
         }
     }
 
+    // EVENT LISTENERS
     document.getElementById("googleLoginBtn").addEventListener("click", handleGoogleLogin);
+    document.getElementById("sendOtpBtn").addEventListener("click", handleSendOtp);
+    document.getElementById("verifyOtpBtn").addEventListener("click", handleVerifyOtp);
+    document.getElementById("resendBtn").addEventListener("click", () => {
+        document.getElementById("otpStep").style.display = "none";
+        document.getElementById("phoneStep").style.display = "block";
+    });
 </script>
 </body>
 </html>
