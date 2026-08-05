@@ -7,56 +7,102 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- ================= SEO ================= -->
+    <!-- ================= ADVANCED SEO META TAGS ================= -->
 
-    <title>
-        Men's Fashion Online | Trendy Clothes & Stylish Outfits | StyleEasy
-    </title>
+    <title>Men's Fashion Online | Trendy Clothes &amp; Stylish Outfits | StyleEasy</title>
 
     <meta name="description"
-        content="Shop the latest men's fashion online at StyleEasy. Discover trendy men's clothing, stylish outfits, casual wear, party wear and affordable fashion for men.">
+        content="Shop the latest men's fashion online at StyleEasy. Discover trendy men's clothing, stylish outfits, casual wear, party wear and affordable fashion for men with fast delivery.">
 
     <meta name="keywords"
-        content="mens fashion online, men's clothing online, trendy clothes for men, stylish outfits for men, casual wear for men, party wear for men">
+        content="mens fashion online, men's clothing online, trendy clothes for men, stylish outfits for men, casual wear for men, party wear for men, buy mens shirts online, mens jeans online">
 
-    <meta name="robots"
-        content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
-    <!-- Replace with your real URL -->
+    <meta name="author" content="StyleEasy">
 
-    <link rel="canonical"
-        href="https://yourwebsite.com/mens-fashion.html">
+    <!-- Canonical URL -->
+
+    <link rel="canonical" href="https://yourwebsite.com/mens-fashion.html">
 
 
-    <!-- Open Graph -->
+    <!-- ================= OPEN GRAPH (FACEBOOK / LINKEDIN) ================= -->
 
-    <meta property="og:title"
-        content="Men's Fashion Online | StyleEasy">
+    <meta property="og:locale" content="en_US">
+
+    <meta property="og:type" content="website">
+
+    <meta property="og:title" content="Men's Fashion Online | Trendy Clothes &amp; Stylish Outfits | StyleEasy">
 
     <meta property="og:description"
-        content="Discover trendy men's clothes and stylish outfits online at StyleEasy.">
+        content="Discover trendy men's clothes and stylish outfits online at StyleEasy. Premium quality shirts, t-shirts, and jeans.">
 
-    <meta property="og:type"
-        content="website">
+    <meta property="og:url" content="https://yourwebsite.com/mens-fashion.html">
 
-    <meta property="og:url"
-        content="https://yourwebsite.com/mens-fashion.html">
+    <meta property="og:site_name" content="StyleEasy">
+
+    <meta property="og:image" content="https://yourwebsite.com/images/mens-fashion-banner.jpg">
+
+    <meta property="og:image:width" content="1200">
+
+    <meta property="og:image:height" content="630">
 
 
-    <!-- Google Font -->
+    <!-- ================= TWITTER CARDS ================= -->
 
-    <link rel="preconnect"
-        href="https://fonts.googleapis.com">
+    <meta name="twitter:card" content="summary_large_image">
 
-    <link rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin>
+    <meta name="twitter:title" content="Men's Fashion Online | StyleEasy">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+    <meta name="twitter:description"
+        content="Shop top quality men's fashion, casual wear, and trendy outfits online at StyleEasy.">
+
+    <meta name="twitter:image" content="https://yourwebsite.com/images/mens-fashion-banner.jpg">
+
+
+    <!-- ================= GOOGLE FONTS ================= -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap"
         rel="stylesheet">
 
 
-    <!-- Firebase -->
+    <!-- ================= SCHEMA.ORG STRUCTURED DATA (JSON-LD) ================= -->
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "StyleEasy",
+      "url": "https://yourwebsite.com/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://yourwebsite.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Men's Fashion Online",
+      "description": "Discover trendy men's clothing, stylish outfits, casual wear, party wear and affordable fashion for men at StyleEasy.",
+      "url": "https://yourwebsite.com/mens-fashion.html",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "StyleEasy",
+        "url": "https://yourwebsite.com/"
+      }
+    }
+    </script>
+
+
+    <!-- Firebase SDKs -->
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 
@@ -179,17 +225,7 @@
 
             text-align: center;
 
-            background:
-
-                linear-gradient(
-
-                    135deg,
-
-                    #f3f3f3,
-
-                    #ffffff
-
-                );
+            background: linear-gradient(135deg, #f3f3f3, #ffffff);
 
         }
 
@@ -305,9 +341,7 @@
 
             display: grid;
 
-            grid-template-columns:
-
-                repeat(4, 1fr);
+            grid-template-columns: repeat(4, 1fr);
 
             gap: 24px;
 
@@ -336,11 +370,7 @@
 
             transform: translateY(-6px);
 
-            box-shadow:
-
-                0 10px 30px
-
-                rgba(0, 0, 0, 0.10);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
 
         }
 
@@ -373,9 +403,7 @@
         }
 
 
-        .product-card:hover
-
-        .product-image-wrapper img {
+        .product-card:hover .product-image-wrapper img {
 
             transform: scale(1.05);
 
@@ -463,7 +491,7 @@
 
         .shop-btn:hover {
 
-            background: #555555;
+            background: #e91e63;
 
         }
 
@@ -482,6 +510,8 @@
             color: #777777;
 
             font-size: 16px;
+
+            grid-column: 1 / -1;
 
         }
 
@@ -520,7 +550,7 @@
         }
 
 
-        /* ================= EMPTY ================= */
+        /* ================= EMPTY STATE ================= */
 
 
         .empty-state {
@@ -532,6 +562,8 @@
             padding: 50px 20px;
 
             color: #777777;
+
+            grid-column: 1 / -1;
 
         }
 
@@ -545,7 +577,7 @@
         }
 
 
-        /* ================= SEO CONTENT ================= */
+        /* ================= SEO CONTENT & BACKLINKS ================= */
 
 
         .seo-content {
@@ -553,6 +585,8 @@
             padding: 60px 7%;
 
             background: #fafafa;
+
+            border-top: 1px solid #eeeeee;
 
         }
 
@@ -563,6 +597,8 @@
 
             margin-bottom: 18px;
 
+            color: #222222;
+
         }
 
 
@@ -571,6 +607,10 @@
             margin-top: 25px;
 
             margin-bottom: 10px;
+
+            font-size: 20px;
+
+            color: #333333;
 
         }
 
@@ -582,6 +622,95 @@
             color: #555555;
 
             margin-bottom: 15px;
+
+        }
+
+
+        /* Contextual In-Content Backlinks Styling */
+
+        .seo-content a {
+
+            color: #e91e63;
+
+            font-weight: 600;
+
+            text-decoration: underline;
+
+            transition: 0.2s;
+
+        }
+
+
+        .seo-content a:hover {
+
+            color: #222222;
+
+        }
+
+
+        .seo-backlinks-block {
+
+            margin-top: 35px;
+
+            padding: 20px;
+
+            background: #ffffff;
+
+            border: 1px solid #e0e0e0;
+
+            border-radius: 10px;
+
+        }
+
+
+        .seo-backlinks-block h4 {
+
+            font-size: 16px;
+
+            margin-bottom: 12px;
+
+            color: #222222;
+
+        }
+
+
+        .seo-backlinks-list {
+
+            list-style: none;
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 15px;
+
+        }
+
+
+        .seo-backlinks-list li a {
+
+            font-size: 13px;
+
+            text-decoration: none;
+
+            background: #f0f0f0;
+
+            padding: 6px 14px;
+
+            border-radius: 20px;
+
+            color: #444444;
+
+            display: inline-block;
+
+        }
+
+
+        .seo-backlinks-list li a:hover {
+
+            background: #222222;
+
+            color: #ffffff;
 
         }
 
@@ -612,6 +741,15 @@
 
             font-size: 14px;
 
+            transition: 0.2s;
+
+        }
+
+
+        footer a:hover {
+
+            color: #e91e63;
+
         }
 
 
@@ -626,27 +764,21 @@
         }
 
 
-        /* ================= TABLET ================= */
+        /* ================= RESPONSIVE DESIGN ================= */
 
 
         @media (max-width: 1100px) {
 
             .product-grid {
 
-                grid-template-columns:
-
-                    repeat(3, 1fr);
+                grid-template-columns: repeat(3, 1fr);
 
             }
 
         }
 
 
-        /* ================= MOBILE ================= */
-
-
         @media (max-width: 768px) {
-
 
             .navbar {
 
@@ -705,9 +837,7 @@
 
             .product-grid {
 
-                grid-template-columns:
-
-                    repeat(2, 1fr);
+                grid-template-columns: repeat(2, 1fr);
 
                 gap: 13px;
 
@@ -760,11 +890,7 @@
         }
 
 
-        /* ================= SMALL MOBILE ================= */
-
-
         @media (max-width: 420px) {
-
 
             .logo {
 
@@ -803,13 +929,13 @@
 <body>
 
 
-    <!-- ================= NAVBAR ================= -->
+    <!-- ================= HEADER / NAVBAR ================= -->
 
 
     <header class="navbar">
 
 
-        <a href="index.html" class="logo">
+        <a href="index.html" class="logo" title="StyleEasy Home">
 
             Style<span>Easy</span>
 
@@ -821,59 +947,15 @@
             <ul class="nav-links">
 
 
-                <li>
+                <li><a href="index.html">Home</a></li>
 
-                    <a href="index.html">
+                <li><a href="mens-fashion.html">Men's Fashion</a></li>
 
-                        Home
+                <li><a href="mens-shirts.html">Shirts</a></li>
 
-                    </a>
+                <li><a href="mens-t-shirts.html">T-Shirts</a></li>
 
-                </li>
-
-
-                <li>
-
-                    <a href="mens-fashion.html">
-
-                        Men's Fashion
-
-                    </a>
-
-                </li>
-
-
-                <li>
-
-                    <a href="mens-shirts.html">
-
-                        Shirts
-
-                    </a>
-
-                </li>
-
-
-                <li>
-
-                    <a href="mens-t-shirts.html">
-
-                        T-Shirts
-
-                    </a>
-
-                </li>
-
-
-                <li>
-
-                    <a href="mens-jeans.html">
-
-                        Jeans
-
-                    </a>
-
-                </li>
+                <li><a href="mens-jeans.html">Jeans</a></li>
 
 
             </ul>
@@ -884,189 +966,165 @@
     </header>
 
 
-    <!-- ================= HERO ================= -->
+    <!-- ================= MAIN CONTENT ================= -->
 
 
-    <section class="hero">
+    <main>
 
 
-        <h1>
+        <!-- HERO SECTION -->
 
-            Men's Fashion Online
+        <section class="hero">
 
-        </h1>
 
+            <h1>Men's Fashion Online</h1>
 
-        <p>
 
-            Discover the latest men's fashion online at StyleEasy.
+            <p>
 
-            Explore trendy clothes, stylish outfits, casual wear,
+                Discover the latest men's fashion online at StyleEasy.
 
-            party wear and affordable fashion for men.
+                Explore trendy clothes, stylish outfits, casual wear,
 
-        </p>
+                party wear, and affordable fashion crafted for modern men.
 
+            </p>
 
-    </section>
 
+        </section>
 
-    <!-- ================= CATEGORIES ================= -->
 
+        <!-- CATEGORIES SECTION -->
 
-    <section class="categories">
+        <section class="categories">
 
 
-        <h2>
+            <h2>Explore Men's Fashion Categories</h2>
 
-            Explore Men's Fashion Categories
 
-        </h2>
+            <div class="category-list">
 
 
-        <div class="category-list">
+                <a href="mens-shirts.html" title="Buy Men's Shirts Online">Men's Shirts</a>
 
+                <a href="mens-t-shirts.html" title="Shop Men's T-Shirts">Men's T-Shirts</a>
 
-            <a href="mens-shirts.html">
+                <a href="mens-jeans.html" title="Stylish Men's Jeans">Men's Jeans</a>
 
-                Men's Shirts
+                <a href="mens-casual-wear.html" title="Casual Outfits for Men">Casual Wear</a>
 
-            </a>
-
-
-            <a href="mens-t-shirts.html">
-
-                Men's T-Shirts
-
-            </a>
-
-
-            <a href="mens-jeans.html">
-
-                Men's Jeans
-
-            </a>
-
-
-            <a href="mens-casual-wear.html">
-
-                Casual Wear
-
-            </a>
-
-
-            <a href="mens-party-wear.html">
-
-                Party Wear
-
-            </a>
-
-
-        </div>
-
-
-    </section>
-
-
-    <!-- ================= PRODUCTS ================= -->
-
-
-    <section class="products-section">
-
-
-        <h2>
-
-            Latest Men's Fashion
-
-        </h2>
-
-
-        <div
-
-            class="product-grid"
-
-            id="productGrid">
-
-
-            <div
-
-                class="loading"
-
-                id="loadingMessage">
-
-
-                Loading latest men's fashion...
+                <a href="mens-party-wear.html" title="Party Wear Outfits for Men">Party Wear</a>
 
 
             </div>
 
 
-        </div>
+        </section>
 
 
-    </section>
+        <!-- PRODUCTS GRID SECTION -->
+
+        <section class="products-section">
 
 
-    <!-- ================= SEO CONTENT ================= -->
+            <h2>Latest Men's Fashion Collections</h2>
 
 
-    <section class="seo-content">
+            <div class="product-grid" id="productGrid">
 
 
-        <h2>
+                <div class="loading" id="loadingMessage">
 
-            Men's Fashion Online
+                    Loading latest men's fashion...
 
-        </h2>
-
-
-        <p>
-
-            Looking for the latest men's fashion online?
-
-            StyleEasy brings you a collection of trendy men's clothing
-
-            and stylish outfits for every occasion. Explore modern
-
-            fashion styles and discover clothing that matches your
-
-            personal style.
-
-        </p>
+                </div>
 
 
-        <p>
-
-            From stylish men's shirts and trendy t-shirts to jeans,
-
-            casual wear and party outfits, explore the latest men's
-
-            fashion trends in one place. Find fashionable and affordable
-
-            clothing for everyday wear and special occasions.
-
-        </p>
+            </div>
 
 
-        <h3>
-
-            Find Your Perfect Men's Outfit
-
-        </h3>
+        </section>
 
 
-        <p>
+        <!-- SEO CONTENT & CONTEXTUAL BACKLINKS SECTION -->
 
-            Discover the latest fashion trends for men and explore
-
-            stylish clothing at affordable prices. Browse our collection
-
-            and find your perfect outfit today.
-
-        </p>
+        <section class="seo-content">
 
 
-    </section>
+            <h2>Premium Men's Fashion Online Store</h2>
+
+
+            <p>
+
+                Looking for the latest <a href="mens-fashion.html" title="Men's Fashion Online">men's fashion online</a>?
+
+                StyleEasy brings you an exclusive collection of trendy men's clothing
+
+                and stylish outfits for every occasion. From modern casual wear to sleek corporate attire,
+
+                explore top-quality apparel tailored to elevate your personal wardrobe.
+
+            </p>
+
+
+            <p>
+
+                Upgrade your daily aesthetic with our top categories, including premium
+
+                <a href="mens-shirts.html" title="Stylish Men's Shirts">stylish men's shirts</a>, comfortable cotton
+
+                <a href="mens-t-shirts.html" title="Trendy T-Shirts for Men">trendy t-shirts</a>, durable denim
+
+                <a href="mens-jeans.html" title="Men's Slim Fit Jeans">mens jeans</a>, and sharp party apparel. Find all
+
+                affordable clothing options delivered directly to your doorstep with guaranteed quality.
+
+            </p>
+
+
+            <h3>Find Your Perfect Men's Outfit</h3>
+
+
+            <p>
+
+                Explore fashion-forward designs built with high-grade fabrics. Whether you need breathable cotton wear
+
+                for summer or layered outfits for winter, check out our recommended recommendations and high-value outfit collections.
+
+            </p>
+
+
+            <!-- BACKLINKS & RELATED SEARCHES BLOCK -->
+
+            <div class="seo-backlinks-block">
+
+                <h4>Popular Fashion Collections &amp; Direct Links</h4>
+
+                <ul class="seo-backlinks-list">
+
+                    <li><a href="mens-shirts.html" title="Casual & Formal Shirts">Casual &amp; Formal Shirts</a></li>
+
+                    <li><a href="mens-t-shirts.html" title="Oversized T-Shirts">Oversized &amp; Printed T-Shirts</a></li>
+
+                    <li><a href="mens-jeans.html" title="Slim Fit Denim Jeans">Slim Fit Denim Jeans</a></li>
+
+                    <li><a href="mens-casual-wear.html" title="Everyday Casuals">Everyday Casual Wear</a></li>
+
+                    <li><a href="mens-party-wear.html" title="Evening Party Wear">Party Wear Outfits</a></li>
+
+                    <!-- External Backlink Example (Replace with your blog/partner link) -->
+
+                    <li><a href="https://yourwebsite.com/blog/mens-style-guide" target="_blank" rel="noopener noreferrer" title="Men's Fashion Style Guide">Style Guide 2026</a></li>
+
+                </ul>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
 
 
     <!-- ================= FOOTER ================= -->
@@ -1077,406 +1135,212 @@
 
         <div>
 
+            <a href="index.html">Home</a>
 
-            <a href="index.html">
+            <a href="mens-fashion.html">Men's Fashion</a>
 
-                Home
+            <a href="contact.html">Contact Us</a>
 
-            </a>
+            <a href="privacy-policy.html">Privacy Policy</a>
 
-
-            <a href="mens-fashion.html">
-
-                Men's Fashion
-
-            </a>
-
-
-            <a href="contact.html">
-
-                Contact
-
-            </a>
-
+            <a href="terms.html">Terms of Service</a>
 
         </div>
 
 
-        <p>
-
-            © 2026 StyleEasy. All Rights Reserved.
-
-        </p>
+        <p>© 2026 StyleEasy. All Rights Reserved.</p>
 
 
     </footer>
 
 
-    <!-- ================= FIREBASE ================= -->
+    <!-- ================= FIREBASE REALTIME DATABASE SCRIPT ================= -->
 
 
     <script>
 
 
-        /* ================= FIREBASE CONFIG ================= */
-
+        /* FIREBASE CONFIGURATION */
 
         const firebaseConfig = {
 
+            apiKey: "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
 
-            apiKey:
+            authDomain: "lucky-triode-450317-g7.firebaseapp.com",
 
-                "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
+            databaseURL: "https://lucky-triode-450317-g7-default-rtdb.firebaseio.com/",
 
+            projectId: "lucky-triode-450317-g7",
 
-            authDomain:
+            storageBucket: "lucky-triode-450317-g7.firebasestorage.app",
 
-                "lucky-triode-450317-g7.firebaseapp.com",
+            messagingSenderId: "778199870672",
 
-
-            databaseURL:
-
-                "https://lucky-triode-450317-g7-default-rtdb.firebaseio.com/",
-
-
-            projectId:
-
-                "lucky-triode-450317-g7",
-
-
-            storageBucket:
-
-                "lucky-triode-450317-g7.firebasestorage.app",
-
-
-            messagingSenderId:
-
-                "778199870672",
-
-
-            appId:
-
-                "1:778199870672:web:62a9891e41b3a3d3f242d5"
-
+            appId: "1:778199870672:web:62a9891e41b3a3d3f242d5"
 
         };
 
 
-        /* ================= INITIALIZE ================= */
-
+        /* INITIALIZE FIREBASE */
 
         firebase.initializeApp(firebaseConfig);
 
+        const database = firebase.database();
 
-        const database =
+        const productGrid = document.getElementById("productGrid");
 
-            firebase.database();
 
+        /* FETCH MEN'S PRODUCTS */
 
-        const productGrid =
+        database.ref("products/menswear").on("value", function(snapshot) {
 
-            document.getElementById(
+            productGrid.innerHTML = "";
 
-                "productGrid"
+            const products = snapshot.val();
 
-            );
 
+            if (!products) {
 
-        /* ================= LOAD MEN'S PRODUCTS ================= */
+                productGrid.innerHTML = `
 
+                    <div class="empty-state">
 
-        database
+                        <h3>No Men's Products Available</h3>
 
-            .ref("products/menswear")
+                        <p>New men's fashion products will appear here soon.</p>
 
-            .on(
+                    </div>
 
-                "value",
+                `;
 
-                function(snapshot) {
+                return;
 
+            }
 
-                    productGrid.innerHTML = "";
 
+            /* LOOP THROUGH PRODUCTS */
 
-                    const products =
+            Object.keys(products).reverse().forEach(function(key) {
 
-                        snapshot.val();
+                const product = products[key];
 
+                const productCard = document.createElement("article");
 
-                    /* NO PRODUCTS */
+                productCard.className = "product-card";
 
 
-                    if (!products) {
+                productCard.innerHTML = `
 
+                    <div class="product-image-wrapper">
 
-                        productGrid.innerHTML = `
+                        <img 
 
+                            src="${safeURL(product.imageUrl)}" 
 
-                            <div class="empty-state">
+                            alt="${escapeHTML(product.title)} - Men's Fashion StyleEasy" 
 
+                            title="${escapeHTML(product.title)}"
 
-                                <h3>
+                            loading="lazy"
 
-                                    No Men's Products Available
+                            width="300"
 
-                                </h3>
+                            height="310"
 
+                        >
 
-                                <p>
+                    </div>
 
-                                    New men's fashion products will appear here soon.
+                    <div class="product-info">
 
-                                </p>
+                        <h3>${escapeHTML(product.title)}</h3>
 
+                        <p class="product-description">${escapeHTML(product.description)}</p>
 
-                            </div>
+                        <span class="product-price">₹${escapeHTML(product.price)}</span>
 
+                        <a 
 
-                        `;
+                            href="${safeURL(product.buyLink)}" 
 
+                            target="_blank" 
 
-                        return;
+                            rel="noopener noreferrer" 
 
+                            class="shop-btn"
 
-                    }
+                            title="Buy ${escapeHTML(product.title)} Online"
 
+                        >
 
-                    /* PRODUCT LOOP */
+                            View Product
 
+                        </a>
 
-                    Object.keys(products)
+                    </div>
 
-                        .reverse()
+                `;
 
-                        .forEach(
 
-                            function(key) {
+                productGrid.appendChild(productCard);
 
+            });
 
-                                const product =
+        }, function(error) {
 
-                                    products[key];
+            console.error("Firebase Database Error:", error);
 
+            productGrid.innerHTML = `
 
-                                const productCard =
+                <div class="empty-state">
 
-                                    document.createElement(
+                    <h3>Unable to Load Products</h3>
 
-                                        "article"
+                    <p>Please try again later.</p>
 
-                                    );
+                </div>
 
+            `;
 
-                                productCard.className =
+        });
 
-                                    "product-card";
 
-
-                                productCard.innerHTML = `
-
-
-                                    <div class="product-image-wrapper">
-
-
-                                        <img
-
-                                            src="${safeURL(product.imageUrl)}"
-
-                                            alt="${escapeHTML(product.title)}"
-
-                                            loading="lazy"
-
-                                        >
-
-                                    </div>
-
-
-                                    <div class="product-info">
-
-
-                                        <h3>
-
-                                            ${escapeHTML(product.title)}
-
-                                        </h3>
-
-
-                                        <p class="product-description">
-
-
-                                            ${escapeHTML(product.description)}
-
-                                        </p>
-
-
-                                        <span class="product-price">
-
-
-                                            ₹${escapeHTML(product.price)}
-
-                                        </span>
-
-
-                                        <a
-
-                                            href="${safeURL(product.buyLink)}"
-
-                                            target="_blank"
-
-                                            rel="noopener noreferrer"
-
-                                            class="shop-btn"
-
-
-                                        >
-
-                                            View Product
-
-                                        </a>
-
-
-                                    </div>
-
-
-                                `;
-
-
-                                productGrid.appendChild(
-
-                                    productCard
-
-                                );
-
-
-                            }
-
-                        );
-
-
-                },
-
-
-                function(error) {
-
-
-                    console.error(
-
-                        "Firebase Error:",
-
-                        error
-
-                    );
-
-
-                    productGrid.innerHTML = `
-
-
-                        <div class="empty-state">
-
-
-                            <h3>
-
-                                Unable to Load Products
-
-                            </h3>
-
-
-                            <p>
-
-                                Please try again later.
-
-                            </p>
-
-
-                        </div>
-
-
-                    `;
-
-
-                }
-
-            );
-
-
-        /* ================= SECURITY ================= */
-
+        /* SECURITY UTILITY FUNCTIONS */
 
         function escapeHTML(value) {
 
+            return String(value || "").replace(/[&<>"']/g, function(match) {
 
-            return String(
+                return {
 
-                value || ""
+                    "&": "&amp;",
 
-            ).replace(
+                    "<": "&lt;",
 
-                /[&<>"']/g,
+                    ">": "&gt;",
 
-                function(match) {
+                    '"': "&quot;",
 
+                    "'": "&#039;"
 
-                    return {
+                }[match];
 
-
-                        "&": "&amp;",
-
-                        "<": "&lt;",
-
-                        ">": "&gt;",
-
-                        '"': "&quot;",
-
-                        "'": "&#039;"
-
-                    }[match];
-
-
-                }
-
-            );
+            });
 
         }
 
 
         function safeURL(value) {
 
+            const url = String(value || "").trim();
 
-            const url =
-
-                String(
-
-                    value || ""
-
-                ).trim();
-
-
-            if (
-
-                url.startsWith(
-
-                    "https://"
-
-                ) ||
-
-                url.startsWith(
-
-                    "http://"
-
-                )
-
-            ) {
-
+            if (url.startsWith("https://") || url.startsWith("http://")) {
 
                 return url;
 
-
             }
 
-
-            return "";
-
+            return "#";
 
         }
 
