@@ -545,7 +545,7 @@
         'auth_type': 'reauthenticate'
     });
 
-    // केवल एक बार Global Variable बनाएं
+    // GLOBAL VARIABLE FOR CONFIRMATION RESULT (Declare Only Once)
     let confirmationResultGlobal = null;
 
     // GALLERY DYNAMIC SYSTEM
@@ -748,10 +748,9 @@
             setUIState(false, "sendOtpBtn");
             console.error("OTP Error:", error);
             
-            // Recaptcha reset if failed
             if (window.recaptchaVerifier) {
                 window.recaptchaVerifier.render().then(widgetId => {
-                    grecaptcha.reset(widgetId);
+                    if (window.grecaptcha) grecaptcha.reset(widgetId);
                 });
             }
             showMessage(error.message || "Failed to send OTP");
@@ -764,6 +763,11 @@
 
         if (otp.length !== 6 || isNaN(otp)) {
             showMessage("Enter valid 6 digit OTP");
+            return;
+        }
+
+        if (!confirmationResultGlobal) {
+            showMessage("Session expired. Please click resend OTP.");
             return;
         }
 
