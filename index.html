@@ -713,32 +713,44 @@ function setupRecaptcha() {
 }
     // --- PHONE OTP LOGIN LOGIC ---
     async function handleSendOtp() {
-        const phoneNum = document.getElementById("phoneNumber").value.trim();
-        if (phoneNum.length !== 10 || isNaN(phoneNum)) {
-            showMessage("❌ Please enter a valid 10-digit mobile number");
-            return;
-        }
+    const phoneNum = document.getElementById("phoneNumber").value.trim();
 
-        const fullPhone = `+91${phoneNum}`;
-        setUIState(true, "sendOtpBtn", "Sending OTP...");
-
-        try {
-            setupRecaptcha();
-            const appVerifier = window.recaptchaVerifier;
-            const confirmationResult = await signInWithPhoneNumber(auth, fullPhone, appVerifier);
-            confirmationResultGlobal = confirmationResult;
-            
-            document.getElementById("phoneStep").style.display = "none";
-            document.getElementById("otpStep").style.display = "block";
-            showMessage("📱 OTP Sent Successfully!", false);
-        } catch (error) {
-            console.error("SMS Error:", error);
-            showMessage(`❌ OTP Failed: ${error.message}`);
-            if (window.recaptchaVerifier) window.recaptchaVerifier.render().then(widgetId => grecaptcha.reset(widgetId));
-        } finally {
-            setUIState(false, "sendOtpBtn");
-        }
+    if (phoneNum.length !== 10 || isNaN(phoneNum)) {
+        alert("Invalid mobile number");
+        return;
     }
+
+    const fullPhone = "+91" + phoneNum;
+
+    try {
+        console.log("Step 1");
+
+        setupRecaptcha();
+
+        console.log("Step 2");
+
+        const appVerifier = window.recaptchaVerifier;
+
+        console.log("Step 3");
+
+        const confirmationResult = await signInWithPhoneNumber(
+            auth,
+            fullPhone,
+            appVerifier
+        );
+
+        console.log("SUCCESS", confirmationResult);
+
+        confirmationResultGlobal = confirmationResult;
+
+        document.getElementById("phoneStep").style.display = "none";
+        document.getElementById("otpStep").style.display = "block";
+
+    } catch (error) {
+        console.error("Firebase Error:", error);
+        alert(error.code + "\n" + error.message);
+    }
+}
 
     async function handleVerifyOtp() {
         const otp = document.getElementById("otpCode").value.trim();
