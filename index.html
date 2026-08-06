@@ -701,14 +701,16 @@
     }
 
     // --- RECAPTCHA SETUP ---
-    function setupRecaptcha() {
-        if (!window.recaptchaVerifier) {
-            window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-                'size': 'invisible'
-            });
-        }
+function setupRecaptcha() {
+    if (!window.recaptchaVerifier) {
+        window.recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha-container", {
+            size: "invisible",
+            callback: (response) => {
+                console.log("reCAPTCHA verified");
+            }
+        });
     }
-
+}
     // --- PHONE OTP LOGIN LOGIC ---
     async function handleSendOtp() {
         const phoneNum = document.getElementById("phoneNumber").value.trim();
