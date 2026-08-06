@@ -545,6 +545,7 @@
         'auth_type': 'reauthenticate'
     });
 
+    // केवल एक बार Global Variable बनाएं
     let confirmationResultGlobal = null;
 
     // GALLERY DYNAMIC SYSTEM
@@ -627,6 +628,7 @@
 
     function setUIState(loading, btnId = "googleLoginBtn", loadingText = "Processing...") {
         const btn = document.getElementById(btnId);
+        if(!btn) return;
         if (loading) {
             btn.disabled = true;
             btn.dataset.originalText = btn.innerHTML;
@@ -701,80 +703,80 @@
     }
 
     // --- RECAPTCHA SETUP ---
-function setupRecaptcha() {
-    if (!window.recaptchaVerifier) {
-        window.recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha-container", {
-            size: "invisible",
-            callback: (response) => {
-                console.log("reCAPTCHA verified");
-            }
-        });
+    function setupRecaptcha() {
+        if (!window.recaptchaVerifier) {
+            window.recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha-container", {
+                size: "invisible",
+                callback: () => {
+                    console.log("reCAPTCHA verified");
+                }
+            });
+        }
     }
-}
-    // --- PHONE OTP LOGIN LOGIC ---
+
+    // Send OTP Function
     async function handleSendOtp() {
-    const phoneNum = document.getElementById("phoneNumber").value.trim();
+        const phoneNum = document.getElementById("phoneNumber").value.trim();
 
-    if (phoneNum.length !== 10 || isNaN(phoneNum)) {
-        alert("Invalid mobile number");
-        return;
-    }
-
-    const fullPhone = "+91" + phoneNum;
-
-    try {
-        console.log("Step 1");
-
-        setupRecaptcha();
-
-        console.log("Step 2");
-
-        const appVerifier = window.recaptchaVerifier;
-
-        console.log("Step 3");
-
-        const confirmationResult = await signInWithPhoneNumber(
-            auth,
-            fullPhone,
-            appVerifier
-        );
-
-        console.log("SUCCESS", confirmationResult);
-
-        confirmationResultGlobal = confirmationResult;
-
-        document.getElementById("phoneStep").style.display = "none";
-        document.getElementById("otpStep").style.display = "block";
-
-    } catch (error) {
-        console.error("Firebase Error:", error);
-        alert(error.code + "\n" + error.message);
-    }
-}
-
-    async function handleVerifyOtp() {
-        const otp = document.getElementById("otpCode").value.trim();
-        if (otp.length !== 6 || isNaN(otp)) {
-            showMessage("❌ Enter valid 6-digit OTP");
+        if (phoneNum.length !== 10 || isNaN(phoneNum)) {
+            showMessage("Enter valid 10 digit mobile number");
             return;
         }
 
-        if (!confirmationResultGlobal) {
-            showMessage("❌ Session expired. Request OTP again.");
-            return;
-        }
-
-        setUIState(true, "verifyOtpBtn", "Verifying...");
+        const fullPhone = "+91" + phoneNum;
 
         try {
-            const result = await confirmationResultGlobal.confirm(otp);
-            if (result && result.user) {
-                await ensureUserDocument(result.user);
-                await handleSuccessfulLogin(result.user);
-            }
+            setupRecaptcha();
+            const appVerifier = window.recaptchaVerifier;
+
+            setUIState(true, "sendOtpBtn", "Sending OTP...");
+
+            confirmationResultGlobal = await signInWithPhoneNumber(
+                auth,
+                fullPhone,
+                appVerifier
+            );
+
+            setUIState(false, "sendOtpBtn");
+
+            document.getElementById("phoneStep").style.display = "none";
+            document.getElementById("otpStep").style.display = "block";
+
+            showMessage("OTP Sent Successfully", false);
+
         } catch (error) {
-            console.error("OTP Verify Error:", error);
-            showMessage("❌ Invalid OTP. Please try again.");
+            setUIState(false, "sendOtpBtn");
+            console.error("OTP Error:", error);
+            
+            // Recaptcha reset if failed
+            if (window.recaptchaVerifier) {
+                window.recaptchaVerifier.render().then(widgetId => {
+                    grecaptcha.reset(widgetId);
+                });
+            }
+            showMessage(error.message || "Failed to send OTP");
+        }
+    }
+
+    // Verify OTP Function
+    async function handleVerifyOtp() {
+        const otp = document.getElementById("otpCode").value.trim();
+
+        if (otp.length !== 6 || isNaN(otp)) {
+            showMessage("Enter valid 6 digit OTP");
+            return;
+        }
+
+        try {
+            setUIState(true, "verifyOtpBtn", "Verifying...");
+
+            const result = await confirmationResultGlobal.confirm(otp);
+            await ensureUserDocument(result.user);
+            await handleSuccessfulLogin(result.user);
+
+        } catch (error) {
+            console.error("Verification Error:", error);
+            showMessage("Invalid OTP. Please try again.");
         } finally {
             setUIState(false, "verifyOtpBtn");
         }
@@ -795,7 +797,7 @@ function setupRecaptcha() {
             }
         } catch (error) {
             console.warn("Popup blocked, trying redirect fallback strategy:", error);
-            if (error.code === 'auth/popup-blocked' || error.code === 'auth/operation-not-allowed' || error.message.includes('sessionStorage')) {
+            if (error.code === 'auth/popup-blocked' || error.code === 'auth/operation-not-allowed' || error.message?.includes('sessionStorage')) {
                 try {
                     await signInWithRedirect(auth, googleProvider);
                 } catch (redirectError) {
@@ -835,10 +837,10 @@ function setupRecaptcha() {
     }
 
     // EVENT LISTENERS
-    document.getElementById("googleLoginBtn").addEventListener("click", handleGoogleLogin);
-    document.getElementById("sendOtpBtn").addEventListener("click", handleSendOtp);
-    document.getElementById("verifyOtpBtn").addEventListener("click", handleVerifyOtp);
-    document.getElementById("resendBtn").addEventListener("click", () => {
+    document.getElementById("googleLoginBtn")?.addEventListener("click", handleGoogleLogin);
+    document.getElementById("sendOtpBtn")?.addEventListener("click", handleSendOtp);
+    document.getElementById("verifyOtpBtn")?.addEventListener("click", handleVerifyOtp);
+    document.getElementById("resendBtn")?.addEventListener("click", () => {
         document.getElementById("otpStep").style.display = "none";
         document.getElementById("phoneStep").style.display = "block";
     });
