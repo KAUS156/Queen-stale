@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleEasy Admin Dashboard & Quality Control</title>
+    
+    <!-- Firebase SDK (v8) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+    <style>
+        :root {
+            --color-rose: #E11D48;
+            --color-dark: #111827;
+            --color-border: #E5E7EB;
+            --color-bg: #F9FAFB;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background: var(--color-bg); padding: 24px; color: var(--color-dark); }
+
+        .container { max-width: 1400px; margin: 0 auto; }
+        .header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        
+        /* ANALYTICS CARDS */
+        .analytics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+        .stat-card { background: white; padding: 20px; border-radius: 8px; border: 1px solid var(--color-border); }
+        .stat-card div { font-size: 12px; color: #6B7280; font-weight: 600; text-transform: uppercase; }
+        .stat-card h3 { font-size: 24px; margin-top: 6px; }
+
+        /* MAIN LAYOUT */
+        .admin-grid { display: grid; grid-template-columns: 420px 1fr; gap: 24px; }
+        .card { background: white; padding: 24px; border-radius: 8px; border: 1px solid var(--color-border); box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .card h2 { font-size: 18px; margin-bottom: 18px; border-bottom: 1px solid var(--color-border); padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+
+        .form-group { margin-bottom: 14px; }
+        .form-group label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #374151; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 8px 12px; border: 1px solid var(--color-border); border-radius: 6px; font-size: 13px; }
+
+        .btn-submit { background: var(--color-rose); color: white; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; font-size: 14px; }
+        .btn-submit:hover { opacity: 0.95; }
+
+        /* QUALITY SCORE METER */
+        .quality-meter { background: #F3F4F6; border-radius: 6px; padding: 12px; margin-bottom: 16px; font-size: 12px; }
+        .score-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-weight: bold; color: white; }
+        .score-good { background: #10B981; }
+        .score-warn { background: #F59E0B; }
+
+        /* PRODUCT TABLE */
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { text-align: left; padding: 12px; border-bottom: 1px solid var(--color-border); font-size: 13px; }
+        th { background: #F9FAFB; font-weight: 600; color: #4B5563; }
+        .product-thumb { width: 48px; height: 48px; object-fit: cover; border-radius: 4px; }
+        .btn-action { padding: 4px 8px; font-size: 11px; border: none; border-radius: 4px; cursor: pointer; margin-right: 4px; }
+        .btn-edit { background: #3B82F6; color: white; }
+        .btn-del { background: #EF4444; color: white; }
+
+        @media (max-width: 1024px) {
+            .admin-grid { grid-template-columns: 1fr; }
+            .analytics-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-bar">
+        <h1>StyleEasy — Product & Affiliate Manager</h1>
+        <span style="font-size:13px; color:#6B7280;">Production Target: /party-wear-dresses</span>
+    </div>
+
+    <!-- ANALYTICS DASHBOARD SUMMARY -->
+    <div class="analytics-grid">
+        <div class="stat-card">
+            <div>Total Products</div>
+            <h3 id="stat-total">0</h3>
+        </div>
+        <div class="stat-card">
+            <div>Published</div>
+            <h3 id="stat-published" style="color:#10B981;">0</h3>
+        </div>
+        <div class="stat-card">
+            <div>Total Affiliate Clicks</div>
+            <h3 id="stat-clicks" style="color:#3B82F6;">0</h3>
+        </div>
+        <div class="stat-card">
+            <div>Active Merchants</div>
+            <h3 id="stat-merchants">0</h3>
+        </div>
+    </div>
+
+    <div class="admin-grid">
+        <!-- ADD / EDIT AFFILIATE PRODUCT FORM -->
+        <div class="card">
+            <h2 id="form-title">Add Affiliate Product</h2>
+            
+            <!-- Quality Score Display -->
+            <div class="quality-meter" id="quality-meter">
+                Product Completeness Score: <span class="score-badge score-warn" id="quality-score">0 / 100</span>
+                <div style="font-size:10px; color:#6B7280; margin-top:4px;">Requires Valid Affiliate URL, Image, Price, Merchant & SEO Title.</div>
+            </div>
+
+            <form id="product-form" oninput="calculateQualityScore()">
+                <input type="hidden" id="edit-id">
+                
+                <div class="form-group">
+                    <label>Product Name *</label>
+                    <input type="text" id="p-name" required placeholder="e.g. Girls Pink Sequin Party Wear Frock">
+                </div>
+
+                <div class="form-group">
+                    <label>Merchant / Retailer *</label>
+                    <select id="p-merchant" required>
+                        <option value="">Select Merchant</option>
+                        <option value="Amazon">Amazon India</option>
+                        <option value="Myntra">Myntra</option>
+                        <option value="FirstCry">FirstCry</option>
+                        <option value="Ajio">Ajio</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Direct Affiliate Destination URL *</label>
+                    <input type="url" id="p-affiliate-url" required placeholder="https://www.amazon.in/dp/example?tag=styleeasy-21">
+                </div>
+
+                <div style="display:flex; gap:10px;">
+                    <div class="form-group" style="flex:1;">
+                        <label>Current Price (₹) *</label>
+                        <input type="number" id="p-price" required min="0" placeholder="799">
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <label>Original Price (₹)</label>
+                        <input type="number" id="p-compare-price" min="0" placeholder="1299">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Primary Image URL *</label>
+                    <input type="url" id="p-image" required placeholder="https://images.styleeasy.in/dresses/pink-frock.jpg">
+                </div>
+
+                <div class="form-group">
+                    <label>Image ALT Text (SEO)</label>
+                    <input type="text" id="p-alt" placeholder="Pink sequin party wear dress for girls">
+                </div>
+
+                <div style="display:flex; gap:10px;">
+                    <div class="form-group" style="flex:1;">
+                        <label>Style</label>
+                        <select id="p-style">
+                            <option value="Frock">Frock</option>
+                            <option value="Gown">Gown</option>
+                            <option value="A-Line">A-Line</option>
+                            <option value="Sequin">Sequin</option>
+                            <option value="Floral">Floral</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <label>Occasion</label>
+                        <select id="p-occasion">
+                            <option value="Birthday">Birthday</option>
+                            <option value="Wedding">Wedding</option>
+                            <option value="Festive">Festive</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Badge Tag</label>
+                    <input type="text" id="p-badge" placeholder="e.g. BESTSELLER or 40% OFF">
+                </div>
+
+                <div class="form-group">
+                    <label>Publishing Status</label>
+                    <select id="p-status">
+                        <option value="published">Published</option>
+                        <option value="draft">Draft</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-submit" id="btn-save">Save Affiliate Product</button>
+            </form>
+        </div>
+
+        <!-- PRODUCT INVENTORY & CLICKS TABLE -->
+        <div class="card">
+            <h2>Inventory & Affiliate Performance</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Merchant & Link</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Clicks</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-table-body">
+                    <tr><td colspan="6">Loading database...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
+        authDomain: "lucky-triode-450317-g7.firebaseapp.com",
+        databaseURL: "https://lucky-triode-450317-g7-default-rtdb.firebaseio.com/",
+        projectId: "lucky-triode-450317-g7",
+        storageBucket: "lucky-triode-450317-g7.firebasestorage.app",
+        messagingSenderId: "778199870672",
+        appId: "1:778199870672:web:62a9891e41b3a3d3f242d5"
+    };
+
+    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    const form = document.getElementById('product-form');
+
+    // READ REALTIME DATA
+    db.ref('products').on('value', snapshot => {
+        const tbody = document.getElementById('admin-table-body');
+        tbody.innerHTML = '';
+
+        let total = 0, published = 0, totalClicks = 0;
+        const merchants = new Set();
+
+        if (!snapshot.exists()) {
+            tbody.innerHTML = '<tr><td colspan="6">No affiliate products found in database.</td></tr>';
+            return;
+        }
+
+        snapshot.forEach(child => {
+            const p = child.val();
+            const id = child.key;
+            total++;
+            if (p.status === 'published') published++;
+            if (p.merchant) merchants.add(p.merchant);
+            if (p.clicks) totalClicks += p.clicks;
+
+            const img = (p.images && p.images[0]) ? p.images[0] : 'https://via.placeholder.com/48';
+
+            tbody.innerHTML += `
+                <tr>
+                    <td style="display:flex; gap:10px; align-items:center;">
+                        <img src="${img}" class="product-thumb">
+                        <div>
+                            <strong>${p.name}</strong><br>
+                            <small style="color:#6B7280;">Style: ${p.style || 'N/A'}</small>
+                        </div>
+                    </td>
+                    <td>
+                        <strong>${p.merchant || 'Unassigned'}</strong><br>
+                        <small><a href="/go/product/${id}" target="_blank" style="color:var(--color-rose);">Test Outbound Link</a></small>
+                    </td>
+                    <td>₹${p.price} ${p.comparePrice ? `<br><small style="text-decoration:line-through; color:#9CA3AF;">₹${p.comparePrice}</small>` : ''}</td>
+                    <td><span style="color:${p.status==='published'?'#10B981':'#F59E0B'}; font-weight:bold;">${p.status}</span></td>
+                    <td><strong>${p.clicks || 0}</strong></td>
+                    <td>
+                        <button class="btn-action btn-edit" onclick="editProduct('${id}')">Edit</button>
+                        <button class="btn-action btn-del" onclick="deleteProduct('${id}')">Delete</button>
+                    </td>
+                </tr>
+            `;
+        });
+
+        document.getElementById('stat-total').textContent = total;
+        document.getElementById('stat-published').textContent = published;
+        document.getElementById('stat-clicks').textContent = totalClicks;
+        document.getElementById('stat-merchants').textContent = merchants.size;
+    });
+
+    // QUALITY SCORE CALCULATOR
+    function calculateQualityScore() {
+        let score = 0;
+        if (document.getElementById('p-name').value) score += 20;
+        if (document.getElementById('p-merchant').value) score += 20;
+        if (document.getElementById('p-affiliate-url').value.startsWith('http')) score += 20;
+        if (document.getElementById('p-price').value > 0) score += 20;
+        if (document.getElementById('p-image').value) score += 10;
+        if (document.getElementById('p-alt').value) score += 10;
+
+        const badge = document.getElementById('quality-score');
+        badge.textContent = `${score} / 100`;
+        badge.className = `score-badge ${score >= 80 ? 'score-good' : 'score-warn'}`;
+    }
+
+    // CREATE OR UPDATE AFFILIATE PRODUCT
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const editId = document.getElementById('edit-id').value;
+        const name = document.getElementById('p-name').value;
+        const merchant = document.getElementById('p-merchant').value;
+        const affiliateUrl = document.getElementById('p-affiliate-url').value;
+        const price = Number(document.getElementById('p-price').value);
+        const comparePrice = Number(document.getElementById('p-compare-price').value) || null;
+        const image = document.getElementById('p-image').value;
+        const imageAlt = document.getElementById('p-alt').value;
+        const style = document.getElementById('p-style').value;
+        const occasion = document.getElementById('p-occasion').value;
+        const badge = document.getElementById('p-badge').value;
+        const status = document.getElementById('p-status').value;
+
+        // Validation Rules
+        if (!affiliateUrl.startsWith('http')) {
+            alert('A valid HTTP/HTTPS Affiliate URL is strictly required.');
+            return;
+        }
+
+        const productData = {
+            name,
+            merchant,
+            affiliateUrl,
+            price,
+            comparePrice,
+            images: [image],
+            imageAlt,
+            style,
+            occasion,
+            category: 'Party Wear Dresses',
+            badge,
+            status,
+            slug: name.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+            updatedAt: Date.now()
+        };
+
+        if (editId) {
+            db.ref('products/' + editId).update(productData).then(() => {
+                alert('Affiliate product updated successfully.');
+                resetForm();
+            });
+        } else {
+            productData.createdAt = Date.now();
+            productData.clicks = 0;
+            db.ref('products').push(productData).then(() => {
+                alert('New affiliate product saved.');
+                resetForm();
+            });
+        }
+    });
+
+    function editProduct(id) {
+        db.ref('products/' + id).once('value').then(snapshot => {
+            const p = snapshot.val();
+            document.getElementById('edit-id').value = id;
+            document.getElementById('p-name').value = p.name;
+            document.getElementById('p-merchant').value = p.merchant || '';
+            document.getElementById('p-affiliate-url').value = p.affiliateUrl || '';
+            document.getElementById('p-price').value = p.price;
+            document.getElementById('p-compare-price').value = p.comparePrice || '';
+            document.getElementById('p-image').value = (p.images && p.images[0]) ? p.images[0] : '';
+            document.getElementById('p-alt').value = p.imageAlt || '';
+            document.getElementById('p-style').value = p.style || 'Frock';
+            document.getElementById('p-occasion').value = p.occasion || 'Birthday';
+            document.getElementById('p-badge').value = p.badge || '';
+            document.getElementById('p-status').value = p.status;
+
+            document.getElementById('form-title').textContent = "Edit Affiliate Product";
+            document.getElementById('btn-save').textContent = "Update Product";
+            calculateQualityScore();
+        });
+    }
+
+    function deleteProduct(id) {
+        if (confirm("Are you sure you want to delete this product?")) {
+            db.ref('products/' + id).remove();
+        }
+    }
+
+    function resetForm() {
+        form.reset();
+        document.getElementById('edit-id').value = '';
+        document.getElementById('form-title').textContent = "Add Affiliate Product";
+        document.getElementById('btn-save').textContent = "Save Affiliate Product";
+        calculateQualityScore();
+    }
+</script>
+
+</body>
+</html>
