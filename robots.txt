@@ -1,4 +1,20 @@
+# User-Agent Rules for Search Engine Crawlers
 User-agent: *
 Allow: /
+Disallow: /cart
+Disallow: /checkout
+Disallow: /account/
+Disallow: /admin/
+Disallow: /search?*
 
-Sitemap: https://superlative-haupia-d1b3ec.netlify.app/sitemap.xml
+# Explicit Allow for CSS/JS Assets to ensure proper rendering by Googlebot
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.webp$
+Allow: /*.svg$
+
+# Sitemap Location
+Sitemap:https://superlative-haupia-d1b3ec.netlify.app/sitemap.xml
