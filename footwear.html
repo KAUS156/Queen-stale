@@ -1,806 +1,1010 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 
 <head>
 
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Footwear Online in India | Shoes, Sneakers, Sandals & Slippers | StyleEasy
+  </title>
+
+  <meta
+    name="description"
+    content="Explore stylish footwear online in India at StyleEasy. Discover sneakers, shoes, sandals, slippers, heels, boots and more with convenient shopping links."
+  >
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="keywords"
+    content="footwear online India, shoes for men, shoes for women, sneakers, sandals, slippers, heels, boots, casual shoes, running shoes, StyleEasy footwear"
+  >
 
-    <!-- ================= SEO ================= -->
+  <meta
+    name="robots"
+    content="index, follow, max-image-preview:large"
+  >
 
-    <title>
-        Men's & Women's Footwear Online | Shoes, Slippers & Sandals | StyleEasy
-    </title>
+  <meta
+    name="author"
+    content="StyleEasy"
+  >
 
-    <meta name="description"
-        content="Shop men's and women's footwear online at StyleEasy. Discover trending shoes, slippers, sandals and stylish footwear for men and women at affordable prices.">
+  <meta
+    name="theme-color"
+    content="#6b365f"
+  >
 
-    <meta name="keywords"
-        content="men footwear online, men shoes online, men slippers, women footwear online, women shoes online, women sandals, women slippers, footwear online">
+  <link
+    rel="canonical"
+    href="https://superlative-haupia-d1b3ec.netlify.app/footwear.html"
+  >
 
-    <meta name="robots"
-        content="index, follow">
 
-    <!-- अपने real domain से replace करें -->
+  <!-- OPEN GRAPH -->
 
-    <link rel="canonical"
-        href="https://yourwebsite.com/footwear.html">
+  <meta
+    property="og:type"
+    content="website"
+  >
 
+  <meta
+    property="og:site_name"
+    content="StyleEasy"
+  >
 
-    <!-- ================= OPEN GRAPH ================= -->
+  <meta
+    property="og:title"
+    content="Footwear Online in India | StyleEasy"
+  >
 
-    <meta property="og:title"
-        content="Men's & Women's Footwear Online | StyleEasy">
+  <meta
+    property="og:description"
+    content="Discover sneakers, shoes, sandals, slippers, heels and more at StyleEasy."
+  >
 
-    <meta property="og:description"
-        content="Discover trending shoes, slippers, sandals and stylish footwear for men and women online.">
+  <meta
+    property="og:url"
+    content="https://superlative-haupia-d1b3ec.netlify.app/footwear.html"
+  >
 
-    <meta property="og:type"
-        content="website">
 
-    <meta property="og:url"
-        content="https://yourwebsite.com/footwear.html">
+  <!-- FONT -->
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <!-- ================= GOOGLE FONT ================= -->
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
 
-    <link rel="preconnect"
-        href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap"
+    rel="stylesheet"
+  >
 
-    <link rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+  <!-- WEBSITE SCHEMA -->
 
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"CollectionPage",
+    "name":"Footwear Online in India",
+    "url":"https://superlative-haupia-d1b3ec.netlify.app/footwear.html",
+    "description":"Explore footwear including shoes, sneakers, sandals and slippers on StyleEasy.",
+    "isPartOf":{
+      "@type":"WebSite",
+      "name":"StyleEasy",
+      "url":"https://superlative-haupia-d1b3ec.netlify.app/"
+    }
+  }
+  </script>
 
-    <!-- ================= FIREBASE ================= -->
 
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <style>
 
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    :root{
 
+      --primary:#6b365f;
+      --dark:#45223e;
+      --accent:#c98ca2;
 
-    <style>
+      --bg:#fcf8f5;
+      --white:#fff;
 
-        /* ================= RESET ================= */
+      --text:#292329;
+      --muted:#777078;
 
-        * {
+      --border:#eadfe5;
 
-            margin: 0;
+      --shadow:
+        0 12px 35px
+        rgba(65,35,60,.08);
 
-            padding: 0;
+      --radius:19px;
 
-            box-sizing: border-box;
+    }
 
-        }
 
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
 
-        body {
 
-            font-family: 'Poppins', sans-serif;
+    html{
+      scroll-behavior:smooth;
+    }
 
-            background: #ffffff;
 
-            color: #222222;
+    body{
 
-            line-height: 1.6;
+      font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
 
-        }
+      background:
+        var(--bg);
 
+      color:
+        var(--text);
 
-        /* ================= NAVBAR ================= */
+    }
 
-        .navbar {
 
-            width: 100%;
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
 
-            padding: 18px 7%;
 
-            display: flex;
+    button,
+    input,
+    select{
+      font:inherit;
+    }
 
-            align-items: center;
 
-            justify-content: space-between;
+    /* ================= HEADER ================= */
 
-            background: #ffffff;
+    header{
 
-            border-bottom: 1px solid #eeeeee;
+      position:sticky;
 
-            position: sticky;
+      top:0;
 
-            top: 0;
+      z-index:100;
 
-            z-index: 1000;
+      background:
+        rgba(255,255,255,.94);
 
-        }
+      backdrop-filter:
+        blur(15px);
 
+      border-bottom:
+        1px solid var(--border);
 
-        .logo {
+    }
 
-            color: #222222;
 
-            font-size: 27px;
+    .navbar{
 
-            font-weight: 700;
+      max-width:1200px;
 
-            text-decoration: none;
+      min-height:74px;
 
-        }
+      margin:auto;
 
+      padding:
+        0 22px;
 
-        .logo span {
+      display:flex;
 
-            color: #e91e63;
+      align-items:center;
 
-        }
+      justify-content:space-between;
 
+      gap:20px;
 
-        .nav-links {
+    }
 
-            display: flex;
 
-            gap: 24px;
+    .logo{
 
-            list-style: none;
+      font:
+        800 30px
+        "Playfair Display",
+        serif;
 
-        }
+      color:
+        var(--primary);
 
+    }
 
-        .nav-links a {
 
-            color: #333333;
+    .logo span{
+      color:var(--accent);
+    }
 
-            text-decoration: none;
 
-            font-size: 14px;
+    nav{
 
-            font-weight: 500;
+      display:flex;
 
-            transition: 0.3s;
+      gap:25px;
 
-        }
+      align-items:center;
 
+    }
 
-        .nav-links a:hover {
 
-            color: #e91e63;
+    nav a{
 
-        }
+      font-size:14px;
 
+      font-weight:600;
 
-        /* ================= HERO ================= */
+      color:#504950;
 
-        .hero {
+    }
 
-            padding: 80px 7%;
 
-            text-align: center;
+    nav a:hover,
+    nav a.active{
 
-            background:
+      color:
+        var(--primary);
 
-                linear-gradient(
+    }
 
-                    135deg,
 
-                    #fff1f6,
+    /* ================= HERO ================= */
 
-                    #ffffff
+    .hero{
 
-                );
+      text-align:center;
 
-        }
+      padding:
+        75px 20px 55px;
 
+      background:
 
-        .hero h1 {
+        radial-gradient(
+          circle at 10% 10%,
+          rgba(201,140,162,.20),
+          transparent 33%
+        ),
 
-            font-size: 43px;
+        radial-gradient(
+          circle at 90% 90%,
+          rgba(107,54,95,.12),
+          transparent 35%
+        );
 
-            margin-bottom: 16px;
+    }
 
-            color: #222222;
 
-        }
+    .eyebrow{
 
+      color:
+        var(--primary);
 
-        .hero p {
+      font-size:
+        12px;
 
-            max-width: 850px;
+      font-weight:
+        700;
 
-            margin: auto;
+      letter-spacing:
+        2.2px;
 
-            color: #666666;
+      text-transform:
+        uppercase;
 
-            font-size: 16px;
+      margin-bottom:
+        10px;
 
-        }
+    }
 
 
-        /* ================= CATEGORY NAVIGATION ================= */
+    .hero h1{
 
-        .categories {
+      font:
+        800 clamp(40px,7vw,65px)
+        "Playfair Display",
+        serif;
 
-            padding: 42px 7%;
+      line-height:
+        1.05;
 
-            text-align: center;
+      margin-bottom:
+        17px;
 
-        }
+    }
 
 
-        .categories h2 {
+    .hero h1 span{
+      color:
+        var(--primary);
+    }
 
-            font-size: 28px;
 
-            margin-bottom: 24px;
+    .hero p{
 
-        }
+      max-width:
+        700px;
 
+      margin:auto;
 
-        .category-list {
+      color:
+        var(--muted);
 
-            display: flex;
+      font-size:
+        16px;
 
-            justify-content: center;
+    }
 
-            gap: 15px;
 
-            flex-wrap: wrap;
+    /* ================= CONTROLS ================= */
 
-        }
+    .controls{
 
+      max-width:
+        1200px;
 
-        .category-list a {
+      margin:
+        0 auto 30px;
 
-            padding: 10px 24px;
+      padding:
+        0 22px;
 
-            border: 1px solid #e91e63;
+      display:flex;
 
-            border-radius: 30px;
+      gap:12px;
 
-            color: #e91e63;
+      flex-wrap:wrap;
 
-            text-decoration: none;
+    }
 
-            font-size: 14px;
 
-            transition: 0.3s;
+    .search{
 
-        }
+      flex:1;
 
+      min-width:
+        220px;
 
-        .category-list a:hover {
+      position:relative;
 
-            background: #e91e63;
+    }
 
-            color: #ffffff;
 
-        }
+    .search input{
 
+      width:100%;
 
-        /* ================= PRODUCTS SECTION ================= */
+      padding:
+        13px 16px;
 
-        .products-section {
+      border:
+        1px solid var(--border);
 
-            padding: 60px 7%;
+      border-radius:
+        13px;
 
-        }
+      outline:none;
 
+      background:#fff;
 
-        .products-section:nth-of-type(odd) {
+    }
 
-            background: #fafafa;
 
-        }
+    .search input:focus{
 
+      border-color:
+        var(--primary);
 
-        .section-title {
+      box-shadow:
+        0 0 0 4px
+        rgba(107,54,95,.07);
 
-            text-align: center;
+    }
 
-            font-size: 30px;
 
-            margin-bottom: 35px;
+    .filter{
 
-        }
+      min-width:
+        180px;
 
+      border:
+        1px solid var(--border);
 
-        .product-grid {
+      border-radius:
+        13px;
 
-            display: grid;
+      padding:
+        13px;
 
-            grid-template-columns:
+      outline:none;
 
-                repeat(4, 1fr);
+      background:#fff;
 
-            gap: 24px;
+    }
 
-        }
 
+    /* ================= PRODUCTS ================= */
 
-        /* ================= PRODUCT CARD ================= */
+    .products{
 
-        .product-card {
+      max-width:
+        1200px;
 
-            background: #ffffff;
+      margin:
+        auto;
 
-            border: 1px solid #eeeeee;
+      padding:
+        0 22px 90px;
 
-            border-radius: 14px;
+    }
 
-            overflow: hidden;
 
-            transition: 0.3s;
+    .products-top{
 
-        }
+      display:flex;
 
+      justify-content:space-between;
 
-        .product-card:hover {
+      align-items:center;
 
-            transform: translateY(-6px);
+      margin-bottom:
+        18px;
 
-            box-shadow:
+    }
 
-                0 10px 30px
 
-                rgba(
+    .products-top h2{
 
-                    0,
+      font:
+        700 30px
+        "Playfair Display",
+        serif;
 
-                    0,
+    }
 
-                    0,
 
-                    0.10
+    .count{
 
-                );
+      color:
+        var(--muted);
 
-        }
+      font-size:
+        13px;
 
+    }
 
-        .product-image {
 
-            width: 100%;
+    .product-grid{
 
-            height: 290px;
+      display:grid;
 
-            overflow: hidden;
+      grid-template-columns:
+        repeat(4,1fr);
 
-            background: #f7f7f7;
+      gap:
+        20px;
 
-        }
+    }
 
 
-        .product-image img {
+    .card{
 
-            width: 100%;
+      background:
+        var(--white);
 
-            height: 100%;
+      border:
+        1px solid var(--border);
 
-            object-fit: cover;
+      border-radius:
+        var(--radius);
 
-            display: block;
+      overflow:hidden;
 
-            transition: 0.4s;
+      box-shadow:
+        var(--shadow);
 
-        }
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease;
 
+    }
 
-        .product-card:hover
 
-        .product-image img {
+    .card:hover{
 
-            transform: scale(1.05);
+      transform:
+        translateY(-5px);
 
-        }
+      box-shadow:
+        0 20px 45px
+        rgba(65,35,60,.13);
 
+    }
 
-        .product-info {
 
-            padding: 16px;
+    .image-wrap{
 
-        }
+      position:relative;
 
+      background:
+        #f5f0f2;
 
-        .product-info h3 {
+      overflow:hidden;
 
-            color: #222222;
+    }
 
-            font-size: 17px;
 
-            margin-bottom: 8px;
+    .image-wrap img{
 
-        }
+      width:100%;
 
+      aspect-ratio:
+        4 / 2.8;
 
-        .product-description {
+      object-fit:
+        cover;
 
-            color: #777777;
+      display:block;
 
-            font-size: 13px;
+    }
 
-            margin-bottom: 10px;
 
-            display: -webkit-box;
+    .category-badge{
 
-            -webkit-line-clamp: 2;
+      position:absolute;
 
-            -webkit-box-orient: vertical;
+      left:10px;
 
-            overflow: hidden;
+      top:10px;
 
-        }
+      padding:
+        5px 9px;
 
+      border-radius:
+        999px;
 
-        .product-price {
+      background:
+        rgba(255,255,255,.92);
 
-            display: block;
+      color:
+        var(--primary);
 
-            color: #e91e63;
+      font-size:
+        10px;
 
-            font-size: 19px;
+      font-weight:
+        700;
 
-            font-weight: 700;
+    }
 
-            margin-bottom: 14px;
 
-        }
+    .card-content{
 
+      padding:
+        15px;
 
-        .shop-btn {
+    }
 
-            width: 100%;
 
-            display: block;
+    .brand{
 
-            padding: 11px;
+      color:
+        var(--accent);
 
-            text-align: center;
+      font-size:
+        11px;
 
-            background: #e91e63;
+      font-weight:
+        700;
 
-            color: #ffffff;
+      text-transform:
+        uppercase;
 
-            text-decoration: none;
+      letter-spacing:
+        .7px;
 
-            border-radius: 7px;
+    }
 
-            font-size: 14px;
 
-            font-weight: 600;
+    .card h3{
 
-            transition: 0.3s;
+      font-size:
+        15px;
 
-        }
+      margin:
+        5px 0;
 
+      line-height:
+        1.35;
 
-        .shop-btn:hover {
+    }
 
-            background: #c2185b;
 
-        }
+    .description{
 
+      color:
+        var(--muted);
 
-        /* ================= LOADING ================= */
+      font-size:
+        12px;
 
-        .loading {
+      line-height:
+        1.5;
 
-            width: 100%;
+      display:
+        -webkit-box;
 
-            padding: 50px;
+      -webkit-line-clamp:
+        2;
 
-            text-align: center;
+      -webkit-box-orient:
+        vertical;
 
-            color: #777777;
+      overflow:
+        hidden;
 
-            grid-column: 1 / -1;
+    }
 
-        }
 
+    .price-row{
 
-        .loading-spinner {
+      display:flex;
 
-            width: 32px;
+      align-items:center;
 
-            height: 32px;
+      gap:8px;
 
-            margin: 15px auto;
+      margin-top:
+        10px;
 
-            border: 3px solid #eeeeee;
+    }
 
-            border-top-color: #e91e63;
 
-            border-radius: 50%;
+    .price{
 
-            animation: spin 0.8s linear infinite;
+      color:
+        var(--primary);
 
-        }
+      font-size:
+        17px;
 
+      font-weight:
+        700;
 
-        @keyframes spin {
+    }
 
-            to {
 
-                transform: rotate(360deg);
+    .old-price{
 
-            }
+      color:
+        #aaa;
 
-        }
+      font-size:
+        12px;
 
+      text-decoration:
+        line-through;
 
-        /* ================= EMPTY STATE ================= */
+    }
 
-        .empty-state {
 
-            width: 100%;
+    .sizes{
 
-            padding: 50px 20px;
+      margin-top:
+        8px;
 
-            text-align: center;
+      color:
+        var(--muted);
 
-            color: #777777;
+      font-size:
+        11px;
 
-            grid-column: 1 / -1;
+    }
 
-        }
 
+    .buy{
 
-        .empty-state h3 {
+      display:block;
 
-            color: #333333;
+      width:100%;
 
-            margin-bottom: 8px;
+      margin-top:
+        13px;
 
-        }
+      padding:
+        11px;
 
+      text-align:center;
 
-        /* ================= SEO CONTENT ================= */
+      background:
+        var(--primary);
 
-        .seo-content {
+      color:
+        #fff;
 
-            padding: 65px 7%;
+      border-radius:
+        11px;
 
-            background: #ffffff;
+      font-size:
+        13px;
 
-        }
+      font-weight:
+        700;
 
+      transition:
+        background .2s ease;
 
-        .seo-content h2 {
+    }
 
-            font-size: 30px;
 
-            margin-bottom: 18px;
+    .buy:hover{
 
-        }
+      background:
+        var(--dark);
 
+    }
 
-        .seo-content h3 {
 
-            margin-top: 28px;
+    .empty{
 
-            margin-bottom: 10px;
+      grid-column:
+        1 / -1;
 
-        }
+      padding:
+        50px 20px;
 
+      text-align:center;
 
-        .seo-content p {
+      color:
+        var(--muted);
 
-            max-width: 1050px;
+      background:
+        #fff;
 
-            color: #555555;
+      border:
+        1px solid var(--border);
 
-            margin-bottom: 16px;
+      border-radius:
+        18px;
 
-        }
+    }
 
 
-        /* ================= FOOTER ================= */
+    /* ================= FOOTER ================= */
 
-        footer {
+    footer{
 
-            background: #222222;
+      background:
+        #251b24;
 
-            color: #ffffff;
+      color:#fff;
 
-            padding: 38px 7%;
+      padding:
+        45px 22px 25px;
 
-            text-align: center;
+    }
 
-        }
 
+    .footer-inner{
 
-        footer a {
+      max-width:
+        1200px;
 
-            color: #ffffff;
+      margin:auto;
 
-            text-decoration: none;
+      display:grid;
 
-            margin: 0 10px;
+      grid-template-columns:
+        1.5fr 1fr 1fr;
 
-            font-size: 14px;
+      gap:35px;
 
-        }
+    }
 
 
-        footer p {
+    .footer-logo{
 
-            color: #bbbbbb;
+      font:
+        700 29px
+        "Playfair Display",
+        serif;
 
-            font-size: 13px;
+      margin-bottom:
+        10px;
 
-            margin-top: 16px;
+    }
 
-        }
 
+    .footer-logo span{
+      color:var(--accent);
+    }
 
-        /* ================= TABLET ================= */
 
-        @media (max-width: 1100px) {
+    .footer-inner p{
 
-            .product-grid {
+      color:#c7bec5;
 
-                grid-template-columns:
+      font-size:
+        13px;
 
-                    repeat(3, 1fr);
+      max-width:
+        400px;
 
-            }
+    }
 
-        }
 
+    .footer-inner h3{
 
-        /* ================= MOBILE ================= */
+      font-size:
+        14px;
 
-        @media (max-width: 768px) {
+      margin-bottom:
+        12px;
 
+    }
 
-            .navbar {
 
-                padding: 15px 5%;
+    .links{
 
-            }
+      display:flex;
 
+      flex-direction:column;
 
-            .nav-links {
+      gap:8px;
 
-                gap: 12px;
+    }
 
-            }
 
+    .links a{
 
-            .nav-links a {
+      color:#c7bec5;
 
-                font-size: 11px;
+      font-size:
+        13px;
 
-            }
+    }
 
 
-            .hero {
+    .links a:hover{
+      color:#fff;
+    }
 
-                padding: 58px 5%;
 
-            }
+    .copyright{
 
+      max-width:
+        1200px;
 
-            .hero h1 {
+      margin:
+        30px auto 0;
 
-                font-size: 29px;
+      padding-top:
+        18px;
 
-            }
+      border-top:
+        1px solid
+        rgba(255,255,255,.12);
 
+      text-align:center;
 
-            .hero p {
+      color:#aaa1a8;
 
-                font-size: 14px;
+      font-size:
+        12px;
 
-            }
+    }
 
 
-            .categories,
+    /* ================= RESPONSIVE ================= */
 
-            .products-section,
+    @media(max-width:1000px){
 
-            .seo-content {
+      .product-grid{
+        grid-template-columns:
+          repeat(3,1fr);
+      }
 
-                padding-left: 5%;
+    }
 
-                padding-right: 5%;
 
-            }
+    @media(max-width:720px){
 
+      nav{
+        gap:12px;
+      }
 
-            .product-grid {
+      nav a:not(:last-child){
+        display:none;
+      }
 
-                grid-template-columns:
+      .product-grid{
+        grid-template-columns:
+          repeat(2,1fr);
+      }
 
-                    repeat(2, 1fr);
+      .footer-inner{
+        grid-template-columns:
+          1fr;
+      }
 
-                gap: 13px;
+    }
 
-            }
 
+    @media(max-width:450px){
 
-            .product-image {
+      .navbar{
+        padding:
+          0 15px;
+      }
 
-                height: 220px;
+      .logo{
+        font-size:
+          26px;
+      }
 
-            }
+      .hero{
+        padding:
+          60px 16px 45px;
+      }
 
+      .hero h1{
+        font-size:
+          45px;
+      }
 
-            .product-info {
+      .controls{
+        padding:
+          0 14px;
+      }
 
-                padding: 11px;
+      .products{
+        padding:
+          0 14px 70px;
+      }
 
-            }
+      .product-grid{
+        grid-template-columns:
+          repeat(2,1fr);
 
+        gap:
+          11px;
+      }
 
-            .product-info h3 {
+      .card-content{
+        padding:
+          11px;
+      }
 
-                font-size: 14px;
+      .card h3{
+        font-size:
+          13px;
+      }
 
-            }
+      .price{
+        font-size:
+          15px;
+      }
 
+    }
 
-            .product-description {
-
-                font-size: 12px;
-
-            }
-
-
-            .product-price {
-
-                font-size: 16px;
-
-            }
-
-
-            .shop-btn {
-
-                padding: 9px;
-
-                font-size: 12px;
-
-            }
-
-        }
-
-
-        /* ================= SMALL MOBILE ================= */
-
-        @media (max-width: 420px) {
-
-
-            .logo {
-
-                font-size: 21px;
-
-            }
-
-
-            .nav-links {
-
-                gap: 8px;
-
-            }
-
-
-            .nav-links a {
-
-                font-size: 10px;
-
-            }
-
-
-            .product-image {
-
-                height: 200px;
-
-            }
-
-        }
-
-    </style>
+  </style>
 
 </head>
 
@@ -808,739 +1012,749 @@
 <body>
 
 
-    <!-- ================= NAVBAR ================= -->
+<!-- ================= HEADER ================= -->
 
-    <header class="navbar">
+<header>
+
+  <div class="navbar">
+
+    <a
+      href="index.html"
+      class="logo"
+    >
+      Style<span>Easy</span>
+    </a>
 
 
-        <a href="index.html"
+    <nav>
 
-            class="logo">
+      <a href="index.html">
+        Home
+      </a>
 
-            Style<span>Easy</span>
+      <a href="girl-dresses.html">
+        Women
+      </a>
 
+      <a href="menswear.html">
+        Men
+      </a>
+
+      <a
+        href="footwear.html"
+        class="active"
+      >
+        Footwear
+      </a>
+
+      <a href="cosmetics.html">
+        Beauty
+      </a>
+
+      <a href="contact.html">
+        Contact
+      </a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+  <div>
+
+    <div class="eyebrow">
+      Step Into Style
+    </div>
+
+    <h1>
+      Discover <span>Footwear</span>
+    </h1>
+
+    <p>
+      Explore stylish sneakers, shoes, sandals,
+      slippers, heels, boots and everyday footwear
+      with shopping links for customers in India.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- ================= CONTROLS ================= -->
+
+<section class="controls">
+
+  <div class="search">
+
+    <input
+      type="search"
+      id="search"
+      placeholder="Search footwear..."
+      aria-label="Search footwear"
+    >
+
+  </div>
+
+
+  <select
+    id="categoryFilter"
+    class="filter"
+    aria-label="Filter footwear category"
+  >
+
+    <option value="all">
+      All Categories
+    </option>
+
+    <option value="Sneakers">
+      Sneakers
+    </option>
+
+    <option value="Running Shoes">
+      Running Shoes
+    </option>
+
+    <option value="Casual Shoes">
+      Casual Shoes
+    </option>
+
+    <option value="Formal Shoes">
+      Formal Shoes
+    </option>
+
+    <option value="Sandals">
+      Sandals
+    </option>
+
+    <option value="Slippers">
+      Slippers
+    </option>
+
+    <option value="Heels">
+      Heels
+    </option>
+
+    <option value="Boots">
+      Boots
+    </option>
+
+    <option value="Sports Shoes">
+      Sports Shoes
+    </option>
+
+    <option value="Loafers">
+      Loafers
+    </option>
+
+  </select>
+
+</section>
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<section class="products">
+
+  <div class="products-top">
+
+    <h2>
+      Latest Footwear
+    </h2>
+
+    <span
+      class="count"
+      id="count"
+    >
+      Loading...
+    </span>
+
+  </div>
+
+
+  <div
+    class="product-grid"
+    id="productGrid"
+  >
+
+    <div class="empty">
+      Loading footwear products...
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+  <div class="footer-inner">
+
+    <div>
+
+      <div class="footer-logo">
+        Style<span>Easy</span>
+      </div>
+
+      <p>
+        Discover fashion, footwear, beauty and
+        lifestyle products with StyleEasy.
+      </p>
+
+    </div>
+
+
+    <div>
+
+      <h3>
+        Explore
+      </h3>
+
+      <div class="links">
+
+        <a href="index.html">
+          Home
         </a>
 
+        <a href="girl-dresses.html">
+          Women's Fashion
+        </a>
 
-        <nav>
+        <a href="menswear.html">
+          Men's Wear
+        </a>
 
-            <ul class="nav-links">
+        <a href="footwear.html">
+          Footwear
+        </a>
 
+        <a href="cosmetics.html">
+          Cosmetics
+        </a>
 
-                <li>
+      </div>
 
-                    <a href="index.html">
+    </div>
 
-                        Home
 
-                    </a>
+    <div>
 
-                </li>
+      <h3>
+        Company
+      </h3>
 
+      <div class="links">
 
-                <li>
+        <a href="about.html">
+          About Us
+        </a>
 
-                    <a href="footwear.html">
+        <a href="contact.html">
+          Contact
+        </a>
 
-                        Footwear
+        <a href="privacy-policy.html">
+          Privacy Policy
+        </a>
 
-                    </a>
+        <a href="terms.html">
+          Terms
+        </a>
 
-                </li>
+      </div>
 
+    </div>
 
-            </ul>
+  </div>
 
-        </nav>
 
+  <div class="copyright">
 
-    </header>
+    ©
+    <span id="year"></span>
+    StyleEasy. All rights reserved.
 
+  </div>
 
-    <!-- ================= HERO ================= -->
+</footer>
 
-    <section class="hero">
 
+<!-- ================= FIREBASE ================= -->
 
-        <h1>
+<script type="module">
 
-            Men's & Women's Footwear Online
+  import {
+    initializeApp
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
-        </h1>
+  import {
+    getFirestore,
+    collection,
+    getDocs,
+    query,
+    orderBy
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-        <p>
+  /* =====================================
+     FIREBASE CONFIG
+  ====================================== */
 
-            Discover trending shoes, slippers, sandals and stylish
+  const firebaseConfig = {
 
-            footwear for men and women. Explore comfortable and
+    apiKey:
+      "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
 
-            affordable footwear for everyday wear and different occasions.
+    authDomain:
+      "lucky-triode-450317-g7.firebaseapp.com",
 
-        </p>
+    databaseURL:
+      "https://lucky-triode-450317-g7-default-rtdb.firebaseio.com",
 
+    projectId:
+      "lucky-triode-450317-g7",
 
-    </section>
+    storageBucket:
+      "lucky-triode-450317-g7.firebasestorage.app",
 
+    messagingSenderId:
+      "778199870672",
 
-    <!-- ================= CATEGORY NAVIGATION ================= -->
+    appId:
+      "1:778199870672:web:62a9891e41b3a3d3f242d5",
 
-    <section class="categories">
+    measurementId:
+      "G-BD8Y4KXCKM"
 
+  };
 
-        <h2>
 
-            Explore Footwear Categories
+  const app =
+    initializeApp(firebaseConfig);
 
-        </h2>
 
+  const db =
+    getFirestore(app);
 
-        <div class="category-list">
 
+  /* =====================================
+     FOOTWEAR COLLECTION
+  ====================================== */
 
-            <a href="#men-footwear">
+  const footwearRef =
+    collection(
+      db,
+      "footwear"
+    );
 
-                Men's Footwear
 
-            </a>
+  const productGrid =
+    document.getElementById(
+      "productGrid"
+    );
 
 
-            <a href="#women-footwear">
+  const count =
+    document.getElementById(
+      "count"
+    );
 
-                Women's Footwear
 
-            </a>
+  const search =
+    document.getElementById(
+      "search"
+    );
 
 
-        </div>
+  const categoryFilter =
+    document.getElementById(
+      "categoryFilter"
+    );
 
 
-    </section>
+  let products = [];
 
 
-    <!-- ================= MEN FOOTWEAR ================= -->
+  /* =====================================
+     LOAD
+  ====================================== */
 
-    <section
+  async function loadProducts(){
 
-        class="products-section"
+    try{
 
-        id="men-footwear">
+      const q =
+        query(
+          footwearRef,
+          orderBy(
+            "createdAt",
+            "desc"
+          )
+        );
 
 
-        <h2 class="section-title">
+      const snapshot =
+        await getDocs(q);
 
-            Men's Footwear, Shoes & Slippers
 
-        </h2>
+      products =
+        snapshot.docs.map(
+          item => ({
+            id:item.id,
+            ...item.data()
+          })
+        );
 
 
-        <div
+      renderProducts();
 
-            class="product-grid"
+    }catch(error){
 
-            id="menFootwearGrid">
+      console.error(error);
 
+      /*
+        If old documents do not have createdAt,
+        fallback to normal collection loading.
+      */
 
-            <div class="loading">
+      try{
 
+        const snapshot =
+          await getDocs(
+            footwearRef
+          );
 
-                Loading men's footwear...
 
+        products =
+          snapshot.docs.map(
+            item => ({
+              id:item.id,
+              ...item.data()
+            })
+          );
 
-                <div class="loading-spinner"></div>
 
+        renderProducts();
 
-            </div>
+      }catch(secondError){
 
+        console.error(secondError);
 
-        </div>
+        productGrid.innerHTML = `
+          <div class="empty">
+            Products could not be loaded.
+            Please check Firebase Firestore Rules.
+          </div>
+        `;
 
+        count.textContent =
+          "0 products";
 
-    </section>
+      }
 
+    }
 
-    <!-- ================= WOMEN FOOTWEAR ================= -->
+  }
 
-    <section
 
-        class="products-section"
+  /* =====================================
+     RENDER
+  ====================================== */
 
-        id="women-footwear">
+  function renderProducts(){
 
+    const searchText =
+      search.value
+        .toLowerCase()
+        .trim();
 
-        <h2 class="section-title">
 
-            Women's Footwear, Shoes & Slippers
+    const category =
+      categoryFilter.value;
 
-        </h2>
 
+    const filtered =
+      products.filter(
+        product => {
 
-        <div
+          const searchable =
+            `${product.name || ""}
+             ${product.brand || ""}
+             ${product.category || ""}
+             ${product.description || ""}
+             ${product.gender || ""}`
+            .toLowerCase();
 
-            class="product-grid"
 
-            id="womenFootwearGrid">
-
-
-            <div class="loading">
-
-
-                Loading women's footwear...
-
-
-                <div class="loading-spinner"></div>
-
-
-            </div>
-
-
-        </div>
-
-
-    </section>
-
-
-    <!-- ================= SEO CONTENT ================= -->
-
-    <section class="seo-content">
-
-
-        <h2>
-
-            Shop Men's and Women's Footwear Online
-
-        </h2>
-
-
-        <p>
-
-            Discover a wide collection of men's and women's footwear
-
-            online at StyleEasy. Explore stylish shoes, comfortable
-
-            slippers, fashionable sandals and trending footwear for
-
-            everyday use and different occasions.
-
-        </p>
-
-
-        <h3>
-
-            Men's Footwear Online
-
-        </h3>
-
-
-        <p>
-
-            Explore trending men's shoes, slippers, sandals and
-
-            everyday footwear. Find comfortable and stylish footwear
-
-            suitable for casual outings and daily use.
-
-        </p>
-
-
-        <h3>
-
-            Women's Footwear Online
-
-        </h3>
-
-
-        <p>
-
-            Discover stylish women's shoes, sandals, slippers and
-
-            fashionable footwear. Explore trending designs and
-
-            comfortable footwear for different occasions.
-
-        </p>
-
-
-        <h3>
-
-            Trending Shoes, Slippers and Sandals
-
-        </h3>
-
-
-        <p>
-
-            Browse the latest footwear collection and discover
-
-            stylish shoes, slippers and sandals for men and women.
-
-        </p>
-
-
-    </section>
-
-
-    <!-- ================= FOOTER ================= -->
-
-    <footer>
-
-
-        <div>
-
-
-            <a href="index.html">
-
-                Home
-
-            </a>
-
-
-            <a href="footwear.html">
-
-                Footwear
-
-            </a>
-
-
-            <a href="contact.html">
-
-                Contact
-
-            </a>
-
-
-        </div>
-
-
-        <p>
-
-            © 2026 StyleEasy. All Rights Reserved.
-
-        </p>
-
-
-    </footer>
-
-
-    <!-- ================= FIREBASE SCRIPT ================= -->
-
-    <script>
-
-
-        /* ================= FIREBASE CONFIG ================= */
-
-
-        const firebaseConfig = {
-
-
-            apiKey:
-
-                "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
-
-
-            authDomain:
-
-                "lucky-triode-450317-g7.firebaseapp.com",
-
-
-            databaseURL:
-
-                "https://lucky-triode-450317-g7-default-rtdb.firebaseio.com/",
-
-
-            projectId:
-
-                "lucky-triode-450317-g7",
-
-
-            storageBucket:
-
-                "lucky-triode-450317-g7.firebasestorage.app",
-
-
-            messagingSenderId:
-
-                "778199870672",
-
-
-            appId:
-
-                "1:778199870672:web:62a9891e41b3a3d3f242d5"
-
-
-        };
-
-
-        /* ================= INITIALIZE FIREBASE ================= */
-
-
-        firebase.initializeApp(firebaseConfig);
-
-
-        const database = firebase.database();
-
-
-        /* ================= GET ELEMENTS ================= */
-
-
-        const menFootwearGrid =
-
-            document.getElementById(
-
-                "menFootwearGrid"
-
+          const searchMatch =
+            !searchText ||
+            searchable.includes(
+              searchText
             );
 
 
-        const womenFootwearGrid =
-
-            document.getElementById(
-
-                "womenFootwearGrid"
-
-            );
-
-
-        /* ================= LOAD PRODUCTS ================= */
-
-
-        function loadProducts(
-
-            databasePath,
-
-            gridElement,
-
-            categoryName
-
-        ) {
-
-
-            database
-
-                .ref(databasePath)
-
-                .on(
-
-                    "value",
-
-                    function(snapshot) {
-
-
-                        gridElement.innerHTML = "";
-
-
-                        const products =
-
-                            snapshot.val();
-
-
-                        /* ================= NO PRODUCTS ================= */
-
-
-                        if (!products) {
-
-
-                            gridElement.innerHTML = `
-
-
-                                <div class="empty-state">
-
-
-                                    <h3>
-
-                                        No ${categoryName} Available
-
-                                    </h3>
-
-
-                                    <p>
-
-                                        New products will appear here soon.
-
-                                    </p>
-
-
-                                </div>
-
-                            `;
-
-
-                            return;
-
-                        }
-
-
-                        /* ================= PRODUCT LOOP ================= */
-
-
-                        Object.keys(products)
-
-                            .reverse()
-
-                            .forEach(
-
-                                function(key) {
-
-
-                                    const product =
-
-                                        products[key];
-
-
-                                    const card =
-
-                                        document.createElement(
-
-                                            "article"
-
-                                        );
-
-
-                                    card.className =
-
-                                        "product-card";
-
-
-                                    card.innerHTML = `
-
-
-                                        <div class="product-image">
-
-
-                                            <img
-
-                                                src="${safeURL(product.imageUrl)}"
-
-                                                alt="${escapeHTML(product.title)}"
-
-                                                loading="lazy"
-
-                                            >
-
-                                        </div>
-
-
-                                        <div class="product-info">
-
-
-                                            <h3>
-
-                                                ${escapeHTML(product.title)}
-
-                                            </h3>
-
-
-                                            <p class="product-description">
-
-
-                                                ${escapeHTML(product.description)}
-
-                                            </p>
-
-
-                                            <span class="product-price">
-
-
-                                                ₹${escapeHTML(product.price)}
-
-                                            </span>
-
-
-                                            <a
-
-                                                href="${safeURL(product.buyLink)}"
-
-                                                target="_blank"
-
-                                                rel="noopener noreferrer"
-
-                                                class="shop-btn"
-
-                                            >
-
-                                                View Product
-
-                                            </a>
-
-
-                                        </div>
-
-                                    `;
-
-
-                                    gridElement.appendChild(
-
-                                        card
-
-                                    );
-
-
-                                }
-
-                            );
-
-
-                    },
-
-
-                    function(error) {
-
-
-                        console.error(
-
-                            "Firebase Error:",
-
-                            error
-
-                        );
-
-
-                        gridElement.innerHTML = `
-
-
-                            <div class="empty-state">
-
-
-                                <h3>
-
-                                    Unable to Load Products
-
-                                </h3>
-
-
-                                <p>
-
-                                    Please try again later.
-
-                                </p>
-
-
-                            </div>
-
-                        `;
-
-
-                    }
-
-                );
+          const categoryMatch =
+            category === "all" ||
+            product.category === category;
+
+
+          return (
+            searchMatch &&
+            categoryMatch
+          );
 
         }
+      );
 
 
-        /* ================= MEN FOOTWEAR ================= */
+    count.textContent =
+      `${filtered.length} product${filtered.length !== 1 ? "s" : ""}`;
 
 
-        loadProducts(
+    if(!filtered.length){
 
-            "products/men-footwear",
+      productGrid.innerHTML = `
+        <div class="empty">
+          No footwear products found.
+        </div>
+      `;
 
-            menFootwearGrid,
+      return;
 
-            "Men's Footwear"
-
-        );
-
-
-        /* ================= WOMEN FOOTWEAR ================= */
-
-
-        loadProducts(
-
-            "products/women-footwear",
-
-            womenFootwearGrid,
-
-            "Women's Footwear"
-
-        );
+    }
 
 
-        /* ================= ESCAPE HTML ================= */
+    productGrid.innerHTML =
+      filtered.map(
+        product => {
+
+          const price =
+            Number(
+              product.price || 0
+            );
 
 
-        function escapeHTML(value) {
+          const oldPrice =
+            Number(
+              product.oldPrice || 0
+            );
 
 
-            return String(
-
-                value || ""
-
-            ).replace(
-
-                /[&<>"']/g,
-
-                function(match) {
+          const sizes =
+            Array.isArray(product.sizes)
+              ? product.sizes.join(", ")
+              : "";
 
 
-                    return {
+          const discount =
+            oldPrice > price && price > 0
+              ? Math.round(
+                  ((oldPrice-price)/oldPrice)*100
+                )
+              : 0;
 
 
-                        "&": "&amp;",
+          return `
 
-                        "<": "&lt;",
+            <article
+              class="card"
+              itemscope
+              itemtype="https://schema.org/Product"
+            >
 
-                        ">": "&gt;",
+              <div class="image-wrap">
 
-                        '"': "&quot;",
+                <img
+                  src="${escapeHtml(product.image || "")}"
+                  alt="${escapeHtml(product.name || "Footwear product")}"
+                  loading="lazy"
+                  itemprop="image"
+                  onerror="this.src='https://via.placeholder.com/600x420?text=Footwear'"
+                >
 
-                        "'": "&#039;"
+                <span class="category-badge">
+                  ${escapeHtml(product.category || "Footwear")}
+                </span>
 
-                    }[match];
+              </div>
 
 
+              <div class="card-content">
+
+                <div class="brand">
+                  ${escapeHtml(product.brand || "StyleEasy")}
+                </div>
+
+
+                <h3 itemprop="name">
+                  ${escapeHtml(product.name || "Footwear")}
+                </h3>
+
+
+                <p
+                  class="description"
+                  itemprop="description"
+                >
+                  ${escapeHtml(
+                    product.description ||
+                    "Stylish footwear for everyday fashion."
+                  )}
+                </p>
+
+
+                <div
+                  class="price-row"
+                  itemprop="offers"
+                  itemscope
+                  itemtype="https://schema.org/Offer"
+                >
+
+                  <span
+                    class="price"
+                    itemprop="price"
+                  >
+                    ₹${price.toLocaleString("en-IN")}
+                  </span>
+
+                  <meta
+                    itemprop="priceCurrency"
+                    content="INR"
+                  >
+
+                  <meta
+                    itemprop="availability"
+                    content="https://schema.org/InStock"
+                  >
+
+                  ${
+                    oldPrice > price
+                    ? `
+                      <span class="old-price">
+                        ₹${oldPrice.toLocaleString("en-IN")}
+                      </span>
+                    `
+                    : ""
+                  }
+
+                </div>
+
+
+                ${
+                  discount
+                  ? `
+                    <div class="sizes">
+                      ${discount}% OFF
+                    </div>
+                  `
+                  : ""
                 }
 
-            );
+
+                ${
+                  sizes
+                  ? `
+                    <div class="sizes">
+                      Sizes: ${escapeHtml(sizes)}
+                    </div>
+                  `
+                  : ""
+                }
+
+
+                <a
+                  class="buy"
+                  href="${escapeHtml(product.buyLink || "#")}"
+                  target="_blank"
+                  rel="nofollow sponsored noopener"
+                  aria-label="Buy ${escapeHtml(product.name || "footwear")}"
+                >
+                  Buy Now
+                </a>
+
+              </div>
+
+            </article>
+
+          `;
 
         }
+      ).join("");
+
+  }
 
 
-        /* ================= SAFE URL ================= */
+  /* =====================================
+     SEARCH
+  ====================================== */
+
+  search.addEventListener(
+    "input",
+    renderProducts
+  );
 
 
-        function safeURL(value) {
+  categoryFilter.addEventListener(
+    "change",
+    renderProducts
+  );
 
 
-            const url =
+  /* =====================================
+     SECURITY ESCAPE
+  ====================================== */
 
-                String(
+  function escapeHtml(value){
 
-                    value || ""
+    return String(value)
 
-                ).trim();
+      .replaceAll(
+        "&",
+        "&amp;"
+      )
 
+      .replaceAll(
+        "<",
+        "&lt;"
+      )
 
-            if (
+      .replaceAll(
+        ">",
+        "&gt;"
+      )
 
-                url.startsWith(
+      .replaceAll(
+        '"',
+        "&quot;"
+      )
 
-                    "https://"
+      .replaceAll(
+        "'",
+        "&#039;"
+      );
 
-                ) ||
-
-                url.startsWith(
-
-                    "http://"
-
-                )
-
-            ) {
-
-
-                return url;
-
-
-            }
-
-
-            return "";
-
-        }
+  }
 
 
-    </script>
+  /* YEAR */
 
+  document.getElementById("year")
+    .textContent =
+    new Date().getFullYear();
+
+
+  /* LOAD */
+
+  loadProducts();
+
+</script>
 
 </body>
-
 </html>

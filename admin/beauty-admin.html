@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Beauty Admin Panel | StyleEasy</title>
+<meta name="robots" content="noindex,nofollow">
+
+<style>
+:root{
+  --primary:#7D3045;
+  --primary-dark:#521E2D;
+  --gold:#C7A46A;
+  --cream:#FBF7F2;
+  --white:#fff;
+  --text:#292225;
+  --muted:#776C70;
+  --border:#E8DCD6;
+  --danger:#B42318;
+  --shadow:0 12px 35px rgba(82,30,45,.10);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,Arial,sans-serif;
+  background:var(--cream);
+  color:var(--text);
+}
+header{
+  background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+  color:white;
+  padding:25px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+header h1{margin:0;font-size:25px}
+header span{color:#f3dfb7}
+.container{max-width:1200px;margin:auto;padding:30px 18px}
+.panel{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:24px;
+  margin-bottom:25px;
+  box-shadow:var(--shadow);
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+input,select,textarea{
+  width:100%;
+  padding:13px 14px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  outline:none;
+  font:inherit;
+  background:#fff;
+}
+textarea{min-height:100px;resize:vertical}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(199,164,106,.15);
+}
+label{
+  display:block;
+  font-weight:700;
+  margin-bottom:7px;
+  font-size:14px;
+}
+.full{grid-column:1/-1}
+button{
+  border:0;
+  border-radius:10px;
+  padding:12px 18px;
+  cursor:pointer;
+  font-weight:700;
+}
+.primary{
+  background:var(--primary);
+  color:white;
+}
+.primary:hover{background:var(--primary-dark)}
+.secondary{
+  background:#F1E6DF;
+  color:var(--primary-dark);
+}
+.danger{
+  background:#FCE8E6;
+  color:var(--danger);
+}
+.actions{
+  display:flex;
+  gap:10px;
+  margin-top:18px;
+  flex-wrap:wrap;
+}
+.status{
+  padding:12px;
+  border-radius:10px;
+  margin-top:15px;
+  background:#F8F2EC;
+  color:var(--primary-dark);
+}
+.products{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+.product{
+  border:1px solid var(--border);
+  border-radius:15px;
+  overflow:hidden;
+  background:#fff;
+}
+.product img{
+  width:100%;
+  aspect-ratio:4/2.8;
+  object-fit:cover;
+}
+.product-body{padding:15px}
+.product h3{margin:0 0 7px}
+.price{font-weight:800;color:var(--primary)}
+.product-actions{
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+}
+.product-actions button{
+  flex:1;
+  padding:9px;
+}
+small{color:var(--muted)}
+
+@media(max-width:850px){
+  .products{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  .grid{grid-template-columns:1fr}
+  .full{grid-column:auto}
+  .products{grid-template-columns:1fr}
+  header{padding:20px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>💄 StyleEasy <span>Beauty Admin</span></h1>
+  <a href="beauty.html" style="color:white;text-decoration:none;font-weight:700">
+    View Store →
+  </a>
+</header>
+
+<main class="container">
+
+<section class="panel">
+  <h2 id="formTitle">Add Beauty Product</h2>
+
+  <form id="productForm">
+
+    <div class="grid">
+
+      <div>
+        <label>Product Name *</label>
+        <input id="name" required placeholder="e.g. Hydrating Face Serum">
+      </div>
+
+      <div>
+        <label>Brand</label>
+        <input id="brand" placeholder="e.g. Mamaearth">
+      </div>
+
+      <div>
+        <label>Category *</label>
+        <select id="category" required>
+          <option value="">Select Category</option>
+          <option>Makeup</option>
+          <option>Lipstick</option>
+          <option>Face Cream</option>
+          <option>Face Wash</option>
+          <option>Serum</option>
+          <option>Moisturizer</option>
+          <option>Sunscreen</option>
+          <option>Foundation</option>
+          <option>Concealer</option>
+          <option>Blush</option>
+          <option>Mascara</option>
+          <option>Eyeliner</option>
+          <option>Perfume</option>
+          <option>Beauty Tools</option>
+          <option>Skincare</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Price (₹) *</label>
+        <input id="price" type="number" min="0" required>
+      </div>
+
+      <div>
+        <label>Old Price (₹)</label>
+        <input id="oldPrice" type="number" min="0">
+      </div>
+
+      <div>
+        <label>Image URL *</label>
+        <input id="image" type="url" required placeholder="https://...">
+      </div>
+
+      <div>
+        <label>Skin Type</label>
+        <input id="skinType" placeholder="All Skin Types">
+      </div>
+
+      <div>
+        <label>Shade</label>
+        <input id="shade" placeholder="Rose / Nude / Natural">
+      </div>
+
+      <div class="full">
+        <label>Description *</label>
+        <textarea id="description" required
+          placeholder="Write a useful product description..."></textarea>
+      </div>
+
+      <div class="full">
+        <label>SFF / Affiliate Buy Link *</label>
+        <input id="buyLink" type="url" required
+          placeholder="https://...">
+      </div>
+
+    </div>
+
+    <div class="actions">
+      <button class="primary" type="submit" id="saveBtn">
+        Add Product
+      </button>
+
+      <button class="secondary" type="button" id="cancelBtn" style="display:none">
+        Cancel Edit
+      </button>
+    </div>
+
+    <div class="status" id="status">Ready.</div>
+
+  </form>
+</section>
+
+<section class="panel">
+  <h2>Beauty Products</h2>
+  <div id="products" class="products">
+    Loading...
+  </div>
+</section>
+
+</main>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  doc,
+  updateDoc,
+  deleteDoc,
+  serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
+  authDomain: "lucky-triode-450317-g7.firebaseapp.com",
+  databaseURL: "https://lucky-triode-450317-g7-default-rtdb.firebaseio.com",
+  projectId: "lucky-triode-450317-g7",
+  storageBucket: "lucky-triode-450317-g7.firebasestorage.app",
+  messagingSenderId: "778199870672",
+  appId: "1:778199870672:web:62a9891e41b3a3d3f242d5",
+  measurementId: "G-BD8Y4KXCKM"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+/* IMPORTANT:
+   BEAUTY DATA ONLY
+*/
+const beautyRef = collection(db,"beauty","products","items");
+
+let editingId = null;
+
+const form = document.getElementById("productForm");
+const productsBox = document.getElementById("products");
+const statusBox = document.getElementById("status");
+
+const $ = id => document.getElementById(id);
+
+function getData(){
+
+  return {
+    name:$("name").value.trim(),
+    brand:$("brand").value.trim(),
+    category:$("category").value,
+    price:Number($("price").value),
+    oldPrice:Number($("oldPrice").value || 0),
+    image:$("image").value.trim(),
+    skinType:$("skinType").value.trim(),
+    shade:$("shade").value.trim(),
+    description:$("description").value.trim(),
+    buyLink:$("buyLink").value.trim(),
+    updatedAt:serverTimestamp()
+  };
+
+}
+
+function resetForm(){
+
+  form.reset();
+  editingId=null;
+
+  $("formTitle").textContent="Add Beauty Product";
+  $("saveBtn").textContent="Add Product";
+  $("cancelBtn").style.display="none";
+
+}
+
+form.addEventListener("submit",async e=>{
+
+  e.preventDefault();
+
+  try{
+
+    const data=getData();
+
+    if(editingId){
+
+      await updateDoc(
+        doc(db,"beauty","products","items",editingId),
+        data
+      );
+
+      statusBox.textContent="✅ Product updated successfully.";
+
+    }else{
+
+      await addDoc(beautyRef,{
+        ...data,
+        createdAt:serverTimestamp()
+      });
+
+      statusBox.textContent="✅ Product added successfully.";
+
+    }
+
+    resetForm();
+    loadProducts();
+
+  }catch(error){
+
+    console.error(error);
+    statusBox.textContent="❌ "+error.message;
+
+  }
+
+});
+
+$("cancelBtn").onclick=resetForm;
+
+
+async function loadProducts(){
+
+  productsBox.innerHTML="Loading...";
+
+  try{
+
+    const snapshot=await getDocs(beautyRef);
+
+    if(snapshot.empty){
+
+      productsBox.innerHTML=
+        "<p>No beauty products added yet.</p>";
+
+      return;
+
+    }
+
+    productsBox.innerHTML="";
+
+    snapshot.forEach(item=>{
+
+      const p=item.data();
+
+      const card=document.createElement("article");
+      card.className="product";
+
+      card.innerHTML=`
+
+        <img
+          src="${escapeHTML(p.image || "")}"
+          alt="${escapeHTML(p.name || "Beauty product")}"
+          loading="lazy"
+        >
+
+        <div class="product-body">
+
+          <small>${escapeHTML(p.category || "")}</small>
+
+          <h3>${escapeHTML(p.name || "")}</h3>
+
+          <p>${escapeHTML(p.brand || "")}</p>
+
+          <div class="price">
+            ₹${Number(p.price || 0).toLocaleString("en-IN")}
+          </div>
+
+          ${
+            p.oldPrice
+            ? `<del>₹${Number(p.oldPrice).toLocaleString("en-IN")}</del>`
+            : ""
+          }
+
+          <div class="product-actions">
+
+            <button
+              class="secondary"
+              onclick="editProduct('${item.id}')">
+              Edit
+            </button>
+
+            <button
+              class="danger"
+              onclick="removeProduct('${item.id}')">
+              Delete
+            </button>
+
+          </div>
+
+        </div>
+      `;
+
+      productsBox.appendChild(card);
+
+    });
+
+  }catch(error){
+
+    console.error(error);
+
+    productsBox.innerHTML=
+      `<p>❌ ${escapeHTML(error.message)}</p>`;
+
+  }
+
+}
+
+
+window.editProduct=async id=>{
+
+  try{
+
+    const snapshot=await getDocs(beautyRef);
+
+    let found=null;
+
+    snapshot.forEach(item=>{
+      if(item.id===id) found={id:item.id,...item.data()};
+    });
+
+    if(!found)return;
+
+    $("name").value=found.name || "";
+    $("brand").value=found.brand || "";
+    $("category").value=found.category || "";
+    $("price").value=found.price || "";
+    $("oldPrice").value=found.oldPrice || "";
+    $("image").value=found.image || "";
+    $("skinType").value=found.skinType || "";
+    $("shade").value=found.shade || "";
+    $("description").value=found.description || "";
+    $("buyLink").value=found.buyLink || "";
+
+    editingId=id;
+
+    $("formTitle").textContent="Edit Beauty Product";
+    $("saveBtn").textContent="Update Product";
+    $("cancelBtn").style.display="inline-block";
+
+    window.scrollTo({top:0,behavior:"smooth"});
+
+  }catch(error){
+
+    alert(error.message);
+
+  }
+
+};
+
+
+window.removeProduct=async id=>{
+
+  if(!confirm("Delete this beauty product?"))return;
+
+  try{
+
+    await deleteDoc(
+      doc(db,"beauty","products","items",id)
+    );
+
+    statusBox.textContent="🗑️ Product deleted.";
+    loadProducts();
+
+  }catch(error){
+
+    alert(error.message);
+
+  }
+
+};
+
+
+function escapeHTML(value){
+
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+loadProducts();
+
+</script>
+
+</body>
+</html>

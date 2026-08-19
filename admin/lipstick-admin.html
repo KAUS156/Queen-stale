@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Lipstick Admin Panel | StyleEasy</title>
+
+  <meta
+    name="robots"
+    content="noindex,nofollow"
+  >
+
+  <style>
+
+    :root {
+      --primary: #8b2942;
+      --primary-dark: #57172a;
+      --rose: #c76b82;
+      --champagne: #c8a46a;
+      --cream: #fbf6f3;
+      --soft: #f5e8e8;
+      --white: #ffffff;
+      --text: #292124;
+      --muted: #766c70;
+      --border: #eadbdd;
+      --danger: #b42318;
+      --success: #18794e;
+      --shadow: 0 15px 40px rgba(87, 23, 42, .10);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+    }
+
+    header {
+      background:
+        linear-gradient(
+          135deg,
+          var(--primary-dark),
+          var(--primary)
+        );
+
+      color: var(--white);
+      padding: 22px 6%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    .brand {
+      font-family: Georgia, serif;
+      font-size: 27px;
+      font-weight: 900;
+    }
+
+    .brand span {
+      color: #ead09b;
+    }
+
+    header a {
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
+      padding: 10px 15px;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 10px;
+    }
+
+    .container {
+      width: min(1200px, 94%);
+      margin: auto;
+      padding: 30px 0 50px;
+    }
+
+    .panel {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: var(--shadow);
+    }
+
+    .panel h2 {
+      margin-top: 0;
+      font-family: Georgia, serif;
+      color: var(--primary-dark);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 17px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: #fff;
+      padding: 13px 14px;
+      border-radius: 11px;
+      font: inherit;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--rose);
+      box-shadow: 0 0 0 3px rgba(199,107,130,.12);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-weight: 800;
+      font: inherit;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-secondary {
+      background: var(--soft);
+      color: var(--primary-dark);
+    }
+
+    .btn-danger {
+      background: #fde9e7;
+      color: var(--danger);
+    }
+
+    .status {
+      margin-top: 17px;
+      padding: 13px;
+      background: var(--soft);
+      color: var(--primary-dark);
+      border-radius: 10px;
+      font-weight: 700;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .product {
+      overflow: hidden;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+
+    .product img {
+      width: 100%;
+      aspect-ratio: 4 / 2.8;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .product-body {
+      padding: 15px;
+    }
+
+    .product-body h3 {
+      margin: 5px 0;
+      font-size: 17px;
+    }
+
+    .brand-text {
+      color: var(--champagne);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .price {
+      color: var(--primary);
+      font-weight: 900;
+      font-size: 19px;
+      margin-top: 10px;
+    }
+
+    .old-price {
+      color: #999;
+      text-decoration: line-through;
+      font-size: 13px;
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 13px;
+    }
+
+    .product-actions button {
+      flex: 1;
+      padding: 9px;
+    }
+
+    .empty {
+      padding: 30px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    @media(max-width:900px) {
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(max-width:650px) {
+
+      header {
+        padding: 18px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: auto;
+      }
+
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .panel {
+        padding: 17px;
+      }
+
+      .brand {
+        font-size: 22px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+<header>
+
+  <div class="brand">
+    Style<span>Easy</span> Lipstick Admin
+  </div>
+
+  <a href="lipstick.html">
+    View Lipstick Store →
+  </a>
+
+</header>
+
+
+<main class="container">
+
+  <section class="panel">
+
+    <h2 id="formTitle">
+      Add Lipstick Product
+    </h2>
+
+    <form id="productForm">
+
+      <div class="grid">
+
+        <div>
+          <label for="name">
+            Lipstick Name *
+          </label>
+
+          <input
+            id="name"
+            required
+            placeholder="Matte Nude Lipstick"
+          >
+        </div>
+
+
+        <div>
+          <label for="brand">
+            Brand *
+          </label>
+
+          <input
+            id="brand"
+            required
+            placeholder="Brand name"
+          >
+        </div>
+
+
+        <div>
+          <label for="price">
+            Price (₹) *
+          </label>
+
+          <input
+            id="price"
+            type="number"
+            min="0"
+            required
+            placeholder="499"
+          >
+        </div>
+
+
+        <div>
+          <label for="oldPrice">
+            Old Price (₹)
+          </label>
+
+          <input
+            id="oldPrice"
+            type="number"
+            min="0"
+            placeholder="699"
+          >
+        </div>
+
+
+        <div>
+          <label for="shade">
+            Shade *
+          </label>
+
+          <input
+            id="shade"
+            required
+            placeholder="Rose Nude"
+          >
+        </div>
+
+
+        <div>
+          <label for="color">
+            Color
+          </label>
+
+          <input
+            id="color"
+            placeholder="Nude Pink"
+          >
+        </div>
+
+
+        <div>
+          <label for="finish">
+            Finish *
+          </label>
+
+          <select id="finish" required>
+
+            <option value="">
+              Select Finish
+            </option>
+
+            <option value="Matte">
+              Matte
+            </option>
+
+            <option value="Glossy">
+              Glossy
+            </option>
+
+            <option value="Cream">
+              Cream
+            </option>
+
+            <option value="Satin">
+              Satin
+            </option>
+
+            <option value="Liquid">
+              Liquid
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div>
+          <label for="image">
+            Image URL *
+          </label>
+
+          <input
+            id="image"
+            type="url"
+            required
+            placeholder="https://..."
+          >
+
+        </div>
+
+
+        <div class="full">
+
+          <label for="description">
+            Description *
+          </label>
+
+          <textarea
+            id="description"
+            required
+            placeholder="Write a useful lipstick description..."
+          ></textarea>
+
+        </div>
+
+
+        <div class="full">
+
+          <label for="buyLink">
+            SFF / Affiliate Buy Link *
+          </label>
+
+          <input
+            id="buyLink"
+            type="url"
+            required
+            placeholder="https://..."
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="buttons">
+
+        <button
+          class="btn-primary"
+          type="submit"
+          id="saveBtn"
+        >
+          Add Lipstick
+        </button>
+
+        <button
+          class="btn-secondary"
+          type="button"
+          id="cancelBtn"
+          style="display:none"
+        >
+          Cancel Edit
+        </button>
+
+      </div>
+
+
+      <div
+        class="status"
+        id="status"
+      >
+        Ready.
+      </div>
+
+    </form>
+
+  </section>
+
+
+  <section class="panel">
+
+    <h2>
+      Lipstick Products
+    </h2>
+
+    <div
+      id="products"
+      class="products"
+    >
+      Loading...
+    </div>
+
+  </section>
+
+</main>
+
+
+<script type="module">
+
+import {
+  initializeApp
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  doc,
+  updateDoc,
+  deleteDoc,
+  serverTimestamp
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
+
+  authDomain:
+    "lucky-triode-450317-g7.firebaseapp.com",
+
+  databaseURL:
+    "https://lucky-triode-450317-g7-default-rtdb.firebaseio.com",
+
+  projectId:
+    "lucky-triode-450317-g7",
+
+  storageBucket:
+    "lucky-triode-450317-g7.firebasestorage.app",
+
+  messagingSenderId:
+    "778199870672",
+
+  appId:
+    "1:778199870672:web:62a9891e41b3a3d3f242d5",
+
+  measurementId:
+    "G-BD8Y4KXCKM"
+
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+
+/*
+  ==================================================
+  LIPSTICK DATASET
+  ==================================================
+
+  Firestore:
+
+  lipstick
+      product1
+      product2
+      product3
+
+  Completely separate from:
+
+  beauty
+  footwear
+*/
+
+const lipstickRef =
+  collection(db, "lipstick");
+
+
+let editingId = null;
+
+const form =
+  document.getElementById("productForm");
+
+const productsBox =
+  document.getElementById("products");
+
+const statusBox =
+  document.getElementById("status");
+
+
+const $ = id =>
+  document.getElementById(id);
+
+
+function escapeHTML(value) {
+
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+}
+
+
+function getFormData() {
+
+  return {
+
+    name:
+      $("name").value.trim(),
+
+    brand:
+      $("brand").value.trim(),
+
+    price:
+      Number($("price").value),
+
+    oldPrice:
+      Number($("oldPrice").value || 0),
+
+    shade:
+      $("shade").value.trim(),
+
+    color:
+      $("color").value.trim(),
+
+    finish:
+      $("finish").value,
+
+    image:
+      $("image").value.trim(),
+
+    description:
+      $("description").value.trim(),
+
+    buyLink:
+      $("buyLink").value.trim(),
+
+    updatedAt:
+      serverTimestamp()
+
+  };
+
+}
+
+
+function resetForm() {
+
+  form.reset();
+
+  editingId = null;
+
+  $("formTitle").textContent =
+    "Add Lipstick Product";
+
+  $("saveBtn").textContent =
+    "Add Lipstick";
+
+  $("cancelBtn").style.display =
+    "none";
+
+}
+
+
+form.addEventListener(
+  "submit",
+  async event => {
+
+    event.preventDefault();
+
+    try {
+
+      const data =
+        getFormData();
+
+
+      if (editingId) {
+
+        await updateDoc(
+
+          doc(
+            db,
+            "lipstick",
+            editingId
+          ),
+
+          data
+
+        );
+
+        statusBox.textContent =
+          "✅ Lipstick updated successfully.";
+
+      }
+
+      else {
+
+        await addDoc(
+
+          lipstickRef,
+
+          {
+
+            ...data,
+
+            createdAt:
+              serverTimestamp()
+
+          }
+
+        );
+
+        statusBox.textContent =
+          "✅ Lipstick added successfully.";
+
+      }
+
+
+      resetForm();
+
+      await loadProducts();
+
+
+    }
+
+    catch(error) {
+
+      console.error(error);
+
+      statusBox.textContent =
+        "❌ " + error.message;
+
+    }
+
+  }
+);
+
+
+$("cancelBtn").onclick =
+  resetForm;
+
+
+async function loadProducts() {
+
+  productsBox.innerHTML =
+    `<div class="empty">Loading...</div>`;
+
+
+  try {
+
+    const snapshot =
+      await getDocs(lipstickRef);
+
+
+    if (snapshot.empty) {
+
+      productsBox.innerHTML =
+        `<div class="empty">
+          No lipstick products added yet.
+        </div>`;
+
+      return;
+
+    }
+
+
+    productsBox.innerHTML = "";
+
+
+    snapshot.forEach(item => {
+
+      const p =
+        item.data();
+
+
+      const card =
+        document.createElement("article");
+
+      card.className =
+        "product";
+
+
+      card.innerHTML = `
+
+        <img
+          src="${escapeHTML(p.image)}"
+          alt="${escapeHTML(p.name)}"
+          loading="lazy"
+        >
+
+        <div class="product-body">
+
+          <div class="brand-text">
+            ${escapeHTML(p.brand)}
+          </div>
+
+          <h3>
+            ${escapeHTML(p.name)}
+          </h3>
+
+          <div>
+            Shade:
+            <strong>
+              ${escapeHTML(p.shade)}
+            </strong>
+          </div>
+
+          <div>
+            Finish:
+            ${escapeHTML(p.finish)}
+          </div>
+
+          <div class="price">
+            ₹${Number(
+              p.price || 0
+            ).toLocaleString("en-IN")}
+          </div>
+
+          ${
+            p.oldPrice
+              ? `
+                <span class="old-price">
+                  ₹${Number(
+                    p.oldPrice
+                  ).toLocaleString("en-IN")}
+                </span>
+              `
+              : ""
+          }
+
+          <div class="product-actions">
+
+            <button
+              class="btn-secondary"
+              onclick="editProduct('${item.id}')"
+            >
+              Edit
+            </button>
+
+            <button
+              class="btn-danger"
+              onclick="deleteProduct('${item.id}')"
+            >
+              Delete
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      productsBox.appendChild(card);
+
+    });
+
+  }
+
+  catch(error) {
+
+    console.error(error);
+
+    productsBox.innerHTML =
+      `<div class="empty">
+        ❌ ${escapeHTML(error.message)}
+      </div>`;
+
+  }
+
+}
+
+
+window.editProduct =
+  async function(id) {
+
+    try {
+
+      const snapshot =
+        await getDocs(lipstickRef);
+
+
+      let found = null;
+
+
+      snapshot.forEach(item => {
+
+        if (item.id === id) {
+
+          found = {
+            id: item.id,
+            ...item.data()
+          };
+
+        }
+
+      });
+
+
+      if (!found) return;
+
+
+      $("name").value =
+        found.name || "";
+
+      $("brand").value =
+        found.brand || "";
+
+      $("price").value =
+        found.price || "";
+
+      $("oldPrice").value =
+        found.oldPrice || "";
+
+      $("shade").value =
+        found.shade || "";
+
+      $("color").value =
+        found.color || "";
+
+      $("finish").value =
+        found.finish || "";
+
+      $("image").value =
+        found.image || "";
+
+      $("description").value =
+        found.description || "";
+
+      $("buyLink").value =
+        found.buyLink || "";
+
+
+      editingId = id;
+
+
+      $("formTitle").textContent =
+        "Edit Lipstick Product";
+
+      $("saveBtn").textContent =
+        "Update Lipstick";
+
+      $("cancelBtn").style.display =
+        "inline-block";
+
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+    catch(error) {
+
+      alert(error.message);
+
+    }
+
+  };
+
+
+window.deleteProduct =
+  async function(id) {
+
+    const confirmed =
+      confirm(
+        "Delete this lipstick product?"
+      );
+
+
+    if (!confirmed) return;
+
+
+    try {
+
+      await deleteDoc(
+
+        doc(
+          db,
+          "lipstick",
+          id
+        )
+
+      );
+
+
+      statusBox.textContent =
+        "🗑️ Lipstick deleted.";
+
+      await loadProducts();
+
+    }
+
+    catch(error) {
+
+      alert(error.message);
+
+    }
+
+  };
+
+
+loadProducts();
+
+</script>
+
+</body>
+</html>
