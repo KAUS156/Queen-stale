@@ -1,0 +1,3084 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="robots" content="noindex,nofollow,noarchive">
+
+  <title>Girl Dresses Admin | StyleEasy</title>
+
+  <style>
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    :root{
+      --pink:#e91e63;
+      --pink-dark:#b9144d;
+      --pink-light:#fff0f5;
+      --rose:#f472b6;
+      --purple:#7c3aed;
+      --green:#059669;
+      --red:#dc2626;
+      --orange:#ea580c;
+      --dark:#182033;
+      --muted:#6b7280;
+      --border:#e5e7eb;
+      --bg:#f7f8fc;
+      --white:#fff;
+      --shadow:0 12px 35px rgba(0,0,0,.07);
+    }
+
+    body{
+      font-family:Inter,Arial,Helvetica,sans-serif;
+      background:var(--bg);
+      color:var(--dark);
+      min-height:100vh;
+    }
+
+    button,
+    input,
+    select,
+    textarea{
+      font:inherit;
+    }
+
+    button{
+      cursor:pointer;
+    }
+
+    .hidden{
+      display:none!important;
+    }
+
+    /* HEADER */
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:#fff;
+      border-bottom:1px solid var(--border);
+    }
+
+    .header-inner{
+      max-width:1450px;
+      min-height:72px;
+      margin:auto;
+      padding:0 20px;
+
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:15px;
+    }
+
+    .brand{
+      color:var(--pink);
+      font-size:25px;
+      font-weight:950;
+    }
+
+    .brand span{
+      color:var(--dark);
+    }
+
+    .admin-info{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .admin-label{
+      background:var(--pink-light);
+      color:var(--pink-dark);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:900;
+    }
+
+    /* MAIN */
+
+    main{
+      max-width:1450px;
+      margin:auto;
+      padding:25px 20px 60px;
+    }
+
+    .page-heading{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:15px;
+      margin-bottom:22px;
+    }
+
+    .page-heading h1{
+      font-size:29px;
+      margin-bottom:4px;
+    }
+
+    .page-heading p{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* BUTTONS */
+
+    .btn{
+      border:0;
+      border-radius:10px;
+      padding:11px 16px;
+      font-weight:850;
+      transition:.2s;
+    }
+
+    .btn-primary{
+      background:var(--pink);
+      color:#fff;
+    }
+
+    .btn-primary:hover{
+      background:var(--pink-dark);
+    }
+
+    .btn-secondary{
+      background:#f1f3f5;
+      color:#374151;
+    }
+
+    .btn-secondary:hover{
+      background:#e5e7eb;
+    }
+
+    .btn-danger{
+      background:#fee2e2;
+      color:#991b1b;
+    }
+
+    .btn-success{
+      background:#d1fae5;
+      color:#065f46;
+    }
+
+    .full{
+      width:100%;
+    }
+
+    /* INPUT */
+
+    .field{
+      margin-bottom:15px;
+    }
+
+    label{
+      display:block;
+      font-size:13px;
+      font-weight:850;
+      margin-bottom:7px;
+    }
+
+    input,
+    select,
+    textarea{
+      width:100%;
+      border:1px solid var(--border);
+      background:#fff;
+      color:var(--dark);
+      border-radius:10px;
+      padding:12px 13px;
+      outline:none;
+    }
+
+    textarea{
+      min-height:120px;
+      resize:vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus{
+      border-color:var(--pink);
+      box-shadow:0 0 0 3px rgba(233,30,99,.10);
+    }
+
+    /* STATS */
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:15px;
+      margin-bottom:22px;
+    }
+
+    .stat{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:17px;
+      padding:20px;
+      box-shadow:var(--shadow);
+    }
+
+    .stat-number{
+      font-size:30px;
+      font-weight:950;
+    }
+
+    .stat-label{
+      color:var(--muted);
+      font-size:13px;
+      margin-top:4px;
+    }
+
+    /* LAYOUT */
+
+    .layout{
+      display:grid;
+      grid-template-columns:400px minmax(0,1fr);
+      gap:20px;
+      align-items:start;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:20px;
+      box-shadow:var(--shadow);
+    }
+
+    .card-title{
+      font-size:19px;
+      font-weight:950;
+      margin-bottom:18px;
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .span-2{
+      grid-column:1/-1;
+    }
+
+    .actions{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+
+    /* IMAGE */
+
+    .image-preview{
+      width:100%;
+      aspect-ratio:4/3;
+      margin-top:8px;
+      border:1px dashed #d1d5db;
+      border-radius:12px;
+      background:#fafafa;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      overflow:hidden;
+      color:#9ca3af;
+      font-size:13px;
+    }
+
+    .image-preview img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
+
+    /* NOTICE */
+
+    .notice{
+      background:#fff7ed;
+      color:#9a3412;
+      border-radius:11px;
+      padding:12px;
+      font-size:12px;
+      line-height:1.55;
+      margin-bottom:15px;
+    }
+
+    .message{
+      padding:11px 13px;
+      border-radius:10px;
+      margin-bottom:15px;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .message.success{
+      background:#ecfdf5;
+      color:#065f46;
+    }
+
+    .message.error{
+      background:#fef2f2;
+      color:#991b1b;
+    }
+
+    /* TOOLBAR */
+
+    .toolbar{
+      display:flex;
+      gap:10px;
+      margin-bottom:15px;
+      flex-wrap:wrap;
+    }
+
+    .search{
+      flex:1;
+      min-width:220px;
+    }
+
+    /* TABLE */
+
+    .table-wrapper{
+      width:100%;
+      overflow-x:auto;
+    }
+
+    table{
+      width:100%;
+      min-width:900px;
+      border-collapse:collapse;
+    }
+
+    th,
+    td{
+      padding:12px 10px;
+      border-bottom:1px solid var(--border);
+      text-align:left;
+      vertical-align:middle;
+      font-size:13px;
+    }
+
+    th{
+      background:#fafafa;
+      color:#6b7280;
+      font-size:11px;
+      text-transform:uppercase;
+    }
+
+    .product-image{
+      width:60px;
+      height:70px;
+      object-fit:cover;
+      border-radius:9px;
+      background:#f3f4f6;
+    }
+
+    .product-name{
+      max-width:270px;
+      font-weight:850;
+    }
+
+    .slug{
+      color:#9ca3af;
+      font-size:10px;
+      margin-top:4px;
+      word-break:break-all;
+    }
+
+    .badge{
+      display:inline-flex;
+      padding:5px 9px;
+      border-radius:999px;
+      font-size:10px;
+      font-weight:900;
+    }
+
+    .published{
+      background:#d1fae5;
+      color:#065f46;
+    }
+
+    .draft{
+      background:#f3f4f6;
+      color:#4b5563;
+    }
+
+    .featured-badge{
+      background:#ede9fe;
+      color:#6d28d9;
+      margin-left:5px;
+    }
+
+    .row-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+    }
+
+    .small-btn{
+      border:0;
+      border-radius:8px;
+      padding:7px 9px;
+      font-size:11px;
+      font-weight:850;
+    }
+
+    .loading{
+      text-align:center;
+      padding:40px;
+      color:var(--muted);
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:1050px){
+
+      .layout{
+        grid-template-columns:1fr;
+      }
+
+    }
+
+    @media(max-width:700px){
+
+      .stats{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .form-grid{
+        grid-template-columns:1fr;
+      }
+
+      .span-2{
+        grid-column:auto;
+      }
+
+      main{
+        padding:18px 12px 40px;
+      }
+
+      .header-inner{
+        padding:0 12px;
+      }
+
+      .brand{
+        font-size:18px;
+      }
+
+      .admin-label{
+        display:none;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     ADMIN APP
+====================================================== -->
+
+<section id="adminApp">
+
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="header-inner">
+
+      <div class="brand">
+        Style<span>Easy</span> Girl Dresses Admin
+      </div>
+
+      <div class="admin-info">
+
+        <span class="admin-label">
+          Girl Dresses Manager
+        </span>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- MAIN -->
+
+  <main>
+
+
+    <!-- PAGE HEADING -->
+
+    <div class="page-heading">
+
+      <div>
+
+        <h1>
+          Girl Dresses
+        </h1>
+
+        <p>
+          Manage only Girl Dresses products.
+        </p>
+
+      </div>
+
+      <button
+        id="newBtn"
+        class="btn btn-primary"
+      >
+        + Add Girl Dress
+      </button>
+
+    </div>
+
+
+    <!-- STATS -->
+
+    <div class="stats">
+
+
+      <div class="stat">
+
+        <div
+          id="totalCount"
+          class="stat-number"
+        >
+          0
+        </div>
+
+        <div class="stat-label">
+          Total Dresses
+        </div>
+
+      </div>
+
+
+      <div class="stat">
+
+        <div
+          id="publishedCount"
+          class="stat-number"
+        >
+          0
+        </div>
+
+        <div class="stat-label">
+          Published
+        </div>
+
+      </div>
+
+
+      <div class="stat">
+
+        <div
+          id="draftCount"
+          class="stat-number"
+        >
+          0
+        </div>
+
+        <div class="stat-label">
+          Draft
+        </div>
+
+      </div>
+
+
+      <div class="stat">
+
+        <div
+          id="featuredCount"
+          class="stat-number"
+        >
+          0
+        </div>
+
+        <div class="stat-label">
+          Featured
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <!-- LAYOUT -->
+
+    <div class="layout">
+
+
+      <!-- =================================================
+           FORM
+      ================================================== -->
+
+      <div class="card">
+
+
+        <div
+          id="formTitle"
+          class="card-title"
+        >
+          Add Girl Dress
+        </div>
+
+
+        <div
+          id="formMessage"
+          class="hidden"
+        ></div>
+
+
+        <div class="notice">
+
+          <strong>Important:</strong><br>
+
+          Main image हमेशा
+          <strong>https://</strong>
+          से शुरू होनी चाहिए।<br>
+
+          <strong>file:///C:/Users/...</strong>
+          वाली local image use नहीं करें।<br><br>
+
+          Affiliate / Buy Link भी
+          <strong>HTTPS</strong>
+          होना चाहिए।
+
+        </div>
+
+
+        <form id="productForm">
+
+
+          <input
+            id="editingId"
+            type="hidden"
+          >
+
+
+          <div class="form-grid">
+
+
+            <!-- NAME -->
+
+            <div class="field span-2">
+
+              <label>
+                Product Name *
+              </label>
+
+              <input
+                id="name"
+                required
+                placeholder="Girls Pink Sequin Party Wear Frock Dress"
+              >
+
+            </div>
+
+
+            <!-- CATEGORY -->
+
+            <div class="field">
+
+              <label>
+                Category *
+              </label>
+
+              <select
+                id="category"
+                required
+              >
+
+                <option value="">
+                  Select Category
+                </option>
+
+                <option value="Trending Girl Dresses">
+                  Trending Girl Dresses
+                </option>
+
+                <option value="Summer Girl Dresses">
+                  Summer Girl Dresses
+                </option>
+
+                <option value="Party Wear Dresses">
+                  Party Wear Dresses
+                </option>
+
+                <option value="Casual Girl Dresses">
+                  Casual Girl Dresses
+                </option>
+
+                <option value="Birthday Dresses">
+                  Birthday Dresses
+                </option>
+
+                <option value="Frock Dresses">
+                  Frock Dresses
+                </option>
+
+                <option value="Girls Tops">
+                  Girls Tops
+                </option>
+
+                <option value="Girls Skirts">
+                  Girls Skirts
+                </option>
+
+                <option value="Girls Clothing">
+                  Girls Clothing
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- STYLE -->
+
+            <div class="field">
+
+              <label>
+                Style
+              </label>
+
+              <input
+                id="style"
+                placeholder="Frock"
+              >
+
+            </div>
+
+
+            <!-- BRAND -->
+
+            <div class="field">
+
+              <label>
+                Brand
+              </label>
+
+              <input
+                id="brand"
+                placeholder="Brand name"
+              >
+
+            </div>
+
+
+            <!-- OCCASION -->
+
+            <div class="field">
+
+              <label>
+                Occasion
+              </label>
+
+              <select id="occasion">
+
+                <option value="">
+                  Select Occasion
+                </option>
+
+                <option value="Birthday">
+                  Birthday
+                </option>
+
+                <option value="Party">
+                  Party
+                </option>
+
+                <option value="Wedding">
+                  Wedding
+                </option>
+
+                <option value="Festival">
+                  Festival
+                </option>
+
+                <option value="Casual">
+                  Casual
+                </option>
+
+                <option value="Summer">
+                  Summer
+                </option>
+
+                <option value="Daily Wear">
+                  Daily Wear
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- PRICE -->
+
+            <div class="field">
+
+              <label>
+                Price ₹ *
+              </label>
+
+              <input
+                id="price"
+                type="number"
+                min="0"
+                required
+                placeholder="749"
+              >
+
+            </div>
+
+
+            <!-- COMPARE PRICE -->
+
+            <div class="field">
+
+              <label>
+                Compare Price ₹
+              </label>
+
+              <input
+                id="comparePrice"
+                type="number"
+                min="0"
+                placeholder="1299"
+              >
+
+            </div>
+
+
+            <!-- BADGE -->
+
+            <div class="field">
+
+              <label>
+                Badge
+              </label>
+
+              <input
+                id="badge"
+                placeholder="38% OFF"
+              >
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="field">
+
+              <label>
+                Status *
+              </label>
+
+              <select id="status">
+
+                <option value="published">
+                  Published
+                </option>
+
+                <option value="draft">
+                  Draft
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- FEATURED -->
+
+            <div class="field">
+
+              <label>
+                Featured
+              </label>
+
+              <select id="featured">
+
+                <option value="false">
+                  No
+                </option>
+
+                <option value="true">
+                  Yes
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- SLUG -->
+
+            <div class="field span-2">
+
+              <label>
+                SEO Slug *
+              </label>
+
+              <input
+                id="slug"
+                required
+                placeholder="girls-pink-sequin-party-wear-frock-dress"
+              >
+
+            </div>
+
+
+            <!-- IMAGE -->
+
+            <div class="field span-2">
+
+              <label>
+                Main Image URL *
+              </label>
+
+              <input
+                id="image"
+                type="url"
+                required
+                placeholder="https://example.com/dress.webp"
+              >
+
+              <div
+                id="imagePreview"
+                class="image-preview"
+              >
+                Image Preview
+              </div>
+
+            </div>
+
+
+            <!-- ALT -->
+
+            <div class="field span-2">
+
+              <label>
+                Image SEO Alt Text *
+              </label>
+
+              <input
+                id="imageAlt"
+                required
+                placeholder="Girls pink sequin party wear frock dress"
+              >
+
+            </div>
+
+
+            <!-- ADDITIONAL IMAGES -->
+
+            <div class="field span-2">
+
+              <label>
+                Additional Images
+              </label>
+
+              <textarea
+                id="images"
+                placeholder="One HTTPS image URL per line"
+              ></textarea>
+
+            </div>
+
+
+            <!-- AFFILIATE -->
+
+            <div class="field span-2">
+
+              <label>
+                Affiliate / Buy Link *
+              </label>
+
+              <input
+                id="affiliateUrl"
+                type="url"
+                required
+                placeholder="https://example.com/product"
+              >
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="field span-2">
+
+              <label>
+                Product Description *
+              </label>
+
+              <textarea
+                id="description"
+                required
+                placeholder="Write an original useful description..."
+              ></textarea>
+
+            </div>
+
+
+            <!-- META TITLE -->
+
+            <div class="field span-2">
+
+              <label>
+                SEO Meta Title
+              </label>
+
+              <input
+                id="metaTitle"
+                maxlength="60"
+                placeholder="Girls Pink Party Wear Frock Dress Online"
+              >
+
+            </div>
+
+
+            <!-- META DESCRIPTION -->
+
+            <div class="field span-2">
+
+              <label>
+                SEO Meta Description
+              </label>
+
+              <textarea
+                id="metaDescription"
+                maxlength="160"
+                placeholder="Shop stylish girls party wear dresses..."
+              ></textarea>
+
+            </div>
+
+
+            <!-- SHORT EXCERPT -->
+
+            <div class="field span-2">
+
+              <label>
+                Short SEO Excerpt
+              </label>
+
+              <textarea
+                id="shortExcerpt"
+                placeholder="Short product introduction..."
+              ></textarea>
+
+            </div>
+
+
+          </div>
+
+
+          <!-- ACTIONS -->
+
+          <div class="actions">
+
+            <button
+              id="saveBtn"
+              type="submit"
+              class="btn btn-primary"
+            >
+              Save Girl Dress
+            </button>
+
+            <button
+              id="clearBtn"
+              type="button"
+              class="btn btn-secondary"
+            >
+              Clear
+            </button>
+
+          </div>
+
+
+        </form>
+
+      </div>
+
+
+      <!-- =================================================
+           PRODUCT LIST
+      ================================================== -->
+
+      <div class="card">
+
+
+        <div class="card-title">
+          Girl Dress Products
+        </div>
+
+
+        <div class="toolbar">
+
+
+          <input
+            id="search"
+            class="search"
+            placeholder="Search dress, category, brand..."
+          >
+
+
+          <select
+            id="statusFilter"
+            class="btn btn-secondary"
+          >
+
+            <option value="all">
+              All
+            </option>
+
+            <option value="published">
+              Published
+            </option>
+
+            <option value="draft">
+              Draft
+            </option>
+
+          </select>
+
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+
+          <table>
+
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Image
+                </th>
+
+                <th>
+                  Product
+                </th>
+
+                <th>
+                  Category
+                </th>
+
+                <th>
+                  Price
+                </th>
+
+                <th>
+                  Status
+                </th>
+
+                <th>
+                  Actions
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody id="productsTable">
+
+              <tr>
+
+                <td
+                  colspan="6"
+                  class="loading"
+                >
+                  Loading Girl Dresses...
+                </td>
+
+              </tr>
+
+            </tbody>
+
+
+          </table>
+
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+  </main>
+
+
+</section>
+
+
+<!-- =====================================================
+     FIREBASE
+====================================================== -->
+
+<script type="module">
+
+
+import {
+  initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+import {
+  getDatabase,
+  ref,
+  get,
+  push,
+  set,
+  update,
+  remove
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+
+
+/* =====================================================
+   FIREBASE CONFIG
+====================================================== */
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
+
+  authDomain:
+    "lucky-triode-450317-g7.firebaseapp.com",
+
+  databaseURL:
+    "https://lucky-triode-450317-g7-default-rtdb.firebaseio.com",
+
+  projectId:
+    "lucky-triode-450317-g7",
+
+  storageBucket:
+    "lucky-triode-450317-g7.firebasestorage.app",
+
+  messagingSenderId:
+    "778199870672",
+
+  appId:
+    "1:778199870672:web:62a9891e41b3a3d3f242d5",
+
+  measurementId:
+    "G-BD8Y4KXCKM"
+
+};
+
+
+/* =====================================================
+   INITIALIZE
+====================================================== */
+
+const app =
+  initializeApp(
+    firebaseConfig
+  );
+
+const db =
+  getDatabase(
+    app
+  );
+
+
+/* =====================================================
+   VARIABLES
+====================================================== */
+
+let products = {};
+
+
+/* =====================================================
+   DOM
+====================================================== */
+
+const productsTable =
+  document.getElementById(
+    "productsTable"
+  );
+
+const productForm =
+  document.getElementById(
+    "productForm"
+  );
+
+const formMessage =
+  document.getElementById(
+    "formMessage"
+  );
+
+const imageInput =
+  document.getElementById(
+    "image"
+  );
+
+const imagePreview =
+  document.getElementById(
+    "imagePreview"
+  );
+
+
+/* =====================================================
+   LOAD PRODUCTS
+====================================================== */
+
+async function loadProducts(){
+
+  productsTable.innerHTML = `
+
+    <tr>
+
+      <td
+        colspan="6"
+        class="loading"
+      >
+        Loading Girl Dresses...
+      </td>
+
+    </tr>
+
+  `;
+
+
+  try{
+
+    const snapshot =
+      await get(
+        ref(
+          db,
+          "products"
+        )
+      );
+
+
+    products =
+      snapshot.exists()
+      ? snapshot.val()
+      : {};
+
+
+    updateStats();
+
+    renderProducts();
+
+  }
+
+  catch(error){
+
+    console.error(
+      error
+    );
+
+
+    productsTable.innerHTML = `
+
+      <tr>
+
+        <td
+          colspan="6"
+          style="
+            text-align:center;
+            color:#dc2626;
+            padding:40px;
+          "
+        >
+
+          Failed to load products.
+
+          <br><br>
+
+          ${escapeHTML(
+            error.message
+          )}
+
+        </td>
+
+      </tr>
+
+    `;
+
+  }
+
+}
+
+
+/* =====================================================
+   GIRL DRESS FILTER
+====================================================== */
+
+function isGirlDress(p){
+
+  const category =
+    String(
+      p.category || ""
+    ).toLowerCase();
+
+
+  const name =
+    String(
+      p.name || ""
+    ).toLowerCase();
+
+
+  const style =
+    String(
+      p.style || ""
+    ).toLowerCase();
+
+
+  const girlWords = [
+
+    "girl",
+    "girls",
+    "dress",
+    "frock",
+    "skirt",
+    "kids",
+    "kid",
+    "top"
+
+  ];
+
+
+  const menWords = [
+
+    "men",
+    "mens",
+    "man",
+    "boys",
+    "boy"
+
+  ];
+
+
+  const combined =
+    category +
+    " " +
+    name +
+    " " +
+    style;
+
+
+  if(
+    menWords.some(
+      word =>
+        combined.includes(
+          word
+        )
+    )
+  ){
+
+    return false;
+
+  }
+
+
+  return girlWords.some(
+    word =>
+      combined.includes(
+        word
+      )
+  );
+
+}
+
+
+/* =====================================================
+   RENDER PRODUCTS
+====================================================== */
+
+function renderProducts(){
+
+  const search =
+    document
+      .getElementById(
+        "search"
+      )
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  const filter =
+    document
+      .getElementById(
+        "statusFilter"
+      )
+      .value;
+
+
+  const list =
+
+    Object.entries(
+      products
+    )
+
+    .filter(
+      ([id,p]) =>
+        isGirlDress(p)
+    )
+
+    .filter(
+      ([id,p]) => {
+
+        if(
+          filter !== "all" &&
+          p.status !== filter
+        ){
+
+          return false;
+
+        }
+
+
+        const text = [
+
+          p.name,
+          p.category,
+          p.brand,
+          p.slug,
+          p.style,
+          p.occasion
+
+        ]
+
+        .filter(Boolean)
+
+        .join(" ")
+
+        .toLowerCase();
+
+
+        return (
+          !search ||
+          text.includes(
+            search
+          )
+        );
+
+      }
+    )
+
+    .sort(
+      ([,a],[,b]) =>
+        Number(
+          b.updatedAt || 0
+        )
+        -
+        Number(
+          a.updatedAt || 0
+        )
+    );
+
+
+  if(
+    list.length === 0
+  ){
+
+    productsTable.innerHTML = `
+
+      <tr>
+
+        <td
+          colspan="6"
+          style="
+            text-align:center;
+            padding:45px;
+            color:#6b7280;
+          "
+        >
+
+          No Girl Dress products found.
+
+        </td>
+
+      </tr>
+
+    `;
+
+    return;
+
+  }
+
+
+  productsTable.innerHTML =
+
+    list
+      .map(
+        ([id,p]) =>
+          rowHTML(
+            id,
+            p
+          )
+      )
+      .join("");
+
+}
+
+
+/* =====================================================
+   TABLE ROW
+====================================================== */
+
+function rowHTML(
+  id,
+  p
+){
+
+  const image =
+    validHttps(
+      p.image
+    )
+    ? p.image
+    : "";
+
+
+  const isPublished =
+    p.status ===
+    "published";
+
+
+  const featured =
+    p.featured === true;
+
+
+  return `
+
+    <tr>
+
+      <td>
+
+        ${
+          image
+
+          ?
+
+          `
+
+          <img
+            class="product-image"
+            src="${escapeHTML(image)}"
+            alt="${escapeHTML(
+              p.imageAlt ||
+              p.name ||
+              "Girl Dress"
+            )}"
+            loading="lazy"
+          >
+
+          `
+
+          :
+
+          `
+
+          <div
+            class="product-image"
+            style="
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              font-size:10px;
+            "
+          >
+            No Image
+          </div>
+
+          `
+        }
+
+      </td>
+
+
+      <td>
+
+        <div class="product-name">
+
+          ${escapeHTML(
+            p.name ||
+            "Untitled Dress"
+          )}
+
+          ${
+            featured
+            ?
+            `
+            <span
+              class="badge featured-badge"
+            >
+              Featured
+            </span>
+            `
+            :
+            ""
+          }
+
+        </div>
+
+
+        <div class="slug">
+
+          ${escapeHTML(
+            p.slug ||
+            id
+          )}
+
+        </div>
+
+      </td>
+
+
+      <td>
+
+        ${escapeHTML(
+          p.category ||
+          "-"
+        )}
+
+      </td>
+
+
+      <td>
+
+        ₹${Number(
+          p.price || 0
+        ).toLocaleString(
+          "en-IN"
+        )}
+
+      </td>
+
+
+      <td>
+
+        <span
+          class="badge ${
+            isPublished
+            ? "published"
+            : "draft"
+          }"
+        >
+
+          ${
+            isPublished
+            ? "Published"
+            : "Draft"
+          }
+
+        </span>
+
+      </td>
+
+
+      <td>
+
+        <div class="row-actions">
+
+
+          <button
+            class="small-btn btn-secondary"
+            data-action="edit"
+            data-id="${escapeHTML(id)}"
+          >
+            Edit
+          </button>
+
+
+          <button
+            class="small-btn ${
+              isPublished
+              ? "btn-danger"
+              : "btn-success"
+            }"
+            data-action="toggle"
+            data-id="${escapeHTML(id)}"
+          >
+
+            ${
+              isPublished
+              ? "Unpublish"
+              : "Publish"
+            }
+
+          </button>
+
+
+          <button
+            class="small-btn btn-danger"
+            data-action="delete"
+            data-id="${escapeHTML(id)}"
+          >
+            Delete
+          </button>
+
+
+        </div>
+
+      </td>
+
+
+    </tr>
+
+  `;
+
+}
+
+
+/* =====================================================
+   TABLE ACTIONS
+====================================================== */
+
+productsTable.addEventListener(
+  "click",
+  async function(e){
+
+    const button =
+      e.target.closest(
+        "button[data-action]"
+      );
+
+
+    if(!button)
+      return;
+
+
+    const action =
+      button.dataset.action;
+
+
+    const id =
+      button.dataset.id;
+
+
+    if(
+      action === "edit"
+    ){
+
+      editProduct(
+        id
+      );
+
+    }
+
+
+    if(
+      action === "toggle"
+    ){
+
+      await toggleProduct(
+        id
+      );
+
+    }
+
+
+    if(
+      action === "delete"
+    ){
+
+      await deleteProduct(
+        id
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   EDIT
+====================================================== */
+
+function editProduct(id){
+
+  const p =
+    products[id];
+
+
+  if(!p)
+    return;
+
+
+  document.getElementById(
+    "editingId"
+  ).value =
+    id;
+
+
+  document.getElementById(
+    "name"
+  ).value =
+    p.name || "";
+
+
+  document.getElementById(
+    "category"
+  ).value =
+    p.category || "";
+
+
+  document.getElementById(
+    "style"
+  ).value =
+    p.style || "";
+
+
+  document.getElementById(
+    "brand"
+  ).value =
+    p.brand || "";
+
+
+  document.getElementById(
+    "occasion"
+  ).value =
+    p.occasion || "";
+
+
+  document.getElementById(
+    "price"
+  ).value =
+    p.price ?? "";
+
+
+  document.getElementById(
+    "comparePrice"
+  ).value =
+    p.comparePrice ?? "";
+
+
+  document.getElementById(
+    "badge"
+  ).value =
+    p.badge || "";
+
+
+  document.getElementById(
+    "status"
+  ).value =
+    p.status ||
+    "draft";
+
+
+  document.getElementById(
+    "featured"
+  ).value =
+    String(
+      p.featured === true
+    );
+
+
+  document.getElementById(
+    "slug"
+  ).value =
+    p.slug || "";
+
+
+  document.getElementById(
+    "image"
+  ).value =
+    p.image || "";
+
+
+  document.getElementById(
+    "imageAlt"
+  ).value =
+    p.imageAlt || "";
+
+
+  document.getElementById(
+    "affiliateUrl"
+  ).value =
+    p.affiliateUrl || "";
+
+
+  document.getElementById(
+    "description"
+  ).value =
+    p.description || "";
+
+
+  document.getElementById(
+    "metaTitle"
+  ).value =
+    p.metaTitle || "";
+
+
+  document.getElementById(
+    "metaDescription"
+  ).value =
+    p.metaDescription || "";
+
+
+  document.getElementById(
+    "shortExcerpt"
+  ).value =
+    p.shortExcerpt || "";
+
+
+  document.getElementById(
+    "images"
+  ).value =
+
+    Array.isArray(
+      p.images
+    )
+
+    ?
+    p.images.join(
+      "\n"
+    )
+
+    :
+    "";
+
+
+  document.getElementById(
+    "formTitle"
+  ).textContent =
+    "Edit Girl Dress";
+
+
+  document.getElementById(
+    "saveBtn"
+  ).textContent =
+    "Update Girl Dress";
+
+
+  updateImagePreview();
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =====================================================
+   SAVE
+====================================================== */
+
+productForm.addEventListener(
+  "submit",
+  async function(e){
+
+    e.preventDefault();
+
+
+    const editingId =
+      document
+        .getElementById(
+          "editingId"
+        )
+        .value
+        .trim();
+
+
+    const name =
+      document
+        .getElementById(
+          "name"
+        )
+        .value
+        .trim();
+
+
+    const category =
+      document
+        .getElementById(
+          "category"
+        )
+        .value
+        .trim();
+
+
+    const slug =
+      document
+        .getElementById(
+          "slug"
+        )
+        .value
+        .trim();
+
+
+    const image =
+      document
+        .getElementById(
+          "image"
+        )
+        .value
+        .trim();
+
+
+    const affiliateUrl =
+      document
+        .getElementById(
+          "affiliateUrl"
+        )
+        .value
+        .trim();
+
+
+    /* IMAGE VALIDATION */
+
+    if(
+      !validHttps(
+        image
+      )
+    ){
+
+      showMessage(
+        "Image URL must start with https://",
+        true
+      );
+
+      return;
+
+    }
+
+
+    /* BUY URL VALIDATION */
+
+    if(
+      !validHttpUrl(
+        affiliateUrl
+      )
+    ){
+
+      showMessage(
+        "Affiliate / Buy URL must be a valid HTTPS URL.",
+        true
+      );
+
+      return;
+
+    }
+
+
+    /* SLUG VALIDATION */
+
+    if(
+      !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(
+        slug
+      )
+    ){
+
+      showMessage(
+        "Slug should contain only lowercase letters, numbers and hyphens.",
+        true
+      );
+
+      return;
+
+    }
+
+
+    /* DUPLICATE SLUG */
+
+    const duplicate =
+
+      Object.entries(
+        products
+      )
+
+      .some(
+        ([id,p]) =>
+
+          id !== editingId
+          &&
+          String(
+            p.slug || ""
+          )
+          .toLowerCase()
+          ===
+          slug.toLowerCase()
+      );
+
+
+    if(
+      duplicate
+    ){
+
+      showMessage(
+        "This slug already exists.",
+        true
+      );
+
+      return;
+
+    }
+
+
+    /* ADDITIONAL IMAGES */
+
+    const additionalImages =
+
+      document
+        .getElementById(
+          "images"
+        )
+        .value
+        .split("\n")
+        .map(
+          x =>
+            x.trim()
+        )
+        .filter(
+          Boolean
+        );
+
+
+    for(
+      const url of additionalImages
+    ){
+
+      if(
+        !validHttps(
+          url
+        )
+      ){
+
+        showMessage(
+          "Every additional image must start with https://",
+          true
+        );
+
+        return;
+
+      }
+
+    }
+
+
+    /* OLD PRODUCT */
+
+    const oldProduct =
+      editingId
+      ?
+      products[editingId]
+      :
+      null;
+
+
+    const now =
+      Date.now();
+
+
+    /* PRODUCT OBJECT */
+
+    const product = {
+
+      name:
+
+        name,
+
+
+      slug:
+
+        slug,
+
+
+      category:
+
+        category,
+
+
+      brand:
+
+        document
+          .getElementById(
+            "brand"
+          )
+          .value
+          .trim(),
+
+
+      style:
+
+        document
+          .getElementById(
+            "style"
+          )
+          .value
+          .trim(),
+
+
+      occasion:
+
+        document
+          .getElementById(
+            "occasion"
+          )
+          .value
+          .trim(),
+
+
+      price:
+
+        Number(
+          document
+            .getElementById(
+              "price"
+            )
+            .value
+        ),
+
+
+      comparePrice:
+
+        Number(
+          document
+            .getElementById(
+              "comparePrice"
+            )
+            .value
+        )
+        ||
+        null,
+
+
+      badge:
+
+        document
+          .getElementById(
+            "badge"
+          )
+          .value
+          .trim(),
+
+
+      featured:
+
+        document
+          .getElementById(
+            "featured"
+          )
+          .value
+          ===
+          "true",
+
+
+      status:
+
+        document
+          .getElementById(
+            "status"
+          )
+          .value,
+
+
+      image:
+
+        image,
+
+
+      imageAlt:
+
+        document
+          .getElementById(
+            "imageAlt"
+          )
+          .value
+          .trim(),
+
+
+      images:
+
+        additionalImages,
+
+
+      affiliateUrl:
+
+        affiliateUrl,
+
+
+      description:
+
+        document
+          .getElementById(
+            "description"
+          )
+          .value
+          .trim(),
+
+
+      metaTitle:
+
+        document
+          .getElementById(
+            "metaTitle"
+          )
+          .value
+          .trim(),
+
+
+      metaDescription:
+
+        document
+          .getElementById(
+            "metaDescription"
+          )
+          .value
+          .trim(),
+
+
+      shortExcerpt:
+
+        document
+          .getElementById(
+            "shortExcerpt"
+          )
+          .value
+          .trim(),
+
+
+      createdAt:
+
+        oldProduct?.createdAt ||
+        now,
+
+
+      updatedAt:
+
+        now
+
+    };
+
+
+    /* SAVE BUTTON */
+
+    const saveBtn =
+      document.getElementById(
+        "saveBtn"
+      );
+
+
+    saveBtn.disabled =
+      true;
+
+
+    saveBtn.textContent =
+      "Saving...";
+
+
+    try{
+
+
+      let id =
+        editingId;
+
+
+      /* NEW PRODUCT */
+
+      if(
+        !id
+      ){
+
+        const newRef =
+          push(
+            ref(
+              db,
+              "products"
+            )
+          );
+
+
+        id =
+          newRef.key;
+
+      }
+
+
+      /* SAVE */
+
+      await set(
+
+        ref(
+          db,
+          "products/" +
+          id
+        ),
+
+        product
+
+      );
+
+
+      showMessage(
+        "Girl Dress saved successfully.",
+        false
+      );
+
+
+      await loadProducts();
+
+
+      setTimeout(
+        clearForm,
+        700
+      );
+
+
+    }
+
+    catch(error){
+
+      console.error(
+        error
+      );
+
+
+      showMessage(
+        "Save failed: " +
+        error.message,
+        true
+      );
+
+    }
+
+    finally{
+
+      saveBtn.disabled =
+        false;
+
+
+      saveBtn.textContent =
+
+        editingId
+
+        ?
+
+        "Update Girl Dress"
+
+        :
+
+        "Save Girl Dress";
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   DELETE
+====================================================== */
+
+async function deleteProduct(id){
+
+  const p =
+    products[id];
+
+
+  if(
+    !p
+  )
+    return;
+
+
+  if(
+    !confirm(
+      "Delete this Girl Dress?\n\n" +
+      (
+        p.name ||
+        ""
+      )
+    )
+  ){
+
+    return;
+
+  }
+
+
+  try{
+
+
+    await remove(
+
+      ref(
+        db,
+        "products/" +
+        id
+      )
+
+    );
+
+
+    await loadProducts();
+
+
+  }
+
+  catch(error){
+
+    alert(
+      "Delete failed:\n" +
+      error.message
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   PUBLISH / UNPUBLISH
+====================================================== */
+
+async function toggleProduct(id){
+
+  const p =
+    products[id];
+
+
+  if(
+    !p
+  )
+    return;
+
+
+  const newStatus =
+
+    p.status ===
+    "published"
+
+    ?
+
+    "draft"
+
+    :
+
+    "published";
+
+
+  try{
+
+
+    await update(
+
+      ref(
+        db,
+        "products/" +
+        id
+      ),
+
+      {
+
+        status:
+          newStatus,
+
+        updatedAt:
+          Date.now()
+
+      }
+
+    );
+
+
+    await loadProducts();
+
+
+  }
+
+  catch(error){
+
+    alert(
+      "Status update failed:\n" +
+      error.message
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   CLEAR FORM
+====================================================== */
+
+function clearForm(){
+
+  productForm.reset();
+
+
+  document.getElementById(
+    "editingId"
+  ).value =
+    "";
+
+
+  document.getElementById(
+    "formTitle"
+  ).textContent =
+    "Add Girl Dress";
+
+
+  document.getElementById(
+    "saveBtn"
+  ).textContent =
+    "Save Girl Dress";
+
+
+  imagePreview.innerHTML =
+    "Image Preview";
+
+
+  formMessage.className =
+    "hidden";
+
+
+  formMessage.textContent =
+    "";
+
+}
+
+
+document
+  .getElementById(
+    "clearBtn"
+  )
+  .addEventListener(
+    "click",
+    clearForm
+  );
+
+
+document
+  .getElementById(
+    "newBtn"
+  )
+  .addEventListener(
+    "click",
+    clearForm
+  );
+
+
+/* =====================================================
+   IMAGE PREVIEW
+====================================================== */
+
+imageInput.addEventListener(
+  "input",
+  updateImagePreview
+);
+
+
+function updateImagePreview(){
+
+  const url =
+    imageInput
+      .value
+      .trim();
+
+
+  if(
+    !validHttps(
+      url
+    )
+  ){
+
+    imagePreview.innerHTML =
+      "Enter HTTPS image URL";
+
+    return;
+
+  }
+
+
+  imagePreview.innerHTML = `
+
+    <img
+      src="${escapeHTML(url)}"
+      alt="Girl dress preview"
+      onerror="
+        this.parentElement.innerHTML='Image could not be loaded'
+      "
+    >
+
+  `;
+
+}
+
+
+/* =====================================================
+   SEARCH
+====================================================== */
+
+document
+  .getElementById(
+    "search"
+  )
+  .addEventListener(
+    "input",
+    renderProducts
+  );
+
+
+document
+  .getElementById(
+    "statusFilter"
+  )
+  .addEventListener(
+    "change",
+    renderProducts
+  );
+
+
+/* =====================================================
+   STATS
+====================================================== */
+
+function updateStats(){
+
+  const list =
+
+    Object.values(
+      products
+    )
+
+    .filter(
+      isGirlDress
+    );
+
+
+  const total =
+    list.length;
+
+
+  const published =
+
+    list.filter(
+      p =>
+        p.status ===
+        "published"
+    ).length;
+
+
+  const draft =
+
+    list.filter(
+      p =>
+        p.status !==
+        "published"
+    ).length;
+
+
+  const featured =
+
+    list.filter(
+      p =>
+        p.featured ===
+        true
+    ).length;
+
+
+  document.getElementById(
+    "totalCount"
+  ).textContent =
+    total;
+
+
+  document.getElementById(
+    "publishedCount"
+  ).textContent =
+    published;
+
+
+  document.getElementById(
+    "draftCount"
+  ).textContent =
+    draft;
+
+
+  document.getElementById(
+    "featuredCount"
+  ).textContent =
+    featured;
+
+}
+
+
+/* =====================================================
+   MESSAGE
+====================================================== */
+
+function showMessage(
+  message,
+  error
+){
+
+  formMessage.className =
+
+    error
+
+    ?
+
+    "message error"
+
+    :
+
+    "message success";
+
+
+  formMessage.textContent =
+    message;
+
+}
+
+
+/* =====================================================
+   HTTPS VALIDATION
+====================================================== */
+
+function validHttps(
+  value
+){
+
+  return (
+
+    typeof value ===
+    "string"
+
+    &&
+
+    value.startsWith(
+      "https://"
+    )
+
+    &&
+
+    !value.startsWith(
+      "file:///"
+    )
+
+  );
+
+}
+
+
+/* =====================================================
+   URL VALIDATION
+====================================================== */
+
+function validHttpUrl(
+  value
+){
+
+  try{
+
+    const url =
+      new URL(
+        value
+      );
+
+
+    return (
+      url.protocol ===
+      "https:"
+    );
+
+  }
+
+  catch{
+
+    return false;
+
+  }
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+====================================================== */
+
+function escapeHTML(
+  value
+){
+
+  return String(
+    value ?? ""
+  )
+
+  .replace(
+    /[&<>"']/g,
+    function(char){
+
+      const map = {
+
+        "&":
+          "&amp;",
+
+        "<":
+          "&lt;",
+
+        ">":
+          "&gt;",
+
+        '"':
+          "&quot;",
+
+        "'":
+          "&#039;"
+
+      };
+
+
+      return map[
+        char
+      ];
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   START
+====================================================== */
+
+loadProducts();
+
+
+</script>
+
+</body>
+</html>
