@@ -1,21 +1,6 @@
-# User-Agent Rules for Search Engine Crawlers
 User-agent: *
 Allow: /
 
-# Private / transactional pages
-Disallow: /cart
-Disallow: /checkout
-Disallow: /account/
 Disallow: /admin/
 
-# Static assets required for page rendering
-Allow: /*.css$
-Allow: /*.js$
-Allow: /*.png$
-Allow: /*.jpg$
-Allow: /*.jpeg$
-Allow: /*.webp$
-Allow: /*.svg$
-
-# XML Sitemap
 Sitemap: https://superlative-haupia-d1b3ec.netlify.app/sitemap.xml
