@@ -5,7 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="robots" content="noindex,nofollow,noarchive,noimageindex">
+  <meta name="googlebot" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
 
   <title>Girl Dresses Admin | StyleEasy</title>
 
@@ -1089,6 +1091,44 @@
 
             </div>
 
+            <!-- SEO FOCUS KEYWORD -->
+            <div class="field">
+              <label>SEO Focus Keyword</label>
+              <input
+                id="seoFocusKeyword"
+                maxlength="80"
+                placeholder="girl dresses online"
+              >
+            </div>
+
+            <!-- SEO CANONICAL PATH -->
+            <div class="field">
+              <label>SEO Canonical Path</label>
+              <input
+                id="seoCanonical"
+                placeholder="/products/girls-pink-party-wear-frock-dress"
+              >
+            </div>
+
+            <!-- SEO IMAGE CONTEXT -->
+            <div class="field">
+              <label>Target Market</label>
+              <input
+                id="targetMarket"
+                value="India"
+                placeholder="India"
+              >
+            </div>
+
+            <div class="field">
+              <label>Content Language</label>
+              <input
+                id="contentLanguage"
+                value="en-IN"
+                placeholder="en-IN"
+              >
+            </div>
+
 
           </div>
 
@@ -2049,6 +2089,26 @@ function editProduct(id){
   ).value =
     p.shortExcerpt || "";
 
+  document.getElementById(
+    "seoFocusKeyword"
+  ).value =
+    p.seoFocusKeyword || "";
+
+  document.getElementById(
+    "seoCanonical"
+  ).value =
+    p.seoCanonical || "";
+
+  document.getElementById(
+    "targetMarket"
+  ).value =
+    p.targetMarket || "India";
+
+  document.getElementById(
+    "contentLanguage"
+  ).value =
+    p.contentLanguage || "en-IN";
+
 
   document.getElementById(
     "images"
@@ -2145,6 +2205,33 @@ productForm.addEventListener(
         .value
         .trim();
 
+    // Build SEO defaults from real product data. These are editable, not fake.
+    const seoKeywordInput = document.getElementById("seoFocusKeyword");
+    const metaTitleInput = document.getElementById("metaTitle");
+    const metaDescriptionInput = document.getElementById("metaDescription");
+    const shortExcerptInput = document.getElementById("shortExcerpt");
+    const imageAltInput = document.getElementById("imageAlt");
+    const canonicalInput = document.getElementById("seoCanonical");
+
+    if(!seoKeywordInput.value.trim()){
+      seoKeywordInput.value = category || "girl dresses online";
+    }
+    if(!metaTitleInput.value.trim()){
+      metaTitleInput.value = `${name} | Girl Dresses Online in India | StyleEasy`.slice(0,60);
+    }
+    if(!imageAltInput.value.trim()){
+      imageAltInput.value = `${name} - Girl Dress Online in India`;
+    }
+    if(!shortExcerptInput.value.trim()){
+      shortExcerptInput.value = `${name}. Explore product details, price and buying information on StyleEasy.`;
+    }
+    if(!metaDescriptionInput.value.trim()){
+      metaDescriptionInput.value = `${name}. Shop girl dresses online in India with current price, product details and Buy Now information on StyleEasy.`.slice(0,160);
+    }
+    if(!canonicalInput.value.trim()){
+      canonicalInput.value = `/products/${slug}`;
+    }
+
 
     const affiliateUrl =
       document
@@ -2206,6 +2293,22 @@ productForm.addEventListener(
 
       return;
 
+    }
+
+
+    if(metaTitleInput.value.length > 60){
+      showMessage("SEO Meta Title should be 60 characters or fewer.", true);
+      return;
+    }
+
+    if(metaDescriptionInput.value.length > 160){
+      showMessage("SEO Meta Description should be 160 characters or fewer.", true);
+      return;
+    }
+
+    if(!canonicalInput.value.startsWith("/")){
+      showMessage("SEO Canonical Path should start with /", true);
+      return;
     }
 
 
@@ -2466,6 +2569,31 @@ productForm.addEventListener(
           )
           .value
           .trim(),
+
+      seoFocusKeyword:
+        document
+          .getElementById("seoFocusKeyword")
+          .value
+          .trim(),
+
+      seoCanonical:
+        document
+          .getElementById("seoCanonical")
+          .value
+          .trim() ||
+        "/products/" + slug,
+
+      targetMarket:
+        document
+          .getElementById("targetMarket")
+          .value
+          .trim() || "India",
+
+      contentLanguage:
+        document
+          .getElementById("contentLanguage")
+          .value
+          .trim() || "en-IN",
 
 
       createdAt:
