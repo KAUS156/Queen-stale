@@ -1,155 +1,153 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Homepage -->
   <url>
     <loc>https://superlative-haupia-d1b3ec.netlify.app/</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>daily</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Main Categories -->
   <url>
-    <loc>https://superlative-haupia-d1b3ec.netlify.app/girl-dresses</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>daily</changefreq>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/girl-dresses/</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://superlative-haupia-d1b3ec.netlify.app/beauty</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://superlative-haupia-d1b3ec.netlify.app/footwear</loc>
-    <lastmod>2026-08-24</lastmod>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/trending-girl-dresses/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://superlative-haupia-d1b3ec.netlify.app/menswear</loc>
-    <lastmod>2026-08-24</lastmod>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/party-wear-dresses/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Girl Dresses Sub-pages -->
   <url>
-    <loc>https://superlative-haupia-d1b3ec.netlify.app/party-wear-dresses</loc>
-    <lastmod>2026-08-24</lastmod>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/casual-girl-dresses/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/summer-girl-dresses/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/birthday-dresses/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/frock-dresses/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/girls-skirts/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://superlative-haupia-d1b3ec.netlify.app/summer-girl-dresses</loc>
-    <lastmod>2026-08-24</lastmod>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/girls-tops/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://superlative-haupia-d1b3ec.netlify.app/casual-girl-dresses</loc>
-    <lastmod>2026-08-24</lastmod>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/beauty/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/lipstick/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://superlative-haupia-d1b3ec.netlify.app/trending-girl-dresses</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Beauty Sub-pages -->
-  <url>
-    <loc>https://superlative-haupia-d1b3ec.netlify.app/lipstick</loc>
-    <lastmod>2026-08-24</lastmod>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/makeup/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://superlative-haupia-d1b3ec.netlify.app/face-cream</loc>
-    <lastmod>2026-08-24</lastmod>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/face-cream/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://superlative-haupia-d1b3ec.netlify.app/makeup</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://superlative-haupia-d1b3ec.netlify.app/skincare</loc>
-    <lastmod>2026-08-24</lastmod>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/skincare/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- Other Pages -->
   <url>
-    <loc>https://superlative-haupia-d1b3ec.netlify.app/deals</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/footwear/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://superlative-haupia-d1b3ec.netlify.app/about</loc>
-    <lastmod>2026-08-24</lastmod>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/menswear/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/about/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/contact/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/deals/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/affiliate-disclosure/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/privacy-policy/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/returns/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
 
   <url>
-    <loc>https://superlative-haupia-d1b3ec.netlify.app/contact</loc>
-    <lastmod>2026-08-24</lastmod>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/shipping/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
 
   <url>
-    <loc>https://superlative-haupia-d1b3ec.netlify.app/shipping</loc>
-    <lastmod>2026-08-24</lastmod>
+    <loc>https://superlative-haupia-d1b3ec.netlify.app/terms/</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://superlative-haupia-d1b3ec.netlify.app/returns</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://superlative-haupia-d1b3ec.netlify.app/privacy-policy</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://superlative-haupia-d1b3ec.netlify.app/terms</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://superlative-haupia-d1b3ec.netlify.app/affiliate-disclosure</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
