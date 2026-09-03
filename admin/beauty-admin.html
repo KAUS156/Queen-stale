@@ -1,13 +1,18 @@
+
 <!DOCTYPE html>
 <html lang="en-IN">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Beauty Admin Panel | StyleEasy</title>
-<meta name="robots" content="noindex,nofollow">
+
+<!-- ADMIN PAGE MUST NOT APPEAR IN GOOGLE -->
+<meta name="robots" content="noindex,nofollow,noarchive">
 
 <style>
+
 :root{
   --primary:#7D3045;
   --primary-dark:#521E2D;
@@ -18,26 +23,56 @@
   --muted:#776C70;
   --border:#E8DCD6;
   --danger:#B42318;
+  --success:#16794C;
   --shadow:0 12px 35px rgba(82,30,45,.10);
 }
-*{box-sizing:border-box}
+
+*{
+  box-sizing:border-box;
+}
+
 body{
   margin:0;
   font-family:Inter,Arial,sans-serif;
   background:var(--cream);
   color:var(--text);
 }
+
 header{
-  background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+  background:linear-gradient(
+    135deg,
+    var(--primary-dark),
+    var(--primary)
+  );
   color:white;
   padding:25px 6%;
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:20px;
 }
-header h1{margin:0;font-size:25px}
-header span{color:#f3dfb7}
-.container{max-width:1200px;margin:auto;padding:30px 18px}
+
+header h1{
+  margin:0;
+  font-size:25px;
+}
+
+header span{
+  color:#f3dfb7;
+}
+
+header a{
+  color:white;
+  text-decoration:none;
+  font-weight:700;
+}
+
+.container{
+  max-width:1250px;
+  margin:auto;
+  padding:30px 18px;
+}
+
 .panel{
   background:var(--white);
   border:1px solid var(--border);
@@ -46,12 +81,20 @@ header span{color:#f3dfb7}
   margin-bottom:25px;
   box-shadow:var(--shadow);
 }
+
+.panel h2{
+  margin-top:0;
+}
+
 .grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:16px;
 }
-input,select,textarea{
+
+input,
+select,
+textarea{
   width:100%;
   padding:13px 14px;
   border:1px solid var(--border);
@@ -60,18 +103,47 @@ input,select,textarea{
   font:inherit;
   background:#fff;
 }
-textarea{min-height:100px;resize:vertical}
-input:focus,select:focus,textarea:focus{
+
+textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
   border-color:var(--gold);
   box-shadow:0 0 0 3px rgba(199,164,106,.15);
 }
+
 label{
   display:block;
   font-weight:700;
   margin-bottom:7px;
   font-size:14px;
 }
-.full{grid-column:1/-1}
+
+.help{
+  display:block;
+  margin-top:5px;
+  font-size:12px;
+  color:var(--muted);
+}
+
+.full{
+  grid-column:1/-1;
+}
+
+.section-title{
+  grid-column:1/-1;
+  margin-top:15px;
+  padding:12px 0;
+  border-bottom:1px solid var(--border);
+  color:var(--primary-dark);
+  font-size:18px;
+  font-weight:800;
+}
+
 button{
   border:0;
   border-radius:10px;
@@ -79,25 +151,33 @@ button{
   cursor:pointer;
   font-weight:700;
 }
+
 .primary{
   background:var(--primary);
   color:white;
 }
-.primary:hover{background:var(--primary-dark)}
+
+.primary:hover{
+  background:var(--primary-dark);
+}
+
 .secondary{
   background:#F1E6DF;
   color:var(--primary-dark);
 }
+
 .danger{
   background:#FCE8E6;
   color:var(--danger);
 }
+
 .actions{
   display:flex;
   gap:10px;
   margin-top:18px;
   flex-wrap:wrap;
 }
+
 .status{
   padding:12px;
   border-radius:10px;
@@ -105,80 +185,217 @@ button{
   background:#F8F2EC;
   color:var(--primary-dark);
 }
+
+.status.success{
+  background:#EAF7F0;
+  color:var(--success);
+}
+
+.status.error{
+  background:#FCE8E6;
+  color:var(--danger);
+}
+
 .products{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:18px;
 }
+
 .product{
   border:1px solid var(--border);
   border-radius:15px;
   overflow:hidden;
   background:#fff;
 }
+
 .product img{
   width:100%;
   aspect-ratio:4/2.8;
   object-fit:cover;
+  display:block;
 }
-.product-body{padding:15px}
-.product h3{margin:0 0 7px}
-.price{font-weight:800;color:var(--primary)}
+
+.product-body{
+  padding:15px;
+}
+
+.product h3{
+  margin:0 0 7px;
+  line-height:1.3;
+}
+
+.price{
+  font-weight:800;
+  color:var(--primary);
+  font-size:18px;
+}
+
 .product-actions{
   display:flex;
   gap:8px;
   margin-top:12px;
 }
+
 .product-actions button{
   flex:1;
   padding:9px;
 }
-small{color:var(--muted)}
 
-@media(max-width:850px){
-  .products{grid-template-columns:repeat(2,1fr)}
+small{
+  color:var(--muted);
 }
+
+.badge{
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:20px;
+  background:#F1E6DF;
+  color:var(--primary-dark);
+  font-size:11px;
+  font-weight:700;
+  margin-bottom:8px;
+}
+
+.seo-box{
+  background:#FBF7F2;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:15px;
+  grid-column:1/-1;
+}
+
+.seo-box strong{
+  color:var(--primary-dark);
+}
+
+@media(max-width:900px){
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
 @media(max-width:600px){
-  .grid{grid-template-columns:1fr}
-  .full{grid-column:auto}
-  .products{grid-template-columns:1fr}
-  header{padding:20px}
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .full{
+    grid-column:auto;
+  }
+
+  .products{
+    grid-template-columns:1fr;
+  }
+
+  header{
+    padding:20px;
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
 }
+
 </style>
+
 </head>
 
 <body>
 
 <header>
-  <h1>💄 StyleEasy <span>Beauty Admin</span></h1>
-  <a href="beauty.html" style="color:white;text-decoration:none;font-weight:700">
+
+  <h1>
+    💄 StyleEasy
+    <span>Beauty Admin</span>
+  </h1>
+
+  <a href="beauty.html">
     View Store →
   </a>
+
 </header>
+
 
 <main class="container">
 
+
+<!-- =========================================================
+     PRODUCT FORM
+========================================================= -->
+
 <section class="panel">
-  <h2 id="formTitle">Add Beauty Product</h2>
+
+  <h2 id="formTitle">
+    Add Beauty Product
+  </h2>
+
 
   <form id="productForm">
 
     <div class="grid">
 
-      <div>
-        <label>Product Name *</label>
-        <input id="name" required placeholder="e.g. Hydrating Face Serum">
+
+      <!-- BASIC PRODUCT INFORMATION -->
+
+      <div class="section-title">
+        🛍️ Basic Product Information
       </div>
 
-      <div>
-        <label>Brand</label>
-        <input id="brand" placeholder="e.g. Mamaearth">
-      </div>
 
       <div>
-        <label>Category *</label>
-        <select id="category" required>
-          <option value="">Select Category</option>
+
+        <label>
+          Product Name *
+        </label>
+
+        <input
+          id="name"
+          required
+          maxlength="120"
+          placeholder="e.g. Hydrating Face Serum"
+        >
+
+        <small class="help">
+          Use a natural product name. Avoid keyword stuffing.
+        </small>
+
+      </div>
+
+
+      <div>
+
+        <label>
+          Brand *
+        </label>
+
+        <input
+          id="brand"
+          required
+          maxlength="80"
+          placeholder="e.g. Mamaearth"
+        >
+
+      </div>
+
+
+      <div>
+
+        <label>
+          Category *
+        </label>
+
+        <select
+          id="category"
+          required
+        >
+
+          <option value="">
+            Select Category
+          </option>
+
           <option>Makeup</option>
           <option>Lipstick</option>
           <option>Face Cream</option>
@@ -194,76 +411,505 @@ small{color:var(--muted)}
           <option>Perfume</option>
           <option>Beauty Tools</option>
           <option>Skincare</option>
+
         </select>
+
       </div>
 
-      <div>
-        <label>Price (₹) *</label>
-        <input id="price" type="number" min="0" required>
-      </div>
 
       <div>
-        <label>Old Price (₹)</label>
-        <input id="oldPrice" type="number" min="0">
+
+        <label>
+          SKU / Product ID
+        </label>
+
+        <input
+          id="sku"
+          maxlength="80"
+          placeholder="e.g. SE-LIP-001"
+        >
+
       </div>
 
-      <div>
-        <label>Image URL *</label>
-        <input id="image" type="url" required placeholder="https://...">
-      </div>
+
+      <!-- PRICE -->
 
       <div>
-        <label>Skin Type</label>
-        <input id="skinType" placeholder="All Skin Types">
+
+        <label>
+          Selling Price (₹) *
+        </label>
+
+        <input
+          id="price"
+          type="number"
+          min="0"
+          required
+        >
+
       </div>
 
+
       <div>
-        <label>Shade</label>
-        <input id="shade" placeholder="Rose / Nude / Natural">
+
+        <label>
+          Old Price (₹)
+        </label>
+
+        <input
+          id="oldPrice"
+          type="number"
+          min="0"
+        >
+
       </div>
+
+
+      <div>
+
+        <label>
+          Availability *
+        </label>
+
+        <select id="availability">
+
+          <option value="InStock">
+            In Stock
+          </option>
+
+          <option value="OutOfStock">
+            Out of Stock
+          </option>
+
+          <option value="PreOrder">
+            Pre-Order
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div>
+
+        <label>
+          Product Condition
+        </label>
+
+        <select id="condition">
+
+          <option value="NewCondition">
+            New
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- PRODUCT IMAGE -->
+
+      <div class="section-title">
+        🖼️ Product Image
+      </div>
+
 
       <div class="full">
-        <label>Description *</label>
-        <textarea id="description" required
-          placeholder="Write a useful product description..."></textarea>
+
+        <label>
+          Main Image URL *
+        </label>
+
+        <input
+          id="image"
+          type="url"
+          required
+          placeholder="https://example.com/product-image.jpg"
+        >
+
+        <small class="help">
+          Use a direct, stable product image URL.
+        </small>
+
       </div>
 
+
       <div class="full">
-        <label>SFF / Affiliate Buy Link *</label>
-        <input id="buyLink" type="url" required
-          placeholder="https://...">
+
+        <label>
+          Image Alt Text *
+        </label>
+
+        <input
+          id="imageAlt"
+          required
+          maxlength="150"
+          placeholder="e.g. Pink matte lipstick shade for women"
+        >
+
+        <small class="help">
+          Describe what is actually visible in the image.
+        </small>
+
       </div>
+
+
+      <!-- BEAUTY ATTRIBUTES -->
+
+      <div class="section-title">
+        💄 Beauty Product Details
+      </div>
+
+
+      <div>
+
+        <label>
+          Skin Type
+        </label>
+
+        <input
+          id="skinType"
+          placeholder="All Skin Types"
+        >
+
+      </div>
+
+
+      <div>
+
+        <label>
+          Shade / Color
+        </label>
+
+        <input
+          id="shade"
+          placeholder="Rose / Nude / Natural"
+        >
+
+      </div>
+
+
+      <div>
+
+        <label>
+          Size / Quantity
+        </label>
+
+        <input
+          id="size"
+          placeholder="e.g. 10 ml / 50 g"
+        >
+
+      </div>
+
+
+      <div>
+
+        <label>
+          Finish
+        </label>
+
+        <input
+          id="finish"
+          placeholder="Matte / Glossy / Natural"
+        >
+
+      </div>
+
+
+      <!-- DESCRIPTION -->
+
+      <div class="section-title">
+        📝 Product Content
+      </div>
+
+
+      <div class="full">
+
+        <label>
+          Product Description *
+        </label>
+
+        <textarea
+          id="description"
+          required
+          maxlength="5000"
+          placeholder="Write an original and useful product description..."
+        ></textarea>
+
+        <small class="help">
+          Write useful information about the product, not a keyword list.
+        </small>
+
+      </div>
+
+
+      <div class="full">
+
+        <label>
+          Product Features
+        </label>
+
+        <textarea
+          id="features"
+          maxlength="3000"
+          placeholder="Long lasting&#10;Lightweight formula&#10;Suitable for daily use"
+        ></textarea>
+
+        <small class="help">
+          Put one feature per line.
+        </small>
+
+      </div>
+
+
+      <!-- SEO -->
+
+      <div class="section-title">
+        🚀 Google SEO Information
+      </div>
+
+
+      <div class="full">
+
+        <label>
+          SEO Title *
+        </label>
+
+        <input
+          id="seoTitle"
+          required
+          maxlength="65"
+          placeholder="Buy Pink Matte Lipstick Online | StyleEasy"
+        >
+
+        <small class="help">
+          Keep it natural and specific. Around 50–60 characters is a good target.
+        </small>
+
+      </div>
+
+
+      <div class="full">
+
+        <label>
+          SEO Description *
+        </label>
+
+        <textarea
+          id="seoDescription"
+          required
+          maxlength="170"
+          placeholder="Shop pink matte lipstick online at StyleEasy. Discover..."
+        ></textarea>
+
+        <small class="help">
+          Write a unique description for every product.
+        </small>
+
+      </div>
+
+
+      <div class="full">
+
+        <label>
+          SEO Keywords
+        </label>
+
+        <input
+          id="seoKeywords"
+          maxlength="500"
+          placeholder="pink lipstick, matte lipstick, lipstick online"
+        >
+
+        <small class="help">
+          Optional. Do not repeat keywords unnaturally.
+        </small>
+
+      </div>
+
+
+      <div>
+
+        <label>
+          SEO Slug *
+        </label>
+
+        <input
+          id="slug"
+          required
+          maxlength="180"
+          placeholder="pink-matte-lipstick"
+        >
+
+        <small class="help">
+          Example: pink-matte-lipstick-for-women
+        </small>
+
+      </div>
+
+
+      <div>
+
+        <label>
+          Product URL Base
+        </label>
+
+        <input
+          id="urlBase"
+          value="/products/"
+          readonly
+        >
+
+      </div>
+
+
+      <!-- BUY -->
+
+      <div class="section-title">
+        🛒 Shopping / Affiliate Information
+      </div>
+
+
+      <div class="full">
+
+        <label>
+          Buy / Affiliate Link *
+        </label>
+
+        <input
+          id="buyLink"
+          type="url"
+          required
+          placeholder="https://..."
+        >
+
+      </div>
+
+
+      <div>
+
+        <label>
+          Seller Name
+        </label>
+
+        <input
+          id="seller"
+          placeholder="StyleEasy"
+        >
+
+      </div>
+
+
+      <div>
+
+        <label>
+          Currency
+        </label>
+
+        <input
+          id="currency"
+          value="INR"
+          readonly
+        >
+
+      </div>
+
+
+      <!-- SEO PREVIEW -->
+
+      <div class="seo-box">
+
+        <strong>
+          Google SEO Preview
+        </strong>
+
+        <p id="seoPreviewTitle">
+          Product SEO Title
+        </p>
+
+        <small id="seoPreviewDescription">
+          Product SEO description will appear here.
+        </small>
+
+      </div>
+
 
     </div>
 
+
     <div class="actions">
-      <button class="primary" type="submit" id="saveBtn">
+
+      <button
+        class="primary"
+        type="submit"
+        id="saveBtn"
+      >
         Add Product
       </button>
 
-      <button class="secondary" type="button" id="cancelBtn" style="display:none">
+
+      <button
+        class="secondary"
+        type="button"
+        id="cancelBtn"
+        style="display:none"
+      >
         Cancel Edit
       </button>
+
     </div>
 
-    <div class="status" id="status">Ready.</div>
+
+    <div
+      class="status"
+      id="status"
+    >
+      Ready.
+    </div>
+
 
   </form>
+
 </section>
 
+
+<!-- =========================================================
+     PRODUCT LIST
+========================================================= -->
+
 <section class="panel">
-  <h2>Beauty Products</h2>
-  <div id="products" class="products">
+
+  <h2>
+    Beauty Products
+  </h2>
+
+  <div
+    id="products"
+    class="products"
+  >
     Loading...
   </div>
+
 </section>
+
 
 </main>
 
+
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+/* =========================================================
+   FIREBASE
+========================================================= */
+
+import {
+  initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
 
 import {
   getFirestore,
@@ -275,271 +921,873 @@ import {
   deleteDoc,
   serverTimestamp
 }
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
-  authDomain: "lucky-triode-450317-g7.firebaseapp.com",
-  databaseURL: "https://lucky-triode-450317-g7-default-rtdb.firebaseio.com",
-  projectId: "lucky-triode-450317-g7",
-  storageBucket: "lucky-triode-450317-g7.firebasestorage.app",
-  messagingSenderId: "778199870672",
-  appId: "1:778199870672:web:62a9891e41b3a3d3f242d5",
-  measurementId: "G-BD8Y4KXCKM"
+
+  apiKey:
+  "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
+
+  authDomain:
+  "lucky-triode-450317-g7.firebaseapp.com",
+
+  databaseURL:
+  "https://lucky-triode-450317-g7-default-rtdb.firebaseio.com",
+
+  projectId:
+  "lucky-triode-450317-g7",
+
+  storageBucket:
+  "lucky-triode-450317-g7.firebasestorage.app",
+
+  messagingSenderId:
+  "778199870672",
+
+  appId:
+  "1:778199870672:web:62a9891e41b3a3d3f242d5",
+
+  measurementId:
+  "G-BD8Y4KXCKM"
+
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 
-/* IMPORTANT:
-   BEAUTY DATA ONLY
+const app =
+initializeApp(firebaseConfig);
+
+
+const db =
+getFirestore(app);
+
+
+/*
+  BEAUTY DATA ONLY
 */
-const beautyRef = collection(db,"beauty","products","items");
+
+const beautyRef =
+collection(
+  db,
+  "beauty",
+  "products",
+  "items"
+);
+
 
 let editingId = null;
 
-const form = document.getElementById("productForm");
-const productsBox = document.getElementById("products");
-const statusBox = document.getElementById("status");
 
-const $ = id => document.getElementById(id);
+const form =
+document.getElementById(
+  "productForm"
+);
+
+const productsBox =
+document.getElementById(
+  "products"
+);
+
+const statusBox =
+document.getElementById(
+  "status"
+);
+
+
+const $ =
+id =>
+document.getElementById(id);
+
+
+/* =========================================================
+   SLUG GENERATOR
+========================================================= */
+
+function generateSlug(text){
+
+  return String(text || "")
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g,"")
+    .replace(/\s+/g,"-")
+    .replace(/-+/g,"-")
+    .replace(/^-|-$/g,"");
+
+}
+
+
+/* =========================================================
+   AUTO SEO
+========================================================= */
+
+$("name").addEventListener(
+  "input",
+  () => {
+
+    if(
+      !editingId &&
+      !$("slug").value.trim()
+    ){
+
+      $("slug").value =
+      generateSlug(
+        $("name").value
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   SEO PREVIEW
+========================================================= */
+
+function updateSeoPreview(){
+
+  $("seoPreviewTitle")
+    .textContent =
+    $("seoTitle").value ||
+    "Product SEO Title";
+
+  $("seoPreviewDescription")
+    .textContent =
+    $("seoDescription").value ||
+    "Product SEO description will appear here.";
+
+}
+
+
+$("seoTitle").addEventListener(
+  "input",
+  updateSeoPreview
+);
+
+
+$("seoDescription").addEventListener(
+  "input",
+  updateSeoPreview
+);
+
+
+/* =========================================================
+   GET FORM DATA
+========================================================= */
 
 function getData(){
 
+  const features =
+    $("features")
+      .value
+      .split("\n")
+      .map(x => x.trim())
+      .filter(Boolean);
+
+
+  const slug =
+    generateSlug(
+      $("slug").value ||
+      $("name").value
+    );
+
+
   return {
-    name:$("name").value.trim(),
-    brand:$("brand").value.trim(),
-    category:$("category").value,
-    price:Number($("price").value),
-    oldPrice:Number($("oldPrice").value || 0),
-    image:$("image").value.trim(),
-    skinType:$("skinType").value.trim(),
-    shade:$("shade").value.trim(),
-    description:$("description").value.trim(),
-    buyLink:$("buyLink").value.trim(),
-    updatedAt:serverTimestamp()
+
+    /* BASIC */
+
+    name:
+      $("name").value.trim(),
+
+    brand:
+      $("brand").value.trim(),
+
+    category:
+      $("category").value,
+
+    sku:
+      $("sku").value.trim(),
+
+
+    /* PRICE */
+
+    price:
+      Number(
+        $("price").value
+      ),
+
+    oldPrice:
+      Number(
+        $("oldPrice").value || 0
+      ),
+
+    currency:
+      "INR",
+
+
+    /* PRODUCT */
+
+    availability:
+      $("availability").value,
+
+    condition:
+      $("condition").value,
+
+    image:
+      $("image").value.trim(),
+
+    imageAlt:
+      $("imageAlt").value.trim(),
+
+
+    /* BEAUTY */
+
+    skinType:
+      $("skinType").value.trim(),
+
+    shade:
+      $("shade").value.trim(),
+
+    size:
+      $("size").value.trim(),
+
+    finish:
+      $("finish").value.trim(),
+
+
+    /* CONTENT */
+
+    description:
+      $("description").value.trim(),
+
+    features:
+      features,
+
+
+    /* SEO */
+
+    seoTitle:
+      $("seoTitle").value.trim(),
+
+    seoDescription:
+      $("seoDescription").value.trim(),
+
+    seoKeywords:
+      $("seoKeywords").value.trim(),
+
+    slug:
+      slug,
+
+    productPath:
+      "/products/" + slug,
+
+
+    /* SHOPPING */
+
+    buyLink:
+      $("buyLink").value.trim(),
+
+    seller:
+      $("seller").value.trim() ||
+      "StyleEasy",
+
+
+    /* TIMESTAMP */
+
+    updatedAt:
+      serverTimestamp()
+
   };
 
 }
 
+
+/* =========================================================
+   RESET
+========================================================= */
+
 function resetForm(){
 
   form.reset();
-  editingId=null;
 
-  $("formTitle").textContent="Add Beauty Product";
-  $("saveBtn").textContent="Add Product";
-  $("cancelBtn").style.display="none";
+  editingId = null;
+
+  $("formTitle").textContent =
+    "Add Beauty Product";
+
+  $("saveBtn").textContent =
+    "Add Product";
+
+  $("cancelBtn").style.display =
+    "none";
+
+  $("urlBase").value =
+    "/products/";
+
+  $("currency").value =
+    "INR";
+
+  $("seller").value =
+    "StyleEasy";
+
+  $("condition").value =
+    "NewCondition";
+
+  $("availability").value =
+    "InStock";
+
+  updateSeoPreview();
 
 }
 
-form.addEventListener("submit",async e=>{
 
-  e.preventDefault();
+/* =========================================================
+   SAVE PRODUCT
+========================================================= */
 
-  try{
+form.addEventListener(
+  "submit",
+  async e => {
 
-    const data=getData();
+    e.preventDefault();
 
-    if(editingId){
 
-      await updateDoc(
-        doc(db,"beauty","products","items",editingId),
-        data
-      );
+    try{
 
-      statusBox.textContent="✅ Product updated successfully.";
+      const data =
+        getData();
 
-    }else{
 
-      await addDoc(beautyRef,{
-        ...data,
-        createdAt:serverTimestamp()
-      });
+      if(
+        !data.slug ||
+        !data.name ||
+        !data.description ||
+        !data.seoTitle ||
+        !data.seoDescription
+      ){
 
-      statusBox.textContent="✅ Product added successfully.";
+        statusBox.className =
+          "status error";
+
+        statusBox.textContent =
+          "❌ Please complete all required SEO fields.";
+
+        return;
+
+      }
+
+
+      if(editingId){
+
+        await updateDoc(
+
+          doc(
+            db,
+            "beauty",
+            "products",
+            "items",
+            editingId
+          ),
+
+          data
+
+        );
+
+
+        statusBox.className =
+          "status success";
+
+        statusBox.textContent =
+          "✅ Product updated successfully.";
+
+
+      }else{
+
+        await addDoc(
+
+          beautyRef,
+
+          {
+
+            ...data,
+
+            createdAt:
+              serverTimestamp(),
+
+            seoReady:
+              true
+
+          }
+
+        );
+
+
+        statusBox.className =
+          "status success";
+
+        statusBox.textContent =
+          "✅ SEO-ready product added successfully.";
+
+      }
+
+
+      resetForm();
+
+      await loadProducts();
+
+
+    }catch(error){
+
+      console.error(error);
+
+      statusBox.className =
+        "status error";
+
+      statusBox.textContent =
+        "❌ " + error.message;
 
     }
 
-    resetForm();
-    loadProducts();
-
-  }catch(error){
-
-    console.error(error);
-    statusBox.textContent="❌ "+error.message;
-
   }
+);
 
-});
 
-$("cancelBtn").onclick=resetForm;
+/* =========================================================
+   CANCEL EDIT
+========================================================= */
 
+$("cancelBtn").onclick =
+resetForm;
+
+
+/* =========================================================
+   LOAD PRODUCTS
+========================================================= */
 
 async function loadProducts(){
 
-  productsBox.innerHTML="Loading...";
+  productsBox.innerHTML =
+    "Loading...";
+
 
   try{
 
-    const snapshot=await getDocs(beautyRef);
+    const snapshot =
+      await getDocs(
+        beautyRef
+      );
+
 
     if(snapshot.empty){
 
-      productsBox.innerHTML=
+      productsBox.innerHTML =
         "<p>No beauty products added yet.</p>";
 
       return;
 
     }
 
-    productsBox.innerHTML="";
 
-    snapshot.forEach(item=>{
+    productsBox.innerHTML =
+      "";
 
-      const p=item.data();
 
-      const card=document.createElement("article");
-      card.className="product";
+    snapshot.forEach(
+      item => {
 
-      card.innerHTML=`
+        const p =
+          item.data();
 
-        <img
-          src="${escapeHTML(p.image || "")}"
-          alt="${escapeHTML(p.name || "Beauty product")}"
-          loading="lazy"
-        >
 
-        <div class="product-body">
+        const card =
+          document.createElement(
+            "article"
+          );
 
-          <small>${escapeHTML(p.category || "")}</small>
 
-          <h3>${escapeHTML(p.name || "")}</h3>
+        card.className =
+          "product";
 
-          <p>${escapeHTML(p.brand || "")}</p>
 
-          <div class="price">
-            ₹${Number(p.price || 0).toLocaleString("en-IN")}
+        card.innerHTML = `
+
+          <img
+            src="${escapeHTML(
+              p.image || ""
+            )}"
+            alt="${escapeHTML(
+              p.imageAlt ||
+              p.name ||
+              "Beauty product"
+            )}"
+            loading="lazy"
+          >
+
+
+          <div class="product-body">
+
+
+            <span class="badge">
+              ${escapeHTML(
+                p.category || ""
+              )}
+            </span>
+
+
+            <h3>
+              ${escapeHTML(
+                p.name || ""
+              )}
+            </h3>
+
+
+            <p>
+              ${escapeHTML(
+                p.brand || ""
+              )}
+            </p>
+
+
+            <div class="price">
+              ₹${Number(
+                p.price || 0
+              ).toLocaleString("en-IN")}
+            </div>
+
+
+            ${
+              p.oldPrice
+              ?
+              `<del>
+                ₹${Number(
+                  p.oldPrice
+                ).toLocaleString("en-IN")}
+              </del>`
+              :
+              ""
+            }
+
+
+            <small>
+              SEO:
+              ${
+                p.seoReady
+                ? "✅ Ready"
+                : "⚠️ Check"
+              }
+            </small>
+
+
+            <div class="product-actions">
+
+
+              <button
+                class="secondary"
+                onclick="editProduct(
+                  '${item.id}'
+                )"
+              >
+                Edit
+              </button>
+
+
+              <button
+                class="danger"
+                onclick="removeProduct(
+                  '${item.id}'
+                )"
+              >
+                Delete
+              </button>
+
+
+            </div>
+
           </div>
 
-          ${
-            p.oldPrice
-            ? `<del>₹${Number(p.oldPrice).toLocaleString("en-IN")}</del>`
-            : ""
-          }
+        `;
 
-          <div class="product-actions">
 
-            <button
-              class="secondary"
-              onclick="editProduct('${item.id}')">
-              Edit
-            </button>
+        productsBox.appendChild(
+          card
+        );
 
-            <button
-              class="danger"
-              onclick="removeProduct('${item.id}')">
-              Delete
-            </button>
+      }
+    );
 
-          </div>
-
-        </div>
-      `;
-
-      productsBox.appendChild(card);
-
-    });
 
   }catch(error){
 
     console.error(error);
 
-    productsBox.innerHTML=
-      `<p>❌ ${escapeHTML(error.message)}</p>`;
+    productsBox.innerHTML =
+      `<p>
+        ❌ ${
+          escapeHTML(
+            error.message
+          )
+        }
+      </p>`;
 
   }
 
 }
 
 
-window.editProduct=async id=>{
+/* =========================================================
+   EDIT PRODUCT
+========================================================= */
+
+window.editProduct =
+async id => {
 
   try{
 
-    const snapshot=await getDocs(beautyRef);
+    const snapshot =
+      await getDocs(
+        beautyRef
+      );
 
-    let found=null;
 
-    snapshot.forEach(item=>{
-      if(item.id===id) found={id:item.id,...item.data()};
+    let found = null;
+
+
+    snapshot.forEach(
+      item => {
+
+        if(
+          item.id === id
+        ){
+
+          found = {
+            id:item.id,
+            ...item.data()
+          };
+
+        }
+
+      }
+    );
+
+
+    if(!found)
+      return;
+
+
+    $("name").value =
+      found.name || "";
+
+    $("brand").value =
+      found.brand || "";
+
+    $("category").value =
+      found.category || "";
+
+    $("sku").value =
+      found.sku || "";
+
+
+    $("price").value =
+      found.price || "";
+
+    $("oldPrice").value =
+      found.oldPrice || "";
+
+
+    $("availability").value =
+      found.availability ||
+      "InStock";
+
+    $("condition").value =
+      found.condition ||
+      "NewCondition";
+
+
+    $("image").value =
+      found.image || "";
+
+    $("imageAlt").value =
+      found.imageAlt || "";
+
+
+    $("skinType").value =
+      found.skinType || "";
+
+    $("shade").value =
+      found.shade || "";
+
+    $("size").value =
+      found.size || "";
+
+    $("finish").value =
+      found.finish || "";
+
+
+    $("description").value =
+      found.description || "";
+
+
+    $("features").value =
+      Array.isArray(
+        found.features
+      )
+      ?
+      found.features.join("\n")
+      :
+      "";
+
+
+    $("seoTitle").value =
+      found.seoTitle || "";
+
+    $("seoDescription").value =
+      found.seoDescription || "";
+
+    $("seoKeywords").value =
+      found.seoKeywords || "";
+
+    $("slug").value =
+      found.slug ||
+      generateSlug(
+        found.name
+      );
+
+
+    $("buyLink").value =
+      found.buyLink || "";
+
+    $("seller").value =
+      found.seller ||
+      "StyleEasy";
+
+
+    editingId = id;
+
+
+    $("formTitle").textContent =
+      "Edit Beauty Product";
+
+    $("saveBtn").textContent =
+      "Update Product";
+
+    $("cancelBtn").style.display =
+      "inline-block";
+
+
+    updateSeoPreview();
+
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
     });
 
-    if(!found)return;
-
-    $("name").value=found.name || "";
-    $("brand").value=found.brand || "";
-    $("category").value=found.category || "";
-    $("price").value=found.price || "";
-    $("oldPrice").value=found.oldPrice || "";
-    $("image").value=found.image || "";
-    $("skinType").value=found.skinType || "";
-    $("shade").value=found.shade || "";
-    $("description").value=found.description || "";
-    $("buyLink").value=found.buyLink || "";
-
-    editingId=id;
-
-    $("formTitle").textContent="Edit Beauty Product";
-    $("saveBtn").textContent="Update Product";
-    $("cancelBtn").style.display="inline-block";
-
-    window.scrollTo({top:0,behavior:"smooth"});
 
   }catch(error){
 
-    alert(error.message);
+    alert(
+      error.message
+    );
 
   }
 
 };
 
 
-window.removeProduct=async id=>{
+/* =========================================================
+   DELETE
+========================================================= */
 
-  if(!confirm("Delete this beauty product?"))return;
+window.removeProduct =
+async id => {
+
+  if(
+    !confirm(
+      "Delete this beauty product?"
+    )
+  )
+    return;
+
 
   try{
 
     await deleteDoc(
-      doc(db,"beauty","products","items",id)
+
+      doc(
+        db,
+        "beauty",
+        "products",
+        "items",
+        id
+      )
+
     );
 
-    statusBox.textContent="🗑️ Product deleted.";
-    loadProducts();
+
+    statusBox.className =
+      "status success";
+
+    statusBox.textContent =
+      "🗑️ Product deleted.";
+
+
+    await loadProducts();
+
 
   }catch(error){
 
-    alert(error.message);
+    alert(
+      error.message
+    );
 
   }
 
 };
 
 
+/* =========================================================
+   HTML ESCAPE
+========================================================= */
+
 function escapeHTML(value){
 
   return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
+
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
+
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
+
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
+
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
 
 }
 
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
 loadProducts();
+
+updateSeoPreview();
 
 </script>
 
