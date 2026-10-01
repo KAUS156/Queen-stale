@@ -1,215 +1,2450 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Men's Wear Admin Console | StyleEasy</title>
-    <meta name="robots" content="noindex, nofollow">
-    <link rel="icon" href="data:,">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <meta charset="UTF-8">
 
-    <style>
-        :root {
-            --primary-color: #070588;    /* Deep Royal Blue for Men's Section */
-            --accent-color: #c5a880;     /* Classic Tan / Gold */
-            --text-color: #333333;
-            --light-bg: #f4f5f8;
-            --white: #ffffff;
-            --danger-color: #e74c3c;
-            --border-color: #dddddd;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: var(--light-bg); color: var(--text-color); display: flex; min-height: 100vh; }
-        
-        aside { width: 260px; background-color: var(--primary-color); color: var(--white); padding: 30px 20px; position: fixed; height: 100vh; z-index: 100; border-right: 2px solid var(--accent-color); }
-        aside .logo { font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 40px; letter-spacing: 1px; }
-        aside .logo span { color: var(--accent-color); }
-        aside ul { list-style: none; }
-        aside ul li a { color: #cccccc; text-decoration: none; padding: 12px 15px; display: flex; align-items: center; gap: 12px; border-radius: 6px; font-size: 14px; transition: 0.3s; }
-        aside ul li a.active { background-color: rgba(197, 168, 128, 0.15); color: var(--accent-color); }
-        
-        main { margin-left: 260px; flex: 1; padding: 40px; width: calc(100% - 260px); }
-        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 1px solid #ddd; padding-bottom: 15px; }
-        header h1 { font-size: 26px; font-weight: 700; color: var(--primary-color); }
-        .db-status { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: #666; }
-        .db-status i { color: #2ecc71; }
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-        .dashboard-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px; }
-        .card { background: var(--white); padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); border: 1px solid #eef2f5; }
-        .card h2 { font-size: 18px; font-weight: 600; margin-bottom: 20px; border-bottom: 2px solid var(--accent-color); padding-bottom: 8px; display: inline-block; color: var(--primary-color); }
-        
-        .form-group { margin-bottom: 18px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 13.5px; }
-        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px; outline: none; background-color: #fafafa; }
-        .form-group input:focus, .form-group textarea:focus { border-color: var(--accent-color); background-color: var(--white); }
-        
-        .btn { background-color: var(--primary-color); color: var(--white); border: none; padding: 14px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; width: 100%; transition: 0.3s; font-size: 14px; }
-        .btn:hover { background-color: var(--accent-color); color: var(--primary-color); }
-        
-        .table-responsive { overflow-x: auto; border-radius: 8px; border: 1px solid #eee; }
-        table { width: 100%; border-collapse: collapse; background: var(--white); }
-        table th, table td { text-align: left; padding: 14px; border-bottom: 1px solid #eeeeee; font-size: 13.5px; }
-        table th { background-color: #f8f9fa; font-weight: 600; color: #555; }
-        .img-preview { width: 45px; height: 45px; object-fit: cover; border-radius: 6px; }
-        
-        .badge-cat-fixed { padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; background: #e8eaf6; color: #3f51b5; border: 1px solid #c5cae9; }
-        .delete-btn { background: none; border: none; color: var(--danger-color); cursor: pointer; font-size: 16px; }
-        
-        @media (max-width: 1100px) { .dashboard-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) {
-            aside { width: 70px; padding: 30px 10px; }
-            aside .logo, aside ul li a span { display: none; }
-            main { margin-left: 70px; width: calc(100% - 70px); padding: 20px; }
-        }
-    </style>
+  <title>
+    Trending Products Admin | StyleEasy
+  </title>
+
+  <meta
+    name="robots"
+    content="noindex,nofollow"
+  >
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family:
+        Inter,
+        Arial,
+        sans-serif;
+
+      background: #f5f7fb;
+
+      color: #172033;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1400px, 94%);
+      margin: auto;
+    }
+
+    /* HEADER */
+
+    .header {
+      background: #101828;
+      color: #fff;
+      padding: 18px 0;
+
+      position: sticky;
+      top: 0;
+
+      z-index: 100;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 25px;
+      font-weight: 900;
+    }
+
+    .brand span {
+      color: #19bedb;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .user-email {
+      color: #cbd5e1;
+      font-size: 13px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 15px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #d81b60;
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background: #e9eef5;
+      color: #172033;
+    }
+
+    .btn-danger {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .btn-success {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    /* LOGIN */
+
+    .login-wrapper {
+      min-height: calc(100vh - 75px);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 30px 0;
+    }
+
+    .login-card {
+      width: min(430px, 100%);
+
+      background: #fff;
+
+      border-radius: 20px;
+
+      padding: 35px;
+
+      box-shadow:
+        0 20px 60px rgba(16, 24, 40, .1);
+    }
+
+    .login-card h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .login-card p {
+      color: #667085;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    /* FORM */
+
+    .field {
+      margin-bottom: 17px;
+    }
+
+    .field label {
+      display: block;
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      margin-bottom: 7px;
+
+      color: #344054;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+
+      border: 1px solid #d0d5dd;
+
+      border-radius: 10px;
+
+      padding: 11px 12px;
+
+      outline: none;
+
+      background: #fff;
+    }
+
+    .field textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: #19bedb;
+
+      box-shadow:
+        0 0 0 3px rgba(25, 190, 219, .12);
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+
+      gap: 10px;
+
+      background: #fff7fa;
+
+      padding: 14px;
+
+      border-radius: 12px;
+
+      margin-bottom: 17px;
+    }
+
+    .checkbox-row input {
+      width: 18px;
+      height: 18px;
+    }
+
+    .checkbox-row label {
+      font-weight: 800;
+      color: #d81b60;
+    }
+
+    /* STATUS */
+
+    .status {
+      padding: 12px 14px;
+
+      border-radius: 10px;
+
+      font-size: 13px;
+
+      margin-bottom: 18px;
+
+      display: none;
+    }
+
+    .status.show {
+      display: block;
+    }
+
+    .status.success {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status.error {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .status.info {
+      background: #e0f2fe;
+      color: #075985;
+    }
+
+    /* ADMIN */
+
+    .admin-page {
+      padding: 35px 0 60px;
+    }
+
+    .page-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      margin-bottom: 25px;
+    }
+
+    .page-title h1 {
+      font-size: 32px;
+      font-weight: 900;
+    }
+
+    .page-title p {
+      color: #667085;
+      margin-top: 4px;
+    }
+
+    /* STATS */
+
+    .stats {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 18px;
+
+      margin-bottom: 25px;
+    }
+
+    .stat-card {
+      background: #fff;
+
+      padding: 22px;
+
+      border-radius: 17px;
+
+      border: 1px solid #eaecf0;
+
+      box-shadow:
+        0 7px 25px rgba(16, 24, 40, .04);
+    }
+
+    .stat-label {
+      color: #667085;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 32px;
+
+      font-weight: 900;
+    }
+
+    .stat-trending {
+      color: #d81b60;
+    }
+
+    .stat-normal {
+      color: #19bedb;
+    }
+
+    /* GRID */
+
+    .dashboard-grid {
+      display: grid;
+
+      grid-template-columns:
+        390px 1fr;
+
+      gap: 25px;
+
+      align-items: start;
+    }
+
+    .panel {
+      background: #fff;
+
+      border-radius: 18px;
+
+      border: 1px solid #eaecf0;
+
+      padding: 24px;
+
+      box-shadow:
+        0 7px 25px rgba(16, 24, 40, .04);
+    }
+
+    .panel h2 {
+      font-size: 20px;
+
+      margin-bottom: 20px;
+    }
+
+    .form-actions {
+      display: flex;
+
+      gap: 10px;
+
+      flex-wrap: wrap;
+    }
+
+    /* SEARCH */
+
+    .search {
+      margin-bottom: 20px;
+    }
+
+    .search input {
+      width: 100%;
+
+      padding: 13px 15px;
+
+      border: 1px solid #d0d5dd;
+
+      border-radius: 11px;
+
+      outline: none;
+    }
+
+    /* PRODUCTS */
+
+    .products-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 17px;
+    }
+
+    .product-card {
+      border: 1px solid #eaecf0;
+
+      border-radius: 15px;
+
+      overflow: hidden;
+
+      background: #fff;
+
+      position: relative;
+    }
+
+    .product-card.trending {
+      border:
+        2px solid #d81b60;
+    }
+
+    .product-image {
+      width: 100%;
+
+      height: 220px;
+
+      object-fit: cover;
+
+      background: #f2f4f7;
+    }
+
+    .product-body {
+      padding: 15px;
+    }
+
+    .product-category {
+      font-size: 10px;
+
+      text-transform: uppercase;
+
+      letter-spacing: 1px;
+
+      color: #d81b60;
+
+      font-weight: 900;
+
+      margin-bottom: 4px;
+    }
+
+    .product-name {
+      font-size: 15px;
+
+      font-weight: 900;
+
+      margin-bottom: 6px;
+    }
+
+    .product-description {
+      font-size: 12px;
+
+      color: #667085;
+
+      min-height: 34px;
+
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 17px;
+
+      font-weight: 900;
+    }
+
+    .mrp {
+      margin-left: 5px;
+
+      color: #98a2b3;
+
+      text-decoration: line-through;
+
+      font-size: 12px;
+    }
+
+    .badge {
+      display: inline-block;
+
+      padding: 5px 8px;
+
+      border-radius: 7px;
+
+      font-size: 9px;
+
+      font-weight: 900;
+
+      margin-top: 10px;
+    }
+
+    .badge-trending {
+      background: #fce7f3;
+
+      color: #be185d;
+    }
+
+    .badge-normal {
+      background: #e0f2fe;
+
+      color: #0369a1;
+    }
+
+    .product-actions {
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap: 7px;
+
+      margin-top: 14px;
+    }
+
+    .product-actions button {
+      border: 0;
+
+      padding: 9px 6px;
+
+      border-radius: 8px;
+
+      font-size: 11px;
+
+      font-weight: 800;
+    }
+
+    .edit-btn {
+      background: #eef2ff;
+      color: #3730a3;
+    }
+
+    .delete-btn {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .trend-btn {
+      grid-column: 1 / -1;
+    }
+
+    .make-trending {
+      background: #d81b60;
+      color: #fff;
+    }
+
+    .remove-trending {
+      background: #fce7f3;
+      color: #be185d;
+    }
+
+    .empty {
+      padding: 50px 20px;
+
+      text-align: center;
+
+      color: #667085;
+
+      border: 1px dashed #d0d5dd;
+
+      border-radius: 15px;
+    }
+
+    /* IMAGE PREVIEW */
+
+    .image-preview {
+      margin-top: 10px;
+
+      border-radius: 12px;
+
+      overflow: hidden;
+
+      background: #f2f4f7;
+
+      display: none;
+    }
+
+    .image-preview.show {
+      display: block;
+    }
+
+    .image-preview img {
+      width: 100%;
+
+      max-height: 220px;
+
+      object-fit: cover;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1100px) {
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .products-grid {
+        grid-template-columns:
+          repeat(3, 1fr);
+      }
+
+    }
+
+    @media (max-width: 800px) {
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .products-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .user-email {
+        display: none;
+      }
+
+      .page-title {
+        align-items: flex-start;
+
+        flex-direction: column;
+      }
+
+    }
+
+    @media (max-width: 550px) {
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .login-card {
+        padding: 25px;
+      }
+
+    }
+
+  </style>
+
 </head>
+
+
 <body>
 
-    <aside>
-        <div class="logo">Style<span>Easy</span></div>
-        <nav>
-            <ul>
-                <li><a href="#" class="active"><i class="fas fa-male"></i> <span>Men's Wear Admin</span></a></li>
-            </ul>
-        </nav>
-    </aside>
 
-    <main>
-        <header>
-            <h1>Men's Wear Dedicated Control Center</h1>
-            <div class="db-status"><i class="fas fa-circle"></i> Connected to /menswear Node</div>
-        </header>
+  <!-- HEADER -->
 
-        <div class="dashboard-grid">
-            <section class="card">
-                <h2>Add Men's Product</h2>
-                <form id="menswearForm">
-                    <div class="form-group">
-                        <label>Product Title</label>
-                        <input type="text" id="title" required placeholder="e.g., Slim Fit Royal Blue Shirt">
-                    </div>
-                    <div class="form-group">
-                        <label>Price (₹)</label>
-                        <input type="number" id="price" min="0" required placeholder="e.g., 1499">
-                    </div>
-                    <div class="form-group">
-                        <label>Image URL</label>
-                        <input type="url" id="imageUrl" required placeholder="https://images.unsplash.com/...">
-                    </div>
-                    <div class="form-group">
-                        <label>WhatsApp Order Link</label>
-                        <input type="url" id="buyLink" required placeholder="https://wa.me/...">
-                    </div>
-                    <div class="form-group">
-                        <label>Product Specifications / Material Details</label>
-                        <textarea id="description" rows="4" required placeholder="Crafted with 100% premium cotton fabric..."></textarea>
-                    </div>
-                    <button type="submit" class="btn">Publish to Men's Store</button>
-                </form>
-            </section>
+  <header class="header">
 
-            <section class="card">
-                <h2>Live Inventory Monitor</h2>
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Item</th>
-                                <th>Product Title</th>
-                                <th>Price</th>
-                                <th>Category</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="menswearInventoryTable"></tbody>
-                    </table>
-                </div>
-            </section>
+    <div class="container header-inner">
+
+      <div class="brand">
+        Style<span>Easy</span> Admin
+      </div>
+
+      <div
+        class="header-actions"
+        id="headerActions"
+        style="display:none;"
+      >
+
+        <span
+          class="user-email"
+          id="userEmail"
+        ></span>
+
+        <button
+          class="btn btn-secondary"
+          id="logoutBtn"
+        >
+          Logout
+        </button>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- LOGIN -->
+
+  <section
+    class="login-wrapper"
+    id="loginSection"
+  >
+
+    <div class="login-card">
+
+      <h1>
+        Admin Login
+      </h1>
+
+      <p>
+        Login to manage StyleEasy trending products.
+      </p>
+
+
+      <div
+        id="loginStatus"
+        class="status"
+      ></div>
+
+
+      <form id="loginForm">
+
+        <div class="field">
+
+          <label for="loginEmail">
+            Email
+          </label>
+
+          <input
+            id="loginEmail"
+            type="email"
+            placeholder="admin@example.com"
+            autocomplete="email"
+            required
+          >
+
         </div>
-    </main>
 
-    <script>
-        // Realtime Database credentials synced with your dashboard
-        const firebaseConfig = {
-            apiKey: "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
-            authDomain: "lucky-triode-450317-g7.firebaseapp.com",
-            databaseURL: "https://lucky-triode-450317-g7-default-rtdb.firebaseio.com/", 
-            projectId: "lucky-triode-450317-g7",
-            storageBucket: "lucky-triode-450317-g7.firebasestorage.app",
-            messagingSenderId: "778199870672",
-            appId: "1:778199870672:web:62a9891e41b3a3d3f242d5"
-        };
-        
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
 
-        const form = document.getElementById('menswearForm');
-        const tableBody = document.getElementById('menswearInventoryTable');
+        <div class="field">
 
-        // 👇 TARGETED ENGINE: Read data ONLY from 'products/menswear'
-        database.ref('products/menswear').on('value', (snapshot) => {
-            tableBody.innerHTML = '';
-            const data = snapshot.val();
-            
-            if(!data) {
-                tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#999; padding:40px;">No garments found in Men's Wear archive.</td></tr>`;
-                return;
-            }
+          <label for="loginPassword">
+            Password
+          </label>
 
-            Object.keys(data).forEach((key) => {
-                const product = data[key];
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td><img src="${product.imageUrl || ''}" class="img-preview" alt="Preview"></td>
-                    <td><strong>${escapeHTML(product.title)}</strong></td>
-                    <td>₹${escapeHTML(product.price)}</td>
-                    <td><span class="badge-cat-fixed">Men's Wear</span></td>
-                    <td>
-                        <button class="delete-btn" onclick="removeItem('${key}')">
-                            <i class="fas fa-trash-alt"></i>
+          <input
+            id="loginPassword"
+            type="password"
+            placeholder="Enter password"
+            autocomplete="current-password"
+            required
+          >
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          style="width:100%;"
+        >
+          Login
+        </button>
+
+      </form>
+
+    </div>
+
+  </section>
+
+
+  <!-- ADMIN -->
+
+  <main
+    class="admin-page"
+    id="adminSection"
+    style="display:none;"
+  >
+
+    <div class="container">
+
+
+      <!-- TITLE -->
+
+      <div class="page-title">
+
+        <div>
+
+          <h1>
+            Trending Products
+          </h1>
+
+          <p>
+            Manage products displayed in the StyleEasy homepage Trending Products section.
+          </p>
+
+        </div>
+
+        <a
+          href="/"
+          target="_blank"
+          class="btn btn-secondary"
+        >
+          View Homepage
+        </a>
+
+      </div>
+
+
+      <!-- STATUS -->
+
+      <div
+        id="status"
+        class="status"
+      ></div>
+
+
+      <!-- STATS -->
+
+      <div class="stats">
+
+        <div class="stat-card">
+
+          <div class="stat-label">
+            Total Products
+          </div>
+
+          <div
+            class="stat-value"
+            id="totalProducts"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <div class="stat-label">
+            Trending Products
+          </div>
+
+          <div
+            class="stat-value stat-trending"
+            id="trendingProducts"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <div class="stat-label">
+            Normal Products
+          </div>
+
+          <div
+            class="stat-value stat-normal"
+            id="normalProducts"
+          >
+            0
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- DASHBOARD -->
+
+      <div class="dashboard-grid">
+
+
+        <!-- FORM -->
+
+        <div class="panel">
+
+          <h2 id="formTitle">
+            Add Product
+          </h2>
+
+
+          <form id="productForm">
+
+            <input
+              type="hidden"
+              id="productId"
+            >
+
+
+            <div class="field">
+
+              <label for="productName">
+                Product Name *
+              </label>
+
+              <input
+                id="productName"
+                type="text"
+                placeholder="Pink Sequin Party Wear Dress"
+                required
+              >
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="productDescription">
+                Description
+              </label>
+
+              <textarea
+                id="productDescription"
+                placeholder="Stylish party wear dress for special occasions."
+              ></textarea>
+
+            </div>
+
+
+            <div
+              style="
+                display:grid;
+                grid-template-columns:1fr 1fr;
+                gap:10px;
+              "
+            >
+
+              <div class="field">
+
+                <label for="productPrice">
+                  Price
+                </label>
+
+                <input
+                  id="productPrice"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  placeholder="799"
+                >
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="productMrp">
+                  MRP
+                </label>
+
+                <input
+                  id="productMrp"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  placeholder="1499"
+                >
+
+              </div>
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="productCategory">
+                Category
+              </label>
+
+              <select id="productCategory">
+
+                <option value="Girl Dresses">
+                  Girl Dresses
+                </option>
+
+                <option value="Beauty">
+                  Beauty
+                </option>
+
+                <option value="Footwear">
+                  Footwear
+                </option>
+
+                <option value="Men's Fashion">
+                  Men's Fashion
+                </option>
+
+                <option value="Other">
+                  Other
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="productImage">
+                Image URL *
+              </label>
+
+              <input
+                id="productImage"
+                type="url"
+                placeholder="https://example.com/product.jpg"
+                required
+              >
+
+              <div
+                class="image-preview"
+                id="imagePreview"
+              >
+
+                <img
+                  id="previewImage"
+                  src=""
+                  alt="Product preview"
+                >
+
+              </div>
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="productLink">
+                Product / Buy URL *
+              </label>
+
+              <input
+                id="productLink"
+                type="url"
+                placeholder="https://example.com/product"
+                required
+              >
+
+            </div>
+
+
+            <div class="checkbox-row">
+
+              <input
+                id="productTrending"
+                type="checkbox"
+              >
+
+              <label for="productTrending">
+                Make this product Trending
+              </label>
+
+            </div>
+
+
+            <div class="form-actions">
+
+              <button
+                type="submit"
+                class="btn btn-primary"
+                id="saveBtn"
+              >
+                Add Product
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-secondary"
+                id="resetBtn"
+              >
+                Reset
+              </button>
+
+            </div>
+
+          </form>
+
+        </div>
+
+
+        <!-- PRODUCTS -->
+
+        <div class="panel">
+
+          <h2>
+            Product Catalogue
+          </h2>
+
+
+          <div class="search">
+
+            <input
+              id="productSearch"
+              type="search"
+              placeholder="Search products..."
+            >
+
+          </div>
+
+
+          <div
+            id="productGrid"
+            class="products-grid"
+          >
+
+            <div class="empty">
+              Loading products...
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- FIREBASE -->
+
+  <script type="module">
+
+    import {
+      initializeApp
+    } from
+    "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+
+
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signInWithEmailAndPassword,
+      signOut
+    } from
+    "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+
+    import {
+      getFirestore,
+      collection,
+      getDocs,
+      addDoc,
+      updateDoc,
+      deleteDoc,
+      doc,
+      serverTimestamp
+    } from
+    "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+
+    /* FIREBASE CONFIG */
+
+    const firebaseConfig = {
+
+      apiKey:
+        "AIzaSyDKVwHm3-RO3IkycB8VdwizUYQLgasGqzk",
+
+      authDomain:
+        "lucky-triode-450317-g7.firebaseapp.com",
+
+      projectId:
+        "lucky-triode-450317-g7",
+
+      storageBucket:
+        "lucky-triode-450317-g7.firebasestorage.app",
+
+      messagingSenderId:
+        "778199870672",
+
+      appId:
+        "1:778199870672:web:62a9891e41b3a3d3f242d5"
+
+    };
+
+
+    const app =
+      initializeApp(firebaseConfig);
+
+
+    const auth =
+      getAuth(app);
+
+
+    const db =
+      getFirestore(app);
+
+
+    /* DOM */
+
+    const loginSection =
+      document.getElementById("loginSection");
+
+    const adminSection =
+      document.getElementById("adminSection");
+
+    const headerActions =
+      document.getElementById("headerActions");
+
+    const userEmail =
+      document.getElementById("userEmail");
+
+    const loginForm =
+      document.getElementById("loginForm");
+
+    const loginStatus =
+      document.getElementById("loginStatus");
+
+    const logoutBtn =
+      document.getElementById("logoutBtn");
+
+    const productForm =
+      document.getElementById("productForm");
+
+    const productGrid =
+      document.getElementById("productGrid");
+
+    const productSearch =
+      document.getElementById("productSearch");
+
+    const formTitle =
+      document.getElementById("formTitle");
+
+    const saveBtn =
+      document.getElementById("saveBtn");
+
+    const resetBtn =
+      document.getElementById("resetBtn");
+
+    const statusBox =
+      document.getElementById("status");
+
+
+    let products = [];
+
+
+    /* HELPERS */
+
+    function escapeHTML(value) {
+
+      return String(value ?? "")
+
+        .replace(/&/g, "&amp;")
+
+        .replace(/</g, "&lt;")
+
+        .replace(/>/g, "&gt;")
+
+        .replace(/"/g, "&quot;")
+
+        .replace(/'/g, "&#039;");
+
+    }
+
+
+    function safeUrl(
+      value,
+      fallback = "#"
+    ) {
+
+      if (!value) return fallback;
+
+      try {
+
+        const url =
+          new URL(
+            String(value),
+            window.location.origin
+          );
+
+
+        if (
+          url.protocol === "http:" ||
+          url.protocol === "https:"
+        ) {
+
+          return url.href;
+
+        }
+
+
+        return fallback;
+
+      } catch {
+
+        return fallback;
+
+      }
+
+    }
+
+
+    function showStatus(
+      message,
+      type = "info"
+    ) {
+
+      statusBox.textContent =
+        message;
+
+      statusBox.className =
+        `status show ${type}`;
+
+      setTimeout(() => {
+
+        statusBox.className =
+          "status";
+
+      }, 4000);
+
+    }
+
+
+    function showLoginStatus(
+      message,
+      type = "info"
+    ) {
+
+      loginStatus.textContent =
+        message;
+
+      loginStatus.className =
+        `status show ${type}`;
+
+    }
+
+
+    /* AUTH */
+
+    onAuthStateChanged(
+      auth,
+      async user => {
+
+        if (user) {
+
+          loginSection.style.display =
+            "none";
+
+          adminSection.style.display =
+            "block";
+
+          headerActions.style.display =
+            "flex";
+
+          userEmail.textContent =
+            user.email || user.uid;
+
+
+          await loadProducts();
+
+        } else {
+
+          loginSection.style.display =
+            "flex";
+
+          adminSection.style.display =
+            "none";
+
+          headerActions.style.display =
+            "none";
+
+        }
+
+      }
+    );
+
+
+    /* LOGIN */
+
+    loginForm.addEventListener(
+      "submit",
+      async event => {
+
+        event.preventDefault();
+
+
+        const email =
+          document
+            .getElementById("loginEmail")
+            .value
+            .trim();
+
+
+        const password =
+          document
+            .getElementById("loginPassword")
+            .value;
+
+
+        try {
+
+          showLoginStatus(
+            "Logging in...",
+            "info"
+          );
+
+
+          await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+          );
+
+
+          showLoginStatus(
+            "Login successful.",
+            "success"
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "Login error:",
+            error
+          );
+
+
+          let message =
+            "Login failed. Please check your email and password.";
+
+
+          if (
+            error.code ===
+            "auth/invalid-credential"
+          ) {
+
+            message =
+              "Invalid email or password.";
+
+          }
+
+
+          if (
+            error.code ===
+            "auth/user-not-found"
+          ) {
+
+            message =
+              "Admin account not found.";
+
+          }
+
+
+          if (
+            error.code ===
+            "auth/wrong-password"
+          ) {
+
+            message =
+              "Incorrect password.";
+
+          }
+
+
+          showLoginStatus(
+            message,
+            "error"
+          );
+
+        }
+
+      }
+    );
+
+
+    /* LOGOUT */
+
+    logoutBtn.addEventListener(
+      "click",
+      async () => {
+
+        try {
+
+          await signOut(auth);
+
+        } catch (error) {
+
+          console.error(
+            "Logout error:",
+            error
+          );
+
+        }
+
+      }
+    );
+
+
+    /* LOAD PRODUCTS */
+
+    async function loadProducts() {
+
+      try {
+
+        const snapshot =
+          await getDocs(
+            collection(db, "products")
+          );
+
+
+        products =
+          snapshot.docs.map(
+            item => ({
+
+              id: item.id,
+
+              ...item.data()
+
+            })
+          );
+
+
+        updateStats();
+
+        renderProducts(products);
+
+
+      } catch (error) {
+
+        console.error(
+          "Load products error:",
+          error
+        );
+
+
+        productGrid.innerHTML = `
+
+          <div class="empty">
+
+            Unable to load products.
+
+            <br><br>
+
+            <small>
+              ${escapeHTML(error.message)}
+            </small>
+
+          </div>
+
+        `;
+
+      }
+
+    }
+
+
+    /* STATS */
+
+    function updateStats() {
+
+      const total =
+        products.length;
+
+
+      const trending =
+        products.filter(
+          product =>
+            product.trending === true
+        ).length;
+
+
+      const normal =
+        total - trending;
+
+
+      document
+        .getElementById("totalProducts")
+        .textContent = total;
+
+
+      document
+        .getElementById("trendingProducts")
+        .textContent = trending;
+
+
+      document
+        .getElementById("normalProducts")
+        .textContent = normal;
+
+    }
+
+
+    /* RENDER */
+
+    function renderProducts(
+      list
+    ) {
+
+      if (!list.length) {
+
+        productGrid.innerHTML = `
+
+          <div class="empty">
+
+            No products found.
+
+            <br><br>
+
+            Add your first product using
+            the form.
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      productGrid.innerHTML =
+        list.map(product => {
+
+          const name =
+            escapeHTML(
+              product.name ||
+              "Unnamed Product"
+            );
+
+
+          const description =
+            escapeHTML(
+              product.description ||
+              ""
+            );
+
+
+          const category =
+            escapeHTML(
+              product.category ||
+              "Other"
+            );
+
+
+          const image =
+            safeUrl(
+              product.image,
+              "/assets/styleeasy.png"
+            );
+
+
+          const price =
+            Number(product.price);
+
+
+          const mrp =
+            Number(product.mrp);
+
+
+          const hasPrice =
+            Number.isFinite(price);
+
+
+          const hasMrp =
+            Number.isFinite(mrp);
+
+
+          const trending =
+            product.trending === true;
+
+
+          return `
+
+            <article
+              class="product-card ${trending ? "trending" : ""}"
+            >
+
+              <img
+                class="product-image"
+                src="${image}"
+                alt="${name}"
+                loading="lazy"
+                onerror="this.src='/assets/styleeasy.png';"
+              >
+
+
+              <div class="product-body">
+
+                <div class="product-category">
+                  ${category}
+                </div>
+
+
+                <div class="product-name">
+                  ${name}
+                </div>
+
+
+                <div class="product-description">
+                  ${description}
+                </div>
+
+
+                <div>
+
+                  ${
+                    hasPrice
+                      ? `
+                        <span class="price">
+                          ₹${price.toLocaleString("en-IN")}
+                        </span>
+                      `
+                      : ""
+                  }
+
+
+                  ${
+                    hasMrp
+                      ? `
+                        <span class="mrp">
+                          ₹${mrp.toLocaleString("en-IN")}
+                        </span>
+                      `
+                      : ""
+                  }
+
+                </div>
+
+
+                ${
+                  trending
+
+                    ? `
+                      <span class="badge badge-trending">
+                        TRENDING ON HOMEPAGE
+                      </span>
+                    `
+
+                    : `
+                      <span class="badge badge-normal">
+                        NORMAL PRODUCT
+                      </span>
+                    `
+                }
+
+
+                <div class="product-actions">
+
+                  <button
+                    class="edit-btn"
+                    onclick="editProduct('${product.id}')"
+                  >
+                    Edit
+                  </button>
+
+
+                  <button
+                    class="delete-btn"
+                    onclick="deleteProduct('${product.id}')"
+                  >
+                    Delete
+                  </button>
+
+
+                  ${
+                    trending
+
+                      ? `
+                        <button
+                          class="trend-btn remove-trending"
+                          onclick="toggleTrending('${product.id}')"
+                        >
+                          Remove Trending
                         </button>
-                    </td>
-                `;
-                tableBody.appendChild(tr);
-            });
-        });
+                      `
 
-        // Anti-HTML Injection Engine
-        function escapeHTML(str) {
-            return String(str).replace(/[&<>"']/g, function(m) {
-                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
-            });
+                      : `
+                        <button
+                          class="trend-btn make-trending"
+                          onclick="toggleTrending('${product.id}')"
+                        >
+                          Make Trending
+                        </button>
+                      `
+                  }
+
+                </div>
+
+              </div>
+
+            </article>
+
+          `;
+
+        }).join("");
+
+    }
+
+
+    /* SAVE PRODUCT */
+
+    productForm.addEventListener(
+      "submit",
+      async event => {
+
+        event.preventDefault();
+
+
+        const productId =
+          document
+            .getElementById("productId")
+            .value
+            .trim();
+
+
+        const name =
+          document
+            .getElementById("productName")
+            .value
+            .trim();
+
+
+        const description =
+          document
+            .getElementById("productDescription")
+            .value
+            .trim();
+
+
+        const price =
+          document
+            .getElementById("productPrice")
+            .value;
+
+
+        const mrp =
+          document
+            .getElementById("productMrp")
+            .value;
+
+
+        const category =
+          document
+            .getElementById("productCategory")
+            .value;
+
+
+        const image =
+          document
+            .getElementById("productImage")
+            .value
+            .trim();
+
+
+        const link =
+          document
+            .getElementById("productLink")
+            .value
+            .trim();
+
+
+        const trending =
+          document
+            .getElementById("productTrending")
+            .checked;
+
+
+        if (!name) {
+
+          showStatus(
+            "Product name is required.",
+            "error"
+          );
+
+          return;
+
         }
 
-        // 👇 DATA WRITER: Push form payloads securely under 'products/menswear'
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const newGarment = {
-                title: document.getElementById('title').value.trim(),
-                price: document.getElementById('price').value.trim(),
-                imageUrl: document.getElementById('imageUrl').value.trim(),
-                buyLink: document.getElementById('buyLink').value.trim(), 
-                description: document.getElementById('description').value.trim()
-            };
 
-            database.ref('products/menswear').push(newGarment).then(() => {
-                alert('Product uploaded to Men\'s Wear store successfully!');
-                form.reset();
-            }).catch(err => alert('Sync Failure: ' + err.message));
+        if (!image) {
+
+          showStatus(
+            "Product image URL is required.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        if (!link) {
+
+          showStatus(
+            "Product URL is required.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        const productData = {
+
+          name,
+
+          description,
+
+          price:
+            price === ""
+              ? null
+              : Number(price),
+
+          mrp:
+            mrp === ""
+              ? null
+              : Number(mrp),
+
+          category,
+
+          image,
+
+          link,
+
+          trending,
+
+          updatedAt:
+            serverTimestamp()
+
+        };
+
+
+        try {
+
+          saveBtn.disabled = true;
+
+          saveBtn.textContent =
+            productId
+              ? "Updating..."
+              : "Adding...";
+
+
+          if (productId) {
+
+            await updateDoc(
+
+              doc(
+                db,
+                "products",
+                productId
+              ),
+
+              productData
+
+            );
+
+
+            showStatus(
+              "Product updated successfully.",
+              "success"
+            );
+
+          } else {
+
+            productData.createdAt =
+              serverTimestamp();
+
+
+            await addDoc(
+
+              collection(
+                db,
+                "products"
+              ),
+
+              productData
+
+            );
+
+
+            showStatus(
+              "Product added successfully.",
+              "success"
+            );
+
+          }
+
+
+          resetForm();
+
+          await loadProducts();
+
+
+        } catch (error) {
+
+          console.error(
+            "Save product error:",
+            error
+          );
+
+
+          showStatus(
+            "Could not save product: " +
+            error.message,
+            "error"
+          );
+
+        } finally {
+
+          saveBtn.disabled =
+            false;
+
+          saveBtn.textContent =
+            productId
+              ? "Update Product"
+              : "Add Product";
+
+        }
+
+      }
+    );
+
+
+    /* EDIT */
+
+    window.editProduct =
+      function(id) {
+
+        const product =
+          products.find(
+            item =>
+              item.id === id
+          );
+
+
+        if (!product) {
+
+          showStatus(
+            "Product not found.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        document
+          .getElementById("productId")
+          .value =
+            product.id;
+
+
+        document
+          .getElementById("productName")
+          .value =
+            product.name || "";
+
+
+        document
+          .getElementById("productDescription")
+          .value =
+            product.description || "";
+
+
+        document
+          .getElementById("productPrice")
+          .value =
+            product.price ?? "";
+
+
+        document
+          .getElementById("productMrp")
+          .value =
+            product.mrp ?? "";
+
+
+        document
+          .getElementById("productCategory")
+          .value =
+            product.category ||
+            "Other";
+
+
+        document
+          .getElementById("productImage")
+          .value =
+            product.image || "";
+
+
+        document
+          .getElementById("productLink")
+          .value =
+            product.link || "";
+
+
+        document
+          .getElementById("productTrending")
+          .checked =
+            product.trending === true;
+
+
+        formTitle.textContent =
+          "Edit Product";
+
+
+        saveBtn.textContent =
+          "Update Product";
+
+
+        updateImagePreview();
+
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
         });
 
-        // REMOTE REMOVAL CONTROLLER
-        window.removeItem = function(firebaseKey) {
-            if(confirm("Are you sure you want to remove this item from the Men's Store?")) {
-                database.ref('products/menswear').child(firebaseKey).remove();
+      };
+
+
+    /* TOGGLE TRENDING */
+
+    window.toggleTrending =
+      async function(id) {
+
+        const product =
+          products.find(
+            item =>
+              item.id === id
+          );
+
+
+        if (!product) {
+
+          showStatus(
+            "Product not found.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        const newValue =
+          product.trending !== true;
+
+
+        try {
+
+          await updateDoc(
+
+            doc(
+              db,
+              "products",
+              id
+            ),
+
+            {
+
+              trending:
+                newValue,
+
+              updatedAt:
+                serverTimestamp()
+
             }
+
+          );
+
+
+          showStatus(
+
+            newValue
+              ? "Product is now trending on homepage."
+              : "Product removed from trending.",
+
+            "success"
+
+          );
+
+
+          await loadProducts();
+
+
+        } catch (error) {
+
+          console.error(
+            "Toggle trending error:",
+            error
+          );
+
+
+          showStatus(
+            "Could not update trending status: " +
+            error.message,
+            "error"
+          );
+
         }
-    </script>
+
+      };
+
+
+    /* DELETE */
+
+    window.deleteProduct =
+      async function(id) {
+
+        const product =
+          products.find(
+            item =>
+              item.id === id
+          );
+
+
+        if (!product) {
+
+          showStatus(
+            "Product not found.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        const confirmed =
+          confirm(
+            `Delete "${product.name || "this product"}"?\n\nThis action cannot be undone.`
+          );
+
+
+        if (!confirmed) return;
+
+
+        try {
+
+          await deleteDoc(
+
+            doc(
+              db,
+              "products",
+              id
+            )
+
+          );
+
+
+          showStatus(
+            "Product deleted successfully.",
+            "success"
+          );
+
+
+          await loadProducts();
+
+
+        } catch (error) {
+
+          console.error(
+            "Delete product error:",
+            error
+          );
+
+
+          showStatus(
+            "Could not delete product: " +
+            error.message,
+            "error"
+          );
+
+        }
+
+      };
+
+
+    /* RESET */
+
+    function resetForm() {
+
+      productForm.reset();
+
+
+      document
+        .getElementById("productId")
+        .value = "";
+
+
+      formTitle.textContent =
+        "Add Product";
+
+
+      saveBtn.textContent =
+        "Add Product";
+
+
+      const preview =
+        document.getElementById(
+          "imagePreview"
+        );
+
+
+      preview.classList.remove(
+        "show"
+      );
+
+
+      document
+        .getElementById("previewImage")
+        .src = "";
+
+    }
+
+
+    resetBtn.addEventListener(
+      "click",
+      resetForm
+    );
+
+
+    /* IMAGE PREVIEW */
+
+    function updateImagePreview() {
+
+      const image =
+        document
+          .getElementById("productImage")
+          .value
+          .trim();
+
+
+      const preview =
+        document.getElementById(
+          "imagePreview"
+        );
+
+
+      const previewImage =
+        document.getElementById(
+          "previewImage"
+        );
+
+
+      if (!image) {
+
+        preview.classList.remove(
+          "show"
+        );
+
+        previewImage.src = "";
+
+        return;
+
+      }
+
+
+      previewImage.src =
+        image;
+
+
+      preview.classList.add(
+        "show"
+      );
+
+    }
+
+
+    document
+      .getElementById("productImage")
+      .addEventListener(
+        "input",
+        updateImagePreview
+      );
+
+
+    /* SEARCH */
+
+    productSearch.addEventListener(
+      "input",
+      () => {
+
+        const query =
+          productSearch.value
+            .trim()
+            .toLowerCase();
+
+
+        if (!query) {
+
+          renderProducts(
+            products
+          );
+
+          return;
+
+        }
+
+
+        const filtered =
+          products.filter(
+            product => {
+
+              const name =
+                String(
+                  product.name || ""
+                ).toLowerCase();
+
+
+              const category =
+                String(
+                  product.category || ""
+                ).toLowerCase();
+
+
+              const description =
+                String(
+                  product.description || ""
+                ).toLowerCase();
+
+
+              return (
+
+                name.includes(query) ||
+
+                category.includes(query) ||
+
+                description.includes(query)
+
+              );
+
+            }
+          );
+
+
+        renderProducts(
+          filtered
+        );
+
+      }
+    );
+
+  </script>
+
 </body>
+
 </html>
