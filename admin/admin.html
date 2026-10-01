@@ -1,828 +1,1122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8Y4KXCKM"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-BD8Y4KXCKM');
-    </script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Queen Style | Royal Admin Panel - Manage Fashion Empire</title>
-    <meta name="description" content="Queen Style Admin Dashboard - Manage users, orders, products, and oversee your royal fashion empire with powerful analytics and control.">
-    <meta name="keywords" content="admin panel, queen style admin, fashion admin dashboard, ecommerce admin, royale management">
-    <meta name="robots" content="noindex, nofollow">
-    <link rel="canonical" href="https://queenstyle.com/admin">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231e3a8a'/%3E%3Ctext x='50' y='67' font-size='50' text-anchor='middle' fill='%23d4af37'%3EQ%3C/text%3E%3C/svg%3E">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMAZONAFFLICATION - Royal E-Commerce Affiliate Suite</title>
 
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Chart.js for Analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        royal: {
+                            950: '#06040A',
+                            900: '#0B0712',
+                            800: '#140E21',
+                            700: '#201633',
+                            600: '#31224D',
+                            500: '#483270'
+                        },
+                        gold: {
+                            300: '#FDE047',
+                            400: '#FACC15',
+                            500: '#D97706',
+                            600: '#B45309',
+                        },
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
         body {
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            background: linear-gradient(135deg, #0a0e1a 0%, #0f172a 100%);
-            min-height: 100vh;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #06040A;
+            color: #E2E8F0;
             overflow-x: hidden;
         }
 
-        /* Admin Container */
-        .admin-container {
-            display: flex;
-            min-height: 100vh;
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 3px;
         }
 
-        /* ========= SIDEBAR ========= */
-        .sidebar {
-            width: 280px;
-            background: linear-gradient(180deg, rgba(15, 23, 42, 0.98) 0%, rgba(10, 15, 30, 0.98) 100%);
-            backdrop-filter: blur(10px);
-            padding: 30px 20px;
-            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
-            position: fixed;
-            height: 100vh;
-            overflow-y: auto;
-            z-index: 10;
-            border-right: 1px solid rgba(212, 175, 55, 0.15);
-        }
-
-        .sidebar-header {
-            text-align: center;
-            padding-bottom: 30px;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            margin-bottom: 30px;
-        }
-
-        .sidebar-header .crown {
-            font-size: 2.5rem;
-            margin-bottom: 8px;
-            animation: gentleFloat 3s ease-in-out infinite;
-        }
-
-        @keyframes gentleFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .sidebar-header h2 {
-            font-size: 1.6rem;
-            background: linear-gradient(135deg, #d4af37, #fbbf24, #f59e0b);
+        /* Gold Gradient Text & Effects */
+        .text-gold-gradient {
+            background: linear-gradient(135deg, #FFF1B0 0%, #D4AF37 50%, #996515 100%);
             -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: -0.5px;
+            -webkit-text-fill-color: transparent;
         }
 
-        .sidebar-header p {
-            color: #94a3b8;
-            font-size: 0.7rem;
-            margin-top: 6px;
-            letter-spacing: 1px;
+        .bg-gold-gradient {
+            background: linear-gradient(135deg, #F5D77F 0%, #D4AF37 50%, #996515 100%);
         }
 
-        .nav-item {
-            padding: 14px 20px;
-            margin: 6px 0;
-            color: #cbd5e1;
-            cursor: pointer;
-            border-radius: 14px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            font-weight: 500;
+        .bg-gold-soft {
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.25);
         }
 
-        .nav-item:hover {
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.6), rgba(124, 58, 237, 0.4));
-            color: white;
-            transform: translateX(5px);
+        .gold-border {
+            border-color: rgba(212, 175, 55, 0.25);
         }
 
-        .nav-item.active {
-            background: linear-gradient(135deg, #1e3a8a, #7c3aed);
-            color: white;
-            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+        .glass-panel {
+            background: rgba(20, 14, 33, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.18);
         }
 
-        .nav-icon {
-            font-size: 1.3rem;
-        }
-
-        /* ========= MAIN CONTENT ========= */
-        .main-content {
-            flex: 1;
-            margin-left: 280px;
-            padding: 30px 40px;
-            overflow-y: auto;
-            min-height: 100vh;
-        }
-
-        /* Top Bar */
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .page-title h1 {
-            color: white;
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #fff, #d4af37);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .page-title p {
-            color: #94a3b8;
-            font-size: 0.85rem;
-            margin-top: 5px;
-        }
-
-        .admin-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-            padding: 8px 20px;
-            border-radius: 60px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        .admin-avatar {
-            width: 44px;
-            height: 44px;
-            background: linear-gradient(135deg, #d4af37, #fbbf24);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: #1e1b4b;
-        }
-
-        .admin-details .name {
-            font-weight: 700;
-            color: white;
-        }
-
-        .admin-details .email {
-            font-size: 0.7rem;
-            color: #94a3b8;
-        }
-
-        .logout-btn {
-            background: rgba(220, 38, 38, 0.15);
-            border: 1px solid #ef4444;
-            color: #ef4444;
-            padding: 8px 18px;
-            border-radius: 40px;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-weight: 600;
-        }
-
-        .logout-btn:hover {
-            background: #ef4444;
-            color: white;
-            transform: translateY(-1px);
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 24px;
-            margin-bottom: 40px;
-        }
-
-        .stat-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
-            backdrop-filter: blur(10px);
-            padding: 24px;
-            border-radius: 24px;
+        .glass-card {
+            background: linear-gradient(145deg, rgba(32, 22, 51, 0.6) 0%, rgba(20, 14, 33, 0.85) 100%);
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(212, 175, 55, 0.15);
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            border-color: rgba(212, 175, 55, 0.3);
+        .glass-card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px -5px rgba(212, 175, 55, 0.15);
         }
 
-        .stat-card h3 {
-            color: #94a3b8;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
+        .nav-link.active {
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0) 100%);
+            border-left: 3px solid #D4AF37;
+            color: #FFF1B0;
         }
 
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #d4af37, #fbbf24);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+        @keyframes crownGlow {
+            0%, 100% { filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.6)); }
+            50% { filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.9)); }
         }
 
-        /* Users Section */
-        .users-section {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.2));
-            border-radius: 28px;
-            padding: 28px;
-            margin-top: 20px;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .section-header h3 {
-            color: white;
-            font-size: 1.4rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .refresh-btn {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(251, 191, 36, 0.1));
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            padding: 10px 22px;
-            border-radius: 40px;
-            color: #d4af37;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-
-        .refresh-btn:hover {
-            background: rgba(212, 175, 55, 0.3);
-            transform: translateY(-1px);
-        }
-
-        /* Table Styles */
-        .users-table {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            color: #cbd5e1;
-        }
-
-        th, td {
-            padding: 14px 12px;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        th {
-            color: #d4af37;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 0.5px;
-        }
-
-        tr:hover {
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        .admin-badge {
-            background: linear-gradient(135deg, #d4af37, #fbbf24);
-            color: #1e1b4b;
-            padding: 4px 12px;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            font-weight: 700;
-        }
-
-        .user-badge {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 4px 12px;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            color: #94a3b8;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 50px;
-            color: #64748b;
-            font-size: 0.95rem;
-        }
-
-        .action-btn {
-            background: rgba(239, 68, 68, 0.2);
-            border: none;
-            color: #ef4444;
-            padding: 5px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.7rem;
-            transition: all 0.2s;
-        }
-
-        .action-btn:hover {
-            background: #ef4444;
-            color: white;
-        }
-
-        /* Recent Orders Section */
-        .orders-section {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.2));
-            border-radius: 28px;
-            padding: 28px;
-            margin-top: 30px;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .status-delivered {
-            color: #10b981;
-            background: rgba(16, 185, 129, 0.15);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            display: inline-block;
-        }
-
-        .status-pending {
-            color: #f59e0b;
-            background: rgba(245, 158, 11, 0.15);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            display: inline-block;
-        }
-
-        /* Responsive */
-        @media (max-width: 900px) {
-            .sidebar {
-                width: 80px;
-                padding: 20px 10px;
-            }
-            .sidebar-header h2, .nav-item span:not(.nav-icon) {
-                display: none;
-            }
-            .nav-item {
-                justify-content: center;
-                padding: 14px;
-            }
-            .main-content {
-                margin-left: 80px;
-                padding: 20px;
-            }
-            .stats-grid {
-                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-                gap: 15px;
-            }
-        }
-
-        @media (max-width: 550px) {
-            .main-content {
-                padding: 15px;
-            }
-            .top-bar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .stat-number {
-                font-size: 1.8rem;
-            }
-            th, td {
-                padding: 10px 8px;
-                font-size: 0.8rem;
-            }
+        .royal-crown {
+            animation: crownGlow 3s infinite ease-in-out;
         }
     </style>
 </head>
-<body>
-<div class="admin-container">
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <div class="crown">👑</div>
-            <h2>QUEEN STYLE</h2>
-            <p>ROYAL ADMIN</p>
-        </div>
-        <div class="nav-item active" onclick="switchSection('dashboard')">
-            <span class="nav-icon">📊</span>
-            <span>Dashboard</span>
-        </div>
-        <div class="nav-item" onclick="switchSection('users')">
-            <span class="nav-icon">👥</span>
-            <span>Users</span>
-        </div>
-      <button 
-  onclick="window.location.href='orders.html'" 
-  style="
-    display:flex;
-    align-items:center;
-    gap:10px;
-    width: 240px;
-    padding:12px 18px;
-    border:none;
-    border-radius:12px;
-    background:rgba(255,255,255,0.1);
-    backdrop-filter:blur(10px);
-    color:#333;
-    font-size:16px;
-    cursor:pointer;
-    transition:all 0.3s ease;
-  "
-  onmouseover="this.style.background='linear-gradient(135deg,#ff7eb3,#ff758c)'; this.style.color='white'; this.style.transform='translateY(-3px)'"
-  onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.color='#333'; this.style.transform='translateY(0)'"
->
-  <span style="font-size:18px;">🛍️</span>
-  <span>Orders</span>
-</button>
-        <div class="nav-item" onclick="switchSection('analytics')">
-            <span class="nav-icon">📈</span>
-            <span>Analytics</span>
-        </div>
-    </div>
+<body class="bg-royal-950 text-slate-200 antialiased min-h-screen flex">
 
-    <div class="main-content">
-        <div class="top-bar">
-            <div class="page-title">
-                <h1>Royal Dashboard</h1>
-                <p>Welcome to your fashion empire command center</p>
-            </div>
-            <div class="admin-info">
-                <div class="admin-avatar" id="adminAvatar">A</div>
-                <div class="admin-details">
-                    <div class="name" id="adminName">Administrator</div>
-                    <div class="email" id="adminEmail">admin@queenstyle.com</div>
+    <!-- SIDEBAR NAVIGATION -->
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 glass-panel border-r gold-border transition-transform duration-300 ease-in-out md:translate-x-0 -translate-x-full flex flex-col justify-between">
+        <div class="overflow-y-auto max-h-screen pb-20">
+            <!-- Logo Header -->
+            <div class="h-20 flex items-center px-5 border-b gold-border justify-between sticky top-0 bg-royal-900/90 backdrop-blur-md z-10">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gold-gradient flex items-center justify-center text-royal-950 shadow-lg font-bold">
+                        <i class="fa-solid fa-crown text-lg royal-crown"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-serif text-sm font-bold tracking-wider text-gold-gradient">AMAZONAFFLICATION</h1>
+                        <p class="text-[9px] tracking-widest text-amber-300/70 uppercase">Affiliate Admin Suite</p>
+                    </div>
                 </div>
-                <button class="logout-btn" onclick="logout()">🚪 Logout</button>
-            </div>
-        </div>
-
-        <!-- Dashboard Section -->
-        <div id="dashboardSection">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h3>👑 Total Users</h3>
-                    <div class="stat-number" id="totalUsers">0</div>
-                </div>
-                <div class="stat-card">
-                    <h3>🛍️ Total Orders</h3>
-                    <div class="stat-number" id="totalOrders">0</div>
-                </div>
-                <div class="stat-card">
-                    <h3>💰 Total Revenue</h3>
-                    <div class="stat-number" id="totalRevenue">$0</div>
-                </div>
-                <div class="stat-card">
-                    <h3>✨ Active Sessions</h3>
-                    <div class="stat-number" id="activeUsers">1</div>
-                </div>
+                <button onclick="toggleSidebar()" class="md:hidden text-amber-200 hover:text-white">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
             </div>
 
-            <div class="users-section">
-                <div class="section-header">
-                    <h3>📋 Recent Registered Users</h3>
-                    <button class="refresh-btn" onclick="loadAllData()">⟳ Refresh</button>
+            <!-- Main Navigation Links -->
+            <div class="px-3 py-4 space-y-6">
+                <!-- Overview Section -->
+                <div>
+                    <p class="text-[10px] font-bold text-amber-400/60 uppercase tracking-widest px-3 mb-2">Core Hub</p>
+                    <nav class="space-y-1">
+                        <a href="#dashboard" onclick="navigateTo('dashboard')" id="nav-dashboard" class="nav-link active flex items-center px-3 py-2.5 text-xs font-medium rounded-r-xl transition-colors hover:bg-gold-soft">
+                            <i class="fa-solid fa-chart-pie w-6 text-amber-400"></i>
+                            <span>Dashboard & Stats</span>
+                        </a>
+                        <a href="#products" onclick="navigateTo('products')" id="nav-products" class="nav-link flex items-center px-3 py-2.5 text-xs font-medium rounded-r-xl transition-colors hover:bg-gold-soft">
+                            <i class="fa-solid fa-boxes-stacked w-6 text-amber-400"></i>
+                            <span>All Products Manager</span>
+                        </a>
+                        <a href="#tag-manager" onclick="navigateTo('tag-manager')" id="nav-tag-manager" class="nav-link flex items-center px-3 py-2.5 text-xs font-medium rounded-r-xl transition-colors hover:bg-gold-soft">
+                            <i class="fa-solid fa-tags w-6 text-amber-400"></i>
+                            <span>Amazon Tag & Tracker</span>
+                        </a>
+                        <a href="#deals" onclick="navigateTo('deals')" id="nav-deals" class="nav-link flex items-center px-3 py-2.5 text-xs font-medium rounded-r-xl transition-colors hover:bg-gold-soft">
+                            <i class="fa-solid fa-fire w-6 text-amber-400"></i>
+                            <span>Deals & Banner Ads</span>
+                        </a>
+                    </nav>
                 </div>
-                <div class="users-table">
-                    <div id="recentUsersList"><div class="empty-state">Loading users...</div></div>
-                </div>
-            </div>
 
-            <div class="orders-section">
-                <div class="section-header">
-                    <h3>📦 Recent Orders</h3>
-                    <button class="refresh-btn" onclick="loadAllData()">⟳ Refresh</button>
-                </div>
-                <div class="users-table">
-                    <div id="recentOrdersList"><div class="empty-state">Loading orders...</div></div>
-                </div>
-            </div>
-        </div>
+                <!-- Specific Category Admins (Matches Workspace Structure) -->
+                <div>
+    <p class="text-[10px] font-bold text-amber-400/60 uppercase tracking-widest px-3 mb-2">
+        Category Modules
+    </p>
 
-        <!-- Users Section (Full) -->
-        <div id="usersSection" style="display: none;">
-            <div class="users-section">
-                <div class="section-header">
-                    <h3>👑 All Registered Users</h3>
-                    <button class="refresh-btn" onclick="loadAllData()">⟳ Refresh</button>
-                </div>
-                <div class="users-table">
-                    <div id="allUsersList"><div class="empty-state">Loading users...</div></div>
-                </div>
-            </div>
-        </div>
+    <nav class="space-y-1">
 
-        <!-- Orders Section (Full) -->
-        <div id="ordersSection" style="display: none;">
-            <div class="orders-section">
-                <div class="section-header">
-                    <h3>🛍️ All Orders</h3>
-                    <button class="refresh-btn" onclick="loadAllData()">⟳ Refresh</button>
-                </div>
-                <div class="users-table">
-                    <div id="allOrdersList"><div class="empty-state">Loading orders...</div></div>
-                </div>
-            </div>
-        </div>
+        <!-- Beauty -->
+        <a href="/admin/beauty-admin.html"
+           onclick="navigateToCategory('Beauty')"
+           class="cat-nav-link flex items-center px-3 py-2 text-xs text-slate-300 rounded-r-xl transition-colors hover:bg-gold-soft">
+            <i class="fa-solid fa-wand-magic-sparkles w-5 text-amber-400/80"></i>
+            <span>Beauty Admin</span>
+        </a>
 
-        <!-- Analytics Section -->
-        <div id="analyticsSection" style="display: none;">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h3>📊 User Growth</h3>
-                    <div class="stat-number" id="userGrowth">+0%</div>
-                </div>
-                <div class="stat-card">
-                    <h3>🎯 Order Completion</h3>
-                    <div class="stat-number" id="completionRate">0%</div>
-                </div>
-                <div class="stat-card">
-                    <h3>⭐ Avg Order Value</h3>
-                    <div class="stat-number" id="avgOrderValue">$0</div>
-                </div>
-            </div>
-            <div class="users-section">
-                <div class="section-header">
-                    <h3>📈 Platform Insights</h3>
-                </div>
-                <div class="empty-state" style="text-align: left; padding: 30px;">
-                    <p>✨ Queen Style is thriving with royal customers worldwide.</p>
-                    <p>👑 Premium membership conversions: <strong id="conversionEstimate">0%</strong></p>
-                    <p>📅 Last 30 days activity: Active and growing</p>
-                </div>
-            </div>
-        </div>
-    </div>
+        <!-- Face Cream -->
+        <a href="/admin/face-cream-admin.html"
+           onclick="navigateToCategory('Face Cream')"
+           class="cat-nav-link flex items-center px-3 py-2 text-xs text-slate-300 rounded-r-xl transition-colors hover:bg-gold-soft">
+            <i class="fa-solid fa-pump-soap w-5 text-amber-400/80"></i>
+            <span>Face Cream Admin</span>
+        </a>
+
+        <!-- Footwear -->
+        <a href="/admin/footwear-admin.html"
+           onclick="navigateToCategory('Footwear')"
+           class="cat-nav-link flex items-center px-3 py-2 text-xs text-slate-300 rounded-r-xl transition-colors hover:bg-gold-soft">
+            <i class="fa-solid fa-shoe-prints w-5 text-amber-400/80"></i>
+            <span>Footwear Admin</span>
+        </a>
+
+        <!-- Lipstick -->
+        <a href="/admin/lipstick-admin.html"
+           onclick="navigateToCategory('Lipstick')"
+           class="cat-nav-link flex items-center px-3 py-2 text-xs text-slate-300 rounded-r-xl transition-colors hover:bg-gold-soft">
+            <i class="fa-solid fa-lipstick w-5 text-amber-400/80"></i>
+            <span>Lipstick Admin</span>
+        </a>
+
+        <!-- Menswear -->
+        <a href="/admin/mensware.html"
+           onclick="navigateToCategory('Menswear')"
+           class="cat-nav-link flex items-center px-3 py-2 text-xs text-slate-300 rounded-r-xl transition-colors hover:bg-gold-soft">
+            <i class="fa-solid fa-user-tie w-5 text-amber-400/80"></i>
+            <span>Menswear Admin</span>
+        </a>
+
+        <!-- Party Wear -->
+        <a href="/admin/party-wear.html"
+           onclick="navigateToCategory('Party Wear')"
+           class="cat-nav-link flex items-center px-3 py-2 text-xs text-slate-300 rounded-r-xl transition-colors hover:bg-gold-soft">
+            <i class="fa-solid fa-vest w-5 text-amber-400/80"></i>
+            <span>Party Wear Admin</span>
+        </a>
+
+        <!-- Birthday Dresses -->
+        <a href="/admin/birthday-dresses.html"
+           onclick="navigateToCategory('Birthday Dresses')"
+           class="cat-nav-link flex items-center px-3 py-2 text-xs text-slate-300 rounded-r-xl transition-colors hover:bg-gold-soft">
+            <i class="fa-solid fa-cake-candles w-5 text-amber-400/80"></i>
+            <span>Birthday Dresses</span>
+        </a>
+
+        <!-- Casual Girl Dresses -->
+        <a href="/admin/casual-dresses.html"
+           onclick="navigateToCategory('Casual Girl Dresses')"
+           class="cat-nav-link flex items-center px-3 py-2 text-xs text-slate-300 rounded-r-xl transition-colors hover:bg-gold-soft">
+            <i class="fa-solid fa-shirt w-5 text-amber-400/80"></i>
+            <span>Casual Girl Dresses</span>
+        </a>
+
+        <!-- Frock Dresses -->
+        <a href="/admin/frock-dresses.html"
+           onclick="navigateToCategory('Frock Dresses')"
+           class="cat-nav-link flex items-center px-3 py-2 text-xs text-slate-300 rounded-r-xl transition-colors hover:bg-gold-soft">
+            <i class="fa-solid fa-person-dress w-5 text-amber-400/80"></i>
+            <span>Frock Dresses</span>
+        </a>
+
+        <!-- Girl Skirts -->
+        <a href="/admin/girl-skirts.html"
+           onclick="navigateToCategory('Girl Skirts')"
+           class="cat-nav-link flex items-center px-3 py-2 text-xs text-slate-300 rounded-r-xl transition-colors hover:bg-gold-soft">
+            <i class="fa-solid fa-layer-group w-5 text-amber-400/80"></i>
+            <span>Girl Skirts</span>
+        </a>
+
+        <!-- Girls Tops -->
+        <a href="/admin/gadmin.html"
+           onclick="navigateToCategory('Girls Tops')"
+           class="cat-nav-link flex items-center px-3 py-2 text-xs text-slate-300 rounded-r-xl transition-colors hover:bg-gold-soft">
+            <i class="fa-solid fa-vest-patches w-5 text-amber-400/80"></i>
+            <span>Girls Tops</span>
+        </a>
+
+    </nav>
 </div>
 
-<script>
-    // Admin Email constant
-    const ADMIN_EMAIL = "mailak@gmail.com";
+                <!-- Site Pages Management -->
+                <div>
+                    <p class="text-[10px] font-bold text-amber-400/60 uppercase tracking-widest px-3 mb-2">Content & Pages</p>
+                    <nav class="space-y-1">
+                        <a href="#pages" onclick="navigateTo('pages')" id="nav-pages" class="nav-link flex items-center px-3 py-2.5 text-xs font-medium rounded-r-xl transition-colors hover:bg-gold-soft">
+                            <i class="fa-solid fa-file-contract w-6 text-amber-400"></i>
+                            <span>Disclosures & Info Pages</span>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
 
-    // Helper functions
-    function escapeHtml(str) {
-        if (!str) return '';
-        return str.replace(/[&<>]/g, function(m) {
-            if (m === '&') return '&amp;';
-            if (m === '<') return '&lt;';
-            if (m === '>') return '&gt;';
-            return m;
+        <!-- Sidebar Footer -->
+        <div class="p-4 border-t gold-border bg-royal-900/80 backdrop-blur-md">
+            <div class="flex items-center justify-between text-xs">
+                <div class="flex items-center space-x-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="text-amber-200 font-medium">Tag: <strong id="sidebarTagDisplay" class="text-gold-300">myaff-20</strong></span>
+                </div>
+                <button onclick="openTagModal()" class="text-amber-400 hover:text-amber-200"><i class="fa-solid fa-gear"></i></button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="flex-1 flex flex-col md:pl-64 min-w-0 min-h-screen">
+        
+        <!-- TOP NAVBAR -->
+        <header class="h-20 glass-panel sticky top-0 z-40 px-6 flex items-center justify-between border-b gold-border">
+            <div class="flex items-center space-x-4">
+                <button onclick="toggleSidebar()" class="md:hidden text-amber-300 focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+                <div class="relative hidden sm:block w-64 md:w-80">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-amber-400/50 text-xs"></i>
+                    <input type="text" id="globalSearch" oninput="handleGlobalSearch(this.value)" placeholder="Search products, ASINs, categories..." class="w-full bg-royal-800/80 border gold-border rounded-full pl-9 pr-4 py-2 text-xs text-amber-100 placeholder-amber-400/40 focus:outline-none focus:border-amber-400 transition-colors">
+                </div>
+            </div>
+
+            <!-- Top Right Action Controls -->
+            <div class="flex items-center space-x-3 sm:space-x-4">
+                <!-- Amazon Tag Quick Status -->
+                <div class="hidden lg:flex items-center space-x-2 bg-royal-800/80 border gold-border px-3 py-1.5 rounded-full text-xs">
+                    <i class="fa-brands fa-amazon text-amber-400"></i>
+                    <span class="text-slate-300">Active Tag:</span>
+                    <span id="headerTagBadge" class="font-bold text-amber-300">myaff-20</span>
+                </div>
+
+                <!-- Export CSV Button -->
+                <button onclick="exportProductsCSV()" class="flex items-center space-x-2 bg-gold-soft text-amber-200 hover:text-white px-3.5 py-2 rounded-full border gold-border text-xs font-semibold transition-all hover:border-amber-400">
+                    <i class="fa-solid fa-file-csv text-amber-400"></i>
+                    <span class="hidden sm:inline">Export CSV</span>
+                </button>
+
+                <!-- Add New Product Trigger -->
+                <button onclick="openProductModal()" class="bg-gold-gradient text-royal-950 font-bold px-4 py-2 rounded-full text-xs hover:brightness-110 transition-all shadow-md flex items-center space-x-1.5">
+                    <i class="fa-solid fa-plus text-xs"></i>
+                    <span class="hidden sm:inline">Add Product</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- MAIN CONTAINER -->
+        <main class="flex-1 p-4 md:p-8 space-y-8 max-w-7xl w-full mx-auto">
+
+            <!-- SECTION 1: DASHBOARD VIEW -->
+            <section id="view-dashboard" class="space-y-8 transition-opacity duration-300">
+                <!-- Welcome Banner -->
+                <div class="relative overflow-hidden rounded-3xl glass-card p-6 md:p-8 border gold-border bg-gradient-to-r from-royal-800 via-royal-700 to-royal-900">
+                    <div class="absolute -right-10 -bottom-10 opacity-10 text-amber-300 pointer-events-none">
+                        <i class="fa-brands fa-amazon text-[220px]"></i>
+                    </div>
+                    <div class="relative z-10 max-w-2xl">
+                        <span class="inline-block px-3 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold rounded-full mb-3">
+                            <i class="fa-solid fa-crown mr-1"></i> Amazon Affiliate HQ
+                        </span>
+                        <h2 class="font-serif text-2xl md:text-4xl font-bold text-gold-gradient mb-2">AMAZONAFFLICATION Control Scepter</h2>
+                        <p class="text-slate-300 text-xs md:text-sm leading-relaxed">
+                            Manage all category modules, track Amazon associate tags, optimize high-conversion fashion & beauty products, and monitor click analytics.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- KPI Cards Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                    <div class="glass-card rounded-2xl p-5 flex items-center justify-between">
+                        <div>
+                            <p class="text-xs uppercase tracking-wider text-amber-300/70 font-semibold">Total Listed Products</p>
+                            <h3 id="stat-total-products" class="text-2xl font-bold font-serif text-amber-100 mt-1">0</h3>
+                            <p class="text-[11px] text-emerald-400 mt-2 flex items-center">
+                                <i class="fa-solid fa-arrow-trend-up mr-1"></i> Across 11 Categories
+                            </p>
+                        </div>
+                        <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border gold-border flex items-center justify-center text-amber-400 text-xl">
+                            <i class="fa-solid fa-box-open"></i>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 flex items-center justify-between">
+                        <div>
+                            <p class="text-xs uppercase tracking-wider text-amber-300/70 font-semibold">Affiliate Clicks</p>
+                            <h3 id="stat-total-clicks" class="text-2xl font-bold font-serif text-amber-100 mt-1">0</h3>
+                            <p class="text-[11px] text-amber-400 mt-2 flex items-center">
+                                <i class="fa-solid fa-mouse-pointer mr-1"></i> Generated outbound
+                            </p>
+                        </div>
+                        <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border gold-border flex items-center justify-center text-amber-400 text-xl">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 flex items-center justify-between">
+                        <div>
+                            <p class="text-xs uppercase tracking-wider text-amber-300/70 font-semibold">Estimated Revenue</p>
+                            <h3 id="stat-est-commission" class="text-2xl font-bold font-serif text-amber-100 mt-1">$0.00</h3>
+                            <p class="text-[11px] text-emerald-400 mt-2 flex items-center">
+                                <i class="fa-solid fa-coins mr-1"></i> ~5% Avg Amazon Comm.
+                            </p>
+                        </div>
+                        <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border gold-border flex items-center justify-center text-amber-400 text-xl">
+                            <i class="fa-solid fa-sack-dollar"></i>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 flex items-center justify-between">
+                        <div>
+                            <p class="text-xs uppercase tracking-wider text-amber-300/70 font-semibold">Active Tag Health</p>
+                            <h3 class="text-2xl font-bold font-serif text-emerald-400 mt-1">100% Valid</h3>
+                            <p class="text-[11px] text-amber-300/80 mt-2 flex items-center">
+                                <i class="fa-solid fa-circle-check mr-1"></i> Auto-Appended
+                            </p>
+                        </div>
+                        <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border gold-border flex items-center justify-center text-amber-400 text-xl">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Area -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2 glass-card rounded-2xl p-6 border gold-border">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-serif text-sm font-bold text-amber-200">Category Distribution & Clicks</h3>
+                            <span class="text-[10px] text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-full border border-amber-500/20">Live Sync</span>
+                        </div>
+                        <div class="h-64 relative">
+                            <canvas id="dashboardCategoryChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-6 border gold-border flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-serif text-sm font-bold text-amber-200 mb-4">Quick Amazon Tag Generator</h3>
+                            <div class="space-y-4 text-xs">
+                                <div>
+                                    <label class="block text-amber-300/80 mb-1">Paste Raw Amazon Link:</label>
+                                    <input type="text" id="quickLinkInput" placeholder="https://amazon.com/dp/B08N5WRWNW" class="w-full bg-royal-800/80 border gold-border rounded-xl p-2.5 text-amber-100 placeholder-slate-500 focus:outline-none focus:border-amber-400">
+                                </div>
+                                <button onclick="quickGenerateAffiliateLink()" class="w-full bg-gold-gradient text-royal-950 font-bold py-2.5 rounded-xl hover:brightness-110">
+                                    <i class="fa-solid fa-bolt mr-1"></i> Append Tag & Copy
+                                </button>
+                                <div>
+                                    <label class="block text-amber-300/80 mb-1">Generated Output:</label>
+                                    <input type="text" id="quickLinkOutput" readonly placeholder="Tagged link will appear here..." class="w-full bg-royal-900 border gold-border rounded-xl p-2.5 text-gold-300 focus:outline-none text-[11px] font-mono">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top Performing Products Table Preview -->
+                <div class="glass-card rounded-2xl border gold-border overflow-hidden">
+                    <div class="p-6 border-b gold-border flex items-center justify-between">
+                        <div>
+                            <h3 class="font-serif text-lg font-bold text-amber-200">Top Featured Affiliate Picks</h3>
+                            <p class="text-xs text-slate-400">High performing items synced across all category pages</p>
+                        </div>
+                        <button onclick="navigateTo('products')" class="text-xs text-amber-400 hover:text-amber-300 underline font-semibold">Manage All Products</button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs text-slate-300">
+                            <thead class="bg-royal-800/80 text-amber-300 uppercase font-semibold text-[10px] tracking-wider border-b gold-border">
+                                <tr>
+                                    <th class="p-4">Item</th>
+                                    <th class="p-4">Category Module</th>
+                                    <th class="p-4">Price ($)</th>
+                                    <th class="p-4">Clicks</th>
+                                    <th class="p-4">Status</th>
+                                    <th class="p-4 text-right">Affiliate Link</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dashboard-products-table" class="divide-y divide-amber-500/10">
+                                <!-- Dynamic Insertion -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: ALL PRODUCTS MASTER MANAGER -->
+            <section id="view-products" class="hidden space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <h2 id="productsSectionTitle" class="font-serif text-2xl font-bold text-gold-gradient">Master Affiliate Products</h2>
+                        <p class="text-xs text-slate-400">Manage all products, change categories, update prices & affiliate URLs.</p>
+                    </div>
+                    <button onclick="openProductModal()" class="bg-gold-gradient text-royal-950 font-bold px-4 py-2.5 rounded-xl text-xs hover:brightness-110 shadow-lg flex items-center space-x-2 self-start sm:self-auto">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Add New Affiliate Item</span>
+                    </button>
+                </div>
+
+                <!-- Filter Controls Bar -->
+                <div class="glass-card rounded-2xl p-4 flex flex-col sm:flex-row gap-4 justify-between items-center">
+                    <div class="relative w-full sm:w-72">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-amber-400/50 text-xs"></i>
+                        <input type="text" id="productSearchInput" oninput="renderProductsTable()" placeholder="Search title or ASIN..." class="w-full bg-royal-800/80 border gold-border rounded-xl pl-9 pr-3 py-2 text-xs text-amber-100 placeholder-amber-400/40 focus:outline-none focus:border-amber-400">
+                    </div>
+                    <div class="flex items-center space-x-3 w-full sm:w-auto">
+                        <select id="categoryFilter" onchange="renderProductsTable()" class="bg-royal-800/80 border gold-border rounded-xl px-3 py-2 text-xs text-amber-200 focus:outline-none">
+                            <option value="ALL">All Categories</option>
+                            <option value="Beauty">Beauty</option>
+                            <option value="Face Cream">Face Cream</option>
+                            <option value="Footwear">Footwear</option>
+                            <option value="Lipstick">Lipstick</option>
+                            <option value="Menswear">Menswear</option>
+                            <option value="Party Wear">Party Wear</option>
+                            <option value="Birthday Dresses">Birthday Dresses</option>
+                            <option value="Casual Girl Dresses">Casual Girl Dresses</option>
+                            <option value="Frock Dresses">Frock Dresses</option>
+                            <option value="Girl Skirts">Girl Skirts</option>
+                            <option value="Girls Tops">Girls Tops</option>
+                        </select>
+
+                        <select id="statusFilter" onchange="renderProductsTable()" class="bg-royal-800/80 border gold-border rounded-xl px-3 py-2 text-xs text-amber-200 focus:outline-none">
+                            <option value="ALL">All Status</option>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Main Products Table -->
+                <div class="glass-card rounded-2xl border gold-border overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs text-slate-300">
+                            <thead class="bg-royal-800/90 text-amber-300 uppercase font-semibold text-[10px] tracking-wider border-b gold-border">
+                                <tr>
+                                    <th class="p-4">Product Details</th>
+                                    <th class="p-4">Category</th>
+                                    <th class="p-4">Price ($)</th>
+                                    <th class="p-4">Clicks</th>
+                                    <th class="p-4">Status</th>
+                                    <th class="p-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="master-products-table-body" class="divide-y divide-amber-500/10">
+                                <!-- Dynamic JS population -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 3: AMAZON TAG & LINK TRACKER -->
+            <section id="view-tag-manager" class="hidden space-y-6">
+                <div>
+                    <h2 class="font-serif text-2xl font-bold text-gold-gradient">Amazon Tag & Link Converter</h2>
+                    <p class="text-xs text-slate-400">Configure global affiliate Associate Tag and convert standard URLs.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="glass-card rounded-2xl p-6 border gold-border space-y-4">
+                        <h3 class="font-serif text-lg font-bold text-amber-200">Global Tag Configuration</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Setting your Associate Tag here automatically attaches <code class="text-amber-300 font-mono">?tag=yourtag</code> to all generated affiliate links on your storefront.
+                        </p>
+                        <div>
+                            <label class="block text-amber-300 text-xs font-semibold mb-1">Amazon Associate Tracking ID:</label>
+                            <div class="flex space-x-2">
+                                <input type="text" id="globalTagInput" value="myaff-20" class="flex-1 bg-royal-800 border gold-border rounded-xl px-3 py-2 text-xs text-amber-100 focus:outline-none focus:border-amber-400 font-mono">
+                                <button onclick="saveGlobalTag()" class="bg-gold-gradient text-royal-950 font-bold px-4 py-2 rounded-xl text-xs hover:brightness-110">Save Tag</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-6 border gold-border space-y-4">
+                        <h3 class="font-serif text-lg font-bold text-amber-200">Commission Calculator</h3>
+                        <p class="text-xs text-slate-400">Estimate earnings based on monthly click volume and conversion rates.</p>
+                        <div class="grid grid-cols-2 gap-3 text-xs">
+                            <div>
+                                <label class="text-slate-300 block mb-1">Est. Monthly Clicks</label>
+                                <input type="number" id="calcClicks" value="5000" oninput="calculateCommission()" class="w-full bg-royal-800 border gold-border rounded-xl p-2 text-amber-100">
+                            </div>
+                            <div>
+                                <label class="text-slate-300 block mb-1">Avg Order Value ($)</label>
+                                <input type="number" id="calcAOV" value="45" oninput="calculateCommission()" class="w-full bg-royal-800 border gold-border rounded-xl p-2 text-amber-100">
+                            </div>
+                        </div>
+                        <div class="p-3 bg-amber-500/10 border gold-border rounded-xl flex items-center justify-between">
+                            <span class="text-xs text-amber-200 font-semibold">Est. Monthly Payout:</span>
+                            <span id="calcResult" class="text-lg font-serif font-bold text-gold-gradient">$6,750.00</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 4: DEALS & BANNERS MANAGER -->
+            <section id="view-deals" class="hidden space-y-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="font-serif text-2xl font-bold text-gold-gradient">Deals & Banner Ads Manager</h2>
+                        <p class="text-xs text-slate-400">Manage promotional banners, hero sliders, and Amazon discount links.</p>
+                    </div>
+                    <button onclick="showToast('New Banner Slot Added', 'success')" class="bg-gold-gradient text-royal-950 font-bold px-4 py-2 rounded-xl text-xs hover:brightness-110">
+                        <i class="fa-solid fa-plus mr-1"></i> Add Banner
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="glass-card rounded-2xl p-5 border gold-border space-y-3">
+                        <div class="h-32 bg-royal-800 rounded-xl flex items-center justify-center border gold-border relative overflow-hidden">
+                            <span class="text-amber-300/40 text-xs font-serif font-bold">HERO BANNER: 50% OFF FESTIVE FASHION</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-amber-300 font-semibold">Homepage Hero Slot #1</span>
+                            <span class="text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Active</span>
+                        </div>
+                        <p class="text-slate-400 text-[11px]">Targeting: Menswear & Party Wear Category Header</p>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 border gold-border space-y-3">
+                        <div class="h-32 bg-royal-800 rounded-xl flex items-center justify-center border gold-border relative overflow-hidden">
+                            <span class="text-amber-300/40 text-xs font-serif font-bold">SIDEBAR AD: BEAUTY & SKINCARE MUST-HAVES</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-amber-300 font-semibold">Sidebar Banner Slot #2</span>
+                            <span class="text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Active</span>
+                        </div>
+                        <p class="text-slate-400 text-[11px]">Targeting: Face Cream & Lipstick Detail Sidebar</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 5: CONTENT & PAGES MANAGER -->
+            <section id="view-pages" class="hidden space-y-6">
+                <div>
+                    <h2 class="font-serif text-2xl font-bold text-gold-gradient">Site Info & Disclosure Pages</h2>
+                    <p class="text-xs text-slate-400">Edit affiliate disclosures, contact info, and legal compliance pages.</p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 border gold-border space-y-4">
+                    <h3 class="font-serif text-base font-bold text-amber-200">Amazon Associate FTC Disclosure Text</h3>
+                    <textarea id="disclosureText" rows="4" class="w-full bg-royal-800/80 border gold-border rounded-xl p-3 text-xs text-amber-100 focus:outline-none focus:border-amber-400">AMAZONAFFLICATION is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com.</textarea>
+                    <button onclick="saveDisclosure()" class="bg-gold-gradient text-royal-950 font-bold px-4 py-2 rounded-xl text-xs hover:brightness-110">Save Disclosures</button>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- MODALS CONTAINER -->
+
+    <!-- Add/Edit Product Modal -->
+    <div id="productModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-panel border gold-border w-full max-w-lg rounded-3xl p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('productModal')" class="absolute top-5 right-5 text-amber-300/70 hover:text-white">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <h3 id="productModalTitle" class="font-serif text-xl font-bold text-gold-gradient mb-4">Add New Affiliate Product</h3>
+            
+            <form id="productForm" onsubmit="handleProductSubmit(event)" class="space-y-4 text-xs">
+                <input type="hidden" id="modalProductId">
+                
+                <div>
+                    <label class="block text-amber-300 font-medium mb-1">Product Title</label>
+                    <input type="text" id="modalProductTitle" required placeholder="e.g. L'Oreal Paris Hydrating Face Cream" class="w-full bg-royal-800 border gold-border rounded-xl p-3 text-amber-100 focus:outline-none focus:border-amber-400">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-amber-300 font-medium mb-1">Category Module</label>
+                        <select id="modalProductCategory" required class="w-full bg-royal-800 border gold-border rounded-xl p-3 text-amber-100 focus:outline-none focus:border-amber-400">
+                            <option value="Beauty">Beauty</option>
+                            <option value="Face Cream">Face Cream</option>
+                            <option value="Footwear">Footwear</option>
+                            <option value="Lipstick">Lipstick</option>
+                            <option value="Menswear">Menswear</option>
+                            <option value="Party Wear">Party Wear</option>
+                            <option value="Birthday Dresses">Birthday Dresses</option>
+                            <option value="Casual Girl Dresses">Casual Girl Dresses</option>
+                            <option value="Frock Dresses">Frock Dresses</option>
+                            <option value="Girl Skirts">Girl Skirts</option>
+                            <option value="Girls Tops">Girls Tops</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-amber-300 font-medium mb-1">Price ($ USD)</label>
+                        <input type="number" step="0.01" id="modalProductPrice" required placeholder="29.99" class="w-full bg-royal-800 border gold-border rounded-xl p-3 text-amber-100 focus:outline-none focus:border-amber-400">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-amber-300 font-medium mb-1">Amazon Product URL (Tag will auto-append)</label>
+                    <input type="url" id="modalProductUrl" required placeholder="https://www.amazon.com/dp/B08N5WRWNW" class="w-full bg-royal-800 border gold-border rounded-xl p-3 text-amber-100 focus:outline-none focus:border-amber-400">
+                </div>
+
+                <div>
+                    <label class="block text-amber-300 font-medium mb-1">Product Image URL</label>
+                    <input type="url" id="modalProductImage" required placeholder="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500" class="w-full bg-royal-800 border gold-border rounded-xl p-3 text-amber-100 focus:outline-none focus:border-amber-400">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-amber-300 font-medium mb-1">Status</label>
+                        <select id="modalProductStatus" class="w-full bg-royal-800 border gold-border rounded-xl p-3 text-amber-100 focus:outline-none focus:border-amber-400">
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-amber-300 font-medium mb-1">Initial Click Count</label>
+                        <input type="number" id="modalProductClicks" value="0" class="w-full bg-royal-800 border gold-border rounded-xl p-3 text-amber-100 focus:outline-none focus:border-amber-400">
+                    </div>
+                </div>
+
+                <div class="pt-2 flex justify-end space-x-3">
+                    <button type="button" onclick="closeModal('productModal')" class="px-4 py-2 bg-royal-800 text-slate-300 rounded-xl hover:bg-royal-700">Cancel</button>
+                    <button type="submit" class="px-5 py-2 bg-gold-gradient text-royal-950 font-bold rounded-xl hover:brightness-110">Save Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="glass-panel border gold-border px-5 py-3 rounded-2xl flex items-center space-x-3 shadow-2xl">
+            <i id="toast-icon" class="fa-solid fa-crown text-amber-400 text-lg"></i>
+            <span id="toast-message" class="text-xs font-semibold text-amber-100">Notification message</span>
+        </div>
+    </div>
+
+    <script>
+        // Default Mock Affiliate Product Database matching User Workspace Structure
+        const DEFAULT_PRODUCTS = [
+            { id: 'AFF-101', title: 'Royal Radiance Vitamin C Serum', category: 'Beauty', price: 24.99, clicks: 342, status: 'Active', url: 'https://amazon.com/dp/B08N5WRWNW?tag=myaff-20', image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400' },
+            { id: 'AFF-102', title: 'Hydrating Night Repair Cream', category: 'Face Cream', price: 38.50, clicks: 512, status: 'Active', url: 'https://amazon.com/dp/B07X123ABC?tag=myaff-20', image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400' },
+            { id: 'AFF-103', title: 'Velvet Matte Royal Red Lipstick', category: 'Lipstick', price: 18.00, clicks: 289, status: 'Active', url: 'https://amazon.com/dp/B08Y456DEF?tag=myaff-20', image: 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400' },
+            { id: 'AFF-104', title: 'Italian Leather Men Oxfords', category: 'Footwear', price: 110.00, clicks: 198, status: 'Active', url: 'https://amazon.com/dp/B09Z789GHI?tag=myaff-20', image: 'https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=400' },
+            { id: 'AFF-105', title: 'Classic Tailored Tuxedo Suit', category: 'Menswear', price: 210.00, clicks: 145, status: 'Active', url: 'https://amazon.com/dp/B01A234JKL?tag=myaff-20', image: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400' },
+            { id: 'AFF-106', title: 'Glitter Sequins Party Dress', category: 'Party Wear', price: 89.99, clicks: 420, status: 'Active', url: 'https://amazon.com/dp/B02B345MNO?tag=myaff-20', image: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=400' },
+            { id: 'AFF-107', title: 'Princess Tulle Birthday Gown', category: 'Birthday Dresses', price: 45.00, clicks: 230, status: 'Active', url: 'https://amazon.com/dp/B03C456PQR?tag=myaff-20', image: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=400' },
+            { id: 'AFF-108', title: 'Floral Cotton Casual Girl Dress', category: 'Casual Girl Dresses', price: 22.50, clicks: 175, status: 'Active', url: 'https://amazon.com/dp/B04D567STU?tag=myaff-20', image: 'https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=400' },
+            { id: 'AFF-109', title: 'Vintage Ruffle Frock Dress', category: 'Frock Dresses', price: 34.00, clicks: 110, status: 'Active', url: 'https://amazon.com/dp/B05E678VWX?tag=myaff-20', image: 'https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?w=400' },
+            { id: 'AFF-110', title: 'Pleated A-Line Girl Skirt', category: 'Girl Skirts', price: 19.99, clicks: 95, status: 'Active', url: 'https://amazon.com/dp/B06F789YZ1?tag=myaff-20', image: 'https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=400' },
+            { id: 'AFF-111', title: 'Embroidered Lace Girls Top', category: 'Girls Tops', price: 16.50, clicks: 130, status: 'Active', url: 'https://amazon.com/dp/B07G890234?tag=myaff-20', image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=400' }
+        ];
+
+        // State Initialization
+        let products = JSON.parse(localStorage.getItem('amazaff_products')) || DEFAULT_PRODUCTS;
+        let amazonTag = localStorage.getItem('amazaff_tag') || 'myaff-20';
+        let categoryChart = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            saveState();
+            updateTagUI();
+            renderDashboard();
+            renderProductsTable();
+            initCharts();
+            calculateCommission();
         });
-    }
 
-    // Load all data (users + orders)
-    function loadAllData() {
-        loadUsersAndStats();
-        loadOrders();
-    }
+        // LocalStorage Sync
+        function saveState() {
+            localStorage.setItem('amazaff_products', JSON.stringify(products));
+            localStorage.setItem('amazaff_tag', amazonTag);
+            updateMetrics();
+        }
 
-    function loadUsersAndStats() {
-        const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
-        const orders = JSON.parse(localStorage.getItem("queen_orders") || "[]");
-        
-        // Update stats
-        document.getElementById("totalUsers").textContent = registeredUsers.length;
-        document.getElementById("totalOrders").textContent = orders.length;
-        
-        const revenue = orders.filter(o => o.status === "delivered").reduce((sum, o) => sum + (o.amount || 0), 0);
-        document.getElementById("totalRevenue").textContent = `$${revenue.toFixed(2)}`;
-        
-        // Calculate avg order value
-        const deliveredOrders = orders.filter(o => o.status === "delivered");
-        const avgValue = deliveredOrders.length > 0 ? revenue / deliveredOrders.length : 0;
-        document.getElementById("avgOrderValue").textContent = `$${avgValue.toFixed(2)}`;
-        
-        const completionRate = orders.length > 0 ? (deliveredOrders.length / orders.length * 100).toFixed(0) : 0;
-        document.getElementById("completionRate").textContent = `${completionRate}%`;
-        document.getElementById("userGrowth").textContent = `+${Math.min(registeredUsers.length * 5, 45)}%`;
-        document.getElementById("conversionEstimate").textContent = `${Math.min(registeredUsers.length * 3, 28)}%`;
-        
-        // Recent Users (last 5)
-        const recentUsers = [...registeredUsers].reverse().slice(0, 5);
-        if (recentUsers.length === 0) {
-            document.getElementById("recentUsersList").innerHTML = '<div class="empty-state">👑 No users registered yet. Users will appear after registration.</div>';
-        } else {
-            let html = `<table><thead><tr><th>Name</th><th>Email</th><th>Area</th><th>Role</th><th>Registered</th></tr></thead><tbody>`;
-            recentUsers.forEach(user => {
-                const isAdminUser = user.email === ADMIN_EMAIL;
-                html += `<tr>
-                    <td>${escapeHtml(user.name)}</td>
-                    <td>${escapeHtml(user.email)}</td>
-                    <td>${escapeHtml(user.area || 'N/A')}</td>
-                    <td>${isAdminUser ? '<span class="admin-badge">Admin</span>' : '<span class="user-badge">User</span>'}</td>
-                    <td>${new Date(user.registeredAt).toLocaleDateString()}</td>
-                </tr>`;
+        function updateTagUI() {
+            document.getElementById('headerTagBadge').innerText = amazonTag;
+            document.getElementById('sidebarTagDisplay').innerText = amazonTag;
+            document.getElementById('globalTagInput').value = amazonTag;
+        }
+
+        function saveGlobalTag() {
+            const input = document.getElementById('globalTagInput').value.trim();
+            if (input) {
+                amazonTag = input;
+                saveState();
+                updateTagUI();
+                showToast(`Global Amazon Tag updated to '${amazonTag}'`, 'success');
+            }
+        }
+
+        // Dashboard Metrics Calculation
+        function updateMetrics() {
+            const totalProd = products.length;
+            const totalClicks = products.reduce((sum, p) => sum + Number(p.clicks || 0), 0);
+            const totalVal = products.reduce((sum, p) => sum + (Number(p.price) * Number(p.clicks || 0)), 0);
+            const estComm = totalVal * 0.05; // 5% average commission
+
+            document.getElementById('stat-total-products').innerText = totalProd;
+            document.getElementById('stat-total-clicks').innerText = totalClicks.toLocaleString();
+            document.getElementById('stat-est-commission').innerText = '$' + estComm.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        // NAVIGATION LOGIC
+        function navigateTo(sectionId) {
+            const sections = ['dashboard', 'products', 'tag-manager', 'deals', 'pages'];
+            sections.forEach(id => {
+                const el = document.getElementById(`view-${id}`);
+                const nav = document.getElementById(`nav-${id}`);
+                if (id === sectionId) {
+                    el.classList.remove('hidden');
+                    if (nav) nav.classList.add('active');
+                } else {
+                    el.classList.add('hidden');
+                    if (nav) nav.classList.remove('active');
+                }
             });
-            html += `</tbody></table>`;
-            document.getElementById("recentUsersList").innerHTML = html;
+
+            // Reset category filter title if switching back to all products
+            if (sectionId === 'products') {
+                document.getElementById('categoryFilter').value = 'ALL';
+                document.getElementById('productsSectionTitle').innerText = 'Master Affiliate Products';
+                renderProductsTable();
+            }
+
+            // Close mobile sidebar if open
+            const sidebar = document.getElementById('sidebar');
+            if (!sidebar.classList.contains('-translate-x-full')) {
+                sidebar.classList.add('-translate-x-full');
+            }
         }
-        
-        // All Users
-        if (registeredUsers.length === 0) {
-            document.getElementById("allUsersList").innerHTML = '<div class="empty-state">No users found.</div>';
-        } else {
-            let html = `<table><thead><tr><th>Name</th><th>Email</th><th>Area</th><th>Role</th><th>Registered On</th><th>Action</th></tr></thead><tbody>`;
-            registeredUsers.forEach((user, idx) => {
-                const isAdminUser = user.email === ADMIN_EMAIL;
-                html += `<tr>
-                    <td>${escapeHtml(user.name)}</td>
-                    <td>${escapeHtml(user.email)}</td>
-                    <td>${escapeHtml(user.area || 'N/A')}</td>
-                    <td>${isAdminUser ? '<span class="admin-badge">Admin</span>' : '<span class="user-badge">User</span>'}</td>
-                    <td>${new Date(user.registeredAt).toLocaleDateString()}</td>
-                    <td>${!isAdminUser ? `<button class="action-btn" onclick="removeUser('${user.email}')">Remove</button>` : '—'}</td>
-                </tr>`;
+
+        function navigateToCategory(catName) {
+            navigateTo('products');
+            document.getElementById('categoryFilter').value = catName;
+            document.getElementById('productsSectionTitle').innerText = `${catName} Admin Module`;
+            renderProductsTable();
+        }
+
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('-translate-x-full');
+        }
+
+        // MASTER PRODUCTS TABLE RENDERER
+        function renderProductsTable() {
+            const search = document.getElementById('productSearchInput').value.toLowerCase();
+            const catFilter = document.getElementById('categoryFilter').value;
+            const statFilter = document.getElementById('statusFilter').value;
+            const tbody = document.getElementById('master-products-table-body');
+            tbody.innerHTML = '';
+
+            const filtered = products.filter(p => {
+                const matchesSearch = p.title.toLowerCase().includes(search) || p.id.toLowerCase().includes(search);
+                const matchesCat = catFilter === 'ALL' || p.category === catFilter;
+                const matchesStat = statFilter === 'ALL' || p.status === statFilter;
+                return matchesSearch && matchesCat && matchesStat;
             });
-            html += `</tbody></table>`;
-            document.getElementById("allUsersList").innerHTML = html;
-        }
-    }
-    
-    function loadOrders() {
-        const orders = JSON.parse(localStorage.getItem("queen_orders") || "[]");
-        const recentOrders = [...orders].reverse().slice(0, 5);
-        
-        if (recentOrders.length === 0) {
-            document.getElementById("recentOrdersList").innerHTML = '<div class="empty-state">📦 No orders placed yet.</div>';
-        } else {
-            let html = `<table><thead><tr><th>Order ID</th><th>Customer</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead><tbody>`;
-            recentOrders.forEach(order => {
-                html += `<tr>
-                    <td>#${escapeHtml(order.id || 'ORD')}</td>
-                    <td>${escapeHtml(order.customerName || 'Queen Customer')}</td>
-                    <td>$${(order.amount || 0).toFixed(2)}</td>
-                    <td><span class="${order.status === 'delivered' ? 'status-delivered' : 'status-pending'}">${order.status || 'pending'}</span></td>
-                    <td>${new Date(order.date || Date.now()).toLocaleDateString()}</td>
-                </tr>`;
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-slate-400">No products found matching criteria.</td></tr>`;
+                return;
+            }
+
+            filtered.forEach(p => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-gold-soft transition-colors';
+                tr.innerHTML = `
+                    <td class="p-4 font-semibold text-amber-100 flex items-center space-x-3">
+                        <img src="${p.image}" onerror="this.src='https://placehold.co/100x100/140E21/D4AF37?text=Product'" class="w-10 h-10 rounded-xl object-cover border gold-border">
+                        <div>
+                            <p class="font-bold text-amber-100 text-xs">${p.title}</p>
+                            <span class="text-[10px] font-mono text-amber-400/70">${p.id}</span>
+                        </div>
+                    </td>
+                    <td class="p-4"><span class="px-2.5 py-1 bg-royal-800 text-amber-300 rounded-lg border gold-border text-[10px]">${p.category}</span></td>
+                    <td class="p-4 font-bold text-amber-400">$${Number(p.price).toFixed(2)}</td>
+                    <td class="p-4 font-mono text-amber-200">${p.clicks || 0}</td>
+                    <td class="p-4">
+                        <button onclick="toggleProductStatus('${p.id}')" class="px-2.5 py-1 rounded-full text-[10px] font-semibold ${p.status === 'Active' ? 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/30' : 'bg-rose-500/10 text-rose-300 border border-rose-500/30'}">
+                            ${p.status}
+                        </button>
+                    </td>
+                    <td class="p-4 text-right space-x-2">
+                        <button onclick="copyAffiliateLink('${p.url}')" title="Copy Affiliate Link" class="text-amber-400 hover:text-amber-200 p-1"><i class="fa-solid fa-copy"></i></button>
+                        <button onclick="editProduct('${p.id}')" title="Edit Item" class="text-amber-400 hover:text-amber-200 p-1"><i class="fa-solid fa-pen"></i></button>
+                        <button onclick="deleteProduct('${p.id}')" title="Delete Item" class="text-rose-400 hover:text-rose-200 p-1"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
             });
-            html += `</tbody></table>`;
-            document.getElementById("recentOrdersList").innerHTML = html;
         }
-        
-        // All Orders
-        if (orders.length === 0) {
-            document.getElementById("allOrdersList").innerHTML = '<div class="empty-state">No orders found.</div>';
-        } else {
-            let html = `<table><thead><tr><th>Order ID</th><th>Customer</th><th>Amount</th><th>Status</th><th>Date</th><th>Action</th></tr></thead><tbody>`;
-            orders.forEach((order, idx) => {
-                html += `<tr>
-                    <td>#${escapeHtml(order.id || `ORD${idx+1}`)}</td>
-                    <td>${escapeHtml(order.customerName || 'Guest')}</td>
-                    <td>$${(order.amount || 0).toFixed(2)}</td>
-                    <td><span class="${order.status === 'delivered' ? 'status-delivered' : 'status-pending'}">${order.status || 'pending'}</span></td>
-                    <td>${new Date(order.date || Date.now()).toLocaleDateString()}</td>
-                    <td><button class="action-btn" onclick="updateOrderStatus('${order.id || idx}')">Mark Delivered</button></td>
-                </tr>`;
+
+        // RENDER DASHBOARD PREVIEW TABLE
+        function renderDashboard() {
+            const tbody = document.getElementById('dashboard-products-table');
+            tbody.innerHTML = '';
+
+            products.slice(0, 5).forEach(p => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-gold-soft transition-colors';
+                tr.innerHTML = `
+                    <td class="p-4 font-semibold text-amber-100 flex items-center space-x-3">
+                        <img src="${p.image}" class="w-8 h-8 rounded-lg object-cover border gold-border">
+                        <span>${p.title}</span>
+                    </td>
+                    <td class="p-4 text-amber-300">${p.category}</td>
+                    <td class="p-4 font-bold text-amber-400">$${Number(p.price).toFixed(2)}</td>
+                    <td class="p-4 font-mono">${p.clicks || 0}</td>
+                    <td class="p-4"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">${p.status}</span></td>
+                    <td class="p-4 text-right">
+                        <button onclick="copyAffiliateLink('${p.url}')" class="text-xs text-amber-400 hover:underline"><i class="fa-solid fa-link mr-1"></i>Copy Tagged Link</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
             });
-            html += `</tbody></table>`;
-            document.getElementById("allOrdersList").innerHTML = html;
         }
-    }
-    
-    function removeUser(email) {
-        if (confirm(`Remove user ${email} from royal registry?`)) {
-            let users = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
-            users = users.filter(u => u.email !== email);
-            localStorage.setItem("registeredUsers", JSON.stringify(users));
-            loadAllData();
-            alert("✨ User removed successfully.");
+
+        // MODAL HANDLERS & FORM SUBMIT
+        function openProductModal() {
+            document.getElementById('modalProductId').value = '';
+            document.getElementById('productForm').reset();
+            document.getElementById('productModalTitle').innerText = 'Add New Affiliate Item';
+            openModal('productModal');
         }
-    }
-    
-    function updateOrderStatus(orderId) {
-        let orders = JSON.parse(localStorage.getItem("queen_orders") || "[]");
-        const orderIndex = orders.findIndex((o, idx) => (o.id || idx.toString()) === orderId);
-        if (orderIndex !== -1) {
-            orders[orderIndex].status = "delivered";
-            localStorage.setItem("queen_orders", JSON.stringify(orders));
-            loadAllData();
-            alert("✅ Order marked as delivered!");
+
+        function editProduct(id) {
+            const p = products.find(prod => prod.id === id);
+            if (!p) return;
+
+            document.getElementById('modalProductId').value = p.id;
+            document.getElementById('modalProductTitle').value = p.title;
+            document.getElementById('modalProductCategory').value = p.category;
+            document.getElementById('modalProductPrice').value = p.price;
+            document.getElementById('modalProductUrl').value = p.url;
+            document.getElementById('modalProductImage').value = p.image;
+            document.getElementById('modalProductStatus').value = p.status;
+            document.getElementById('modalProductClicks').value = p.clicks || 0;
+
+            document.getElementById('productModalTitle').innerText = 'Edit Affiliate Item';
+            openModal('productModal');
         }
-    }
-    
-    function loadAdminInfo() {
-        const user = JSON.parse(localStorage.getItem("currentUser") || "{}");
-        document.getElementById("adminName").textContent = user.name || "Royal Admin";
-        document.getElementById("adminEmail").textContent = user.email || ADMIN_EMAIL;
-        document.getElementById("adminAvatar").textContent = (user.name || "A").charAt(0).toUpperCase();
-    }
-    
-    function logout() {
-        localStorage.removeItem("isAdmin");
-        localStorage.removeItem("currentUser");
-        window.location.href = "login.html";
-    }
-    
-    function checkAdmin() {
-        const isAdmin = localStorage.getItem("isAdmin");
-        const currentUser = localStorage.getItem("currentUser");
-        if (isAdmin !== "true") {
-            window.location.href = "login.html";
-            return false;
+
+        function handleProductSubmit(e) {
+            e.preventDefault();
+            const id = document.getElementById('modalProductId').value;
+            const title = document.getElementById('modalProductTitle').value;
+            const category = document.getElementById('modalProductCategory').value;
+            const price = parseFloat(document.getElementById('modalProductPrice').value);
+            let rawUrl = document.getElementById('modalProductUrl').value;
+            const image = document.getElementById('modalProductImage').value;
+            const status = document.getElementById('modalProductStatus').value;
+            const clicks = parseInt(document.getElementById('modalProductClicks').value) || 0;
+
+            // Ensure Tag is appended
+            const taggedUrl = appendTagToUrl(rawUrl);
+
+            if (id) {
+                const index = products.findIndex(p => p.id === id);
+                if (index !== -1) {
+                    products[index] = { id, title, category, price, url: taggedUrl, image, status, clicks };
+                    showToast(`Updated '${title}' successfully`, 'success');
+                }
+            } else {
+                const newId = 'AFF-' + Math.floor(100 + Math.random() * 900);
+                products.unshift({ id: newId, title, category, price, url: taggedUrl, image, status, clicks });
+                showToast(`New product '${title}' added to ${category}`, 'success');
+            }
+
+            saveState();
+            renderProductsTable();
+            renderDashboard();
+            updateChartData();
+            closeModal('productModal');
         }
-        return true;
-    }
-    
-    // Section switching
-    function switchSection(section) {
-        document.getElementById("dashboardSection").style.display = "none";
-        document.getElementById("usersSection").style.display = "none";
-        document.getElementById("ordersSection").style.display = "none";
-        document.getElementById("analyticsSection").style.display = "none";
-        
-        if (section === "dashboard") {
-            document.getElementById("dashboardSection").style.display = "block";
-            document.querySelector(".page-title h1").innerHTML = "Royal Dashboard";
-        } else if (section === "users") {
-            document.getElementById("usersSection").style.display = "block";
-            document.querySelector(".page-title h1").innerHTML = "User Management";
-            loadAllData();
-        } else if (section === "orders") {
-            document.getElementById("ordersSection").style.display = "block";
-            document.querySelector(".page-title h1").innerHTML = "Order Management";
-            loadAllData();
-        } else if (section === "analytics") {
-            document.getElementById("analyticsSection").style.display = "block";
-            document.querySelector(".page-title h1").innerHTML = "Analytics & Insights";
-            loadAllData();
+
+        function deleteProduct(id) {
+            products = products.filter(p => p.id !== id);
+            saveState();
+            renderProductsTable();
+            renderDashboard();
+            updateChartData();
+            showToast('Item removed from affiliate list', 'info');
         }
-        
-        // Update active nav
-        document.querySelectorAll(".nav-item").forEach(item => item.classList.remove("active"));
-        event.target.closest(".nav-item").classList.add("active");
-    }
-    
-    // Initialize demo data if needed
-    function initDemoData() {
-        let users = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
-        if (users.length === 0) {
-            users.push({
-                name: "Queen Admin",
-                email: "mailak@gmail.com",
-                area: "Royal Palace",
-                isAdmin: true,
-                registeredAt: new Date().toISOString()
+
+        function toggleProductStatus(id) {
+            const p = products.find(prod => prod.id === id);
+            if (p) {
+                p.status = p.status === 'Active' ? 'Inactive' : 'Active';
+                saveState();
+                renderProductsTable();
+                showToast(`Status toggled to ${p.status}`, 'info');
+            }
+        }
+
+        // AMAZON LINK TAG APPENDER HELPER
+        function appendTagToUrl(url) {
+            try {
+                const urlObj = new URL(url);
+                urlObj.searchParams.set('tag', amazonTag);
+                return urlObj.toString();
+            } catch (err) {
+                return url.includes('?') ? `${url}&tag=${amazonTag}` : `${url}?tag=${amazonTag}`;
+            }
+        }
+
+        function quickGenerateAffiliateLink() {
+            const raw = document.getElementById('quickLinkInput').value.trim();
+            if (!raw) {
+                showToast('Please enter an Amazon URL', 'error');
+                return;
+            }
+            const tagged = appendTagToUrl(raw);
+            document.getElementById('quickLinkOutput').value = tagged;
+            copyToClipboard(tagged);
+            showToast('Tagged Amazon Link copied to clipboard!', 'success');
+        }
+
+        function copyAffiliateLink(url) {
+            const tagged = appendTagToUrl(url);
+            copyToClipboard(tagged);
+            showToast('Affiliate Link Copied!', 'success');
+        }
+
+        function copyToClipboard(text) {
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+        }
+
+        // CSV EXPORTER
+        function exportProductsCSV() {
+            let csvContent = "data:text/csv;charset=utf-8,ID,Title,Category,Price,Clicks,Status,AffiliateURL\n";
+            products.forEach(p => {
+                csvContent += `"${p.id}","${p.title.replace(/"/g, '""')}","${p.category}",${p.price},${p.clicks},${p.status},"${p.url}"\n`;
             });
-            localStorage.setItem("registeredUsers", JSON.stringify(users));
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `amazon_affiliate_products_${amazonTag}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast('Exported CSV file', 'success');
         }
-        
-        let orders = JSON.parse(localStorage.getItem("queen_orders") || "[]");
-        if (orders.length === 0) {
-            orders.push({
-                id: "Q1001",
-                customerName: "Sophia Roy",
-                amount: 299.99,
-                status: "delivered",
-                date: new Date().toISOString()
-            });
-            orders.push({
-                id: "Q1002",
-                customerName: "Emma Wilson",
-                amount: 159.50,
-                status: "pending",
-                date: new Date().toISOString()
-            });
-            localStorage.setItem("queen_orders", JSON.stringify(orders));
+
+        // COMMISSION CALCULATOR
+        function calculateCommission() {
+            const clicks = parseFloat(document.getElementById('calcClicks').value) || 0;
+            const aov = parseFloat(document.getElementById('calcAOV').value) || 0;
+            const convRate = 0.03; // 3% average conversion rate
+            const commRate = 0.05; // 5% average commission rate
+
+            const estPayout = clicks * convRate * aov * commRate;
+            document.getElementById('calcResult').innerText = '$' + estPayout.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
-    }
-    
-    if (checkAdmin()) {
-        initDemoData();
-        loadAdminInfo();
-        loadAllData();
-    }
-    
-    window.switchSection = switchSection;
-    window.removeUser = removeUser;
-    window.updateOrderStatus = updateOrderStatus;
-    window.loadAllData = loadAllData;
-    window.logout = logout;
-</script>
+
+        // CHART JS INITIALIZATION
+        function initCharts() {
+            const ctx = document.getElementById('dashboardCategoryChart').getContext('2d');
+            const categories = ['Beauty', 'Face Cream', 'Footwear', 'Lipstick', 'Menswear', 'Party Wear', 'Birthday Dresses', 'Casual Girl Dresses', 'Frock Dresses', 'Girl Skirts', 'Girls Tops'];
+            
+            const categoryCounts = categories.map(cat => products.filter(p => p.category === cat).length);
+
+            categoryChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: categories,
+                    datasets: [{
+                        label: 'Listed Items',
+                        data: categoryCounts,
+                        backgroundColor: 'rgba(212, 175, 55, 0.6)',
+                        borderColor: '#D4AF37',
+                        borderWidth: 1,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { ticks: { color: '#94A3B8', font: { size: 9 } }, grid: { display: false } },
+                        y: { ticks: { color: '#94A3B8' }, grid: { color: 'rgba(212,175,55,0.05)' } }
+                    }
+                }
+            });
+        }
+
+        function updateChartData() {
+            if (!categoryChart) return;
+            const categories = ['Beauty', 'Face Cream', 'Footwear', 'Lipstick', 'Menswear', 'Party Wear', 'Birthday Dresses', 'Casual Girl Dresses', 'Frock Dresses', 'Girl Skirts', 'Girls Tops'];
+            const categoryCounts = categories.map(cat => products.filter(p => p.category === cat).length);
+            categoryChart.data.datasets[0].data = categoryCounts;
+            categoryChart.update();
+        }
+
+        // GLOBAL SEARCH HANDLER
+        function handleGlobalSearch(query) {
+            navigateTo('products');
+            document.getElementById('productSearchInput').value = query;
+            renderProductsTable();
+        }
+
+        function saveDisclosure() {
+            showToast('Affiliate FTC Disclosures Saved', 'success');
+        }
+
+        // MODAL HELPERS
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        // TOAST SYSTEM
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            const msgEl = document.getElementById('toast-message');
+            const iconEl = document.getElementById('toast-icon');
+
+            msgEl.innerText = message;
+
+            if (type === 'success') {
+                iconEl.className = 'fa-solid fa-circle-check text-emerald-400 text-lg';
+            } else if (type === 'error') {
+                iconEl.className = 'fa-solid fa-triangle-exclamation text-rose-400 text-lg';
+            } else {
+                iconEl.className = 'fa-solid fa-crown text-amber-400 text-lg';
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
