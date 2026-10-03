@@ -12,7 +12,6 @@
   <title>Girl Dresses Admin | StyleEasy</title>
 
   <style>
-
     *{
       box-sizing:border-box;
       margin:0;
@@ -23,8 +22,6 @@
       --pink:#e91e63;
       --pink-dark:#b9144d;
       --pink-light:#fff0f5;
-      --rose:#f472b6;
-      --purple:#7c3aed;
       --green:#059669;
       --red:#dc2626;
       --orange:#ea580c;
@@ -52,6 +49,11 @@
 
     button{
       cursor:pointer;
+    }
+
+    button:disabled{
+      cursor:not-allowed;
+      opacity:.65;
     }
 
     .hidden{
@@ -316,12 +318,24 @@
       margin-bottom:15px;
     }
 
+    .firebase-status{
+      background:#eff6ff;
+      color:#1e40af;
+      border:1px solid #bfdbfe;
+      border-radius:11px;
+      padding:12px;
+      font-size:12px;
+      line-height:1.55;
+      margin-bottom:15px;
+    }
+
     .message{
       padding:11px 13px;
       border-radius:10px;
       margin-bottom:15px;
       font-size:13px;
       font-weight:700;
+      line-height:1.55;
     }
 
     .message.success{
@@ -332,6 +346,11 @@
     .message.error{
       background:#fef2f2;
       color:#991b1b;
+    }
+
+    .message.warning{
+      background:#fff7ed;
+      color:#9a3412;
     }
 
     /* TOOLBAR */
@@ -441,6 +460,18 @@
       color:var(--muted);
     }
 
+    .empty-state{
+      text-align:center;
+      padding:45px;
+      color:var(--muted);
+    }
+
+    .error-details{
+      margin-top:8px;
+      font-size:11px;
+      word-break:break-word;
+    }
+
     /* RESPONSIVE */
 
     @media(max-width:1050px){
@@ -483,19 +514,28 @@
 
     }
 
+    @media(max-width:420px){
+
+      .stats{
+        grid-template-columns:1fr;
+      }
+
+      .page-heading h1{
+        font-size:24px;
+      }
+
+      .card{
+        padding:15px;
+      }
+
+    }
   </style>
 </head>
 
 
 <body>
 
-
-<!-- =====================================================
-     ADMIN APP
-====================================================== -->
-
 <section id="adminApp">
-
 
   <!-- HEADER -->
 
@@ -524,9 +564,6 @@
 
   <main>
 
-
-    <!-- PAGE HEADING -->
-
     <div class="page-heading">
 
       <div>
@@ -544,6 +581,7 @@
       <button
         id="newBtn"
         class="btn btn-primary"
+        type="button"
       >
         + Add Girl Dress
       </button>
@@ -555,70 +593,25 @@
 
     <div class="stats">
 
-
       <div class="stat">
-
-        <div
-          id="totalCount"
-          class="stat-number"
-        >
-          0
-        </div>
-
-        <div class="stat-label">
-          Total Dresses
-        </div>
-
+        <div id="totalCount" class="stat-number">0</div>
+        <div class="stat-label">Total Dresses</div>
       </div>
 
-
       <div class="stat">
-
-        <div
-          id="publishedCount"
-          class="stat-number"
-        >
-          0
-        </div>
-
-        <div class="stat-label">
-          Published
-        </div>
-
+        <div id="publishedCount" class="stat-number">0</div>
+        <div class="stat-label">Published</div>
       </div>
 
-
       <div class="stat">
-
-        <div
-          id="draftCount"
-          class="stat-number"
-        >
-          0
-        </div>
-
-        <div class="stat-label">
-          Draft
-        </div>
-
+        <div id="draftCount" class="stat-number">0</div>
+        <div class="stat-label">Draft</div>
       </div>
 
-
       <div class="stat">
-
-        <div
-          id="featuredCount"
-          class="stat-number"
-        >
-          0
-        </div>
-
-        <div class="stat-label">
-          Featured
-        </div>
-
+        <div id="featuredCount" class="stat-number">0</div>
+        <div class="stat-label">Featured</div>
       </div>
-
 
     </div>
 
@@ -628,12 +621,9 @@
     <div class="layout">
 
 
-      <!-- =================================================
-           FORM
-      ================================================== -->
+      <!-- FORM -->
 
       <div class="card">
-
 
         <div
           id="formTitle"
@@ -647,6 +637,16 @@
           id="formMessage"
           class="hidden"
         ></div>
+
+
+        <div class="firebase-status">
+
+          <strong>Firebase Product Database</strong><br>
+
+          Products are saved in:
+          <strong>Realtime Database → products</strong>
+
+        </div>
 
 
         <div class="notice">
@@ -667,8 +667,7 @@
         </div>
 
 
-        <form id="productForm">
-
+        <form id="productForm" novalidate>
 
           <input
             id="editingId"
@@ -845,6 +844,7 @@
                 id="price"
                 type="number"
                 min="0"
+                step="1"
                 required
                 placeholder="749"
               >
@@ -864,6 +864,7 @@
                 id="comparePrice"
                 type="number"
                 min="0"
+                step="1"
                 placeholder="1299"
               >
 
@@ -946,6 +947,17 @@
                 placeholder="girls-pink-sequin-party-wear-frock-dress"
               >
 
+              <small
+                style="
+                  display:block;
+                  color:#9ca3af;
+                  margin-top:5px;
+                  font-size:11px;
+                "
+              >
+                Lowercase letters, numbers and hyphens only.
+              </small>
+
             </div>
 
 
@@ -979,12 +991,11 @@
             <div class="field span-2">
 
               <label>
-                Image SEO Alt Text *
+                Image SEO Alt Text
               </label>
 
               <input
                 id="imageAlt"
-                required
                 placeholder="Girls pink sequin party wear frock dress"
               >
 
@@ -1091,42 +1102,71 @@
 
             </div>
 
-            <!-- SEO FOCUS KEYWORD -->
+
+            <!-- SEO FOCUS -->
+
             <div class="field">
-              <label>SEO Focus Keyword</label>
+
+              <label>
+                SEO Focus Keyword
+              </label>
+
               <input
                 id="seoFocusKeyword"
                 maxlength="80"
                 placeholder="girl dresses online"
               >
+
             </div>
 
-            <!-- SEO CANONICAL PATH -->
+
+            <!-- CANONICAL -->
+
             <div class="field">
-              <label>SEO Canonical Path</label>
+
+              <label>
+                SEO Canonical Path
+              </label>
+
               <input
                 id="seoCanonical"
                 placeholder="/products/girls-pink-party-wear-frock-dress"
               >
+
             </div>
 
-            <!-- SEO IMAGE CONTEXT -->
+
+            <!-- MARKET -->
+
             <div class="field">
-              <label>Target Market</label>
+
+              <label>
+                Target Market
+              </label>
+
               <input
                 id="targetMarket"
                 value="India"
                 placeholder="India"
               >
+
             </div>
 
+
+            <!-- LANGUAGE -->
+
             <div class="field">
-              <label>Content Language</label>
+
+              <label>
+                Content Language
+              </label>
+
               <input
                 id="contentLanguage"
                 value="en-IN"
                 placeholder="en-IN"
               >
+
             </div>
 
 
@@ -1155,18 +1195,14 @@
 
           </div>
 
-
         </form>
 
       </div>
 
 
-      <!-- =================================================
-           PRODUCT LIST
-      ================================================== -->
+      <!-- PRODUCT LIST -->
 
       <div class="card">
-
 
         <div class="card-title">
           Girl Dress Products
@@ -1174,7 +1210,6 @@
 
 
         <div class="toolbar">
-
 
           <input
             id="search"
@@ -1202,43 +1237,23 @@
 
           </select>
 
-
         </div>
 
 
         <div class="table-wrapper">
 
-
           <table>
-
 
             <thead>
 
               <tr>
 
-                <th>
-                  Image
-                </th>
-
-                <th>
-                  Product
-                </th>
-
-                <th>
-                  Category
-                </th>
-
-                <th>
-                  Price
-                </th>
-
-                <th>
-                  Status
-                </th>
-
-                <th>
-                  Actions
-                </th>
+                <th>Image</th>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Actions</th>
 
               </tr>
 
@@ -1260,36 +1275,28 @@
 
             </tbody>
 
-
           </table>
-
 
         </div>
 
-
       </div>
-
 
     </div>
 
-
   </main>
-
 
 </section>
 
 
-<!-- =====================================================
-     FIREBASE
-====================================================== -->
-
 <script type="module">
 
+/* =====================================================
+   FIREBASE IMPORTS
+===================================================== */
 
 import {
   initializeApp
-}
-from
+} from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 
@@ -1301,14 +1308,13 @@ import {
   set,
   update,
   remove
-}
-from
+} from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
 
 /* =====================================================
    FIREBASE CONFIG
-====================================================== */
+===================================================== */
 
 const firebaseConfig = {
 
@@ -1340,60 +1346,86 @@ const firebaseConfig = {
 
 
 /* =====================================================
-   INITIALIZE
-====================================================== */
+   INITIALIZE FIREBASE
+===================================================== */
 
 const app =
-  initializeApp(
-    firebaseConfig
-  );
+  initializeApp(firebaseConfig);
+
 
 const db =
-  getDatabase(
-    app
-  );
+  getDatabase(app);
 
 
 /* =====================================================
    VARIABLES
-====================================================== */
+===================================================== */
 
 let products = {};
+
+let isSaving = false;
 
 
 /* =====================================================
    DOM
-====================================================== */
-
-const productsTable =
-  document.getElementById(
-    "productsTable"
-  );
+===================================================== */
 
 const productForm =
-  document.getElementById(
-    "productForm"
-  );
+  document.getElementById("productForm");
+
+const productsTable =
+  document.getElementById("productsTable");
 
 const formMessage =
-  document.getElementById(
-    "formMessage"
-  );
+  document.getElementById("formMessage");
 
 const imageInput =
-  document.getElementById(
-    "image"
-  );
+  document.getElementById("image");
 
 const imagePreview =
-  document.getElementById(
-    "imagePreview"
-  );
+  document.getElementById("imagePreview");
+
+const saveBtn =
+  document.getElementById("saveBtn");
+
+const searchInput =
+  document.getElementById("search");
+
+const statusFilter =
+  document.getElementById("statusFilter");
+
+
+/* =====================================================
+   GET VALUE HELPER
+===================================================== */
+
+function value(id){
+
+  return document
+    .getElementById(id)
+    .value
+    .trim();
+
+}
+
+
+/* =====================================================
+   SET VALUE HELPER
+===================================================== */
+
+function setValue(id,value){
+
+  document
+    .getElementById(id)
+    .value =
+      value ?? "";
+
+}
 
 
 /* =====================================================
    LOAD PRODUCTS
-====================================================== */
+===================================================== */
 
 async function loadProducts(){
 
@@ -1430,6 +1462,16 @@ async function loadProducts(){
       : {};
 
 
+    if(
+      !products ||
+      typeof products !== "object"
+    ){
+
+      products = {};
+
+    }
+
+
     updateStats();
 
     renderProducts();
@@ -1439,6 +1481,7 @@ async function loadProducts(){
   catch(error){
 
     console.error(
+      "Firebase load error:",
       error
     );
 
@@ -1456,13 +1499,17 @@ async function loadProducts(){
           "
         >
 
-          Failed to load products.
+          <strong>
+            Failed to load products.
+          </strong>
 
-          <br><br>
+          <div class="error-details">
 
-          ${escapeHTML(
-            error.message
-          )}
+            ${escapeHTML(
+              getFirebaseError(error)
+            )}
+
+          </div>
 
         </td>
 
@@ -1476,52 +1523,37 @@ async function loadProducts(){
 
 
 /* =====================================================
-   GIRL DRESS FILTER
-====================================================== */
+   GIRL DRESS CHECK
+===================================================== */
 
-function isGirlDress(p){
+function isGirlDress(product){
+
+  if(
+    !product ||
+    typeof product !== "object"
+  ){
+
+    return false;
+
+  }
+
 
   const category =
     String(
-      p.category || ""
+      product.category || ""
     ).toLowerCase();
 
 
   const name =
     String(
-      p.name || ""
+      product.name || ""
     ).toLowerCase();
 
 
   const style =
     String(
-      p.style || ""
+      product.style || ""
     ).toLowerCase();
-
-
-  const girlWords = [
-
-    "girl",
-    "girls",
-    "dress",
-    "frock",
-    "skirt",
-    "kids",
-    "kid",
-    "top"
-
-  ];
-
-
-  const menWords = [
-
-    "men",
-    "mens",
-    "man",
-    "boys",
-    "boy"
-
-  ];
 
 
   const combined =
@@ -1532,11 +1564,27 @@ function isGirlDress(p){
     style;
 
 
+  const nonGirlWords = [
+
+    "men",
+    "mens",
+    "man",
+    "boy",
+    "boys"
+
+  ];
+
+
   if(
-    menWords.some(
+    nonGirlWords.some(
       word =>
-        combined.includes(
-          word
+        new RegExp(
+          "\\b" +
+          word +
+          "\\b",
+          "i"
+        ).test(
+          combined
         )
     )
   ){
@@ -1546,10 +1594,33 @@ function isGirlDress(p){
   }
 
 
+  const girlWords = [
+
+    "girl",
+    "girls",
+    "dress",
+    "dresses",
+    "frock",
+    "frocks",
+    "skirt",
+    "skirts",
+    "kid",
+    "kids",
+    "top",
+    "clothing"
+
+  ];
+
+
   return girlWords.some(
     word =>
-      combined.includes(
-        word
+      new RegExp(
+        "\\b" +
+        word +
+        "\\b",
+        "i"
+      ).test(
+        combined
       )
   );
 
@@ -1558,90 +1629,85 @@ function isGirlDress(p){
 
 /* =====================================================
    RENDER PRODUCTS
-====================================================== */
+===================================================== */
 
 function renderProducts(){
 
   const search =
-    document
-      .getElementById(
-        "search"
-      )
+    searchInput
       .value
       .trim()
       .toLowerCase();
 
 
   const filter =
-    document
-      .getElementById(
-        "statusFilter"
-      )
-      .value;
+    statusFilter.value;
 
 
   const list =
 
-    Object.entries(
-      products
-    )
+    Object.entries(products)
 
-    .filter(
-      ([id,p]) =>
-        isGirlDress(p)
-    )
+      .filter(
+        ([id,p]) =>
+          isGirlDress(p)
+      )
 
-    .filter(
-      ([id,p]) => {
+      .filter(
+        ([id,p]) => {
 
-        if(
-          filter !== "all" &&
-          p.status !== filter
-        ){
+          if(
+            filter !== "all" &&
+            String(
+              p.status || ""
+            ) !== filter
+          ){
 
-          return false;
+            return false;
+
+          }
+
+
+          const text = [
+
+            p.name,
+            p.category,
+            p.brand,
+            p.slug,
+            p.style,
+            p.occasion
+
+          ]
+
+          .filter(Boolean)
+
+          .join(" ")
+
+          .toLowerCase();
+
+
+          return (
+            !search ||
+            text.includes(search)
+          );
 
         }
+      )
 
+      .sort(
+        ([,a],[,b]) =>
 
-        const text = [
-
-          p.name,
-          p.category,
-          p.brand,
-          p.slug,
-          p.style,
-          p.occasion
-
-        ]
-
-        .filter(Boolean)
-
-        .join(" ")
-
-        .toLowerCase();
-
-
-        return (
-          !search ||
-          text.includes(
-            search
+          Number(
+            b.updatedAt || 0
           )
-        );
 
-      }
-    )
+          -
 
-    .sort(
-      ([,a],[,b]) =>
-        Number(
-          b.updatedAt || 0
-        )
-        -
-        Number(
-          a.updatedAt || 0
-        )
-    );
+          Number(
+            a.updatedAt || 0
+          )
+
+      );
 
 
   if(
@@ -1654,11 +1720,7 @@ function renderProducts(){
 
         <td
           colspan="6"
-          style="
-            text-align:center;
-            padding:45px;
-            color:#6b7280;
-          "
+          class="empty-state"
         >
 
           No Girl Dress products found.
@@ -1691,12 +1753,9 @@ function renderProducts(){
 
 /* =====================================================
    TABLE ROW
-====================================================== */
+===================================================== */
 
-function rowHTML(
-  id,
-  p
-){
+function rowHTML(id,p){
 
   const image =
     validHttps(
@@ -1706,9 +1765,8 @@ function rowHTML(
     : "";
 
 
-  const isPublished =
-    p.status ===
-    "published";
+  const published =
+    p.status === "published";
 
 
   const featured =
@@ -1774,15 +1832,21 @@ function rowHTML(
 
           ${
             featured
+
             ?
+
             `
+
             <span
               class="badge featured-badge"
             >
               Featured
             </span>
+
             `
+
             :
+
             ""
           }
 
@@ -1792,8 +1856,7 @@ function rowHTML(
         <div class="slug">
 
           ${escapeHTML(
-            p.slug ||
-            id
+            p.slug || id
           )}
 
         </div>
@@ -1804,8 +1867,7 @@ function rowHTML(
       <td>
 
         ${escapeHTML(
-          p.category ||
-          "-"
+          p.category || "-"
         )}
 
       </td>
@@ -1826,14 +1888,14 @@ function rowHTML(
 
         <span
           class="badge ${
-            isPublished
+            published
             ? "published"
             : "draft"
           }"
         >
 
           ${
-            isPublished
+            published
             ? "Published"
             : "Draft"
           }
@@ -1849,6 +1911,7 @@ function rowHTML(
 
 
           <button
+            type="button"
             class="small-btn btn-secondary"
             data-action="edit"
             data-id="${escapeHTML(id)}"
@@ -1858,8 +1921,9 @@ function rowHTML(
 
 
           <button
+            type="button"
             class="small-btn ${
-              isPublished
+              published
               ? "btn-danger"
               : "btn-success"
             }"
@@ -1868,7 +1932,7 @@ function rowHTML(
           >
 
             ${
-              isPublished
+              published
               ? "Unpublish"
               : "Publish"
             }
@@ -1877,6 +1941,7 @@ function rowHTML(
 
 
           <button
+            type="button"
             class="small-btn btn-danger"
             data-action="delete"
             data-id="${escapeHTML(id)}"
@@ -1889,7 +1954,6 @@ function rowHTML(
 
       </td>
 
-
     </tr>
 
   `;
@@ -1899,14 +1963,14 @@ function rowHTML(
 
 /* =====================================================
    TABLE ACTIONS
-====================================================== */
+===================================================== */
 
 productsTable.addEventListener(
   "click",
-  async function(e){
+  async function(event){
 
     const button =
-      e.target.closest(
+      event.target.closest(
         "button[data-action]"
       );
 
@@ -1923,13 +1987,17 @@ productsTable.addEventListener(
       button.dataset.id;
 
 
+    if(!id)
+      return;
+
+
     if(
       action === "edit"
     ){
 
-      editProduct(
-        id
-      );
+      editProduct(id);
+
+      return;
 
     }
 
@@ -1938,9 +2006,9 @@ productsTable.addEventListener(
       action === "toggle"
     ){
 
-      await toggleProduct(
-        id
-      );
+      await toggleProduct(id);
+
+      return;
 
     }
 
@@ -1949,9 +2017,9 @@ productsTable.addEventListener(
       action === "delete"
     ){
 
-      await deleteProduct(
-        id
-      );
+      await deleteProduct(id);
+
+      return;
 
     }
 
@@ -1960,171 +2028,173 @@ productsTable.addEventListener(
 
 
 /* =====================================================
-   EDIT
-====================================================== */
+   EDIT PRODUCT
+===================================================== */
 
 function editProduct(id){
 
-  const p =
+  const product =
     products[id];
 
 
-  if(!p)
-    return;
+  if(!product){
 
-
-  document.getElementById(
-    "editingId"
-  ).value =
-    id;
-
-
-  document.getElementById(
-    "name"
-  ).value =
-    p.name || "";
-
-
-  document.getElementById(
-    "category"
-  ).value =
-    p.category || "";
-
-
-  document.getElementById(
-    "style"
-  ).value =
-    p.style || "";
-
-
-  document.getElementById(
-    "brand"
-  ).value =
-    p.brand || "";
-
-
-  document.getElementById(
-    "occasion"
-  ).value =
-    p.occasion || "";
-
-
-  document.getElementById(
-    "price"
-  ).value =
-    p.price ?? "";
-
-
-  document.getElementById(
-    "comparePrice"
-  ).value =
-    p.comparePrice ?? "";
-
-
-  document.getElementById(
-    "badge"
-  ).value =
-    p.badge || "";
-
-
-  document.getElementById(
-    "status"
-  ).value =
-    p.status ||
-    "draft";
-
-
-  document.getElementById(
-    "featured"
-  ).value =
-    String(
-      p.featured === true
+    showMessage(
+      "Product not found.",
+      true
     );
 
+    return;
 
-  document.getElementById(
-    "slug"
-  ).value =
-    p.slug || "";
+  }
 
 
-  document.getElementById(
-    "image"
-  ).value =
-    p.image || "";
+  setValue(
+    "editingId",
+    id
+  );
 
 
-  document.getElementById(
-    "imageAlt"
-  ).value =
-    p.imageAlt || "";
+  setValue(
+    "name",
+    product.name
+  );
 
 
-  document.getElementById(
-    "affiliateUrl"
-  ).value =
-    p.affiliateUrl || "";
+  setValue(
+    "category",
+    product.category
+  );
 
 
-  document.getElementById(
-    "description"
-  ).value =
-    p.description || "";
+  setValue(
+    "style",
+    product.style
+  );
 
 
-  document.getElementById(
-    "metaTitle"
-  ).value =
-    p.metaTitle || "";
+  setValue(
+    "brand",
+    product.brand
+  );
 
 
-  document.getElementById(
-    "metaDescription"
-  ).value =
-    p.metaDescription || "";
+  setValue(
+    "occasion",
+    product.occasion
+  );
 
 
-  document.getElementById(
-    "shortExcerpt"
-  ).value =
-    p.shortExcerpt || "";
-
-  document.getElementById(
-    "seoFocusKeyword"
-  ).value =
-    p.seoFocusKeyword || "";
-
-  document.getElementById(
-    "seoCanonical"
-  ).value =
-    p.seoCanonical || "";
-
-  document.getElementById(
-    "targetMarket"
-  ).value =
-    p.targetMarket || "India";
-
-  document.getElementById(
-    "contentLanguage"
-  ).value =
-    p.contentLanguage || "en-IN";
+  setValue(
+    "price",
+    product.price
+  );
 
 
-  document.getElementById(
-    "images"
-  ).value =
+  setValue(
+    "comparePrice",
+    product.comparePrice
+  );
 
-    Array.isArray(
-      p.images
+
+  setValue(
+    "badge",
+    product.badge
+  );
+
+
+  setValue(
+    "status",
+    product.status || "draft"
+  );
+
+
+  setValue(
+    "featured",
+    String(
+      product.featured === true
     )
+  );
 
-    ?
-    p.images.join(
-      "\n"
-    )
 
-    :
-    "";
+  setValue(
+    "slug",
+    product.slug
+  );
+
+
+  setValue(
+    "image",
+    product.image
+  );
+
+
+  setValue(
+    "imageAlt",
+    product.imageAlt
+  );
+
+
+  setValue(
+    "images",
+    Array.isArray(product.images)
+    ? product.images.join("\n")
+    : ""
+  );
+
+
+  setValue(
+    "affiliateUrl",
+    product.affiliateUrl
+  );
+
+
+  setValue(
+    "description",
+    product.description
+  );
+
+
+  setValue(
+    "metaTitle",
+    product.metaTitle
+  );
+
+
+  setValue(
+    "metaDescription",
+    product.metaDescription
+  );
+
+
+  setValue(
+    "shortExcerpt",
+    product.shortExcerpt
+  );
+
+
+  setValue(
+    "seoFocusKeyword",
+    product.seoFocusKeyword
+  );
+
+
+  setValue(
+    "seoCanonical",
+    product.seoCanonical
+  );
+
+
+  setValue(
+    "targetMarket",
+    product.targetMarket || "India"
+  );
+
+
+  setValue(
+    "contentLanguage",
+    product.contentLanguage || "en-IN"
+  );
 
 
   document.getElementById(
@@ -2133,13 +2203,18 @@ function editProduct(id){
     "Edit Girl Dress";
 
 
-  document.getElementById(
-    "saveBtn"
-  ).textContent =
+  saveBtn.textContent =
     "Update Girl Dress";
 
 
   updateImagePreview();
+
+
+  showMessage(
+    "Editing: " +
+    (product.name || "Girl Dress"),
+    false
+  );
 
 
   window.scrollTo({
@@ -2151,134 +2226,135 @@ function editProduct(id){
 
 
 /* =====================================================
-   SAVE
-====================================================== */
+   FORM SUBMIT
+===================================================== */
 
 productForm.addEventListener(
   "submit",
-  async function(e){
+  async function(event){
 
-    e.preventDefault();
+    event.preventDefault();
+
+
+    if(isSaving)
+      return;
+
+
+    clearMessage();
 
 
     const editingId =
-      document
-        .getElementById(
-          "editingId"
-        )
-        .value
-        .trim();
+      value("editingId");
 
 
     const name =
-      document
-        .getElementById(
-          "name"
-        )
-        .value
-        .trim();
+      value("name");
 
 
     const category =
-      document
-        .getElementById(
-          "category"
-        )
-        .value
-        .trim();
+      value("category");
 
 
     const slug =
-      document
-        .getElementById(
-          "slug"
-        )
-        .value
-        .trim();
+      value("slug");
 
 
     const image =
-      document
-        .getElementById(
-          "image"
-        )
-        .value
-        .trim();
-
-    // Build SEO defaults from real product data. These are editable, not fake.
-    const seoKeywordInput = document.getElementById("seoFocusKeyword");
-    const metaTitleInput = document.getElementById("metaTitle");
-    const metaDescriptionInput = document.getElementById("metaDescription");
-    const shortExcerptInput = document.getElementById("shortExcerpt");
-    const imageAltInput = document.getElementById("imageAlt");
-    const canonicalInput = document.getElementById("seoCanonical");
-
-    if(!seoKeywordInput.value.trim()){
-      seoKeywordInput.value = category || "girl dresses online";
-    }
-    if(!metaTitleInput.value.trim()){
-      metaTitleInput.value = `${name} | Girl Dresses Online in India | StyleEasy`.slice(0,60);
-    }
-    if(!imageAltInput.value.trim()){
-      imageAltInput.value = `${name} - Girl Dress Online in India`;
-    }
-    if(!shortExcerptInput.value.trim()){
-      shortExcerptInput.value = `${name}. Explore product details, price and buying information on StyleEasy.`;
-    }
-    if(!metaDescriptionInput.value.trim()){
-      metaDescriptionInput.value = `${name}. Shop girl dresses online in India with current price, product details and Buy Now information on StyleEasy.`.slice(0,160);
-    }
-    if(!canonicalInput.value.trim()){
-      canonicalInput.value = `/products/${slug}`;
-    }
+      value("image");
 
 
     const affiliateUrl =
-      document
-        .getElementById(
-          "affiliateUrl"
-        )
-        .value
-        .trim();
+      value("affiliateUrl");
 
 
-    /* IMAGE VALIDATION */
+    const description =
+      value("description");
 
-    if(
-      !validHttps(
-        image
-      )
-    ){
+
+    const priceValue =
+      value("price");
+
+
+    /* ================================================
+       REQUIRED VALIDATION
+    ================================================ */
+
+    if(!name){
 
       showMessage(
-        "Image URL must start with https://",
+        "Please enter Product Name.",
         true
       );
+
+      focusField("name");
 
       return;
 
     }
 
 
-    /* BUY URL VALIDATION */
-
-    if(
-      !validHttpUrl(
-        affiliateUrl
-      )
-    ){
+    if(!category){
 
       showMessage(
-        "Affiliate / Buy URL must be a valid HTTPS URL.",
+        "Please select a Category.",
         true
       );
+
+      focusField("category");
 
       return;
 
     }
 
 
-    /* SLUG VALIDATION */
+    if(!priceValue){
+
+      showMessage(
+        "Please enter Product Price.",
+        true
+      );
+
+      focusField("price");
+
+      return;
+
+    }
+
+
+    const price =
+      Number(priceValue);
+
+
+    if(
+      !Number.isFinite(price) ||
+      price < 0
+    ){
+
+      showMessage(
+        "Please enter a valid product price.",
+        true
+      );
+
+      focusField("price");
+
+      return;
+
+    }
+
+
+    if(!slug){
+
+      showMessage(
+        "Please enter SEO Slug.",
+        true
+      );
+
+      focusField("slug");
+
+      return;
+
+    }
+
 
     if(
       !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(
@@ -2291,80 +2367,188 @@ productForm.addEventListener(
         true
       );
 
+      focusField("slug");
+
       return;
 
     }
 
 
-    if(metaTitleInput.value.length > 60){
-      showMessage("SEO Meta Title should be 60 characters or fewer.", true);
-      return;
-    }
-
-    if(metaDescriptionInput.value.length > 160){
-      showMessage("SEO Meta Description should be 160 characters or fewer.", true);
-      return;
-    }
-
-    if(!canonicalInput.value.startsWith("/")){
-      showMessage("SEO Canonical Path should start with /", true);
-      return;
-    }
-
-
-    /* DUPLICATE SLUG */
-
-    const duplicate =
-
-      Object.entries(
-        products
-      )
-
-      .some(
-        ([id,p]) =>
-
-          id !== editingId
-          &&
-          String(
-            p.slug || ""
-          )
-          .toLowerCase()
-          ===
-          slug.toLowerCase()
-      );
-
-
-    if(
-      duplicate
-    ){
+    if(!validHttps(image)){
 
       showMessage(
-        "This slug already exists.",
+        "Main Image URL must be a valid HTTPS URL.",
         true
       );
 
+      focusField("image");
+
       return;
 
     }
 
 
-    /* ADDITIONAL IMAGES */
+    if(!validHttpUrl(affiliateUrl)){
+
+      showMessage(
+        "Affiliate / Buy URL must be a valid HTTPS URL.",
+        true
+      );
+
+      focusField("affiliateUrl");
+
+      return;
+
+    }
+
+
+    if(!description){
+
+      showMessage(
+        "Please enter Product Description.",
+        true
+      );
+
+      focusField("description");
+
+      return;
+
+    }
+
+
+    /* ================================================
+       AUTO SEO
+    ================================================ */
+
+    const seoKeyword =
+      value("seoFocusKeyword") ||
+      category ||
+      "girl dresses online";
+
+
+    const metaTitle =
+      value("metaTitle") ||
+      `${name} | Girl Dresses Online in India | StyleEasy`
+        .slice(0,60);
+
+
+    const imageAlt =
+      value("imageAlt") ||
+      `${name} - Girl Dress Online in India`;
+
+
+    const shortExcerpt =
+      value("shortExcerpt") ||
+      `${name}. Explore product details, price and buying information on StyleEasy.`;
+
+
+    const metaDescription =
+      value("metaDescription") ||
+      `${name}. Shop girl dresses online in India with current price, product details and Buy Now information on StyleEasy.`
+        .slice(0,160);
+
+
+    const canonical =
+      value("seoCanonical") ||
+      `/products/${slug}`;
+
+
+    setValue(
+      "seoFocusKeyword",
+      seoKeyword
+    );
+
+
+    setValue(
+      "metaTitle",
+      metaTitle
+    );
+
+
+    setValue(
+      "imageAlt",
+      imageAlt
+    );
+
+
+    setValue(
+      "shortExcerpt",
+      shortExcerpt
+    );
+
+
+    setValue(
+      "metaDescription",
+      metaDescription
+    );
+
+
+    setValue(
+      "seoCanonical",
+      canonical
+    );
+
+
+    if(
+      metaTitle.length > 60
+    ){
+
+      showMessage(
+        "SEO Meta Title should be 60 characters or fewer.",
+        true
+      );
+
+      focusField("metaTitle");
+
+      return;
+
+    }
+
+
+    if(
+      metaDescription.length > 160
+    ){
+
+      showMessage(
+        "SEO Meta Description should be 160 characters or fewer.",
+        true
+      );
+
+      focusField("metaDescription");
+
+      return;
+
+    }
+
+
+    if(
+      !canonical.startsWith("/")
+    ){
+
+      showMessage(
+        "SEO Canonical Path should start with /",
+        true
+      );
+
+      focusField("seoCanonical");
+
+      return;
+
+    }
+
+
+    /* ================================================
+       ADDITIONAL IMAGES
+    ================================================ */
 
     const additionalImages =
-
-      document
-        .getElementById(
-          "images"
-        )
-        .value
-        .split("\n")
+      value("images")
+        .split(/\r?\n/)
         .map(
-          x =>
-            x.trim()
+          url =>
+            url.trim()
         )
-        .filter(
-          Boolean
-        );
+        .filter(Boolean);
 
 
     for(
@@ -2372,15 +2556,15 @@ productForm.addEventListener(
     ){
 
       if(
-        !validHttps(
-          url
-        )
+        !validHttps(url)
       ){
 
         showMessage(
           "Every additional image must start with https://",
           true
         );
+
+        focusField("images");
 
         return;
 
@@ -2389,21 +2573,59 @@ productForm.addEventListener(
     }
 
 
-    /* OLD PRODUCT */
+    /* ================================================
+       DUPLICATE SLUG
+    ================================================ */
+
+    const duplicate =
+      Object.entries(products)
+        .some(
+          ([id,product]) =>
+
+            id !== editingId &&
+
+            String(
+              product?.slug || ""
+            )
+            .trim()
+            .toLowerCase()
+            ===
+            slug
+              .toLowerCase()
+        );
+
+
+    if(duplicate){
+
+      showMessage(
+        "This SEO slug already exists. Please use another slug.",
+        true
+      );
+
+      focusField("slug");
+
+      return;
+
+    }
+
+
+    /* ================================================
+       OLD PRODUCT
+    ================================================ */
 
     const oldProduct =
       editingId
-      ?
-      products[editingId]
-      :
-      null;
+      ? products[editingId]
+      : null;
 
 
     const now =
       Date.now();
 
 
-    /* PRODUCT OBJECT */
+    /* ================================================
+       PRODUCT OBJECT
+    ================================================ */
 
     const product = {
 
@@ -2424,86 +2646,46 @@ productForm.addEventListener(
 
       brand:
 
-        document
-          .getElementById(
-            "brand"
-          )
-          .value
-          .trim(),
+        value("brand"),
 
 
       style:
 
-        document
-          .getElementById(
-            "style"
-          )
-          .value
-          .trim(),
+        value("style"),
 
 
       occasion:
 
-        document
-          .getElementById(
-            "occasion"
-          )
-          .value
-          .trim(),
+        value("occasion"),
 
 
       price:
 
-        Number(
-          document
-            .getElementById(
-              "price"
-            )
-            .value
-        ),
+        price,
 
 
       comparePrice:
 
         Number(
-          document
-            .getElementById(
-              "comparePrice"
-            )
-            .value
-        )
-        ||
-        null,
+          value("comparePrice")
+        ) || null,
 
 
       badge:
 
-        document
-          .getElementById(
-            "badge"
-          )
-          .value
-          .trim(),
+        value("badge"),
 
 
       featured:
 
-        document
-          .getElementById(
-            "featured"
-          )
-          .value
-          ===
-          "true",
+        value("featured") ===
+        "true",
 
 
       status:
 
-        document
-          .getElementById(
-            "status"
-          )
-          .value,
+        value("status") ||
+        "published",
 
 
       image:
@@ -2513,12 +2695,7 @@ productForm.addEventListener(
 
       imageAlt:
 
-        document
-          .getElementById(
-            "imageAlt"
-          )
-          .value
-          .trim(),
+        imageAlt,
 
 
       images:
@@ -2533,67 +2710,44 @@ productForm.addEventListener(
 
       description:
 
-        document
-          .getElementById(
-            "description"
-          )
-          .value
-          .trim(),
+        description,
 
 
       metaTitle:
 
-        document
-          .getElementById(
-            "metaTitle"
-          )
-          .value
-          .trim(),
+        metaTitle,
 
 
       metaDescription:
 
-        document
-          .getElementById(
-            "metaDescription"
-          )
-          .value
-          .trim(),
+        metaDescription,
 
 
       shortExcerpt:
 
-        document
-          .getElementById(
-            "shortExcerpt"
-          )
-          .value
-          .trim(),
+        shortExcerpt,
+
 
       seoFocusKeyword:
-        document
-          .getElementById("seoFocusKeyword")
-          .value
-          .trim(),
+
+        seoKeyword,
+
 
       seoCanonical:
-        document
-          .getElementById("seoCanonical")
-          .value
-          .trim() ||
-        "/products/" + slug,
+
+        canonical,
+
 
       targetMarket:
-        document
-          .getElementById("targetMarket")
-          .value
-          .trim() || "India",
+
+        value("targetMarket") ||
+        "India",
+
 
       contentLanguage:
-        document
-          .getElementById("contentLanguage")
-          .value
-          .trim() || "en-IN",
+
+        value("contentLanguage") ||
+        "en-IN",
 
 
       createdAt:
@@ -2609,12 +2763,12 @@ productForm.addEventListener(
     };
 
 
-    /* SAVE BUTTON */
+    /* ================================================
+       SAVE START
+    ================================================ */
 
-    const saveBtn =
-      document.getElementById(
-        "saveBtn"
-      );
+    isSaving =
+      true;
 
 
     saveBtn.disabled =
@@ -2622,45 +2776,61 @@ productForm.addEventListener(
 
 
     saveBtn.textContent =
-      "Saving...";
+      editingId
+      ? "Updating..."
+      : "Saving...";
 
 
     try{
 
-
-      let id =
+      let productId =
         editingId;
 
 
-      /* NEW PRODUCT */
+      /* ==============================================
+         NEW PRODUCT
+      ============================================== */
 
-      if(
-        !id
-      ){
+      if(!productId){
 
-        const newRef =
-          push(
-            ref(
-              db,
-              "products"
-            )
+        const productsRef =
+          ref(
+            db,
+            "products"
           );
 
 
-        id =
-          newRef.key;
+        const newProductRef =
+          push(
+            productsRef
+          );
+
+
+        productId =
+          newProductRef.key;
+
+
+        if(!productId){
+
+          throw new Error(
+            "Firebase could not generate a Product ID."
+          );
+
+        }
 
       }
 
 
-      /* SAVE */
+      /* ==============================================
+         FIREBASE WRITE
+      ============================================== */
 
       await set(
 
         ref(
           db,
           "products/" +
-          id
+          productId
         ),
 
         product
@@ -2668,9 +2838,49 @@ productForm.addEventListener(
       );
 
 
+      /* ==============================================
+         VERIFY WRITE
+      ============================================== */
+
+      const verifySnapshot =
+        await get(
+          ref(
+            db,
+            "products/" +
+            productId
+          )
+        );
+
+
+      if(
+        !verifySnapshot.exists()
+      ){
+
+        throw new Error(
+          "Product write completed but verification failed."
+        );
+
+      }
+
+
+      /* ==============================================
+         SUCCESS
+      ============================================== */
+
       showMessage(
-        "Girl Dress saved successfully.",
+
+        editingId
+
+        ?
+
+        "Girl Dress updated successfully."
+
+        :
+
+        "NEW Girl Dress added successfully.",
+
         false
+
       );
 
 
@@ -2678,23 +2888,26 @@ productForm.addEventListener(
 
 
       setTimeout(
-        clearForm,
-        700
-      );
+        () => {
 
+          clearForm();
+
+        },
+        900
+      );
 
     }
 
     catch(error){
 
       console.error(
+        "PRODUCT SAVE ERROR:",
         error
       );
 
 
       showMessage(
-        "Save failed: " +
-        error.message,
+        getFirebaseError(error),
         true
       );
 
@@ -2702,13 +2915,17 @@ productForm.addEventListener(
 
     finally{
 
+      isSaving =
+        false;
+
+
       saveBtn.disabled =
         false;
 
 
       saveBtn.textContent =
 
-        editingId
+        value("editingId")
 
         ?
 
@@ -2725,38 +2942,37 @@ productForm.addEventListener(
 
 
 /* =====================================================
-   DELETE
-====================================================== */
+   DELETE PRODUCT
+===================================================== */
 
 async function deleteProduct(id){
 
-  const p =
+  const product =
     products[id];
 
 
-  if(
-    !p
-  )
+  if(!product)
     return;
 
 
-  if(
-    !confirm(
+  const productName =
+    product.name ||
+    "this product";
+
+
+  const confirmed =
+    confirm(
       "Delete this Girl Dress?\n\n" +
-      (
-        p.name ||
-        ""
-      )
-    )
-  ){
+      productName +
+      "\n\nThis action cannot be undone."
+    );
 
+
+  if(!confirmed)
     return;
-
-  }
 
 
   try{
-
 
     await remove(
 
@@ -2769,16 +2985,32 @@ async function deleteProduct(id){
     );
 
 
-    await loadProducts();
+    delete products[id];
 
+
+    updateStats();
+
+    renderProducts();
+
+
+    showMessage(
+      "Product deleted successfully.",
+      false
+    );
 
   }
 
   catch(error){
 
-    alert(
-      "Delete failed:\n" +
-      error.message
+    console.error(
+      "DELETE ERROR:",
+      error
+    );
+
+
+    showMessage(
+      getFirebaseError(error),
+      true
     );
 
   }
@@ -2787,24 +3019,22 @@ async function deleteProduct(id){
 
 
 /* =====================================================
-   PUBLISH / UNPUBLISH
-====================================================== */
+   TOGGLE PUBLISH
+===================================================== */
 
 async function toggleProduct(id){
 
-  const p =
+  const product =
     products[id];
 
 
-  if(
-    !p
-  )
+  if(!product)
     return;
 
 
   const newStatus =
 
-    p.status ===
+    product.status ===
     "published"
 
     ?
@@ -2817,7 +3047,6 @@ async function toggleProduct(id){
 
 
   try{
-
 
     await update(
 
@@ -2840,16 +3069,53 @@ async function toggleProduct(id){
     );
 
 
-    await loadProducts();
+    products[id] = {
 
+      ...products[id],
+
+      status:
+        newStatus,
+
+      updatedAt:
+        Date.now()
+
+    };
+
+
+    updateStats();
+
+    renderProducts();
+
+
+    showMessage(
+
+      newStatus === "published"
+
+      ?
+
+      "Product published successfully."
+
+      :
+
+      "Product moved to draft.",
+
+      false
+
+    );
 
   }
 
   catch(error){
 
-    alert(
-      "Status update failed:\n" +
-      error.message
+    console.error(
+      "STATUS ERROR:",
+      error
+    );
+
+
+    showMessage(
+      getFirebaseError(error),
+      true
     );
 
   }
@@ -2859,17 +3125,41 @@ async function toggleProduct(id){
 
 /* =====================================================
    CLEAR FORM
-====================================================== */
+===================================================== */
 
 function clearForm(){
 
   productForm.reset();
 
 
-  document.getElementById(
-    "editingId"
-  ).value =
-    "";
+  setValue(
+    "editingId",
+    ""
+  );
+
+
+  setValue(
+    "targetMarket",
+    "India"
+  );
+
+
+  setValue(
+    "contentLanguage",
+    "en-IN"
+  );
+
+
+  setValue(
+    "status",
+    "published"
+  );
+
+
+  setValue(
+    "featured",
+    "false"
+  );
 
 
   document.getElementById(
@@ -2878,9 +3168,7 @@ function clearForm(){
     "Add Girl Dress";
 
 
-  document.getElementById(
-    "saveBtn"
-  ).textContent =
+  saveBtn.textContent =
     "Save Girl Dress";
 
 
@@ -2888,30 +3176,35 @@ function clearForm(){
     "Image Preview";
 
 
-  formMessage.className =
-    "hidden";
+  clearMessage();
 
 
-  formMessage.textContent =
-    "";
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 
 }
 
 
+/* =====================================================
+   NEW BUTTON
+===================================================== */
+
 document
-  .getElementById(
-    "clearBtn"
-  )
+  .getElementById("newBtn")
   .addEventListener(
     "click",
     clearForm
   );
 
 
+/* =====================================================
+   CLEAR BUTTON
+===================================================== */
+
 document
-  .getElementById(
-    "newBtn"
-  )
+  .getElementById("clearBtn")
   .addEventListener(
     "click",
     clearForm
@@ -2920,7 +3213,7 @@ document
 
 /* =====================================================
    IMAGE PREVIEW
-====================================================== */
+===================================================== */
 
 imageInput.addEventListener(
   "input",
@@ -2931,15 +3224,21 @@ imageInput.addEventListener(
 function updateImagePreview(){
 
   const url =
-    imageInput
-      .value
-      .trim();
+    imageInput.value.trim();
+
+
+  if(!url){
+
+    imagePreview.innerHTML =
+      "Image Preview";
+
+    return;
+
+  }
 
 
   if(
-    !validHttps(
-      url
-    )
+    !validHttps(url)
   ){
 
     imagePreview.innerHTML =
@@ -2967,43 +3266,35 @@ function updateImagePreview(){
 
 /* =====================================================
    SEARCH
-====================================================== */
+===================================================== */
 
-document
-  .getElementById(
-    "search"
-  )
-  .addEventListener(
-    "input",
-    renderProducts
-  );
+searchInput.addEventListener(
+  "input",
+  renderProducts
+);
 
 
-document
-  .getElementById(
-    "statusFilter"
-  )
-  .addEventListener(
-    "change",
-    renderProducts
-  );
+/* =====================================================
+   STATUS FILTER
+===================================================== */
+
+statusFilter.addEventListener(
+  "change",
+  renderProducts
+);
 
 
 /* =====================================================
    STATS
-====================================================== */
+===================================================== */
 
 function updateStats(){
 
   const list =
-
-    Object.values(
-      products
-    )
-
-    .filter(
-      isGirlDress
-    );
+    Object.values(products)
+      .filter(
+        isGirlDress
+      );
 
 
   const total =
@@ -3011,28 +3302,25 @@ function updateStats(){
 
 
   const published =
-
     list.filter(
-      p =>
-        p.status ===
+      product =>
+        product.status ===
         "published"
     ).length;
 
 
   const draft =
-
     list.filter(
-      p =>
-        p.status !==
+      product =>
+        product.status !==
         "published"
     ).length;
 
 
   const featured =
-
     list.filter(
-      p =>
-        p.featured ===
+      product =>
+        product.featured ===
         true
     ).length;
 
@@ -3064,12 +3352,12 @@ function updateStats(){
 
 
 /* =====================================================
-   MESSAGE
-====================================================== */
+   SHOW MESSAGE
+===================================================== */
 
 function showMessage(
   message,
-  error
+  error = false
 ){
 
   formMessage.className =
@@ -3088,58 +3376,111 @@ function showMessage(
   formMessage.textContent =
     message;
 
+
+  formMessage.scrollIntoView({
+    behavior:"smooth",
+    block:"nearest"
+  });
+
+}
+
+
+/* =====================================================
+   CLEAR MESSAGE
+===================================================== */
+
+function clearMessage(){
+
+  formMessage.className =
+    "hidden";
+
+
+  formMessage.textContent =
+    "";
+
+}
+
+
+/* =====================================================
+   FOCUS FIELD
+===================================================== */
+
+function focusField(id){
+
+  const field =
+    document.getElementById(id);
+
+
+  if(field){
+
+    field.focus();
+
+    field.scrollIntoView({
+      behavior:"smooth",
+      block:"center"
+    });
+
+  }
+
 }
 
 
 /* =====================================================
    HTTPS VALIDATION
-====================================================== */
+===================================================== */
 
-function validHttps(
-  value
-){
+function validHttps(value){
 
-  return (
-
-    typeof value ===
+  if(
+    typeof value !==
     "string"
+  ){
 
-    &&
+    return false;
 
-    value.startsWith(
+  }
+
+
+  const trimmed =
+    value.trim();
+
+
+  if(
+    !trimmed.startsWith(
       "https://"
     )
+  ){
 
-    &&
+    return false;
 
-    !value.startsWith(
+  }
+
+
+  if(
+    trimmed.startsWith(
       "file:///"
     )
+  ){
 
-  );
+    return false;
 
-}
+  }
 
-
-/* =====================================================
-   URL VALIDATION
-====================================================== */
-
-function validHttpUrl(
-  value
-){
 
   try{
 
     const url =
       new URL(
-        value
+        trimmed
       );
 
 
     return (
       url.protocol ===
-      "https:"
+      "https:" &&
+      Boolean(
+        url.hostname
+      )
     );
 
   }
@@ -3154,12 +3495,116 @@ function validHttpUrl(
 
 
 /* =====================================================
-   ESCAPE HTML
-====================================================== */
+   URL VALIDATION
+===================================================== */
 
-function escapeHTML(
-  value
-){
+function validHttpUrl(value){
+
+  if(
+    typeof value !==
+    "string" ||
+    !value.trim()
+  ){
+
+    return false;
+
+  }
+
+
+  try{
+
+    const url =
+      new URL(
+        value.trim()
+      );
+
+
+    return (
+      url.protocol ===
+      "https:" &&
+      Boolean(
+        url.hostname
+      )
+    );
+
+  }
+
+  catch{
+
+    return false;
+
+  }
+
+}
+
+
+/* =====================================================
+   FIREBASE ERROR
+===================================================== */
+
+function getFirebaseError(error){
+
+  const code =
+    error?.code ||
+    "";
+
+
+  const message =
+    error?.message ||
+    String(error);
+
+
+  if(
+    code.includes(
+      "PERMISSION_DENIED"
+    )
+    ||
+    message.toLowerCase()
+      .includes(
+        "permission denied"
+      )
+  ){
+
+    return (
+      "Firebase Permission Denied. " +
+      "Realtime Database Rules are blocking product write access. " +
+      "Your current admin page is trying to write to /products."
+    );
+
+  }
+
+
+  if(
+    code.includes(
+      "NETWORK"
+    )
+    ||
+    message.toLowerCase()
+      .includes(
+        "network"
+      )
+  ){
+
+    return (
+      "Network error. Please check your internet connection and Firebase configuration."
+    );
+
+  }
+
+
+  return (
+    "Save failed: " +
+    message
+  );
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value){
 
   return String(
     value ?? ""
@@ -3189,9 +3634,7 @@ function escapeHTML(
       };
 
 
-      return map[
-        char
-      ];
+      return map[char];
 
     }
   );
@@ -3201,10 +3644,9 @@ function escapeHTML(
 
 /* =====================================================
    START
-====================================================== */
+===================================================== */
 
 loadProducts();
-
 
 </script>
 
